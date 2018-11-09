@@ -4,6 +4,7 @@ html, body{
     height: 100%;
     
     overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
@@ -16,7 +17,7 @@ fieldset{
 }*/
 
 p, h1, h2, h3{
-    
+
 }
 
 
@@ -31,6 +32,7 @@ p, h1, h2, h3{
 #logo, #logout{
     flex-basis: 5%;
 }
+
 
 #navigation{
     flex-basis: 20%;
@@ -55,7 +57,7 @@ input[type="text"], input[type="date"]{
 
 header{
     background-color: gray;
-    height: 5%;
+    height: 10%;
     min-height: 25px;
     padding-top: 25px;
 
@@ -68,12 +70,13 @@ main {
     display: flex;
     flex-direction: row;
     height: 85%;
+    margin-left: 2%;
     
     
 }
 
 #left, #right {
-    background-color: lightgray; 
+    /* background-color: lightgray; */ 
     flex-basis: 15%;
 }
 #content{
