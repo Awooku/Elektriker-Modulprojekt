@@ -1,0 +1,22 @@
+fieldset {
+    font-size: 18px;
+    height: auto;
+    width: 155px;
+    padding: 15px 15px 15px 15px;
+}
+
+label {
+    font-size: 15px;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+select {
+    margin-bottom: 10px;
+}
+#startdato{
+    margin-bottom: 10px;
+}
+#synlighed{
+    margin-bottom: 20px;
+}
+
