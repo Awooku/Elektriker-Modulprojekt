@@ -1,28 +1,32 @@
+#Dod{
+    height: auto;
+    margin: auto;
+}
+
 .Event {
-    font-size: 18px;
+    font-size: 15px;
     height: auto;
     width: 155px;
+    margin: auto;
     padding: 15px 15px 15px 15px;
 }
 #DOF {
-    font-size: 18px;
+    font-size: 16px;
     height: auto;
     padding: 15px 15px 15px 15px;
 }
 
 
-label {
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+.OTR {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+.OT {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
 }
 
-select {
-    margin-bottom: 10px;
-}
-#startdato{
-    margin-bottom: 10px;
-}
-#synlighed{
-    margin-bottom: 20px;
-}
 
+#modul, #antal-pladser, #frie-pladser, #startdato, #synlighed{
+    margin-bottom: 10px;
+}
