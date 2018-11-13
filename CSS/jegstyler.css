@@ -4,9 +4,9 @@
 }
 
 .Event {
-    font-size: 15px;
+    font-size: 16px;
     height: auto;
-    width: 155px;
+    width: 340px;
     margin: auto;
     padding: 15px 15px 15px 15px;
 }
@@ -25,8 +25,36 @@
     border-top: 1px solid;
     border-bottom: 1px solid;
 }
+#modul, #antal-pladser, #frie-pladser, #startdato {
+margin: 5px 0px 10px 0px;
+}
 
 
-#modul, #antal-pladser, #frie-pladser, #startdato, #synlighed{
-    margin-bottom: 10px;
+#modul {
+    margin-left: 75px;
+    width: 155px;
+    height: 20px;
+}
+#antal-pladser {
+    margin-left: 11px;
+    width: 155px;
+    height: 20px;
+}
+#frie-pladser {
+    margin-left: 52px;
+    width: 155px;
+    height: 20px;
+}
+#startdato {
+    margin-left: 105px;
+    width: 150px;
+}
+#synlighed {
+    margin: 5px 0px 20px 14px;
+    height: 20px;
+}
+.Udgiv {
+    font-weight: bold;   
+    margin-left: 80%;
+    margin-bottom: 5px;
 }
