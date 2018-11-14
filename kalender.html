@@ -1,153 +1,19 @@
-<!-- https://webdesign.tutsplus.com/tutorials/introducing-the-html5-menu-and-menuitem-elements--cms-22269 -->
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-    <meta chartset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administrationsværktøj</title>
-    <link rel="stylesheet" type="text/css" href="css/kalendercss.css">
+<meta charset='utf-8' />
+<link href='fullcalendar-2.2.7-yearview/fullcalendar.min.css' rel='stylesheet' />
+<link href='fullcalendar-2.2.7-yearview/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href="../Elektriker-Modulprojekt/css/kalendercss.css" rel="stylesheet">
+<script src='fullcalendar-2.2.7-yearview/lib/moment.min.js'></script>
+<script src='fullcalendar-2.2.7-yearview/lib/jquery.min.js'></script>
+<script src='fullcalendar-2.2.7-yearview/fullcalendar.min.js'></script>
+<script src="../Elektriker-Modulprojekt/js/kalenderjs.js"></script>
 </head>
 <body>
-  <header>
-        <nav>
-            <div class="container">
-                <div id="logo">
-                   <img src="https://arizonachristian.edu/wp-content/uploads/2017/06/logo-placeholder.png" height="50px" width="100px" style="margin-top: -13px; margin-left: 10px; float: left;"/>
-                </div>  
-                <!--<div id="navigation">
-                    <a>Opret Event &nabla;</a> |
-                    <a>Elevhåndtering &nabla;</a> |
-                    <a>Oversigt</a> 
-                </div>  -->
-                <!-- https://www.w3schools.com/howto/howto_css_dropdown.asp -->
-                <div id="navigation">
-                    
-                    <div id="dropdown">
-                        <button class="dropbtn">Opret Event</button>
-                        <div class="container">
-                            <div class="dropdown-content">
-                                <a href="#">Opret modul</a>
-                                <a href="#">Opret tomme dage</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="dropdown2">
-                        <button class="dropbtn">Elevhåndtering</button>
-                        <div class="container">
-                            <div class="dropdown-content">
-                                <a href="#">Opret elev</a>
-                                <a href="#">Elevsøgning</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="dropdown3">
-                        <button class="dropbtn">Oversigt</button>
-                        <div class="container">
-                            <div class="dropdown-content">
-                                <a href="#">Elevhåndtering</a>
-                                <a href="#">Oversigt</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div id="logout">
-                    <button type="button">Log ud</button>
-                </div>    
-            </div>
-        </nav>
-  </header>
-  <main role="main">
-    <div id="left"><br/>
-        <div class="row">
-            <div>
-                <div style="white-space: nowrap;">
-                    <form>
-                        <fieldset>
-                            <legend>Søg:</legend>
-                            <input type="text"/><button type="submit">Søg</button> 
-                        </fieldset>
-                    </form>
-                </div>
-                <hr/>
-                <div>
-                    <form>
-                        <fieldset>
-                            <legend>Region:</legend>
-                            <ul>
-                                <li><input type="checkbox"/><label>Region Hovedstaden</label></li>
-                                <li><input type="checkbox"/><label>Region Sjælland   </label></li>
-                                <li><input type="checkbox"/><label>Region Syddanmark </label></li>
-                                <li><input type="checkbox"/><label>Region Midtjylland</label></li>
-                                <li><input type="checkbox"/><label>Region Nordjylland</label></li>
-                            </ul>
-                        </fieldset>
-                    </form>
-                <hr/>
-                </div>
-                <div>
-                    <form>
-                        <fieldset>
-                            <legend>Skolesøgning:</legend>
-                            <ul>
-                                <input type="text"/>
 
-                            </ul>
-                        </fieldset>
-                    </form>
-                </div>
-                <hr/>
-                <div> 
-                    <form>
-                        <fieldset>
-                            <legend>Datosøgning:</legend>
-                            <ul>
-                                <label>Fra dato:</label><input type="date" value="date" /><br/>
-                                <label>Til dato:</label><input type="date" dateformat="d m å"/>
-                            </ul>
-                        </fieldset>
-                    </form>
-                </div>
-                <hr/>
-                <div>
-                    <form>
-                        <fieldset>
-                            <legend>Modulsøgning:</legend>
-                            <ul>
-                                <input type="text">
-                            </ul>
-                        </fieldset>
-                    </form>
-                </div>
-                <hr/>
-            </div>
-        </div>
-    </div>
-    <div id="content">
-        <p>Kalender</p><br/>
+  <div id='calendar'></div>
 
-    </div>
-    <div id="right">
-        <div><br/>
-            <form>
-                <fieldset>
-                    <legend>Visning</legend>
-                    <ul>
-                    <li><input type="radio" name="view"/><label>Flere år</label></li>
-                    <li><input type="radio" name="view" checked/><label>Et år</label></li>
-                    <li><input type="radio" name="view"/><label>Kvartal</label></li>
-                    <li><input type="radio" name="view"/><label>Måned</label></li>
-                    </ul>
-                </fieldset>
-            </form>
-        </div>
-        <hr>
-    </div>
-  </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    document.createElement('main');  /* opretter main element til tidligere versioner af IE */
-    </script>   
 </body>
-<html>
+</html>
