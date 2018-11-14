@@ -746,7 +746,7 @@ a.fc-more:hover {
 }
 
 .fc-year-month-separator {
-	width: 10px;
+	width: 8px;
 }
 
 .fc-year-view .fc-row table.fc-year-month-header {
@@ -796,7 +796,7 @@ a.fc-more:hover {
 }
 
 .fc-year-view .fc-day-grid .fc-row {
-	min-height: 42px; /* ensure that all rows are at least this tall */
+	min-height: 34px; /* ensure that all rows are at least this tall */
 }
 
 .fc-year-view table {
