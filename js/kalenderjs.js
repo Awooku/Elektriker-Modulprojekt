@@ -5,8 +5,8 @@ $(document).ready(function() {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'year,month,agendaWeek,agendaDay'
-		},
-		defaultDate: '2015-01-12',
+		},		
+		defaultDate: '2018-11-15',
 		defaultView: 'year',
 		yearColumns: 3,
 		selectable: true,
@@ -30,68 +30,68 @@ $(document).ready(function() {
 		events: [
 			{
 				title: 'Long event',
-				start: '2015-01-07',
-				end: '2015-01-10'
+				start: '2018-01-07',
+				end: '2018-01-10'
 			},
 			{
 				title: 'Background Yearview Dev',
-				start: '2015-01-04',
-				end: '2015-01-19',
+				start: '2018-01-04',
+				end: '2018-01-19',
 				rendering: 'background'
 			},
 			{
 				id: 999,
 				title: 'Repeating Event',
-				start: '2015-01-09T16:00:00'
+				start: '2018-01-09T16:00:00'
 			},
 			{
 				id: 999,
 				title: 'Repeating Event',
-				start: '2015-01-16T16:00:00'
+				start: '2018-01-16T16:00:00'
 			},
 			{
 				title: 'Long over months',
-				start: '2015-01-29',
-				end: '2015-02-02'
+				start: '2018-01-29',
+				end: '2018-02-02'
 			},
 			{
 				title: 'All Day Event',
-				start: '2015-03-01'
+				start: '2018-03-01'
 			},
 			{
 				title: 'Conference',
-				start: '2015-11-11',
-				end: '2015-11-13'
+				start: '2018-11-11',
+				end: '2018-11-13'
 			},
 			{
 				title: 'Meeting',
-				start: '2015-11-12T10:30:00',
-				end: '2015-11-12T12:30:00'
+				start: '2018-11-12T10:30:00',
+				end: '2018-11-12T12:30:00'
 			},
 			{
 				title: 'Lunch',
-				start: '2015-11-12T12:00:00'
+				start: '2018-11-12T12:00:00'
 			},
 			{
 				title: 'Meeting',
-				start: '2015-11-12T14:30:00'
+				start: '2018-11-12T14:30:00'
 			},
 			{
 				title: 'Happy Hour',
-				start: '2014-11-12T17:30:00'
+				start: '2018-11-12T17:30:00'
 			},
 			{
 				title: 'Dinner',
-				start: '2014-11-12T20:00:00'
+				start: '2018-11-12T20:00:00'
 			},
 			{
 				title: 'Birthday Party',
-				start: '2014-11-13T07:00:00'
+				start: '2018-11-13T07:00:00'
 			},
 			{
 				title: 'Click for Google',
 				url: 'http://google.com/',
-				start: '2015-03-28'
+				start: '2018-03-28'
 			}
 		]
 	});

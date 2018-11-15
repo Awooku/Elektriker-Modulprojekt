@@ -34,7 +34,7 @@ var defaults = {
 		center: '',
 		right: 'today prev,next'
 	},
-	weekends: true,
+	weekends: false,
 	weekNumbers: false,
 
 	weekNumberTitle: 'W',
@@ -57,7 +57,7 @@ var defaults = {
 	maxDate: null,
 
 	// year view
-	firstDay: 0, // start day of the week (Sunday)
+	firstDay: 0, // start day of the week (Sunday)											/* NOTICE */
 	yearTitleFormat: 'YYYY',
 	yearFormat: 'YYYY',
 
@@ -632,7 +632,7 @@ function smartProperty(obj, name) { // get a camel-cased/namespaced property of 
 /* Date Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
 
-var dayIDs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
+var dayIDs = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];
 var intervalUnits = [ 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond' ];
 
 

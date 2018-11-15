@@ -796,7 +796,8 @@ a.fc-more:hover {
 }
 
 .fc-year-view .fc-day-grid .fc-row {
-	min-height: 34px; /* ensure that all rows are at least this tall */
+	min-height: 1px; /* ensure that all rows are at least this tall */
+	height: 10px;
 }
 
 .fc-year-view table {
