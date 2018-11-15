@@ -8,7 +8,7 @@ $(document).ready(function() {
 		},		
 		defaultDate: '2018-11-15',
 		defaultView: 'year',
-		yearColumns: 3,
+		yearColumns: 4,
 		selectable: true,
 		selectHelper: true,
 		select: function(start, end) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 			}
 			$('#calendar').fullCalendar('unselect');
 		},
-		firstDay: 0,
+		firstDay: 1,
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		events: [
