@@ -1,8 +1,3 @@
-#Dod{
-    height: auto;
-    margin: auto;
-}
-
 .Event {
     font-size: 16px;
     height: auto;
@@ -20,18 +15,34 @@
 #DOF {
     font-size: 16px;
     height: auto;
+    width: 300px;
     padding: 15px 15px 15px 15px;
 }
+.TDO, #Datolinje {
+    font-size: 20px;
+    display: inline-block;
+}
 
 
-.OTR {
+.OT, th, td {
     border-top: 1px solid;
     border-bottom: 1px solid;
+    border-collapse: collapse;
+    text-align: left;
 }
 .OT {
-    border-top: 1px solid;
-    border-bottom: 1px solid;
+    overflow-y:auto;
+    overflow-x:auto;
 }
+
+.OTR {
+    border: 1px solid;   
+}
+
+th,td {
+    padding-right: 30px;
+}
+
 #modul, #antal-pladser, #frie-pladser, #startdato, #startdatobd {
 margin: 5px 0px 10px 0px;
 width: 155px;
