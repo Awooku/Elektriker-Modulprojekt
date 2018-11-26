@@ -1,12 +1,14 @@
 $(document).ready(function() {
 
+	
 	$('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'year,month,agendaWeek,agendaDay'
+				/* Add quarter */
 		},		
-		defaultDate: '2018-11-15',
+		defaultDate: new Date(),
 		defaultView: 'year',
 		yearColumns: 4,
 		selectable: true,
@@ -95,5 +97,4 @@ $(document).ready(function() {
 			}
 		]
 	});
-
 });
