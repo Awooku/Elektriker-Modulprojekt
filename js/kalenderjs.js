@@ -5,8 +5,8 @@ $(document).ready(function() {
 		header: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'year,month,agendaWeek,agendaDay'
-				/* Add quarter */
+			right: 'year,month,agendaQuarter,agendaDay'
+				/* Add quarter please */
 		},		
 		defaultDate: new Date(),
 		defaultView: 'year',
@@ -31,16 +31,21 @@ $(document).ready(function() {
 		eventLimit: true, // allow "more" link when too many events
 		events: [
 			{
+				start: '2018-01-01',
+				end: '2018-01-06',
+				rendering: 'background'
+			},
+			{
 				title: 'Long event',
 				start: '2018-01-07',
 				end: '2018-01-10'
 			},
-			{
+			/*{
 				title: 'Background Yearview Dev',
 				start: '2018-01-04',
 				end: '2018-01-19',
 				rendering: 'background'
-			},
+			},*/
 			{
 				id: 999,
 				title: 'Repeating Event',
