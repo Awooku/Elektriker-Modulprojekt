@@ -575,7 +575,7 @@ a.fc-more:hover {
 
 .fc-toolbar {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 0.5%;
 }
 
 .fc-toolbar .fc-left {
@@ -605,6 +605,7 @@ a.fc-more:hover {
 
 .fc-toolbar h2 {
 	margin: 0;
+	font-size: 30px;
 }
 
 /* button layering (for border precedence) */
@@ -664,7 +665,7 @@ a.fc-more:hover {
 }
 
 .fc-basic-view tbody .fc-row {
-	min-height: 4em; /* ensure that all rows are at least this tall */
+	min-height: 2em; /* ensure that all rows are at least this tall */
 }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
@@ -737,16 +738,16 @@ a.fc-more:hover {
 
 .fc-year-month-border.fc-first {
 	width: 0;
-	max-width: 8px;
+	max-width: 16px;
 }
 
 .fc-year-month-border.fc-last {
 	width: 0;
-	max-width: 8px;
+	max-width: 16px;
 }
 
 .fc-year-month-separator {
-	width: 8px;
+	width: 16px;
 }
 
 .fc-year-view .fc-row table.fc-year-month-header {
@@ -755,8 +756,8 @@ a.fc-more:hover {
 }
 
 .fc-year-monthly-name {
-	margin-top: 16px;
-	line-height: 24px;
+	margin-top: 10px;
+	line-height: 18px;
 }
 
 .fc-year-monthly-name.fc-first {
@@ -796,12 +797,11 @@ a.fc-more:hover {
 }
 
 .fc-year-view .fc-day-grid .fc-row {
-	min-height: 1px; /* ensure that all rows are at least this tall */
-	height: 10px;
+	min-height: 15px; /* ensure that all rows are at least this tall */
 }
 
 .fc-year-view table {
-	font-size: .9em;
+	font-size: 0.94em;
 }
 
 .fc-ltr .fc-year-view .fc-day-number {
@@ -864,7 +864,7 @@ a.fc-more:hover {
 }
 
 .fc-agenda-view .fc-day-grid .fc-row {
-	min-height: 3em; /* all-day section will never get shorter than this */
+	min-height: 2em; /* all-day section will never get shorter than this */
 }
 
 .fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {

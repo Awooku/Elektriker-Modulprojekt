@@ -28,17 +28,17 @@ var defaults = {
 
 	// display
 	defaultView: 'month',
-	aspectRatio: 1.35,
+	aspectRatio: 1.565,
 	header: {
 		left: 'title',
 		center: '',
 		right: 'today prev,next'
 	},
 	weekends: false,
-	weekNumbers: false,
+	weekNumbers: true,
 
 	weekNumberTitle: 'W',
-	weekNumberCalculation: 'local',
+	weekNumberCalculation: 'ISO',
 	
 	//editable: false,
 	
@@ -632,7 +632,7 @@ function smartProperty(obj, name) { // get a camel-cased/namespaced property of 
 /* Date Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
 
-var dayIDs = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];
+var dayIDs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
 var intervalUnits = [ 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond' ];
 
 

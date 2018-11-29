@@ -1,14 +1,16 @@
 $(document).ready(function() {
 
+	
 	$('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'year,month,agendaWeek,agendaDay'
+				/* Add quarter */
 		},		
-		defaultDate: '2018-11-15',
+		defaultDate: new Date(),
 		defaultView: 'year',
-		yearColumns: 3,
+		yearColumns: 4,
 		selectable: true,
 		selectHelper: true,
 		select: function(start, end) {
@@ -24,7 +26,7 @@ $(document).ready(function() {
 			}
 			$('#calendar').fullCalendar('unselect');
 		},
-		firstDay: 0,
+		firstDay: 1,
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		events: [
@@ -95,5 +97,4 @@ $(document).ready(function() {
 			}
 		]
 	});
-
 });
