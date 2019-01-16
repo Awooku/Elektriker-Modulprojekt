@@ -5,7 +5,7 @@ $(document).ready(function() {
 		header: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'year,month,agendaQuarter,agendaDay'
+			right: 'year,month,agendaQuarter,agendaWeek'
 				/* Add quarter please */
 		},		
 		defaultDate: new Date(),
@@ -31,74 +31,38 @@ $(document).ready(function() {
 		eventLimit: true, // allow "more" link when too many events
 		events: [
 			{
-				start: '2018-01-01',
-				end: '2018-01-06',
+				title: 'Meeting',
+				start: '2019-02-13T11:00:00',
+				constraint: 'availableForMeeting', // defined below
+				color: '#257e4a'
+			},
+			// areas where "Meeting" must be dropped
+			{
+				id: 'availableForMeeting',
+				start: '2019-02-11T10:00:00',
+				end: '2015-02-11T16:00:00',
 				rendering: 'background'
 			},
 			{
-				title: 'Long event',
-				start: '2018-01-07',
-				end: '2018-01-10'
-			},
-			/*{
-				title: 'Background Yearview Dev',
-				start: '2018-01-04',
-				end: '2018-01-19',
+				id: 'availableForMeeting',
+				start: '2019-02-13T10:00:00',
+				end: '2015-02-13T16:00:00',
 				rendering: 'background'
-			},*/
+			},
+			// red areas where no events can be dropped
 			{
-				id: 999,
-				title: 'Repeating Event',
-				start: '2018-01-09T16:00:00'
+				start: '2019-02-24',
+				end: '2015-02-28',
+				overlap: false,
+				rendering: 'background',
+				color: '#ff9f89'
 			},
 			{
-				id: 999,
-				title: 'Repeating Event',
-				start: '2018-01-16T16:00:00'
-			},
-			{
-				title: 'Long over months',
-				start: '2018-01-29',
-				end: '2018-02-02'
-			},
-			{
-				title: 'All Day Event',
-				start: '2018-03-01'
-			},
-			{
-				title: 'Conference',
-				start: '2018-11-11',
-				end: '2018-11-13'
-			},
-			{
-				title: 'Meeting',
-				start: '2018-11-12T10:30:00',
-				end: '2018-11-12T12:30:00'
-			},
-			{
-				title: 'Lunch',
-				start: '2018-11-12T12:00:00'
-			},
-			{
-				title: 'Meeting',
-				start: '2018-11-12T14:30:00'
-			},
-			{
-				title: 'Happy Hour',
-				start: '2018-11-12T17:30:00'
-			},
-			{
-				title: 'Dinner',
-				start: '2018-11-12T20:00:00'
-			},
-			{
-				title: 'Birthday Party',
-				start: '2018-11-13T07:00:00'
-			},
-			{
-				title: 'Click for Google',
-				url: 'http://google.com/',
-				start: '2018-03-28'
+				start: '2019-02-06',
+				end: '2015-02-08',
+				overlap: false,
+				rendering: 'background',
+				color: '#ff9f89'
 			}
 		]
 	});
