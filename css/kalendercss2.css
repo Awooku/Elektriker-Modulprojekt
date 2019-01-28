@@ -1,0 +1,99 @@
+
+.Calendarbox {
+    width: 98%;
+    height: 890px;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+}
+
+.Yearbox {
+    width: 98%;
+    height: 850px;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+}
+
+.QuarterboxFirst, .QuarterboxSecond, .QuarterboxThird, .QuarterboxFourth {
+    width: 30%;
+    height: 390px;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+
+    position: absolute;
+}
+
+.QuarterboxSecond, .QuarterboxFourth {
+    left: 650px;
+}
+
+.QuarterboxThird, .QuarterboxFourth {
+    top: 470px;
+}
+
+
+.MonthboxFirst, .MonthboxSecond, .MonthboxThird, .MonthboxFourth {
+    width: 29%;
+    height: 82%;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+    position: relative;
+}
+
+.MonthboxSecond {
+    left: 180px;
+    bottom: 335px;
+}
+
+.MonthboxThird {
+    left: 360px;
+    bottom: 670px;
+    height: 82.1%;
+}
+
+.MonthboxFourth {
+    left: 540px;
+    bottom: 1004px;
+}
+
+.Weekbox {
+    width: 85%;
+    height: 13%;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+
+    position: relative;
+}
+
+.DayboxFirst, .DayboxSecond, .DayboxThird, .DayboxFourth, .DayboxFifth, .DayboxFifth {
+    width: 13px;
+    height: 13px;
+    border: 3px solid grey;
+    padding: 3px;
+    margin: 3px;
+    bottom: 2px;
+    background-color: white;
+
+    position: absolute;
+}
+
+.DayboxSecond {
+    left: 29px;
+}
+
+.DayboxThird {
+    left: 55px;
+}
+
+.DayboxFourth {
+    left: 81px;
+}
+
+.DayboxFifth {
+    left: 107px;
+}
+

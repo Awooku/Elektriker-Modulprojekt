@@ -40,7 +40,7 @@ $(document).ready(function() {
 			{
 				id: 'availableForMeeting',
 				start: '2019-02-11T10:00:00',
-				end: '2015-02-11T16:00:00',
+				end: '2019-02-11T16:00:00',
 				rendering: 'background'
 			},
 			{
@@ -52,14 +52,14 @@ $(document).ready(function() {
 			// red areas where no events can be dropped
 			{
 				start: '2019-02-24',
-				end: '2015-02-28',
+				end: '2019-02-28',
 				overlap: false,
 				rendering: 'background',
 				color: '#ff9f89'
 			},
 			{
 				start: '2019-02-06',
-				end: '2015-02-08',
+				end: '2019-02-08',
 				overlap: false,
 				rendering: 'background',
 				color: '#ff9f89'
