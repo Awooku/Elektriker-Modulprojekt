@@ -1,4 +1,12 @@
 
+
+fieldset {
+    font-size: 18px;
+    height: auto;
+    width: 90%;
+    padding: 15px 15px 15px 15px;
+}
+
 h1{
     text-align: center;
     padding-top: 70px;
