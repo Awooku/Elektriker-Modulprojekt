@@ -16,7 +16,7 @@
 }
 
 .QuarterboxFirst, .QuarterboxSecond, .QuarterboxThird, .QuarterboxFourth {
-    width: 30%;
+    width: 40%;
     height: 390px;
     border: 3px solid grey;
     padding: 3px;
@@ -26,7 +26,7 @@
 }
 
 .QuarterboxSecond, .QuarterboxFourth {
-    left: 650px;
+    left: 840px;
 }
 
 .QuarterboxThird, .QuarterboxFourth {
@@ -35,7 +35,7 @@
 
 
 .MonthboxFirst, .MonthboxSecond, .MonthboxThird, .MonthboxFourth {
-    width: 29%;
+    width: 22%;
     height: 82%;
     border: 3px solid grey;
     padding: 3px;
@@ -44,19 +44,19 @@
 }
 
 .MonthboxSecond {
-    left: 180px;
+    left: 182px;
     bottom: 335px;
 }
 
 .MonthboxThird {
-    left: 360px;
+    left: 364px;
     bottom: 670px;
     height: 82.1%;
 }
 
 .MonthboxFourth {
-    left: 540px;
-    bottom: 1004px;
+    left: 546px;
+    bottom: 1005px;
 }
 
 .Weekbox {
@@ -69,7 +69,7 @@
     position: relative;
 }
 
-.DayboxFirst, .DayboxSecond, .DayboxThird, .DayboxFourth, .DayboxFifth, .DayboxFifth {
+.DayboxFirst, .DayboxSecond, .DayboxThird, .DayboxFourth, .DayboxFifth, {
     width: 13px;
     height: 13px;
     border: 3px solid grey;
