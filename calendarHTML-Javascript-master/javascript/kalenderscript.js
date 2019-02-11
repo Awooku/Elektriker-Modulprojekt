@@ -58,11 +58,15 @@ function showCalendar(month, year) {
                 date++;
             }
             else if (i === 0 && j < firstDay) {
-                var cell = document.createElement("td");                
+                var cell = document.createElement("td");    
+                var cellbox = document.createElement("td");            
                 var cellText = document.createTextNode("");
                 cell.className = "dag";
+                cellbox.className = "dagbox";
+                row.appendChild(cellbox);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
+                
             }
 
             else if (date > daysInMonth) {
@@ -71,13 +75,17 @@ function showCalendar(month, year) {
 
             else {
                 var cell = document.createElement("td");
+                var cellbox = document.createElement("td");
                 var cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
-                } // color today's date
-                cell.appendChild(cellText);
+                } // color today's date                
                 cell.className = "dag";
+                cellbox.className = "dagbox";
+                row.appendChild(cellbox);
+                cell.appendChild(cellText);
                 row.appendChild(cell);
+                
                 date++;
             }
         }
