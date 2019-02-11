@@ -5,7 +5,7 @@ var selectYear = document.getElementById("year");
 var selectMonth = document.getElementById("month");
 
 
-var months = ["Januar", "Febuar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
+var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
 
 
 var monthAndYear = document.getElementById("monthAndYear");
@@ -55,8 +55,9 @@ function showCalendar(month, year) {
         //creating individual cells, filing them up with data.
         for (var j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
-                var cell = document.createElement("td");
+                var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
+                cell.className = "dag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }
@@ -72,12 +73,11 @@ function showCalendar(month, year) {
                     cell.classList.add("bg-info");
                 } // color today's date
                 cell.appendChild(cellText);
+                cell.className = "dag";
                 row.appendChild(cell);
                 date++;
             }
-
         }
-
         tbl.appendChild(row); // appending each row into calendar body.
     }
 }

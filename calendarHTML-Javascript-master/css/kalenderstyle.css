@@ -1,23 +1,17 @@
-.kalenderindhold {
-    border: 2px solid black;
-}
-tr {
-    border: 2px solid black;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-
-.ugedage {
-    border: 2px solid black; 
+.kalenderindhold, tr, .ugedag, .ugedage {
+    border: 2px solid rgb(136, 136, 136);
+    border-radius: 3px;
 }
 
-
-.ugedag {
-    padding: 0;
-    margin: 0;
-    width: 50px;
-    border: 2px solid black;
+.dag {
+    border: 1px solid lightgray;
 }
 
-.månedskift {
-    
+.dag, .ugedag {
+    width: 40px;
+    height: 40px;
 }
