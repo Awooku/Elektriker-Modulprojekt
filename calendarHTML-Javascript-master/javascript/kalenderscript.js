@@ -5,7 +5,7 @@ var selectYear = document.getElementById("year");
 var selectMonth = document.getElementById("month");
 
 
-var months = ["Januar", "Febuar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
+var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
 
 
 var monthAndYear = document.getElementById("monthAndYear");
@@ -75,9 +75,7 @@ function showCalendar(month, year) {
                 row.appendChild(cell);
                 date++;
             }
-
         }
-
         tbl.appendChild(row); // appending each row into calendar body.
     }
 }
