@@ -54,7 +54,10 @@ function showCalendar(month, year) {
 
         //creating individual cells, filing them up with data.
         for (var j = 0; j < 7; j++) {
-            if (i === 0 && j < firstDay) {
+            if (j == 5 || j == 6) {
+                date++;
+            }
+            else if (i === 0 && j < firstDay) {
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
                 cell.className = "dag";
