@@ -6,3 +6,26 @@ body {
     color: green;
 }
 
+.kalenderindhold {
+    border: 2px solid black;
+}
+tr {
+    border: 2px solid black;
+}
+
+
+.ugedage {
+    border: 2px solid black; 
+}
+
+
+.ugedag {
+    padding: 0;
+    margin: 0;
+    width: 50px;
+    border: 2px solid black;
+}
+
+.månedskift {
+    
+}

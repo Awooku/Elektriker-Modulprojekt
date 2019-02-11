@@ -6,34 +6,28 @@
     <link rel="stylesheet" href="css/kalenderstyle.css"/>
 </head>
 <body>
-    <div id="month"></div>
-    <div id="year"></div>
-    <div>
-        <div>
-            <h3 id="monthAndYear"></h3>
-            <table id="calendar">
-                <thead>
-                <tr>
-                    <th>Man</th>
-                    <th>Tir</th>
-                    <th>Ons</th>
-                    <th>Tor</th>
-                    <th>Fre</th>
-                    <th>Lør</th>
-                    <th>Søn</th>
-                </tr>
-                </thead>
+<div id="month"></div>
+<div id="year"></div>
+    <div class="helekalender">
+        <h3 class="card-header" id="monthAndYear"></h3>
+        <table class="kalenderindhold" id="kalender">
+            <thead>
+                    <tr class="ugedage">
+                        <th class="ugedag">Man</th>
+                        <th class="ugedag">Tir</th>
+                        <th class="ugedag">Ons</th>
+                        <th class="ugedag">Tor</th>
+                        <th class="ugedag">Fre</th>
+                        <th class="ugedag">Lør</th>
+                        <th class="ugedag">Søn</th>
+                    </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
 
-                    <tbody id="calendar-body">
-
-                </tbody>
-            </table>
-
-            <div class="form-inline">
-
-                <button class="månedsskift" id="previous" onclick="previous()">Previous</button>
-                <button class="månedsskift" id="next" onclick="next()">Next</button>
-            </div>
+        <div class="knapper">
+            <button class="månedsskift" id="previous" onclick="previous()">Previous</button>
+            <button class="månedsskift" id="next" onclick="next()">Next</button>
         </div>
     </div>
 <script src="javascript/kalenderscript.js"></script>
