@@ -23,13 +23,6 @@ function previous() {
     showCalendar(currentMonth, currentYear);
 }
 
-//skifter til valgte periode
-function jump() {
-    currentYear = parseInt(selectYear.value);
-    currentMonth = parseInt(selectMonth.value);
-    showCalendar(currentMonth, currentYear);
-}
-
 function showCalendar(month, year) {
 
     let firstDay = (new Date(year, month)).getDay();
@@ -53,12 +46,14 @@ function showCalendar(month, year) {
 
         //creating individual cells, filing them up with data.
         for (let j = 0; j < 7; j++) {
+
             if (i === 0 && j < firstDay) {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }
+
             else if (date > daysInMonth) {
                 break;
             }
@@ -72,6 +67,9 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
+                if (i===0 && j == 6 || j == 7) {
+                    j++;
+                }
             }
 
 
