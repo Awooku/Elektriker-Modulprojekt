@@ -8,29 +8,24 @@
 <body>
 <div id="month"></div>
 <div id="year"></div>
-<div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
-    <div class="card">
+    <div class="helekalender">
         <h3 class="card-header" id="monthAndYear"></h3>
-        <table class="table table-bordered table-responsive-sm" id="calendar">
+        <table class="kalenderindhold" id="kalender">
             <thead>
-            <tr>
-                <th>Man</th>
-                <th>Tir</th>
-                <th>Ons</th>
-                <th>Tor</th>
-                <th>Fre</th>
-                <th>Lør</th>
-                <th>Søn</th>
-            </tr>
+                    <tr class="ugedage">
+                        <th class="ugedag">Man</th>
+                        <th class="ugedag">Tir</th>
+                        <th class="ugedag">Ons</th>
+                        <th class="ugedag">Tor</th>
+                        <th class="ugedag">Fre</th>
+                        <th class="ugedag">Lør</th>
+                        <th class="ugedag">Søn</th>
+                    </tr>
             </thead>
-
-            <tbody id="calendar-body">
-
-            </tbody>
+            <tbody id="calendar-body"></tbody>
         </table>
 
-        <div class="form-inline">
-
+        <div class="knapper">
             <button class="månedsskift" id="previous" onclick="previous()">Previous</button>
             <button class="månedsskift" id="next" onclick="next()">Next</button>
         </div>
