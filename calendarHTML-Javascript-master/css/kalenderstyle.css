@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .kalenderindhold, tr, .ugedag, .ugedage {
@@ -12,6 +12,10 @@ body {
 }
 
 .dag, .ugedag {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 35px;
+}
+
+.ugedag {
+    height: 25px;
 }
