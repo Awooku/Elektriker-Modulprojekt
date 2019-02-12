@@ -12,11 +12,6 @@ body {
 }
 
 .dag, .ugedag {
-<<<<<<< HEAD
-    width: 40px;
-    height: 40px;
-}
-=======
     width: 50px;
     height: 35px;
 }
@@ -24,4 +19,3 @@ body {
 .ugedag {
     height: 25px;
 }
->>>>>>> 692766cca179d85b7ee42e8fbd34114b8282f22e
