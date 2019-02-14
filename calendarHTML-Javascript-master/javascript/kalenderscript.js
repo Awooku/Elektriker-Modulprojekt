@@ -87,6 +87,7 @@ function showCalendar(month, year) {
                 row.appendChild(cell);
                 ny++;
             }
+            
 
             else if (i === 0 && ny == 5) {
                 var j = 0;
