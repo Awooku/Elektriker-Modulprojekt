@@ -8,21 +8,36 @@
 <body>
 <div id="month"></div>
 <div id="year"></div>
-    <div class="helekalender">
-        <h3 class="card-header" id="monthAndYear"></h3>
-        <table class="kalenderindhold" id="kalender">
-            <thead>
-                    <tr class="ugedage">
-                        <!--<th class="ugedag">Man</th>
-                        <th class="ugedag">Tir</th>
-                        <th class="ugedag">Ons</th>
-                        <th class="ugedag">Tor</th>
-                        <th class="ugedag">Fre</th>-->
-                    </tr>
-            </thead>
-            <tbody id="kalender-body"></tbody>
-        </table>
-
+    <div id="helekalender">
+        <div id="måned">
+            <h3 class="card-header" id="monthAndYear"></h3>
+            <table class="kalenderindhold" id="kalender">
+                <thead>
+                        <tr class="ugedage">
+                            <th class="ugedag">Man</th>
+                            <th class="ugedag">Tir</th>
+                            <th class="ugedag">Ons</th>
+                            <th class="ugedag">Tor</th>
+                            <th class="ugedag">Fre</th>
+                        </tr>
+                </thead>
+                <tbody id="kalender-body"></tbody>
+            </table>
+        </div>
+        <!--<div class="måned">
+            <table class="kalenderindhold" id="kalender2">
+                <thead>
+                        <tr class="ugedage">
+                            <th class="ugedag">Man</th>
+                            <th class="ugedag">Tir</th>
+                            <th class="ugedag">Ons</th>
+                            <th class="ugedag">Tor</th>
+                            <th class="ugedag">Fre</th>
+                        </tr>
+                </thead>
+                <tbody id="kalender-body2"></tbody>
+            </table>
+        </div>-->
 
         <div class="knapper">
             <button class="månedsskift" id="previous" onclick="previous()">Previous</button>
