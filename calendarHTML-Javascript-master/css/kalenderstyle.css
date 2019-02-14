@@ -14,8 +14,6 @@ body {
     height: 36px;
 }
 
-
-
 .dagbox {
     position: absolute;
     border: 2px solid lightgray;    
@@ -35,4 +33,3 @@ body {
     height: 25px;
     width: 51px;
 }
-
