@@ -1,6 +1,7 @@
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
+var helekalender =document.getElementById("helekalender")
 var selectYear = document.getElementById("year");
 var selectMonth = document.getElementById("month");
 
@@ -34,6 +35,9 @@ function showCalendar(month, year) {
 
     var tbl = document.getElementById("kalender-body"); // body of the calendar
 
+    var kalenderbox = document.createElement("div");
+    kalenderbox.className = "kalenderbox";
+
     // clearing all previous cells
     tbl.innerHTML = "";
     // filing data about month and in the page via DOM.
@@ -43,20 +47,15 @@ function showCalendar(month, year) {
 
     // creating all cells
     var date = 1;
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 6; i++) {
         // creates a table row
         var row = document.createElement("tr");
 
-        //creating individual cells, filing them up with data.
-        for (var j = 0; j < 7; j++) {
+       /*for (d = 0; d < 6; d++) {
 
-            var ugenavn = week[j]; 
+            var ugenavn = week[d]; 
 
-            if (j == 5 || j == 6) {
-                date++;
-            }
-
-            else if (i === 0) {
+            if (i == 0 && d != 5) {
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode(ugenavn);
                 cell.className = "ugedag";
@@ -64,12 +63,28 @@ function showCalendar(month, year) {
                 row.appendChild(cell);
             }
 
-            else if (i === 1 && j < firstDay) {
+            else if (i == 0 && d == 5) {
+                var row = document.createElement("tr");
+            }
+
+            else {
+                break;
+            }
+        }*/
+
+        //creating individual cells, filing them up with data.
+        for (var j = 0; j < 7; j++) {
+
+            if (i === 0 && j < firstDay) {
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
                 cell.className = "dag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
+            }
+
+            else if (j == 5 || j == 6) {
+                date++;
             }
 
             else if (date > daysInMonth) {
@@ -93,13 +108,13 @@ function showCalendar(month, year) {
     }
 }
 
-
-/*function show3(month, year) {
-    next();
+/*
+function show3(month, year) {
+    
     var firstDay = (new Date(year, month)).getDay()-1; //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
 
-    var tbl = document.getElementById("calendar-body"); // body of the calendar
+    var tbl = document.getElementById("kalender-body"); // body of the calendar
 
     // clearing all previous cells
     tbl.innerHTML = "";
@@ -107,62 +122,62 @@ function showCalendar(month, year) {
     monthAndYear.innerHTML = months[month] + " " + year;
     selectYear.value = year;
     selectMonth.value = month;
-
+    
     // creating all cells
     var date = 1;
-    for (var i = 0; i < 7; i++) {
-        // creates a table row
-        var row = document.createElement("tr");
 
-        //creating individual cells, filing them up with data.
-        for (var j = 0; j < 7; j++) {
+    for (var m = 0; m < 3; m++) {
 
-            var ugenavn = week[j]; 
+        var kalenderbox = document.createElement("div");
+        kalenderbox.className = "kalenderbox";
 
-            if (j == 5 || j == 6) {
-                date++;
+        for (var i = 0; i < 6; i++) {
+            // creates a table row
+            var row = document.createElement("tr");
+
+            //creating individual cells, filing them up with data.
+            for (var j = 0; j < 7; j++) {
+
+                var ugenavn = week[j]; 
+
+                if (j == 5 || j == 6) {
+                    date++;
+                }
+
+                else if (i === 0) {
+                    var cell = document.createElement("td");                
+                    var cellText = document.createTextNode(ugenavn);
+                    cell.className = "ugedag";
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                }
+
+                else if (i === 1 && j < firstDay) {
+                    var cell = document.createElement("td");                
+                    var cellText = document.createTextNode("");
+                    cell.className = "dag";
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                }
+
+                else if (date > daysInMonth) {
+                    break;
+                }
+
+                //opretter 
+                else {
+                    var cell = document.createElement("td");
+                    var cellText = document.createTextNode(date);
+                    if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                        cell.classList.add("bg-info");
+                    } // color today's date
+                    cell.appendChild(cellText);
+                    cell.className = "dag";
+                    row.appendChild(cell);
+                    date++;
+                }
             }
-
-            else if (i === 0) {
-                var cell = document.createElement("td");                
-                var cellText = document.createTextNode(ugenavn);
-                cell.className = "ugedag";
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-            }
-
-            else if (i === 1 && j < firstDay) {
-                var cell = document.createElement("td");                
-                var cellText = document.createTextNode("");
-                cell.className = "dag";
-                cellbox.className = "dagbox";
-                row.appendChild(cellbox);
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-                
-            }
-
-            else if (date > daysInMonth) {
-                break;
-            }
-
-            //opretter 
-            else {
-                var cell = document.createElement("td");
-                var cellbox = document.createElement("td");
-                var cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
-                } // color today's date                
-                cell.className = "dag";
-                cellbox.className = "dagbox";
-                row.appendChild(cellbox);
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-                
-                date++;
-            }
+            tbl.appendChild(row); // appending each row into calendar body.
         }
-        tbl.appendChild(row); // appending each row into calendar body.
     }
 }*/
