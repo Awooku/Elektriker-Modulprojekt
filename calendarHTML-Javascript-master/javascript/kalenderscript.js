@@ -76,10 +76,13 @@ function showCalendar(month, year) {
         for (var j = 0; j < 7; j++) {
 
             if (i === 0 && j < firstDay) {
-                var ny = 0
-                var cell = document.createElement("td");                
+                var ny = 0                
+                var cell = document.createElement("td");
+                var cellBox = document.createElement("td")                
                 var cellText = document.createTextNode("");
                 cell.className = "tomdag";
+                cellBox.className = "dagbox";
+                row.appendChild(cellBox);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
@@ -121,12 +124,15 @@ function showCalendar(month, year) {
             //opretter 
             else {
                 var cell = document.createElement("td");
+                var cellBox = document.createElement("td")    
                 var cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
-                cell.appendChild(cellText);
                 cell.className = "dag";
+                cellBox.className = "dagbox";
+                row.appendChild(cellBox);
+                cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
             }
