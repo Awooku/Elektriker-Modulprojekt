@@ -76,12 +76,39 @@ function showCalendar(month, year) {
         for (var j = 0; j < 7; j++) {
 
             if (i === 0 && j < firstDay) {
+                var ny = 0
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
-                cell.className = "dag";
+                cell.className = "tomdag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
+                ny++;
             }
+
+            else if (i === 0 && ny == 5) {
+                var j = 0;
+                var dag1 = getElementByClassName("tomdag")[ny];
+                var dag2 = getElementByClassName("tomdag")[ny - 1];
+                var dag3 = getElementByClassName("tomdag")[ny - 2];
+                var dag4 = getElementByClassName("tomdag")[ny - 3];
+                var dag5 = getElementByClassName("tomdag")[ny - 4];
+                dag1.parentNode.removeChild(dag1);
+                dag2.parentNode.removeChild(dag2);
+                dag3.parentNode.removeChild(dag3);
+                dag4.parentNode.removeChild(dag4);
+                dag5.parentNode.removeChild(dag5);
+                var cell = document.createElement("td");
+                var cellText = document.createTextNode(date);
+                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    cell.classList.add("bg-info");
+                } // color today's date
+                cell.appendChild(cellText);
+                cell.className = "tomdag";
+                row.appendChild(cell);
+                date++;
+            }
+
+
 
             else if (j == 5 || j == 6) {
                 date++;
