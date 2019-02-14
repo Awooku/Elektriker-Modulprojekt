@@ -77,7 +77,7 @@ function showCalendar(month, year) {
 
             if (i === 0 && j < firstDay) {
                 var cell = document.createElement("td");
-                var cellBox = document.createElement("td")                
+                var cellBox = document.createElement("div")                
                 var cellText = document.createTextNode("");
                 cell.className = "dag";
                 cellBox.className = "dagbox";
@@ -97,7 +97,7 @@ function showCalendar(month, year) {
             //opretter 
             else {
                 var cell = document.createElement("td");
-                var cellBox = document.createElement("td")    
+                var cellBox = document.createElement("div")    
                 var cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
