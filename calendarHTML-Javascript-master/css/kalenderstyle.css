@@ -35,8 +35,12 @@ body {
     margin-right: 1px;
 }
 
-.tomdag {
+td.tomdag {
     display: inline-block;
-    width: 0px;
+    width: 56px;
+    height: 1px;
+}
+
+tr.linje:first-child {
     height: 0px;
 }
