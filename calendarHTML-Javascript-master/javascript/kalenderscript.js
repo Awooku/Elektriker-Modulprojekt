@@ -8,7 +8,6 @@ var selectMonth = document.getElementById("month");
 var week = ["Man", "Tir", "Ons", "Tor", "Fre"];
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
 
-
 var monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
@@ -25,8 +24,6 @@ function previous() {
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
 }
-
-
 
 function showCalendar(month, year) {
     
@@ -49,8 +46,6 @@ function showCalendar(month, year) {
     var date = 1;
     for (var i = 0; i < 6; i++) {
         // creates a table row
-        /*var row = document.createElement("tr");
-        row.className = "liste";*/
 
         if (i == 0) {
             var ugerow = document.createElement("tr");
@@ -58,8 +53,6 @@ function showCalendar(month, year) {
             document.getElementById("kalender-body").appendChild(ugerow);
             console.log(ugerow);
         }
-
-
 
        for (var d = 0; d < 6; d++) {
 
