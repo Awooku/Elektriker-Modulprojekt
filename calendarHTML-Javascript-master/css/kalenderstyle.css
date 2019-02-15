@@ -3,7 +3,7 @@ body {
     font-size: 13px;
 }
 
-.kalenderindhold, .ugedag {
+.kalenderindhold, .ugedag, .ugedagsliste {
     border: 2px solid rgb(136, 136, 136);
     border-radius: 3px;
 }
@@ -34,10 +34,14 @@ tr {
     margin-bottom: 2px;
 }
 
-.ugedag {
+.ugedag, .ugedagsliste {
     height: 22px;
     width: 51px;
     margin-right: 1px;
+}
+.ugedagsliste {
+    text-align: center;
+    font-weight: bold;
 }
 
 td.tomdag {
