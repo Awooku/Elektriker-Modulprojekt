@@ -51,16 +51,12 @@ function showCalendar(month, year) {
         // creates a table row
         /*var row = document.createElement("tr");
         row.className = "liste";*/
-
-        if (i == 0) {
-            var tomrow = document.createElement("tr");
-            tomrow.id = "tomliste";
+        if (i == 0){
+            var ugerow = document.createElement("tr");
+            ugerow.className = "ugedagsliste";
         }
 
-            var row = document.createElement("tr");
-            row.className = "liste";
-
-       /*for (d = 0; d < 6; d++) {
+       for (var d = 0; d < 6; d++) {
 
             var ugenavn = week[d]; 
 
@@ -69,17 +65,24 @@ function showCalendar(month, year) {
                 var cellText = document.createTextNode(ugenavn);
                 cell.className = "ugedag";
                 cell.appendChild(cellText);
-                row.appendChild(cell);
+                ugerow.appendChild(cell);
             }
 
             else if (i == 0 && d == 5) {
+                var tomrow = document.createElement("tr");
+                tomrow.id = "tomliste";
                 var row = document.createElement("tr");
+                row.className = "liste";
+
             }
 
             else {
+                var row = document.createElement("tr");
+                row.className = "linje";
+                console.log(d)
                 break;
             }
-        }*/
+        }
         var ny = 0;  
 
         //creating individual cells, filing them up with data.
@@ -92,24 +95,19 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
-                //console.log(ny);
             }
 
             else if (ny == 5) {
-                //var tommedageArrButBetter = Array.from(document.getElementsByClassName("tomdag"));
-                //console.log(tommedageArrButBetter);
-                
-                
-                //if (tommedage.length == 5){
-                
-                //}
-                
+
+                var tommedage = document.getElementsByClassName("tomdag");
+                console.log(tommedage);
 
                 var cell = document.createElement("td");
                 var cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
+                row.id = "tomx5";
 
                 /*cell.appendChild(cellText);
                 cell.className = "tomdag";
