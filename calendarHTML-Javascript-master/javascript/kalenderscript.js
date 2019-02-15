@@ -49,8 +49,17 @@ function showCalendar(month, year) {
     var date = 1;
     for (var i = 0; i < 6; i++) {
         // creates a table row
-        var row = document.createElement("tr");
-        row.className = "linje";
+        /*var row = document.createElement("tr");
+        row.className = "liste";*/
+
+        if (i == 0) {
+            var tomrow = document.createElement("tr");
+            tomrow.id = "tomliste";
+            console.log(tomrow);
+        }
+
+            var row = document.createElement("tr");
+            row.className = "liste";
 
        /*for (d = 0; d < 6; d++) {
 
@@ -72,26 +81,24 @@ function showCalendar(month, year) {
                 break;
             }
         }*/
-        var ny = 0;                
+        var ny = 0;  
 
         //creating individual cells, filing them up with data.
         for (var j = 0; j < 7; j++) {
 
             if (i === 0 && j < firstDay) {
-                var cell = document.createElement("td");            
+                var ny = 0
+                var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
                 cell.className = "tomdag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
-
-                //console.log(j);
-                //console.log(ny);
-                //console.log(row);
-            }            
+                console.log(ny);
+            }
 
             else if (ny == 5) {
-                //var j = 0;
+                var j = 0;
                 /*
                 var dag1 = document.getElementsByClassName("tomdag")[ny];
                 var dag2 = document.getElementsByClassName("tomdag")[ny - 1];
@@ -133,14 +140,8 @@ function showCalendar(month, year) {
                 cell.className = "tomdag";
                 row.appendChild(cell);*/
                 date++;
-                //onsole.log(row);
-                console.log(ny)
+                console.log(ny);
             }
-
-            /*else if (ny == 5) {
-                console.log(ny)
-            }*/
-
 
             else if (j == 5 || j == 6) {
                 date++;

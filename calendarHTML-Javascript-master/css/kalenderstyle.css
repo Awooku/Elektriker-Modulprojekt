@@ -7,6 +7,10 @@ body {
     border: 2px solid rgb(136, 136, 136);
     border-radius: 3px;
 }
+tr {
+    width: 0px;
+    height: 0px;
+}
 
 .dag, .ugedag, .dagbox {
     display: inline-block;
