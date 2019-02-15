@@ -34,14 +34,3 @@ window.onclick = function(event)
             event.target.style.display = "none";
         }
 }
-
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-function myFunction1() {
-    document.getElementById("myDropdown1").classList.toggle("show");
-  }
-function myFunction2() {
-    document.getElementById("myDropdown2").classList.toggle("show");
-  }
-  

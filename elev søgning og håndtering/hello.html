@@ -4,108 +4,88 @@
         <title>Bow</title>
         <link rel="stylesheet" type="text/css" href="bow.css">
     </head>
-        <body> 
-            <div id="knap">
-                <button data-modal="elev" class="button">elev</button>
-            </div>
 
-            <div id="elev" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
+    <body> 
+        <div id="knap">
+            <button data-modal="elev" class="button">elev</button>
+        </div>
+
+        <div id="elev" class="modal">
+            <div class="modal-content1">
+                <span class="close">&times;</span>
+                <br>
+                    <button data-modal="opret" class="button">opret</button>
                     <br>
-                        <button data-modal="opret" class="button">opret</button>
-                        <br>
-                        <br>
-                        <table id="elever">
+                    <br>
+                    <table id="elever">
+                        <tr>
                             <tr>
-                                <tr>
-                                    <th>Navn</th>
-                                </tr>
-                                <tr>
-                                    <td>Ib</td>
-                                    <td style="width: 7%;"><button data-modal="vis" style="float: right" class="button">Vis</button></td>
-                                </tr>
+                                <th>Navn</th>
                             </tr>
-
-                        </table>
+                            <tr>
+                                <td>Ib</td>
+                                <td style="width: 7%;"><button data-modal="vis" style="float: right" class="button">Vis</button></td>
+                            </tr>
+                        </tr>
+                    </table>
 
                         <!-- opret[1]  -->
-                        <div id="opret" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <br>
-                                <p> 
-                                    CPR
-                                    <input style="float: right" type="text" name="CPR" >
-                                </p>                            
-                                <p>
-                                    Navn
-                                    <input style="float: right" type="text" name="lastname" >
-                                </p>
-                                <p>
-                                    start
-                                    <input style="float: right" type="datetime-local" name="start" >
-                                </p>
-                                <p>
-                                    slut
-                                    <input style="float: right" type="datetime-local" name="slut">
-                                </p>
-            
-                                    
-                            </div>
+                    <div id="opret" class="modal">
+                        <div class="modal-content1">
+                            <span class="close">&times;</span>
+                            <br>
+                            <p> 
+                                CPR
+                                <input style="float: right" type="text" name="CPR" >
+                            </p>                            
+                            <p>
+                                Navn
+                                <input style="float: right" type="text" name="lastname" >
+                            </p>
+                            <p>
+                                start
+                                <input style="float: right" type="datetime-local" name="start" >
+                            </p>
+                            <p>
+                                slut
+                                <input style="float: right" type="datetime-local" name="slut">
+                            </p>    
                         </div>
+                    </div>
 
                         <!-- vis[2]  -->
-                        <div id="vis" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <br>
-                                <p> 
-                                    CPR1
-                                    <input style="float: right" type="text" name="CPR" >
-                                </p>                            
-                                <p>
-                                    Navn1
-                                    <input style="float: right"  name="lastname" >
-                                </p>
-                                <p>
-                                    start1
-                                    <input style="float: right" type="datetime" name="start1" >
-                                </p>
-                                <p>
-                                    slut1
-                                    <input style="float: right" type="datetime" name="slut1">
-                                </p>
-                                <p>
-                                    svendeprøve
-                                    <input style="float: right" name="slut1">
-                                </p>
-                                <p>
-                                    <button data-modal="ønsker" style="" class="button">Ønsker</button>
-                                </p>
-                                <div id="ønsker" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">&times;</span>
-                                        <br>
+                    <div id="vis" class="modal">
+                        <div class="modal-content1">
+                            <span class="close">&times;</span>
+                            <br>
+                            <p> 
+                                CPR1
+                                <input style="float: right" type="text" name="CPR" >
+                            </p>                            
+                            <p>
+                                Navn1
+                                <input style="float: right"  name="lastname" >
+                            </p>
+                            <p>
+                                start1
+                                <input style="float: right" type="datetime" name="start1" >
+                            </p>
+                            <p>
+                                slut1
+                                <input style="float: right" type="datetime" name="slut1">
+                            </p>
+                            <p>
+                                svendeprøve
+                                <input style="float: right" name="slut1">
+                            </p>
+
+                            <div class="dropdown">
+                                <label onclick="myFunction() "class="dropbtn">Ønsker &#9661</label>
+                                <div id="myDropdown" class="dropdown-content4">  
+                                    <div class="row">
                                         <fieldset>
-                                            <legend>Ønskede moduler:</legend>
+                                            <legend>Elevens ønsker:</legend>
                                             <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
@@ -121,32 +101,16 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                                <p>
-                                    <button data-modal="tilmeldt" style="" class="button">Tilmeldt</button>
-                                </p>
-                                <div id="tilmeldt" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">&times;</span>
-                                        <br>
+                            </div>
+                            <br>
+                                
+                            <div class="dropdown">    
+                                <label onclick="myFunction1()" class="dropbtn">Tilmedte moduler &#9661</label>                
+                                <div id="myDropdown1" class="dropdown-content4">  
+                                    <div class="row">
                                         <fieldset>
-                                            <legend>Tilmeldte moduler:</legend>
+                                            <legend>tilmeldt moduler:</legend>
                                             <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
@@ -162,13 +126,13 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                                <p>
-                                    <button data-modal="Genført" style="" class="button">Gennemført</button>
-                                </p>
-                                <div id="Genført" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">&times;</span>
-                                        <br>
+                            </div>
+                            <br>
+
+                            <div class="dropdown">                                    
+                                <label onclick="myFunction2()" class="dropbtn">Gennemført &#9661;</label>
+                                <div  id="myDropdown2" class="dropdown-content4">  
+                                    <div class="row">
                                         <fieldset>
                                             <legend>Moduler der er gennemført:</legend>
                                             <br>
@@ -184,34 +148,15 @@
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
                                             <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
-                                            <input type="checkbox" value="1.1"> 1.1 <br>
                                         </fieldset>
                                     </div>
                                 </div>
-                
-                                        
-                            </div>
+                            </div>          
                         </div>
-                    
-                        
+                    </div>    
                 </div>
             </div>
         
-        <script src="plus.js"></script>
-        </body>
+    <script src="plus.js"></script>
+    </body>
 </html>
