@@ -46,6 +46,6 @@ td.tomdag {
     height: 1px;
 }
 
-tr.linje:first-child {
-    height: 0px;
+#tomx5 {
+    display: none;
 }

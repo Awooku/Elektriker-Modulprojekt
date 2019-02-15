@@ -49,8 +49,6 @@ function showCalendar(month, year) {
     var date = 1;
     for (var i = 0; i < 6; i++) {
         // creates a table row
-        /*var row = document.createElement("tr");
-        row.className = "liste";*/
         if (i == 0){
             var ugerow = document.createElement("tr");
             ugerow.className = "ugedagsliste";
@@ -109,9 +107,6 @@ function showCalendar(month, year) {
                 } // color today's date
                 row.id = "tomx5";
 
-                /*cell.appendChild(cellText);
-                cell.className = "tomdag";
-                row.appendChild(cell);*/
                 date++;
                 ny++;
             }
