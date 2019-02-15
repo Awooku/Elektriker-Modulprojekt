@@ -3,7 +3,7 @@ body {
     font-size: 13px;
 }
 
-.kalenderindhold, .ugedag, .ugedagsliste {
+#kalender-body, .ugedag, .ugedagsliste {
     border: 2px solid rgb(136, 136, 136);
     border-radius: 3px;
 }
