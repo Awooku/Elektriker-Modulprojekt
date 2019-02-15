@@ -32,9 +32,6 @@ function showCalendar(month, year) {
 
     var tbl = document.getElementById("kalender-body"); // body of the calendar
 
-    var kalenderbox = document.createElement("div");
-    kalenderbox.className = "kalenderbox";
-
     // clearing all previous cells
     tbl.innerHTML = "";
     // filing data about month and in the page via DOM.
