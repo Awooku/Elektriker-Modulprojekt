@@ -55,7 +55,6 @@ function showCalendar(month, year) {
         if (i == 0) {
             var tomrow = document.createElement("tr");
             tomrow.id = "tomliste";
-            console.log(tomrow);
         }
 
             var row = document.createElement("tr");
@@ -87,48 +86,24 @@ function showCalendar(month, year) {
         for (var j = 0; j < 7; j++) {
 
             if (i === 0 && j < firstDay) {
-                var ny = 0
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
                 cell.className = "tomdag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
-                console.log(ny);
+                //console.log(ny);
             }
 
             else if (ny == 5) {
-                var j = 0;
-                /*
-                var dag1 = document.getElementsByClassName("tomdag")[ny];
-                var dag2 = document.getElementsByClassName("tomdag")[ny - 1];
-                var dag3 = document.getElementsByClassName("tomdag")[ny - 2];
-                var dag4 = document.getElementsByClassName("tomdag")[ny - 3];
-                var dag5 = document.getElementsByClassName("tomdag")[ny - 4];
-                dag1.removeChild(dag1);
-                dag2.removeChild(dag2);
-                dag3.removeChild(dag3);
-                dag4.removeChild(dag4);
-                dag5.removeChild(dag5);*/
-                /*
-                var tomdag = document.getElementsByClassName("tomdag");                
-                tomdag[ny].parentNode.removeChild(tomdag[ny]);
+                //var tommedageArrButBetter = Array.from(document.getElementsByClassName("tomdag"));
+                //console.log(tommedageArrButBetter);
                 
-                document.querySelectorAll('tomdag').forEach(function(a){
-                    a.remove();
-                });*/
-
-                var tommedage = document.getElementsByClassName("tomdag");
-                console.log(tommedage);
-
-                //var tommedageArr = Array.from(tommedage);
-                //console.log(tommedageArr);
                 
-                /*
-                if (tommedage.length == 5){
-                    
-                }
-                */
+                //if (tommedage.length == 5){
+                
+                //}
+                
 
                 var cell = document.createElement("td");
                 var cellText = document.createTextNode(date);
@@ -140,7 +115,7 @@ function showCalendar(month, year) {
                 cell.className = "tomdag";
                 row.appendChild(cell);*/
                 date++;
-                console.log(ny);
+                ny++;
             }
 
             else if (j == 5 || j == 6) {
