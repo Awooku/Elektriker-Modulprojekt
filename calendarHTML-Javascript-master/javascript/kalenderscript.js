@@ -5,11 +5,10 @@ var helekalender = document.getElementById("helekalender")
 var selectYear = document.getElementById("year");
 var selectMonth = document.getElementById("month");
 
-var week = ["Man", "Tir", "Ons", "Tor", "Fre"];
-var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"];
+var week = ["Man", "Tir", "Ons", "Tor", "Fre"]; //Viser hvilket ugedag dagen tilhørere i kalenderen
+var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
-var monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
+showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
 
 //skift til næste måned
 function next() {
@@ -25,6 +24,8 @@ function previous() {
     showCalendar(currentMonth, currentYear);
 }
 
+
+//Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     
     var firstDay = (new Date(year, month)).getDay()-1;  //gør at første dag på ugen er en mandag i stedet for søndag
@@ -32,97 +33,93 @@ function showCalendar(month, year) {
 
     var tbl = document.getElementById("kalender-body"); // body of the calendar
 
-    //var kalenderbox = document.createElement("div");
-    //kalenderbox.className = "kalenderbox"; 
-    
     tbl.innerHTML = "";                                 // fjerner celler, bruges når man trykker på previous/next
         
     monthAndYear.innerHTML = months[month] + " " + year;// filing data about month and in the page via DOM.
     selectYear.value = year;
     selectMonth.value = month;
 
-    // skaber alle celler
-    var date = 1;
+    var date = 1; // Bruges til at referere datoer
+
+    // skaber alle rækker
     for (var i = 0; i < 6; i++) {
 
-        // skaber en reækken med ugedage (man, tir, ons, osv.)
+        // skaber en række til at kunne smide data fra ugedags arrayet ind
         if (i == 0) {
             var ugerow = document.createElement("tr");
             ugerow.className = "ugedagsliste";
             document.getElementById("kalender-body").appendChild(ugerow); // smider
         }
 
+       // Oprætter de rækker som skal bruges i kalenderen
        for (var d = 0; d < 6; d++) {
 
             var ugenavn = week[d]; //var ugenavn = arrayet hvor navnene på ugedagene står
 
+            // Opretter celler i ugerow rækken, hvor der indsættes data fra ugedag arrayet  
             if (i == 0 && d != 5) {
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode(ugenavn);
-                cell.className = "ugedag";
+                cell.className = "ugedag";  // giver ugedagene klassen 'ugedag'
                 cell.appendChild(cellText);
-                ugerow.appendChild(cell); // forklar marcus pls
+                ugerow.appendChild(cell);
             }
 
+            // Opretter en række som vi kan bruge til at aflæse efter tomme dage
             else if (i == 0 && d == 5) {
                 var row = document.createElement("tr");
-                row.className = "liste"; //første række efter ugenavnene får klassen liste
+                row.className = "liste"; // første række efter ugedagene får klassen liste
             }
 
+            // Opretter rækker hvor resterende kalenderdata kan sættes ind
             else {
                 var row = document.createElement("tr");
-                row.className = "linje"; //resten af rækkerne kaldes for linje
+                row.className = "linje"; //Resten af rækkerne giver vi klassen linje
                 break;
             }
         }
-        var ny = 0;  
+        var tom = 0;  // Bruges til at tælle tomme dage
 
-        //skaber de individuelle celler og fylder dem med data
+        // Skaber de individuelle celler og fylder dem med data
         for (var j = 0; j < 7; j++) {
 
+            // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
-                cell.className = "tomdag"; //vi laver en td som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
+                cell.className = "tomdag"; //vi laver en celle som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
                 cell.appendChild(cellText);
                 row.appendChild(cell);
-                ny++;
+                tom++; // Bruges til at tælle hvor mange celler der ikke har data
             }
 
-            else if (ny == 5) {
-                var cell = document.createElement("td");
-                var cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
-                } // color today's date
-                row.id = "tomx5"; //hvis 'var ny' bliver talt op på til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
-
-                date++;
-                ny++;
+            // Sletter en række hvis der er 5 tomme dage i træk
+            else if (tom == 5) {
+                row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
+                tom++; //sørger for at der ikke gås ind i statementen igen
             }
 
+            // Gør at lørdag og søndag ikke tæller med
             else if (j == 5 || j == 6) {
-                date++;
+                date++; //tæller en dag op
             }
 
+            // Bryder ud af loopet hvis dage overstiger hvad der er på en måned
             else if (date > daysInMonth) {
                 break;
             }
 
-            //opretter 
+            // Opretter de resterende celler og indsætter numre i forhold til dato i kalenderen
             else {
                 var cell = document.createElement("td");
-                var cellBox = document.createElement("div")    
+                var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden 
                 var cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
-                } // color today's date
-                cell.className = "dag";
-                cellBox.className = "dagbox";
+                cell.className = "dag"; // Giver cellerne klassen dag
+                cellBox.className = "dagbox"; // Giver boxene klassen dagbox
                 row.appendChild(cellBox);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
-                date++;
+                date++; //tæller en dag op
             }
         }
         tbl.appendChild(row); // smider vær reække ind i kalenderen
