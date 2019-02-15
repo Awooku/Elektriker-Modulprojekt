@@ -84,12 +84,14 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
-                console.log(ny);
+
+                //console.log(j);
+                //console.log(ny);
                 //console.log(row);
             }            
 
-            else if (i === 0 && ny == 5) {
-                var j = 0;
+            else if (ny == 5) {
+                //var j = 0;
                 /*
                 var dag1 = document.getElementsByClassName("tomdag")[ny];
                 var dag2 = document.getElementsByClassName("tomdag")[ny - 1];
@@ -107,7 +109,18 @@ function showCalendar(month, year) {
                 
                 document.querySelectorAll('tomdag').forEach(function(a){
                     a.remove();
-                });
+                });*/
+
+                var tommedage = document.getElementsByClassName("tomdag");
+                console.log(tommedage);
+
+                //var tommedageArr = Array.from(tommedage);
+                //console.log(tommedageArr);
+                
+                /*
+                if (tommedage.length == 5){
+                    
+                }
                 */
 
                 var cell = document.createElement("td");
@@ -115,13 +128,18 @@ function showCalendar(month, year) {
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
-                cell.appendChild(cellText);
+
+                /*cell.appendChild(cellText);
                 cell.className = "tomdag";
-                row.appendChild(cell);
+                row.appendChild(cell);*/
                 date++;
-                console.log(row);
+                //onsole.log(row);
+                console.log(ny)
             }
 
+            /*else if (ny == 5) {
+                console.log(ny)
+            }*/
 
 
             else if (j == 5 || j == 6) {
