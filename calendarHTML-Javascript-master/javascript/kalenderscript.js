@@ -51,17 +51,12 @@ function showCalendar(month, year) {
         // creates a table row
         /*var row = document.createElement("tr");
         row.className = "liste";*/
-
-        if (i == 0) {
-            var tomrow = document.createElement("tr");
-            tomrow.id = "tomliste";
-            console.log(tomrow);
+        if (i == 0){
+            var ugerow = document.createElement("tr");
+            ugerow.className = "ugedagsliste";
         }
 
-            var row = document.createElement("tr");
-            row.className = "liste";
-
-       /*for (d = 0; d < 6; d++) {
+       for (var d = 0; d < 6; d++) {
 
             var ugenavn = week[d]; 
 
@@ -70,71 +65,49 @@ function showCalendar(month, year) {
                 var cellText = document.createTextNode(ugenavn);
                 cell.className = "ugedag";
                 cell.appendChild(cellText);
-                row.appendChild(cell);
+                ugerow.appendChild(cell);
             }
 
             else if (i == 0 && d == 5) {
+                var tomrow = document.createElement("tr");
+                tomrow.id = "tomliste";
                 var row = document.createElement("tr");
+                row.className = "liste";
+
             }
 
             else {
+                var row = document.createElement("tr");
+                row.className = "linje";
+                console.log(d)
                 break;
             }
-        }*/
+        }
         var ny = 0;  
 
         //creating individual cells, filing them up with data.
         for (var j = 0; j < 7; j++) {
 
             if (i === 0 && j < firstDay) {
-                var ny = 0
                 var cell = document.createElement("td");                
                 var cellText = document.createTextNode("");
                 cell.className = "tomdag";
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 ny++;
-                console.log(ny);
             }
 
             else if (ny == 5) {
-                var j = 0;
-                /*
-                var dag1 = document.getElementsByClassName("tomdag")[ny];
-                var dag2 = document.getElementsByClassName("tomdag")[ny - 1];
-                var dag3 = document.getElementsByClassName("tomdag")[ny - 2];
-                var dag4 = document.getElementsByClassName("tomdag")[ny - 3];
-                var dag5 = document.getElementsByClassName("tomdag")[ny - 4];
-                dag1.removeChild(dag1);
-                dag2.removeChild(dag2);
-                dag3.removeChild(dag3);
-                dag4.removeChild(dag4);
-                dag5.removeChild(dag5);*/
-                /*
-                var tomdag = document.getElementsByClassName("tomdag");                
-                tomdag[ny].parentNode.removeChild(tomdag[ny]);
-                
-                document.querySelectorAll('tomdag').forEach(function(a){
-                    a.remove();
-                });*/
 
                 var tommedage = document.getElementsByClassName("tomdag");
                 console.log(tommedage);
-
-                //var tommedageArr = Array.from(tommedage);
-                //console.log(tommedageArr);
-                
-                /*
-                if (tommedage.length == 5){
-                    
-                }
-                */
 
                 var cell = document.createElement("td");
                 var cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
+                row.id = "tomx5";
 
                 /*cell.appendChild(cellText);
                 cell.className = "tomdag";
