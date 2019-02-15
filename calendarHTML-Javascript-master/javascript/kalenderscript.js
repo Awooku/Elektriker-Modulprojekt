@@ -50,7 +50,6 @@ function showCalendar(month, year) {
             var ugerow = document.createElement("tr");
             ugerow.className = "ugedagsliste";
             document.getElementById("kalender-body").appendChild(ugerow); // smider
-            console.log(ugerow);
         }
 
        for (var d = 0; d < 6; d++) {
