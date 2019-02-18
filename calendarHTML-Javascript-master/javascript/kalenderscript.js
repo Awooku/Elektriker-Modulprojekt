@@ -43,6 +43,7 @@ function showCalendar(month, year) {
     monthAndYear.innerHTML = months[month] + " " + year;// filing data about month and in the page via DOM.
 
     var date = 1; // Bruges til at referere datoer
+
     
     for (var y = 0; y < 12; y++){ //skaber 12 diver med klassenavnet "måned" inden diven med ID'en helekalender
         var monthDiv = document.createElement('div');
