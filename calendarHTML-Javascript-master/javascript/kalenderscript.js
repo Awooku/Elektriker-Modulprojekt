@@ -44,6 +44,14 @@ function showCalendar(month, year) {
 
     var date = 1; // Bruges til at referere datoer
 
+    
+    for (var y = 0; y < 12; y++){
+        var monthDiv = document.createElement('div');
+        monthDiv.className = "måned";
+    
+        document.getElementById('helekalender').appendChild(monthDiv);
+        console.log(monthDiv)
+    }
 
     // skaber alle rækker
     for (var i = 0; i < 6; i++) {
