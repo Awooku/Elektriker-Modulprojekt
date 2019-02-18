@@ -2,13 +2,12 @@ var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var helekalender = document.getElementById("helekalender")
-var selectYear = document.getElementById("year");
-var selectMonth = document.getElementById("month");
 
 var week = ["Man", "Tir", "Ons", "Tor", "Fre"]; //Viser hvilket ugedag dagen tilhørere i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
 showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
+
 
 //skift til næste måned
 function next() {
@@ -16,6 +15,7 @@ function next() {
     currentMonth = (currentMonth + 1) % 12; //beregner hvad den nye måned skal være.
     showCalendar(currentMonth, currentYear);
 }
+
 
 //skift til forige måned
 function previous() {
@@ -31,13 +31,16 @@ function showCalendar(month, year) {
     var firstDay = (new Date(year, month)).getDay()-1;  //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
 
-    var tbl = document.getElementById("kalender-body"); // body of the calendar
+    /*var monthname = document.createElement("h3");
+    monthname.className = "månedsheader";
+    document.getElementsByClassName("måned")[i].appendChild(monthname);*/
+
+
+    var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
     tbl.innerHTML = "";                                 // fjerner celler, bruges når man trykker på previous/next
         
     monthAndYear.innerHTML = months[month] + " " + year;// filing data about month and in the page via DOM.
-    selectYear.value = year;
-    selectMonth.value = month;
 
     var date = 1; // Bruges til at referere datoer
     
@@ -59,7 +62,8 @@ function showCalendar(month, year) {
             document.getElementById("kalender-body").appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
 
-       // Oprætter de rækker som skal bruges i kalenderen
+
+       // Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
        for (var d = 0; d < 6; d++) {
 
             var ugenavn = week[d]; //var ugenavn = arrayet hvor navnene på ugedagene står
@@ -88,7 +92,8 @@ function showCalendar(month, year) {
         }
         var tom = 0;  // Bruges til at tælle tomme dage
 
-        // Skaber de individuelle celler og fylder dem med data
+
+        // Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
 
             // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
@@ -133,6 +138,7 @@ function showCalendar(month, year) {
         tbl.appendChild(row); // smider vær reække ind i kalenderen
     }
 }
+
 
 function show3(month, year) {
     showCalendar();
