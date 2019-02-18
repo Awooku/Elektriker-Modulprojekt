@@ -40,9 +40,8 @@ function showCalendar(month, year) {
     selectMonth.value = month;
 
     var date = 1; // Bruges til at referere datoer
-
     
-    for (var y = 0; y < 12; y++){
+    for (var y = 0; y < 12; y++){ //skaber 12 diver med klassenavnet "måned" inden diven med ID'en helekalender
         var monthDiv = document.createElement('div');
         monthDiv.className = "måned";
     
