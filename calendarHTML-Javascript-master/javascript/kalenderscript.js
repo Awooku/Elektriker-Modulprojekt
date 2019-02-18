@@ -12,15 +12,15 @@ showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
 
 //skift til næste måned
 function next() {
-    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
-    currentMonth = (currentMonth + 1) % 12;
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
+    currentMonth = (currentMonth + 1) % 12; //beregner hvad den nye måned skal være.
     showCalendar(currentMonth, currentYear);
 }
 
 //skift til forige måned
 function previous() {
-    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
-    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner hvad den nye måned skal være.
     showCalendar(currentMonth, currentYear);
 }
 
@@ -48,7 +48,7 @@ function showCalendar(month, year) {
         if (i == 0) {
             var ugerow = document.createElement("tr");
             ugerow.className = "ugedagsliste";
-            document.getElementById("kalender-body").appendChild(ugerow); // smider
+            document.getElementById("kalender-body").appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
 
        // Oprætter de rækker som skal bruges i kalenderen
