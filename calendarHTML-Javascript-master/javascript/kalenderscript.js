@@ -28,30 +28,22 @@ function previous() {
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     
-    var firstDay = (new Date(year, month)).getDay()-1;  //gør at første dag på ugen er en mandag i stedet for søndag
+    var firstDay = (new Date(year, month)).getDay() - 1;  //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
 
     /*var monthname = document.createElement("h3");
     monthname.className = "månedsheader";
-    document.getElementsByClassName("måned")[i].appendChild(monthname);*/
+    document.getElementsByClassName("måned").appendChild(monthname);*/
 
 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
-    tbl.innerHTML = "";                                 // fjerner celler, bruges når man trykker på previous/next
+    tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
         
-    monthAndYear.innerHTML = months[month] + " " + year;// filing data about month and in the page via DOM.
+    monthAndYear.innerHTML = months[month] + " " + year; // filing data about month and in the page via DOM.
 
     var date = 1; // Bruges til at referere datoer
 
-    
-    for (var y = 0; y < 12; y++){
-        var monthDiv = document.createElement('div');
-        monthDiv.className = "måned";
-    
-        document.getElementById('helekalender').appendChild(monthDiv);
-        console.log(monthDiv)
-    }
 
     // skaber alle rækker
     for (var i = 0; i < 6; i++) {
@@ -141,6 +133,15 @@ function showCalendar(month, year) {
 }
 
 
-function show3(month, year) {
+/*function show3(month, year) {
     showCalendar();
+    next();
+    /*for (var y = 0; y < 12; y++){
+        var monthDiv = document.createElement('div');
+        monthDiv.className = "måned";
+    
+        document.getElementById('helekalender').appendChild(monthDiv);
+        console.log(monthDiv)
+    }
 }
+show3();*/
