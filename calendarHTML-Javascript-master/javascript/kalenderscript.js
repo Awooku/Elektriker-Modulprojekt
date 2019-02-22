@@ -63,7 +63,8 @@ function previous() {
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     m++;
-    var firstDay = (new Date(year, month)).getDay() - 1;  //gør at første dag på ugen er en mandag i stedet for søndag
+    var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
+    //firstDay = firstDay + 7 - 1;
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
 
     /*var monthname = document.createElement("h3");
@@ -144,7 +145,7 @@ function showCalendar(month, year) {
         // Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
 
-
+            console.log(firstDay);
 
            // Sletter en række hvis der er 5 tomme dage i træk
             if (tom == 5 && i == 0) {
@@ -167,6 +168,7 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
+                console.log(tom);
             }
 
             // Gør at lørdag og søndag ikke tæller med
