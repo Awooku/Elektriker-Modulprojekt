@@ -4,7 +4,7 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var helekalender = document.getElementById("helekalender")
 
-var week = ["Man", "Tir", "Ons", "Tor", "Fre"]; //Viser hvilket ugedag dagen tilhørere i kalenderen
+var week = ["Man", "Tir", "Ons", "Tor", "Fre"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
 //showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
@@ -65,7 +65,6 @@ function showCalendar(month, year) {
     
     var firstDay = (new Date(year, month)).getDay() - 1;  //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
-
 
     /*var monthname = document.createElement("h3");
     monthname.className = "månedsheader";
