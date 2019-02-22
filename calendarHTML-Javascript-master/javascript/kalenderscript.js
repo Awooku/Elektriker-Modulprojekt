@@ -134,11 +134,21 @@ function showCalendar(month, year) {
         for (var j = 0; j < 7; j++) {
 
 
-            // Sletter en række hvis der er 5 tomme dage i træk
-            if (tom == 5) {
+
+           // Sletter en række hvis der er 5 tomme dage i træk
+            if (tom == 5 && j == 5) {
                 row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
-                tom++; //sørger for at der ikke gås ind i statementen igen
+                tom++;
             }
+
+            
+            /*// Sletter en række hvis der er 5 tomme dage i træk
+            if (tom == 6 && j == 6 && i === 0) {
+                tom++; //sørger for at der ikke gås ind i statementen igen
+                date++;
+                console.log(date);
+            }*/
+
 
             // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
@@ -148,12 +158,6 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
-            }
-
-            // Sletter en række hvis der er 5 tomme dage i træk
-            else if (tom == 7) {
-                tom++; //sørger for at der ikke gås ind i statementen igen
-                date++;
             }
 
             // Gør at lørdag og søndag ikke tæller med
