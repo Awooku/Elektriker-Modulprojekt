@@ -44,15 +44,15 @@ function showCalendar(month, year) {
 
     var date = 1; // Bruges til at referere datoer
 
-    
+    /*
     for (var y = 0; y < 12; y++){ //skaber 12 diver med klassenavnet "måned" inden diven med ID'en helekalender
         var monthDiv = document.createElement('div');
         monthDiv.className = "måned";
-    
-        document.getElementById('helekalender').appendChild(monthDiv);
-        console.log(monthDiv)
-    }
 
+        document.getElementById('helekalender').appendChild(monthDiv);
+    }
+    */
+   
     // skaber alle rækker
     for (var i = 0; i < 6; i++) {
 
