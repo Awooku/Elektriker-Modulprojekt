@@ -8,6 +8,11 @@ body {
     border-radius: 3px;
 } /* #kalender-body, .ugedag og .ugedagliste får samme farve og afrundede kanter */
 
+div#kalender-body {
+    height: auto;
+    width: auto;
+}
+
 .dag, .ugedag, .dagbox, .tomdag {
     display: inline-block;
     width: 52px;
