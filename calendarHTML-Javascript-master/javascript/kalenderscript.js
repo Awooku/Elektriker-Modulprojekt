@@ -12,7 +12,6 @@ show3();
 
 
 
-
 //skift til næste måned
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
@@ -35,6 +34,9 @@ function next() {
 
 
 
+
+
+
 //skift til forige måned
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
@@ -52,11 +54,6 @@ function previous() {
         
     }*/
 }
-
-
-
-
-
 
 
 
@@ -85,10 +82,7 @@ function showCalendar(month, year) {
 
 
 
-
-        
     monthAndYear.innerHTML = months[month] + " " + year; // filing data about month and in the page via DOM.
-
     var date = 1; // Bruges til at referere datoer
 
     /*
@@ -100,9 +94,11 @@ function showCalendar(month, year) {
     }
     */
    
+
+
+
     // skaber alle rækker
     for (var i = 0; i < 6; i++) {
-
         // skaber en række til at kunne smide data fra ugedags arrayet ind
         if (i == 0) {
             var ugerow = document.createElement("tr");
@@ -124,6 +120,7 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 ugerow.appendChild(cell);
             }
+
 
             // Opretter en række som vi kan bruge til at aflæse efter tomme dage
             else if (i == 0 && d == 5) {
@@ -154,8 +151,9 @@ function showCalendar(month, year) {
 
             
             // Sletter en række hvis der er 5 tomme dage i træk
-            if (tom == 6 && i == 0 && week[j] == "Søn") {
-                tom++; //sørger for at der ikke gås ind i statementen igen
+            if (firstDay == -1 && date == 1) {
+                date++;
+                console.log(date);
             }
 
 
