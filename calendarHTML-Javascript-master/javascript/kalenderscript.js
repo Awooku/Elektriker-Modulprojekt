@@ -1,4 +1,4 @@
-var m = 0;
+var m = 0, k = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
@@ -68,7 +68,7 @@ function previous() {
 
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
-    m++;
+    k++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
     //firstDay = firstDay + 7 - 1;
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
@@ -77,12 +77,18 @@ function showCalendar(month, year) {
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
+    var monthDiv = document.createElement("div");
+    monthDiv.className = "månedDiv";
+    monthDiv.id = "månedDiv" + k;
+    tbl.appendChild(monthDiv);
 
-    var monthdiv = document.createElement("h3");
-    monthdiv.className = "header";
-    monthdiv.id = "monthAndYear" + m;
-    document.getElementById("kalender-body").appendChild(monthdiv); // Sætter rækkerne ind i kalender-body
-    monthAndYear.innerHTML = months[month] + " " + year; // filing data about month and in the page via DOM.
+    var showMonth = document.createElement("h3");
+    showMonth.className = "header";
+    showMonth.id = "monthAndYear" + k;
+    document.getElementById("månedDiv" + k).appendChild(showMonth); // Sætter rækkerne ind i kalender-body
+
+
+    document.getElementById("monthAndYear" + k).innerHTML = months[month] + " " + year; //Gør at du kan se måneder og år
     var date = 1; // Bruges til at referere datoer
 
 
@@ -92,7 +98,7 @@ function showCalendar(month, year) {
         if (i == 0) {
             var ugerow = document.createElement("tr");
             ugerow.className = "ugedagsliste";
-            document.getElementById("kalender-body").appendChild(ugerow); // Sætter rækkerne ind i kalender-body
+            document.getElementById("månedDiv" + k).appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
 
 
@@ -174,7 +180,7 @@ function showCalendar(month, year) {
                 date++; //tæller en dag op
             }
         }
-        tbl.appendChild(row); // smider vær række ind i kalenderen
+        monthDiv.appendChild(row); // smider vær række ind i kalenderen
     }
 }
 
@@ -202,6 +208,7 @@ function show3() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner hvad den nye måned skal være.
     }
     m = 3;
+    k = 0;
 }
 
 
@@ -226,6 +233,7 @@ function showyear() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner hvad den nye måned skal være.
     }
     m = 12;
+    k = 0;
 }
 
 
@@ -245,4 +253,5 @@ function onemonth() {
 
     showCalendar(currentMonth, currentYear);
     m = 1;
+    k = 0;
 }
