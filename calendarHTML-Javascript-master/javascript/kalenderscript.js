@@ -7,7 +7,6 @@ var helekalender = document.getElementById("helekalender")
 var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
-//showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
 show3();
 
 
@@ -191,6 +190,7 @@ function showCalendar(month, year) {
             else if (tom == 5 && i == 0) {
                 row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
                 tom++;
+                date++;
             }
 
             // Gør at lørdag og søndag ikke tæller med
@@ -230,8 +230,24 @@ function show3() {
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
     if (m != 3) {
-        currentMonth = today.getMonth();
+
         currentYear = today.getFullYear();
+
+        if (currentMonth == 1 || currentMonth == 2) {
+            currentMonth = 0;
+        }
+
+        else if (currentMonth == 4 || currentMonth == 5) {
+            currentMonth = 3;
+        }
+
+        else if (currentMonth == 7 || currentMonth == 8) {
+            currentMonth = 6;
+        }
+
+        else if (currentMonth == 10 || currentMonth == 11) {
+            currentMonth = 9;
+        }
     }
 
     for (var gange = 0; gange < 3; gange++) {
@@ -253,7 +269,7 @@ function showyear() {
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
     if (m != 12) {
-        currentMonth = today.getMonth();
+        currentMonth = 0;
         currentYear = today.getFullYear();
     }
 
@@ -270,10 +286,6 @@ function showyear() {
     m = 12;
     k = 0;
 }
-
-
-
-
 
 
 
