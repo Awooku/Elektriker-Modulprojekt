@@ -1,10 +1,10 @@
-var m = 0, k = 0;
+var m = 0, k = 0, q = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var helekalender = document.getElementById("helekalender")
 
-var week = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
+var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
 //showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
@@ -77,12 +77,50 @@ function showCalendar(month, year) {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
-
+    var fourMonth = document.createElement("div");
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDiv";
     monthDiv.id = "månedDiv" + k;
-    tbl.appendChild(monthDiv);
+    //tbl.appendChild(monthDiv);
+    if (m == 12) {
+    if  (k == 1) {
+        
+        q++;
 
+        fourMonth.id = "fm" + q;
+        fourMonth.appendChild(monthDiv);        
+
+    }
+
+    else if (k == 5) {
+        q++;
+
+        fourMonth.id = "fm" + q;     
+        fourMonth.appendChild(monthDiv);
+    }
+
+    else if (k == 9) {
+        q++;
+
+        fourMonth.id = "fm" + q;   
+        fourMonth.appendChild(monthDiv);
+    }
+
+    else {
+        if (q == 1) {
+            fourMonth.appendChild(monthDiv);
+        }
+
+        else if (q == 2) {
+            fourMonth.appendChild(monthDiv);
+        }
+
+        else {
+            fourMonth.appendChild(monthDiv);
+        }
+    }
+    tbl.appendChild(fourMonth);
+    }
     var showMonth = document.createElement("h3");
     showMonth.className = "header";
     showMonth.id = "monthAndYear" + k;
@@ -102,7 +140,6 @@ function showCalendar(month, year) {
             document.getElementById("månedDiv" + k).appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
 
-
        // Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
        for (var d = 0; d < 6; d++) {
 
@@ -116,7 +153,6 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 ugerow.appendChild(cell);
             }
-
 
             // Opretter en række som vi kan bruge til at aflæse efter tomme dage
             else if (i == 0 && d == 5) {
@@ -132,7 +168,6 @@ function showCalendar(month, year) {
             }
         }
         var tom = 0;  // Bruges til at tælle tomme dage
-
 
         // Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
@@ -211,7 +246,6 @@ function show3() {
     m = 3;
     k = 0;
 }
-
 
 function showyear() {
 
