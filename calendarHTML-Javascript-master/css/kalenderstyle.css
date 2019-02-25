@@ -75,3 +75,9 @@ div#kalender-body {
 #måned {
     width: 294px;
 }
+
+/* ik' dræb mig */
+#monthAndYear1, #monthAndYear2, #monthAndYear3, #monthAndYear4, #monthAndYear5, #monthAndYear6, #monthAndYear7, #monthAndYear8, #monthAndYear9, #monthAndYear10, #monthAndYear11, #monthAndYear12 {
+    margin: 0px;
+    margin-top: 5px;
+}

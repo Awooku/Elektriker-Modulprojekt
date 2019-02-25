@@ -73,17 +73,19 @@ function showCalendar(month, year) {
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
+    var monthDiv = document.createElement("div");
+    monthDiv.className = "månedDiv";
+    tbl.appendChild(monthDiv);
 
-    var monthdiv = document.createElement("h3");
-    monthdiv.className = "header";
-    monthdiv.id = "monthAndYear" + m;
-    document.getElementById("kalender-body").appendChild(monthdiv); // Sætter rækkerne ind i kalender-body
+    console.log(monthDiv);
+
+    var showMonth = document.createElement("h3");
+    showMonth.className = "header";
+    showMonth.id = "monthAndYear" + m;
+    document.getElementById("kalender-body").appendChild(showMonth); // Sætter rækkerne ind i kalender-body
 
 
-
-
-
-    monthAndYear.innerHTML = months[month] + " " + year; // filing data about month and in the page via DOM.
+    document.getElementById("monthAndYear"+m).innerHTML = months[month] + " " + year; //Gør at du kan se måneder og år
     var date = 1; // Bruges til at referere datoer
 
     /*
@@ -142,21 +144,16 @@ function showCalendar(month, year) {
         // Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
 
-            console.log(firstDay);
-
            // Sletter en række hvis der er 5 tomme dage i træk
             if (tom == 5 && i == 0) {
                 row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
                 tom++;
             }
-
             
             // Sletter en række hvis der er 5 tomme dage i træk
             if (firstDay == -1 && date == 1) {
                 date++;
-                console.log(date);
             }
-
 
             // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
@@ -166,7 +163,6 @@ function showCalendar(month, year) {
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
-                console.log(tom);
             }
 
             // Gør at lørdag og søndag ikke tæller med
