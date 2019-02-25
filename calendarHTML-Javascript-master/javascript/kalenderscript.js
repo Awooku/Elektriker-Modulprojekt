@@ -155,6 +155,7 @@ function showCalendar(month, year) {
             else if (tom == 5 && i == 0) {
                 row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
                 tom++;
+                date++;
             }
 
             // Gør at lørdag og søndag ikke tæller med
@@ -235,10 +236,6 @@ function showyear() {
     m = 12;
     k = 0;
 }
-
-
-
-
 
 
 
