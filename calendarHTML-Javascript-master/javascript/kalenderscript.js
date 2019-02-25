@@ -195,8 +195,24 @@ function show3() {
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
     if (m != 3) {
-        currentMonth = today.getMonth();
+
         currentYear = today.getFullYear();
+
+        if (currentMonth == 1 || currentMonth == 2) {
+            currentMonth = 0;
+        }
+
+        else if (currentMonth == 4 || currentMonth == 5) {
+            currentMonth = 3;
+        }
+
+        else if (currentMonth == 7 || currentMonth == 8) {
+            currentMonth = 6;
+        }
+
+        else if (currentMonth == 10 || currentMonth == 11) {
+            currentMonth = 9;
+        }
     }
 
     for (var gange = 0; gange < 3; gange++) {
