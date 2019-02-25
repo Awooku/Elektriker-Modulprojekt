@@ -219,7 +219,7 @@ function showyear() {
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
     if (m != 12) {
-        currentMonth = today.getMonth();
+        currentMonth = 0;
         currentYear = today.getFullYear();
     }
 
