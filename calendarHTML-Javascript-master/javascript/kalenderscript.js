@@ -1,10 +1,10 @@
-var m = 0, k = 0;
+var m = 0, k = 0, q = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var helekalender = document.getElementById("helekalender")
 
-var week = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
+var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
 show3();
@@ -74,12 +74,50 @@ function showCalendar(month, year) {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
-
+    var fourMonth = document.createElement("div");
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDiv";
     monthDiv.id = "månedDiv" + k;
-    tbl.appendChild(monthDiv);
+    //tbl.appendChild(monthDiv);
+    if (m == 12) {
+    if  (k == 1) {
+        
+        q++;
 
+        fourMonth.id = "fm" + q;
+        fourMonth.appendChild(monthDiv);        
+
+    }
+
+    else if (k == 5) {
+        q++;
+
+        fourMonth.id = "fm" + q;     
+        fourMonth.appendChild(monthDiv);
+    }
+
+    else if (k == 9) {
+        q++;
+
+        fourMonth.id = "fm" + q;   
+        fourMonth.appendChild(monthDiv);
+    }
+
+    else {
+        if (q == 1) {
+            fourMonth.appendChild(monthDiv);
+        }
+
+        else if (q == 2) {
+            fourMonth.appendChild(monthDiv);
+        }
+
+        else {
+            fourMonth.appendChild(monthDiv);
+        }
+    }
+    tbl.appendChild(fourMonth);
+    }
     var showMonth = document.createElement("h3");
     showMonth.className = "header";
     showMonth.id = "monthAndYear" + k;
@@ -181,28 +219,27 @@ function showCalendar(month, year) {
 }
 
 
-// Viser kvartaler
-function show3() {
-
-    var tbl = document.getElementById("kalender-body"); // Selve kalender delen
-    tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
-
+    // checker om den allerede er inde i functionen
     if (m != 3) {
 
-        currentYear = today.getFullYear();
+        currentYear = today.getFullYear();  // gør at man er i nuværende år
 
+        // checker om man er i første kvartal
         if (currentMonth == 1 || currentMonth == 2) {
             currentMonth = 0;
         }
 
+        // checker om man er i andet kvartal
         else if (currentMonth == 4 || currentMonth == 5) {
             currentMonth = 3;
         }
 
+        // checker om man er i tredje kvartal
         else if (currentMonth == 7 || currentMonth == 8) {
             currentMonth = 6;
         }
 
+        // checker om man er i fjerde kvartal
         else if (currentMonth == 10 || currentMonth == 11) {
             currentMonth = 9;
         }
@@ -214,13 +251,14 @@ function show3() {
         currentMonth = (currentMonth + 1) % 12; // beregner hvad den nye måned skal være.
     }
 
+    // Sørger for at man også kan gå tilbage i kalenderen
     while(gange <= 3, gange--) {
         currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; // beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // beregner hvad den nye måned skal være.
     }
-    m = 3;
-    k = 0;
-}
+    m = 3;  // bruges i next og previous 
+    k = 0; // bruges til at insætte måneder i div tags
+
 
 
 //Viser hele år
@@ -231,8 +269,8 @@ function showyear() {
 
     // checker om den allerede er inde i functionen
     if (m != 12) {
-        currentMonth = 0;
-        currentYear = today.getFullYear();
+        currentMonth = 0; // gør at den første måned der bliver vist er januar
+        currentYear = today.getFullYear();  // gør at man er i nuværende år
     }
 
     // Indsætter 12 måneder
@@ -242,12 +280,13 @@ function showyear() {
         currentMonth = (currentMonth + 1) % 12; // beregner hvad den nye måned skal være.
     }
 
+    // Sørger for at man også kan gå tilbage i kalenderen
     while (gange <= 12, gange--) {
         currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; // beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // beregner hvad den nye måned skal være.
     }
-    m = 12;
-    k = 0;
+    m = 12; // bruges i next og previous 
+    k = 0; // bruges til at insætte måneder i div tags
 }
 
 //Viser en måned ad gangen
@@ -255,12 +294,13 @@ function onemonth() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
 
+    // checker om den allerede er inde i functionen
     if (m != 1) {
-        currentMonth = today.getMonth();
-        currentYear = today.getFullYear();
+        currentMonth = today.getMonth(); // gør at man starter på nuværende måned
+        currentYear = today.getFullYear();  // gør at man er i nuværende år
     }
 
     showCalendar(currentMonth, currentYear);
-    m = 1;
-    k = 0;
+    m = 1;  // bruges i next og previous 
+    k = 0;  // bruges til at insætte måneder i div tags
 }
