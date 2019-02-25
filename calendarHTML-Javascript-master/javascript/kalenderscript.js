@@ -15,7 +15,6 @@ show3();
 //skift til næste måned
 function next() {
 
-
     if (m == 3) {
         for (var i = 0; i < 3; i++) {
             currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
@@ -41,13 +40,8 @@ function next() {
 
 
 
-
-
-
 //skift til forige måned
 function previous() {
-    /*currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
-    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner hvad den nye måned skal være.*/
 
     if (m == 3) {
         for (var i = 0; i < 3; i++) {
@@ -73,18 +67,12 @@ function previous() {
 }
 
 
-
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     m++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
     //firstDay = firstDay + 7 - 1;
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
-
-    /*var monthname = document.createElement("h3");
-    monthname.className = "månedsheader";
-    document.getElementsByClassName("måned").appendChild(monthname);*/
-
 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
@@ -95,24 +83,8 @@ function showCalendar(month, year) {
     monthdiv.className = "header";
     monthdiv.id = "monthAndYear" + m;
     document.getElementById("kalender-body").appendChild(monthdiv); // Sætter rækkerne ind i kalender-body
-
-
-
-
-
     monthAndYear.innerHTML = months[month] + " " + year; // filing data about month and in the page via DOM.
     var date = 1; // Bruges til at referere datoer
-
-    /*
-    for (var y = 0; y < 12; y++){ //skaber 12 diver med klassenavnet "måned" inden diven med ID'en helekalender
-        var monthDiv = document.createElement('div');
-        monthDiv.className = "måned";
-
-        document.getElementById('helekalender').appendChild(monthDiv);
-    }
-    */
-   
-
 
 
     // skaber alle rækker
@@ -169,12 +141,12 @@ function showCalendar(month, year) {
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
             }
 
-            // Sletter en række hvis der er 5 tomme dage i træk
+            // Retter på datoen hvis måneden starter på en søndag
             else if (firstDay == -1 && date == 1) {
                 date++;
                 j--;
             }
-            // Sletter en række hvis der er 5 tomme dage i træk
+            // Giver en række et id hvis der er 5 tomme dage i træk
             else if (tom == 5 && i == 0) {
                 row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
                 tom++;
@@ -216,6 +188,11 @@ function show3() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
 
+    if (m != 3) {
+        currentMonth = today.getMonth();
+        currentYear = today.getFullYear();
+    }
+
     for (var gange = 0; gange < 3; gange++) {
         showCalendar(currentMonth, currentYear);
         currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
@@ -233,6 +210,11 @@ function showyear() {
 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
+
+    if (m != 12) {
+        currentMonth = today.getMonth();
+        currentYear = today.getFullYear();
+    }
 
     for (var gange = 0; gange < 12; gange++) {
         showCalendar(currentMonth, currentYear);
@@ -256,6 +238,11 @@ function showyear() {
 function onemonth() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
+
+    if (m != 1) {
+        currentMonth = today.getMonth();
+        currentYear = today.getFullYear();
+    }
 
     showCalendar(currentMonth, currentYear);
     m = 1;
