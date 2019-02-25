@@ -7,7 +7,6 @@ var helekalender = document.getElementById("helekalender")
 var week = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
-//showCalendar(currentMonth, currentYear); //kalder på funktionen showCalender
 show3();
 
 
