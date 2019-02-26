@@ -268,13 +268,8 @@ function showyear() {
 
     // checker om den allerede er inde i functionen
     if (m != 12) {
-<<<<<<< HEAD
         currentMonth = 0; // gør at den første måned der bliver vist er januar
         currentYear = today.getFullYear();  // gør at man er i nuværende år
-=======
-        currentMonth = today.getMonth();
-        currentYear = today.getFullYear();
->>>>>>> parent of c29125d... Update kalenderscript.js
     }
 
     m = 12; // bruges i next og previous 
