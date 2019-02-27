@@ -1,4 +1,4 @@
-var m = 0, k = 0, q = 0;
+var m = 0, k = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
@@ -7,9 +7,9 @@ var helekalender = document.getElementById("helekalender")
 var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
-show3();
+showyear();
 
-//skift til næste måned
+//skift til næste måneder
 function next() {
 
     if (m == 3) {
@@ -37,7 +37,7 @@ function next() {
 
 
 
-//skift til forige måned
+//skift til forige måneder
 function previous() {
 
     if (m == 3) {
@@ -74,50 +74,37 @@ function showCalendar(month, year) {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
-    var fourMonth = document.createElement("div");
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDiv";
     monthDiv.id = "månedDiv" + k;
+
     //tbl.appendChild(monthDiv);
     if (m == 12) {
-    if  (k == 1) {
-        
-        q++;
-
-        fourMonth.id = "fm" + q;
-        fourMonth.appendChild(monthDiv);        
-
-    }
-
-    else if (k == 5) {
-        q++;
-
-        fourMonth.id = "fm" + q;     
-        fourMonth.appendChild(monthDiv);
-    }
-
-    else if (k == 9) {
-        q++;
-
-        fourMonth.id = "fm" + q;   
-        fourMonth.appendChild(monthDiv);
+        if (k == 1) {
+            for (var q = 1; q < 4; q++) {
+                var fourMonth = document.createElement("div");
+                fourMonth.id = "fm" + q;
+                tbl.appendChild(fourMonth);
+            }
+        }
+        if (k == 1 || k == 2 || k == 3 || k == 4) {
+            var fourMonth1 = document.getElementById("fm1");
+            fourMonth1.appendChild(monthDiv);
+        }
+        else if (k == 5 || k == 6 || k == 7 || k == 8) {
+            var fourMonth2 = document.getElementById("fm2");
+            fourMonth2.appendChild(monthDiv);
+        }
+        else {
+            var fourMonth3 = document.getElementById("fm3");
+            fourMonth3.appendChild(monthDiv);
+        }
     }
 
     else {
-        if (q == 1) {
-            fourMonth.appendChild(monthDiv);
-        }
-
-        else if (q == 2) {
-            fourMonth.appendChild(monthDiv);
-        }
-
-        else {
-            fourMonth.appendChild(monthDiv);
-        }
+        tbl.appendChild(monthDiv);
     }
-    tbl.appendChild(fourMonth);
-    }
+
     var showMonth = document.createElement("h3");
     showMonth.className = "header";
     showMonth.id = "monthAndYear" + k;
@@ -219,6 +206,11 @@ function showCalendar(month, year) {
 }
 
 
+function show3() {
+
+    var tbl = document.getElementById("kalender-body"); // Selve kalender delen
+    tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
+
     // checker om den allerede er inde i functionen
     if (m != 3) {
 
@@ -258,7 +250,7 @@ function showCalendar(month, year) {
     }
     m = 3;  // bruges i next og previous 
     k = 0; // bruges til at insætte måneder i div tags
-
+}
 
 
 //Viser hele år
@@ -273,6 +265,8 @@ function showyear() {
         currentYear = today.getFullYear();  // gør at man er i nuværende år
     }
 
+    m = 12; // bruges i next og previous 
+
     // Indsætter 12 måneder
     for (var gange = 0; gange < 12; gange++) {
         showCalendar(currentMonth, currentYear);
@@ -285,7 +279,6 @@ function showyear() {
         currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; // beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // beregner hvad den nye måned skal være.
     }
-    m = 12; // bruges i next og previous 
     k = 0; // bruges til at insætte måneder i div tags
 }
 
@@ -304,3 +297,17 @@ function onemonth() {
     m = 1;  // bruges i next og previous 
     k = 0;  // bruges til at insætte måneder i div tags
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
