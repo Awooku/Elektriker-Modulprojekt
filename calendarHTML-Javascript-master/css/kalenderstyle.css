@@ -64,19 +64,27 @@ body {
 }
 
 #helekalender, #kalender-body {
-    width: auto;
+    width: min-content;
     height: auto;
-    padding: 5px;
 }
 
-/*.månedDivC {
+#kalender-body {
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 0px;
+}
+
+.månedDivC {
     display: inline-block;
     height: 254px;
     width: 300px;
-}*/
+}
 
 #fm1, #fm2, #fm3 {
     display: inline-flex;
 }
 
 
+#månedDiv4 {
+    width: 290px;
+}

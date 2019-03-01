@@ -108,7 +108,6 @@ function showCalendar(month, year) {
     var showMonth = document.createElement("h3");
     showMonth.className = "header";
     showMonth.id = "monthAndYear" + k;
-    console.log(k);
     document.getElementById("månedDiv" + k).appendChild(showMonth); // Sætter rækkerne ind i kalender-body
 
     document.getElementById("monthAndYear" + k).innerHTML = months[month] + " " + year; //Gør at du kan se måneder og år
