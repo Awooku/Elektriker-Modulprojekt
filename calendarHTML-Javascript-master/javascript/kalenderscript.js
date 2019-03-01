@@ -74,47 +74,11 @@ function showCalendar(month, year) {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
-    var fourMonth = document.createElement("div");
+    //var fourMonth = document.createElement("div");
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDivC";
     monthDiv.id = "månedDiv" + k;
-    
-
-    if (m == 12) {
-        if  (k == 1) {
-
-            q++;
-
-            fourMonth.id = "fm" + q;
-            //tbl.appendChild(fourMonth);
-        }
-
-        else if (k == 5) {
-            q++;
-
-            fourMonth.id = "fm" + q;     
-            //fourMonth.appendChild(monthDiv);
-            //tbl.appendChild(fourMonth);
-        }
-
-        else if (k == 9) {
-            q++;
-
-            fourMonth.id = "fm" + q;   
-            //
-            //tbl.appendChild(fourMonth);
-
-        }
-        tbl.appendChild(fourMonth);
-        fourMonth.appendChild(monthDiv);
-        //tbl.appendChild(monthDiv);
-
-    }
-    else {
-        tbl.appendChild(monthDiv);
-    }
-    tbl.appendChild(fourMonth);
-    fourMonth.appendChild(monthDiv);
+    tbl.appendChild(monthDiv);
     
     var showMonth = document.createElement("h3");
     showMonth.className = "header";
@@ -217,6 +181,9 @@ function showCalendar(month, year) {
 }
 
 function show3() {
+    var tbl = document.getElementById("kalender-body"); // Selve kalender delen
+    tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
+
     // checker om den allerede er inde i functionen
     if (m != 3) {
 
@@ -262,7 +229,6 @@ function show3() {
 
 //Viser hele år
 function showyear() {
-        m = 12; // bruges i next og previous 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
 
