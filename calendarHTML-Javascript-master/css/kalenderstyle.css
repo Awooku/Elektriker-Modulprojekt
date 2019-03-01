@@ -57,7 +57,7 @@ body {
       dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!), men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden
       medmindre du er ond*/
 
-/* ik' dræb mig */
+/*ik' dræb mig*/
 #monthAndYear1, #monthAndYear2, #monthAndYear3, #monthAndYear4, #monthAndYear5, #monthAndYear6, #monthAndYear7, #monthAndYear8, #monthAndYear9, #monthAndYear10, #monthAndYear11, #monthAndYear12 {
     margin: 0px;
     margin-top: 5px;
@@ -69,9 +69,14 @@ body {
     padding: 5px;
 }
 
-.månedDivC {
+/*.månedDivC {
     display: inline-block;
     height: 254px;
     width: 300px;
+}*/
+
+#fm1, #fm2, #fm3 {
+    display: inline-flex;
 }
+
 
