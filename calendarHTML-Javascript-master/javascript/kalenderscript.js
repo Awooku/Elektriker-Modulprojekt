@@ -193,6 +193,7 @@ function showCalendar(month, year) {
                 var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden 
                 var cellText = document.createTextNode(date);
                 cell.className = "dag"; // Giver cellerne klassen dag
+                cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
                 cellBox.className = "dagbox"; // Giver boxene klassen dagbox
                 row.appendChild(cellBox);
                 cell.appendChild(cellText);

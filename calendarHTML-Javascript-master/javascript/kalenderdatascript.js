@@ -9,3 +9,11 @@ document.getElementById("demo").innerHTML = startdato + ", " + slutdato;
 var antaldage = slutdato - startdato;
 var antaldage = (antaldage / (60*60*24*1000));
 console.log(antaldage);
+
+
+function events() {
+
+    var eventrow = document.createElement("div");
+
+
+}
