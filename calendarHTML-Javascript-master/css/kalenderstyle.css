@@ -46,11 +46,7 @@ body {
     text-align: right; 
 }
 
-.tomdag {
-    height: 0px
-}
-
-#tomx5, .hidemon {
+#tomx5, .weekend {
     display: none;
 }  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
       fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
