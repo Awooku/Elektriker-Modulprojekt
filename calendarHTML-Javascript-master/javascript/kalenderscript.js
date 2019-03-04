@@ -179,6 +179,9 @@ function showCalendar(month, year) {
 
             // Gør at lørdag og søndag ikke tæller med
             else if (j == 5 || j == 6) {
+                var cellend = document.createElement("td");
+                cellend.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
+                cellend.className = "hidemon";
                 date++; //tæller en dag op
             }
 

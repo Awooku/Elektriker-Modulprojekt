@@ -50,7 +50,7 @@ body {
     height: 1px;
 } /* opdaterer .tomdags højde og bredde så den stadig fylder de tomme linjer ud i tilfælde af at måneden starter midt på ugen. Dette er også for vi ikke behøver at give den inline-block igen  */
 
-#tomx5 {
+#tomx5, .hidemon {
     display: none;
 }  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
       fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 

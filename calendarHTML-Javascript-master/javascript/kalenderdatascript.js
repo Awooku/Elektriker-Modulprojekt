@@ -12,8 +12,9 @@ console.log(antaldage);
 
 
 function events() {
-
+    var datocheck = document.getElementById(startdato);
+    if (datocheck) {
     var eventrow = document.createElement("div");
-
+    }
 
 }
