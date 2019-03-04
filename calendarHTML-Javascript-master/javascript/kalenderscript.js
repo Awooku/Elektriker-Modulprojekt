@@ -181,7 +181,7 @@ function showCalendar(month, year) {
             else if (j == 5 || j == 6) {
                 var cellend = document.createElement("td");
                 cellend.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
-                cellend.className = "hidemon";
+                cellend.className = "weekend";
                 date++; //tæller en dag op
             }
 
