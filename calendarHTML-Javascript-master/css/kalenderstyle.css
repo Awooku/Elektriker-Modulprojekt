@@ -22,12 +22,8 @@ body {
     border-radius: 0px;
 }
 
-.dag, .dagbox, .ugedag, .tomdag  {
+.dag, .dagbox, .ugedag  {
     width: 56px;
-}
-
-.dag, .tomdag {
-    margin-right: 2px;
 }
 
 .dag, .dagbox {
@@ -44,6 +40,23 @@ body {
  
 .dag {
     text-align: right; 
+    padding-top: 1px;
+    margin-right: 1px;
+}
+
+.ugedag {
+    width: 56px;
+    border-left-width: 0px;
+}
+
+.ugedag:nth-child(1) {
+    border-left-width: 1px;
+} /* gaffa tape til dårlig css
+     i det mindste ser det pænt ud-agtig */
+
+.tomdag {
+    width: 55px;
+    margin-right: 2px;
 }
 
 #tomx5, .weekend {
