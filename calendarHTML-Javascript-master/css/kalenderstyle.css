@@ -45,7 +45,6 @@ body {
 }
 
 .ugedag {
-    width: 56px;
     border-left-width: 0px;
 }
 
@@ -76,15 +75,9 @@ body {
     height: auto;
 }
 
-#kalender-body {
-    padding: 5px;
-    padding-left: 8px;
-    padding-right: 0px;
-}
-
 .månedDivC {
     height: 254px;
-    width: 300px;
+    width: 295px;
 }
 
 #fm1, #fm2, #fm3 {
@@ -94,3 +87,33 @@ body {
 #månedDiv4 {
     width: 290px;
 }
+
+
+.liste > .dagbox {
+    border-top-width: 0px;
+    height: 37px;
+} /* mere tape */
+
+
+/* meningen med cssen nednunder er at få kalenderen til at se bedre ud på hovedsiden */
+
+#kalender-body {
+    border: 0px solid black;
+}
+
+#helekalender {
+    margin: 0 auto;
+    width: 82%;
+    padding: 10px;
+}
+
+.månedDivC {
+    margin-left: 0px;
+}
+
+
+
+
+
+
+
