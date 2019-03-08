@@ -73,6 +73,13 @@ function showCalendar(month, year) {
 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
+    document.getElementById("årstal").innerHTML = year; //viser år på toppen af kalenderen
+    /*var displayYear = document.createElement("div");
+    displayYear.className = "årstal";
+    displayYear.innerHTML = year;
+    document.getElementById("kalender-body").appendChild(displayYear);
+    */
+
     //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDivC";
@@ -110,7 +117,8 @@ function showCalendar(month, year) {
     showMonth.id = "monthAndYear" + k;
     document.getElementById("månedDiv" + k).appendChild(showMonth); // Sætter rækkerne ind i kalender-body
 
-    document.getElementById("monthAndYear" + k).innerHTML = months[month] + " " + year; //Gør at du kan se måneder og år
+    document.getElementById("monthAndYear" + k).innerHTML = months[month]; //Gør at du kan se navn på måned over den enkelte viste måned
+
     var date = 1; // Bruges til at referere datoer
 
     // skaber alle rækker
