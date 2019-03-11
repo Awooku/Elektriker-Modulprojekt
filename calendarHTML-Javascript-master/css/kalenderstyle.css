@@ -7,6 +7,7 @@ body {
 
 #kalender-body, .ugedag, .ugedagsliste {
     border: 1px solid black;
+    border-radius: 0px;
 } /* #kalender-body, .ugedag og .ugedagliste får samme border farve */
 
 .dagbox {
@@ -18,15 +19,8 @@ body {
     display: inline-block;
 }
 
-.dagbox, .ugedag, .ugedagsliste, #kalender-body  {
-    border-radius: 0px;
-}
-
 .dag, .dagbox, .ugedag  {
     width: 56px;
-}
-
-.dag, .dagbox {
     height: 36px;
 }
 
@@ -67,35 +61,29 @@ body {
 
 .header {
     margin: 0px;
-    margin-top: 5px;
 }
 
 #helekalender, #kalender-body {
     width: min-content;
     height: auto;
+    border: 0px solid black;
 }
 
 .månedDivC {
-    height: 254px;
-    width: 295px;
+    height: auto;
+    width: 286px;
+    margin: 0px -1px -1px 0px;
+    padding: 3px;
+    border: 0.1px solid;
 }
 
 #fm1, #fm2, #fm3 {
     display: inline-flex;
 }
 
-#månedDiv4 {
-    width: 290px;
-}
-
 /* meningen med cssen nednunder er at få kalenderen til at se bedre ud på hovedsiden */
 
-#kalender-body {
-    border: 0px solid black;
-}
-
 #helekalender {
-
     margin: 0 auto;
     width: 84%;
     padding: 10px;
@@ -103,10 +91,6 @@ body {
 
     margin-right: 5%;
     margin-left: 5%;
-}
-
-.månedDivC {
-    margin-left: 0px;
 }
 
 #årstal {

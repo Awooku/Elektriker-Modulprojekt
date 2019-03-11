@@ -64,6 +64,10 @@ function previous() {
 }
 
 
+
+
+
+
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     k++;
@@ -209,6 +213,11 @@ function showCalendar(month, year) {
 }
 
 
+
+
+
+
+
 function show3() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
@@ -327,5 +336,15 @@ function events() {
     }
     console.log(startdato);
     console.log(datocheck);
+
+
+
+
+
+
+
+
+
+
 }
 
