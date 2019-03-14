@@ -7,7 +7,7 @@ var helekalender = document.getElementById("helekalender")
 var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
 
-showyear();
+showmonth();
 
 //skift til næste måneder
 function next() {
@@ -31,7 +31,7 @@ function next() {
     else {
         currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
         currentMonth = (currentMonth + 1) % 12; //beregner hvad den nye måned skal være.
-        onemonth();
+        showmonth();
     }
 }
 
@@ -67,22 +67,18 @@ function previous() {
 
 
 
-
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne).
 function showCalendar(month, year) {
     k++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
-    //firstDay = firstDay + 7 - 1;
     var daysInMonth = 32 - new Date(year, month, 32).getDate();
 
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
 
-    //tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next
     var monthDiv = document.createElement("div");
     monthDiv.className = "månedDivC";
     monthDiv.id = "månedDiv" + k;
 
-    //tbl.appendChild(monthDiv);
     if (m == 12) {
         if (k == 1) {
             for (var q = 1; q < 4; q++) {
@@ -126,6 +122,14 @@ function showCalendar(month, year) {
             document.getElementById("månedDiv" + k).appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
 
+        var ugetable = document.createElement("table");
+        var tablehead = document.createElement("thead");
+        var tablebody = document.createElement("tbody");
+        tablebody.id = "ugetable" + i;
+        document.getElementById("månedDiv" + k).appendChild(ugetable); // Sætter rækkerne ind i kalender-body
+        ugetable.appendChild(tablehead);
+        ugetable.appendChild(tablebody);
+
        // Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
        for (var d = 0; d < 6; d++) {
 
@@ -144,12 +148,15 @@ function showCalendar(month, year) {
             else if (i == 0 && d == 5) {
                 var row = document.createElement("tr");
                 row.className = "liste"; // første række efter ugedagene får klassen 'liste'
+                document.getElementById("ugetable" + i).appendChild(row);
+                console.log(row);
             }
 
             // Opretter rækker hvor resterende kalenderdata kan sættes ind
             else {
                 var row = document.createElement("tr");
                 row.className = "linje"; //Resten af rækkerne giver vi klassen 'linje'
+                document.getElementById("ugetable" + i).appendChild(row);
                 break;
             }
         }
@@ -197,18 +204,21 @@ function showCalendar(month, year) {
             // Opretter de resterende celler og indsætter numre i forhold til datoen
             else {
                 var cell = document.createElement("td");
-                var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden 
+                //var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden
+                var dagcell = document.createElement("td"); 
                 var cellText = document.createTextNode(date);
-                cell.className = "dag"; // Giver cellerne klassen dag
-                cellBox.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
+                dagcell.className = "dagec";
+                cell.className = "dage"; // Giver cellerne klassen dag
+                /*cellBox.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
                 cellBox.className = "dagbox"; // Giver boxene klassen dagbox
-                row.appendChild(cellBox);
-                cell.appendChild(cellText);
-                row.appendChild(cell);
+                row.appendChild(cellBox); //fix*/
+                tablehead.appendChild(dagcell); //fix
+                dagcell.appendChild(cellText);
+                row.appendChild(cell); //fix
                 date++; //tæller en dag op
             }
         }
-        monthDiv.appendChild(row); // smider vær række ind i kalenderen
+        //monthDiv.appendChild(row); // smider vær række ind i kalenderen
     }
 }
 
@@ -294,7 +304,7 @@ function showyear() {
 }
 
 //Viser en måned ad gangen
-function onemonth() {
+function showmonth() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
 
@@ -334,8 +344,6 @@ function events() {
     var eventrow = document.createElement("div");
     datocheck.appendChild(eventrow);
     }
-    console.log(startdato);
-    console.log(datocheck);
 
 
 

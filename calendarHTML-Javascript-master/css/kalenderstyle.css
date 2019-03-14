@@ -14,6 +14,9 @@ body {
     position: absolute;
     border: 1px solid darkgray;    
 }
+.dage {
+    border: 1px solid darkgray;  
+}
 
 .dag, .dagbox, .ugedag, .tomdag, .månedDivC {
     display: inline-block;
@@ -56,8 +59,9 @@ body {
     display: none;
 }  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
       fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
-      dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!), men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden
-      medmindre du er ond*/
+      dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!),
+      men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden medmindre du er ond*/
+
 
 .header {
     margin: 0px;
