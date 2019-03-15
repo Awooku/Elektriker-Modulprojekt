@@ -10,6 +10,18 @@ body {
     border-radius: 0px;
 } /* #kalender-body, .ugedag og .ugedagliste får samme border farve */
 
+
+.dagec {
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid darkgray;
+    border-bottom: 0px;
+    border-collapse: collapse;
+    width: 54px;
+    font-size: 12px;
+    text-align: right;
+}
+
 .dagbox {
     position: absolute;
     border: 1px solid darkgray;    

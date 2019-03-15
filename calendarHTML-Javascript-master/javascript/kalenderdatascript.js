@@ -59,7 +59,7 @@ function previous() {
     else {
         currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear; //beregner ud fra hvilket årstal det er med udgangspunkt i hvilket måned det er.
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner hvad den nye måned skal være.
-        onemonth();
+        showmonth();
     }
 }
 
@@ -125,7 +125,6 @@ function showCalendar(month, year) {
         var ugetable = document.createElement("table");
         var tablehead = document.createElement("thead");
         var tablebody = document.createElement("tbody");
-        tablebody.id = "ugetable" + i;
         document.getElementById("månedDiv" + k).appendChild(ugetable); // Sætter rækkerne ind i kalender-body
         ugetable.appendChild(tablehead);
         ugetable.appendChild(tablebody);
@@ -148,15 +147,14 @@ function showCalendar(month, year) {
             else if (i == 0 && d == 5) {
                 var row = document.createElement("tr");
                 row.className = "liste"; // første række efter ugedagene får klassen 'liste'
-                document.getElementById("ugetable" + i).appendChild(row);
-                console.log(row);
+                tablebody.appendChild(row);
             }
 
             // Opretter rækker hvor resterende kalenderdata kan sættes ind
             else {
                 var row = document.createElement("tr");
                 row.className = "linje"; //Resten af rækkerne giver vi klassen 'linje'
-                document.getElementById("ugetable" + i).appendChild(row);
+                tablebody.appendChild(row);
                 break;
             }
         }
@@ -167,11 +165,14 @@ function showCalendar(month, year) {
 
             // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
-                var cell = document.createElement("td");                
-                var cellText = document.createTextNode("");
-                cell.className = "tomdag"; //vi laver en celle som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
-                cell.appendChild(cellText);
-                row.appendChild(cell);
+                var tomcell = document.createElement("td"), tomhead = document.createElement("td");                
+                var cellText = document.createTextNode(""), headtext = document.createTextNode("");
+                tomcell.className = "tomdag"; //vi laver en celle som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
+                tomhead.className = "tomdag";
+                tablehead.appendChild(tomhead); //fix
+                tomhead.appendChild(headtext);
+                tomcell.appendChild(cellText);
+                row.appendChild(tomcell);
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
             }
 
@@ -205,25 +206,35 @@ function showCalendar(month, year) {
             else {
                 var cell = document.createElement("td");
                 //var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden
-                var dagcell = document.createElement("td"); 
+                var dagcell = document.createElement("th"); 
                 var cellText = document.createTextNode(date);
                 dagcell.className = "dagec";
-                cell.className = "dage"; // Giver cellerne klassen dag
-                /*cellBox.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //giver celler et id ud fra dato
-                cellBox.className = "dagbox"; // Giver boxene klassen dagbox
+                cell.classList.add("dage", currentYear + "-" + (currentMonth + 1) + "-" + date); // Giver cellerne klassen dag
+                tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
+                /*cellBox.className = "dagbox"; // Giver boxene klassen dagbox
                 row.appendChild(cellBox); //fix*/
-                tablehead.appendChild(dagcell); //fix
+                tablehead.appendChild(dagcell);
                 dagcell.appendChild(cellText);
-                row.appendChild(cell); //fix
+                row.appendChild(cell); 
                 date++; //tæller en dag op
             }
         }
+
         //monthDiv.appendChild(row); // smider vær række ind i kalenderen
+        //se om man kan indsætte eventsne her inde.
+
+        /*function events() {
+            var datocheck = document.getElementById(obj.startdato);
+            if (datocheck) {
+            var eventrow = document.createElement("tr");
+            
+            datocheck.appendChild(eventrow);
+        
+        
+            }
+        }*/
     }
 }
-
-
-
 
 
 
@@ -323,7 +334,10 @@ function showmonth() {
 
 
 
-var text = '{"startdato":"2019-3-14", "slutdato":"2019-4-30", "skole":"TEC", "modultal":"1.5"}';
+
+
+
+var text = '{"startdato":"2019-3-20", "slutdato":"2019-4-30", "skole":"TEC", "modultal":"1.5"}';
 var obj = JSON.parse(text);
 var startdato = new Date(obj.startdato);
 var slutdato = new Date(obj.slutdato);
@@ -338,21 +352,14 @@ var antaldage = (antaldage / (60*60*24*1000));
 
 events();
 
+
 function events() {
-    var datocheck = document.getElementById(obj.startdato);
+    var datocheck = document.getElementsByClassName(obj.startdato);
     if (datocheck) {
-    var eventrow = document.createElement("div");
+    var eventrow = document.createElement("tr");
+    
     datocheck.appendChild(eventrow);
+
+
     }
-
-
-
-
-
-
-
-
-
-
 }
-
