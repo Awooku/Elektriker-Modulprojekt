@@ -10,7 +10,6 @@ body {
     border-radius: 0px;
 } /* #kalender-body, .ugedag og .ugedagliste får samme border farve */
 
-
 .dagec {
     padding: 0px;
     margin: 0px;
@@ -27,7 +26,8 @@ body {
     border: 1px solid darkgray;    
 }
 .dage {
-    border: 1px solid darkgray;  
+    border: 1px solid darkgray;
+    height: 5px;  
 }
 
 .dag, .dagbox, .ugedag, .tomdag, .månedDivC {

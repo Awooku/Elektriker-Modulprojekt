@@ -209,7 +209,8 @@ function showCalendar(month, year) {
                 var dagcell = document.createElement("th"); 
                 var cellText = document.createTextNode(date);
                 dagcell.className = "dagec";
-                cell.classList.add("dage", currentYear + "-" + (currentMonth + 1) + "-" + date); // Giver cellerne klassen dag
+                cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
+                cell.className = "dage"; // Giver cellerne klassen dage
                 tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
                 /*cellBox.className = "dagbox"; // Giver boxene klassen dagbox
                 row.appendChild(cellBox); //fix*/
@@ -335,31 +336,61 @@ function showmonth() {
 
 
 
-
-
-var text = '{"startdato":"2019-3-20", "slutdato":"2019-4-30", "skole":"TEC", "modultal":"1.5"}';
-var obj = JSON.parse(text);
-var startdato = new Date(obj.startdato);
-var slutdato = new Date(obj.slutdato);
-
-document.getElementById("demo").innerHTML = obj.startdato + ", " + obj.slutdato;
-
-
-var antaldage = slutdato - startdato;
-var antaldage = (antaldage / (60*60*24*1000));
-
-
-
-events();
-
-
 function events() {
-    var datocheck = document.getElementsByClassName(obj.startdato);
+
+    var text = '{"startdato":"2019-3-20", "slutdato":"2019-4-30", "skole":"TEC", "modultal":"1.5"}';
+    var obj = JSON.parse(text);
+    var startdato = new Date(obj.startdato);
+    var slutdato = new Date(obj.slutdato);
+    var opdeltdato = obj.startdato.split("-").map(Number);
+    console.log(opdeltdato);
+
+    document.getElementById("demo").innerHTML = obj.startdato + ", " + obj.slutdato;
+
+
+    var antaldage = slutdato - startdato;
+    var antaldage = (antaldage / (60*60*24*1000));
+
+
+    var datocheck = document.getElementById(obj.startdato);
     if (datocheck) {
-    var eventrow = document.createElement("tr");
-    
-    datocheck.appendChild(eventrow);
+        if (datocheck.length = 0) {
+            var event = document.createElement("a");
+            var content = document.createElement("div");
+            var titel = document.createElement("span");
+            var titelindhold = document.createTextNode(obj.modultal);
+
+            datocheck.appendChild(event);
+            event.appendChild(content);
+            content.appendChild(titel);
+            titel.appendChild(titelindhold);
+
+
+            /*while () {
+
+            }*/
+
+
+        }
+        
+        else if (k) {
+        var eventrow = document.createElement("tr");
+
+
+        }
+
+        else if (k) {
+
+        }
+
+        else {
+
+        }
+
+
+        //datocheck.appendChild(eventrow);
 
 
     }
 }
+events();
