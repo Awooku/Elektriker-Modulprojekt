@@ -4,8 +4,44 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var helekalender = document.getElementById("helekalender")
 
-var week = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
+var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
+
+var week1 = new Date(today.getFullYear(), 0, 4);
+var showweek = 1 + Math.round(((today.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+
+
+function getWeeksStartAndEndInMonth(month, year, start) {
+    var weeks = [],
+        firstDate = new Date(year, month, 1),
+        lastDate = new Date(year, month + 1, 0),
+        numDays = lastDate.getDate();
+
+    var start = 1;
+    var end = 7 - firstDate.getDay();
+    if (start === 'monday') {
+        if (firstDate.getDay() === 0) {
+            end = 1;
+        } else {
+            end = 7 - firstDate.getDay() + 1;
+        }
+    }
+    while (start <= numDays) {
+        weeks.push({start: start, end: end});
+        start = end + 1;
+        end = end + 7;
+        end = start === 1 && end === 8 ? 1 : end;
+        if (end > numDays) {
+            end = numDays;
+        }
+    }
+    console.log(end);
+    return weeks;
+    
+}
+getWeeksStartAndEndInMonth();
+
+
 
 showmonth();
 
@@ -132,7 +168,7 @@ function showCalendar(month, year) {
        // Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
        for (var d = 0; d < 6; d++) {
 
-            var ugenavn = week[d]; //var ugenavn = arrayet hvor navnene på ugedagene står
+            var ugenavn = weekdays[d]; //var ugenavn = arrayet hvor navnene på ugedagene står
 
             // Opretter celler i ugerow rækken, hvor der indsættes data fra ugedag arrayet  
             if (i == 0 && d != 5) {
