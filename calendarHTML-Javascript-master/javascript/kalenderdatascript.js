@@ -35,7 +35,7 @@ function getWeeksStartAndEndInMonth(month, year, start) {
             end = numDays;
         }
     }
-    console.log(end);
+    console.log(showweek);
     return weeks;
     
 }
@@ -123,6 +123,7 @@ function showCalendar(month, year) {
                 tbl.appendChild(fourMonth);
             }
         }
+
         if (k == 1 || k == 2 || k == 3 || k == 4) {
             var fourMonth1 = document.getElementById("fm1");
             fourMonth1.appendChild(monthDiv);
@@ -254,6 +255,27 @@ function showCalendar(month, year) {
                 dagcell.appendChild(cellText);
                 row.appendChild(cell); 
                 date++; //tæller en dag op
+
+
+
+                var week1 = new Date(today.getFullYear(), 0, 4);
+                var showweek = 1 + Math.round(((today.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+
+                Date.prototype.getWeekNumber = function(){
+                    var dd = new Date(Date.CET(this.getFullYear(), this.getMonth(), this.getDate()));
+                    var dayNum = dd.getCETDay() || 7;
+                    dd.setCETDate(dd.getCETDate() + 4 - dayNum);
+                    var yearStart = new Date(Date.CET(dd.getCETFullYear(), 0, 4)); //var 1 i stedet for 4
+                    console.log(yearStart);
+                    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+                    };
+                      
+                    /*function checkWeek() {
+                        var s = document.getElementById('dString').value;
+                        var m = moment(s, 'YYYY-MM-DD');
+                        document.getElementById('momentWeek').value = m.format('W');
+                        document.getElementById('answerWeek').value = m.toDate().getWeekNumber();      
+                    }*/
             }
         }
 
