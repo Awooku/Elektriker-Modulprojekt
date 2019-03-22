@@ -2,45 +2,11 @@ var m = 0, k = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
+var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender")
 
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Viser hvilket måned man er på i kalenderen
-
-var week1 = new Date(today.getFullYear(), 0, 4);
-var showweek = 1 + Math.round(((today.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
-
-
-function getWeeksStartAndEndInMonth(month, year, start) {
-    var weeks = [],
-        firstDate = new Date(year, month, 1),
-        lastDate = new Date(year, month + 1, 0),
-        numDays = lastDate.getDate();
-
-    var start = 1;
-    var end = 7 - firstDate.getDay();
-    if (start === 'monday') {
-        if (firstDate.getDay() === 0) {
-            end = 1;
-        } else {
-            end = 7 - firstDate.getDay() + 1;
-        }
-    }
-    while (start <= numDays) {
-        weeks.push({start: start, end: end});
-        start = end + 1;
-        end = end + 7;
-        end = start === 1 && end === 8 ? 1 : end;
-        if (end > numDays) {
-            end = numDays;
-        }
-    }
-    console.log(showweek);
-    return weeks;
-    
-}
-getWeeksStartAndEndInMonth();
-
 
 
 showmonth();
@@ -257,41 +223,24 @@ function showCalendar(month, year) {
                 date++; //tæller en dag op
 
 
+                week1.setFullYear(currentYear);
+                weekNumber = currentYear + "-" + (currentMonth + 1) + "-" + date;
+                weekNrDate = new Date(weekNumber);
+                var showweek = 1 + Math.round(((weekNrDate.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+                console.log(showweek);
 
-                var week1 = new Date(today.getFullYear(), 0, 4);
-                var showweek = 1 + Math.round(((today.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+                if (tablebody.rows[0].cells.length == 4 && showweek === showweek) {
+                    console.log("hej");
+                }
+                else if (showweek == 53) {
+                    showweek = 1;
+                }
 
-                Date.prototype.getWeekNumber = function(){
-                    var dd = new Date(Date.CET(this.getFullYear(), this.getMonth(), this.getDate()));
-                    var dayNum = dd.getCETDay() || 7;
-                    dd.setCETDate(dd.getCETDate() + 4 - dayNum);
-                    var yearStart = new Date(Date.CET(dd.getCETFullYear(), 0, 4)); //var 1 i stedet for 4
-                    console.log(yearStart);
-                    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
-                    };
-                      
-                    /*function checkWeek() {
-                        var s = document.getElementById('dString').value;
-                        var m = moment(s, 'YYYY-MM-DD');
-                        document.getElementById('momentWeek').value = m.format('W');
-                        document.getElementById('answerWeek').value = m.toDate().getWeekNumber();      
-                    }*/
+                if (showweek === showweek) { // checker at det ikke bliver NaN
+                ugetable.classList = "Uge " + showweek;
+                }   
             }
         }
-
-        //monthDiv.appendChild(row); // smider vær række ind i kalenderen
-        //se om man kan indsætte eventsne her inde.
-
-        /*function events() {
-            var datocheck = document.getElementById(obj.startdato);
-            if (datocheck) {
-            var eventrow = document.createElement("tr");
-            
-            datocheck.appendChild(eventrow);
-        
-        
-            }
-        }*/
     }
 }
 
@@ -401,27 +350,33 @@ function events() {
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
     var opdeltdato = obj.startdato.split("-").map(Number);
-    console.log(opdeltdato);
 
     document.getElementById("demo").innerHTML = obj.startdato + ", " + obj.slutdato;
+    //document.getElementsByClassName(obj.startdato).rows[0].cells.length;
 
+    /*var showweek = 1 + Math.round(((startdato.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+    var ugeNr = "Uge" + showweek;*/
 
     var antaldage = slutdato - startdato;
     var antaldage = (antaldage / (60*60*24*1000));
 
 
     var datocheck = document.getElementById(obj.startdato);
-    if (datocheck) {
-        if (datocheck.length = 0) {
+    if (typeof(datocheck) != 'undefined' && datocheck != null) {
+
+        if (datocheck.length == 0) {
             var event = document.createElement("a");
             var content = document.createElement("div");
             var titel = document.createElement("span");
-            var titelindhold = document.createTextNode(obj.modultal);
+            var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
+            
 
             datocheck.appendChild(event);
             event.appendChild(content);
             content.appendChild(titel);
             titel.appendChild(titelindhold);
+
+            
 
 
             /*while () {
@@ -431,7 +386,7 @@ function events() {
 
         }
         
-        else if (k) {
+        else if (datocheck.length < 3) {
         var eventrow = document.createElement("tr");
 
 
@@ -450,5 +405,10 @@ function events() {
 
 
     }
+    else {
+       console.log("datoen findes ikke"); 
+    }
+
+
 }
 events();
