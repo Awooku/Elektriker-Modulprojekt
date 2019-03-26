@@ -1,0 +1,67 @@
+/*
+body
+{
+    margin : 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+#kalender-box
+{
+    width: 600px;
+    height: auto;
+    background: rgb(100, 200, 100);
+    
+}
+
+#kalender-box #dato
+{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    grid-gap: -2px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.dag, .numre
+{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    margin: 0px -3px -3px 0px;
+}
+*/
+
+#kalender-box{
+    padding: 10px;
+    width: 210px;
+    height: 210px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: Arial;
+    background-image: linear-gradient(#fff, #d3d3d3)
+}
+
+#kalender-box>div{
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#month-year{
+    margin: 5px;
+}
+
+#dato>table>tr>td{
+    padding: 5px;
+}

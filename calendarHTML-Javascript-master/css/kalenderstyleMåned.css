@@ -213,16 +213,17 @@ who knows */
 /* 1080p standard skærm */
 @media only screen and (min-width: 1401px) and (max-width: 1891px) {
     .dag, .dagbox, .ugedag  {
-        width: 67px;
-        height: 42px;
+        width: 278px;
+        height: 150px;
     }
 
     .månedDivC {
-        width: 342px;;
+        width: 1400px;
+        height: 800px;
     }
 
     .tomdag {
-        width: 66px;
+        width: 277px;
     }
 
     .ugedag {

@@ -95,7 +95,7 @@ main {
    /* background-color: lightgoldenrodyellow; */
     flex-basis: 85%;
     text-align: center;
-    height: inherit;
+    height: 100%;
 }
 
 footer{
@@ -404,4 +404,9 @@ height: 20px;
     font-weight: bold;   
     margin-left: 75%;
 
+}
+
+.showCalendar {
+    height: 100%;
+    width: 100%;
 }
