@@ -216,7 +216,6 @@ function showCalendar(month, year) {
     }
 }
 
-
 function show3() {
     var tbl = document.getElementById("kalender-body"); // Selve kalender delen
     tbl.innerHTML = ""; // fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
@@ -303,6 +302,8 @@ function onemonth() {
         currentYear = today.getFullYear();  // gør at man er i nuværende år
     }
 
+
+
     m = 1;  // bruges i next og previous
 
     showCalendar(currentMonth, currentYear);
@@ -310,10 +311,9 @@ function onemonth() {
     k = 0;  // bruges til at insætte måneder i div tags
 }
 
-
-
-
-
+function swapSheet(sheet){
+    document.getElementById("stylesheetID").setAttribute("href", sheet); 
+}
 
 
 
