@@ -3,9 +3,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
+    overflow: hidden;
 } /* Standard verdana skrifttype og textstørrelse 13 på hele kalenderen */
 
-#kalender-body, .ugedag, .ugedagsliste {
+ .ugedag, .ugedagsliste {
     border: 1px solid black;
     border-radius: 0px;
 } /* #kalender-body, .ugedag og .ugedagliste får samme border farve */
@@ -67,6 +68,10 @@ body {
     width: min-content;
     height: auto;
     border: 0px solid black;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .månedDivC {
@@ -81,20 +86,145 @@ body {
     display: inline-flex;
 }
 
-/* meningen med cssen nednunder er at få kalenderen til at se bedre ud på hovedsiden */
-
-#helekalender {
-    margin: 0 auto;
-    width: 84%;
-    padding: 10px;
-    padding-top: 2px;
-
-    margin-right: 5%;
-    margin-left: 5%;
-}
-
 #årstal {
     margin: 0px;
     font-size: 25px;
     text-align: center;
+}
+
+/* prøver at gøre siden scaleable 
+pil ved senere
+måske er dette bare for reference til senere? 
+who knows */
+
+/* jeg har givet op på scaleable, prøver @media i stedet */
+
+/* 720p */
+@media only screen and (min-width: 920px) and (max-width: 1005px) {
+    .dag, .dagbox, .ugedag  {
+        width: 43px;
+        height: 20px;
+    }
+
+    .månedDivC {
+        width: 224px;
+    }
+
+    .tomdag {
+        width: 42px;
+    }
+
+    .ugedag {
+        height: 22px;
+    }
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #årstal {
+        font-size: 20px;
+        margin-top: 2px;
+    }
+}
+
+/* 768p */
+@media only screen and (min-width: 1006px) and (max-width: 1182px) {
+    .dag, .dagbox, .ugedag  {
+        width: 48px;
+        height: 22px;
+    }
+
+    .månedDivC {
+        width: 246px;
+    }
+
+    .tomdag {
+        width: 47px;
+    }
+
+    .ugedag {
+        height: 22px;
+    }
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #årstal {
+        font-size: 21px;
+        margin-top: 2px;
+    }
+}
+
+/* 900p */
+@media only screen and (min-width: 1183px) and (max-width: 1400px) {
+    .dag, .dagbox, .ugedag  {
+        width: 56px;
+        height: 31px;
+    }
+
+    .månedDivC {
+        width: 290px;
+    }
+
+    .tomdag {
+        width: 55px;
+    }
+
+    .ugedag {
+        height: 22px;
+    }
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #årstal {
+        font-size: 24px;
+        margin-top: 2px;
+    }
+}
+
+/* 1080p standard skærm */
+@media only screen and (min-width: 1401px) and (max-width: 1891px) {
+    .dag, .dagbox, .ugedag  {
+        width: 65px;
+        height: 42px;
+    }
+
+    .månedDivC {
+        width: 342px;;
+    }
+
+    .tomdag {
+        width: 64px;
+    }
+
+    .ugedag {
+        height: 22px;
+    }
+}
+
+/* 1440p fordi hvorfor ikke */
+@media only screen and (min-width: 1852px) and (max-width: 8000px) {
+    .dag, .dagbox, .ugedag  {
+        width: 91px;
+        height: 71px;
+    }
+
+    .månedDivC {
+        width: 463px;
+    }
+
+    .tomdag {
+        width: 90px;
+    }
+
+    .ugedag {
+        height: 22px;
+    }
 }
