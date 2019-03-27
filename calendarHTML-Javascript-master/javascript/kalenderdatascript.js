@@ -219,7 +219,7 @@ function showCalendar(month, year) {
                 var cellText = document.createTextNode(date);
 
                 dagcell.className = "dagec";
-                cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
+                //cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
                 cell.className = "dage"; // Giver cellerne klassen dage
                 tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
                 hrow.appendChild(dagcell);
@@ -399,7 +399,7 @@ function events() {
 
         while (antaldage > 0) {
 
-            if (datocheck[0].rows.length == 0 && antalmodul) {
+            if (datocheck[0].rows.length == 0) {
                 var event = document.createElement("a");
                 var content = document.createElement("div");
                 var titel = document.createElement("span");
@@ -436,8 +436,6 @@ function events() {
             }
     
     
-    
-            antaldage--;
         }
     }
 
