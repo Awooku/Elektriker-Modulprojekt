@@ -35,6 +35,7 @@ function next() {
         currentMonth = (currentMonth + 1) % 12; //beregner hvad den nye måned skal være.
         showmonth();
     }
+    events();
 }
 
 
@@ -356,88 +357,94 @@ function showmonth() {
 
 function events() {
 
+    var modulnr = 0;
+    var antalmodul = 0;
+
     var text = '{"startdato":"2019-3-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
-    var starttext = obj.startdato.toString();
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
+    var antaldage = slutdato - startdato;
+    var antaldage = (antaldage / (60*60*24*1000));
     var opdeltdato = obj.startdato.split("-").map(Number);
-    var getweek = document.getElementsByClassName(obj.startdato);
-    console.log(getweek[0]);
-    var ugeNr = "Ugex";
+    var week53 = document.getElementsByClassName("Uge 1");
+    var datocheck = document.getElementsByClassName(obj.startdato);
     document.getElementById("demo").innerHTML = obj.startdato + ", " + obj.slutdato;
 
 
+    if (datocheck[0]) {
+        /*var ugeNr;
+        week1.setFullYear(opdeltdato[0]);
+        var showweek = 1 + Math.round(((startdato.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
 
-    week1.setFullYear(opdeltdato[0]);
-
-    var showweek = 1 + Math.round(((startdato.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
-
-    if ( getweek[0].rows[0].cells.length >= 4 && isNaN(showweek) && document.getElementById("månedDiv12") || showweek == 0) {
-        showweek = 53;
-    }
-
-    else if (showweek == 53) {
-        showweek = 1;
-    }
-
-    if (showweek === showweek) { // checker at det ikke bliver NaN
-    ugeNr = "Uge" + showweek;
-    }
-
-    var antaldage = slutdato - startdato;
-    var antaldage = (antaldage / (60*60*24*1000));
-
-    var datocheck = document.getElementsByClassName(obj.startdato);
-
-
-    if (typeof(datocheck) != 'undefined' && datocheck != null) {
-
-        if (datocheck.length == 0) {
-            var event = document.createElement("a");
-            var content = document.createElement("div");
-            var titel = document.createElement("span");
-            var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
-            
-
-            //.appendChild(event);
-            event.appendChild(content);
-            content.appendChild(titel);
-            titel.appendChild(titelindhold);
-
-            
-
-
-            /*while () {
-
-            }*/
-
-
-        }
-        
-        else if (datocheck.length < 3) {
-        var eventrow = document.createElement("tr");
-
-
+        if ( datocheck[0].rows[0].cells.length >= 4 && isNaN(showweek) && week53[1] || showweek == 0) {
+            showweek = 53;
         }
 
-        else if (k) {
+        else if (showweek == 53) {
+            showweek = 1;
+        }
 
+
+        if (showweek === showweek) { // checker at det ikke bliver NaN
+            ugeNr = "Uge" + showweek;
         }
 
         else {
+            weekcheck = new Date(opdeltdato[0], opdeltdato[1], opdeltdato[2] - 1);
+            var showweek = 1 + Math.round(((weekcheck.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+            ugeNr = "Uge" + showweek;
+        }*/
 
+
+        while (antaldage > 0) {
+
+            if (datocheck[0].rows.length == 0 && antalmodul) {
+                var event = document.createElement("a");
+                var content = document.createElement("div");
+                var titel = document.createElement("span");
+                var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
+                
+    
+                datocheck[0].appendChild(event);
+                event.appendChild(content);
+                content.appendChild(titel);
+                titel.appendChild(titelindhold);
+                
+                
+    
+    
+                /*while () {
+    
+                }*/
+    
+                modulnr++;
+            }
+            
+            else if (datocheck.length < 3) {
+            var eventrow = document.createElement("tr");
+    
+    
+            }
+    
+            else if (k) {
+    
+            }
+    
+            else {
+    
+            }
+    
+    
+    
+            antaldage--;
         }
-
-
-        //datocheck.appendChild(eventrow);
-
-
-    }
-    else {
-       console.log("datoen findes ikke"); 
     }
 
+
+
+
+    //datocheck.appendChild(eventrow);
 
 }
 events();
