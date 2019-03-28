@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
-    <link rel="stylesheet" href="css/kalenderstyle.css"/>
+    <link rel="stylesheet" href="css/kalenderstyle.css" id="stylesheetID"/>
 </head>
 <body>
-    <p id = "demo"></p>
     <div id="helekalender">
         <div id="kalender-body"></div>
+        
     </div>
     <div class="knapper">
         <button class="månedsskift" id="previous" onclick="previous()">Previous</button>
         <button class="månedsskift" id="next" onclick="next()">Next</button>
-        <button class="månedsskift" id="onemonth" onclick="showmonth()">1 Måned</button>
+        <button class="månedsskift" id="onemonth" onclick="onemonth(), swapSheet('css/kalenderstyleMåned.css')">1 Måned</button>
         <button class="månedsskift" id="treemonth" onclick="show3()">3 Måneder</button>
-        <button class="månedsskift" id="wholeyear" onclick="showyear()">1 År</button>
+        <button class="månedsskift" id="wholeyear" onclick="showyear(), swapSheet('css/kalenderstyle.css')">1 År</button>
     </div>
     <script src="javascript/kalenderdatascript.js"></script>
 </body>

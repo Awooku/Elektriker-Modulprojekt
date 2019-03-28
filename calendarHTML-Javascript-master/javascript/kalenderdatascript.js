@@ -217,18 +217,15 @@ function showCalendar(month, year) {
                 //var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden
                 var dagcell = document.createElement("th"); 
                 var cellText = document.createTextNode(date);
-
                 dagcell.className = "dagec";
                 //cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
                 cell.className = "dage"; // Giver cellerne klassen dage
                 tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
                 hrow.appendChild(dagcell);
                 dagcell.appendChild(cellText);
-                row.appendChild(cell);
-                var week53 = document.getElementsByClassName("Uge 1");
-
+                row.appendChild(cell); 
                 date++; //tæller en dag op
-                
+
 
                 week1.setFullYear(currentYear);
                 weekNumber = currentYear + "-" + (currentMonth + 1) + "-" + date;
@@ -240,7 +237,7 @@ function showCalendar(month, year) {
 
                 var showweek = 1 + Math.round(((weekNrDate.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
 
-                if (tablebody.rows[0].cells.length >= 4 && isNaN(showweek) && week53[1] || showweek == 0) {
+                if (tablebody.rows[0].cells.length >= 4 && isNaN(showweek) && document.getElementById("månedDiv12") || showweek == 0) {
                     showweek = 53;
                 }
 
@@ -357,6 +354,7 @@ function showmonth() {
 
 function events() {
 
+<<<<<<< HEAD
     var modulnr = 0;
     var antalmodul = 0;
 
@@ -364,6 +362,24 @@ function events() {
     var obj = JSON.parse(text);
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
+=======
+    var text = '{"startdato":"2019-4-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
+    var obj = JSON.parse(text);
+    var startdato = new Date(obj.startdato);
+    var slutdato = new Date(obj.slutdato);
+    var opdeltdato = obj.startdato.split("-").map(Number);
+
+    document.getElementById("demo").innerHTML = obj.startdato + ", " + obj.slutdato;
+
+
+
+    week1.setFullYear(opdeltdato[0]);
+
+    var showweek = 1 + Math.round(((startdato.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
+    var ugeNr = "Uge" + showweek;
+
+
+>>>>>>> parent of 3a1d4e2... fejlsøgning
     var antaldage = slutdato - startdato;
     var antaldage = (antaldage / (60*60*24*1000));
     var opdeltdato = obj.startdato.split("-").map(Number);
