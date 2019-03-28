@@ -357,6 +357,7 @@ function events() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     var modulnr = 0;
     var antalmodul = 0;
 
@@ -367,6 +368,10 @@ function events() {
 =======
     var text = '{"startdato":"2019-4-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
+=======
+    var text = '{"startdato":"2019-4-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
+    var obj = JSON.parse(text);
+>>>>>>> parent of 3a1d4e2... fejlsøgning
 =======
     var text = '{"startdato":"2019-4-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
