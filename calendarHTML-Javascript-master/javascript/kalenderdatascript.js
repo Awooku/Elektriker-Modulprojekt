@@ -12,7 +12,7 @@ function swapSheet(sheet){
     document.getElementById("stylesheetID").setAttribute("href", sheet); 
 }
 
-showmonth();
+showyear();
 
 //skift til næste måneder
 function next() {
@@ -222,7 +222,7 @@ function showCalendar(month, year) {
                 var dagcell = document.createElement("th"); 
                 var cellText = document.createTextNode(date);
                 dagcell.className = "dagec";
-                //cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
+                cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
                 cell.className = "dage"; // Giver cellerne klassen dage
                 tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
                 hrow.appendChild(dagcell);
@@ -399,37 +399,52 @@ function events() {
 
         
         while (antaldage > 0) {
+            
+            if (datocheck[0].rows.length == 1) {
 
-            if (datocheck[0].rows.length == 0) {
+                var ugefylde = datocheck[0].rows[0].cells.length;
+                var gettd = datocheck[0].rows[0];
+                var gettd2 = datocheck[0].children.length;
+                var placerevent = document.getElementById(obj.startdato);
                 var event = document.createElement("a");
                 var content = document.createElement("div");
                 var titel = document.createElement("span");
                 var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
-                
-    
-                datocheck[0].appendChild(event);
+                var dagsnr = placerevent.childElementCount;
+                placerevent.appendChild(event);
                 event.appendChild(content);
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
+
+                for (i = 0; i < datocheck[0].childNodes[0].childNodes.length; i++) {
+                    var childNr = datocheck[0].childNodes[i];
+                    if (childNr.nodeName == obj.startdato) {
+                        console.log(childNr.nodeName);
+                        break;
+                    }
+                }
+
+                console.log(i);
     
                 modulnr++;
+                placerevent.colspan = dagsnr;
+                antaldage = antaldage - ugefylde;
             }
             
-            else if (datocheck.length < 3) {
+            else if (datocheck[0].rows.length < 3) {
             var eventrow = document.createElement("tr");
-    
     
             }
     
-            else if (k) {
+            else if (kkkk) {
     
             }
     
             else {
-    
+                antaldage--;
             }
+            
             antaldage--;
-    
         }
     }
 
