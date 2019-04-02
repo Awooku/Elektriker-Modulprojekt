@@ -1,9 +1,9 @@
- /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven */
+ /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
-    /* overflow: hidden; */
+    overflow: hidden;
 } /* Standard verdana skrifttype og textstørrelse 13 på hele kalenderen */
 
  .ugedag, .ugedagsliste {
@@ -23,21 +23,18 @@ body {
 }
 
 .dagbox {
-    position: absolute;
-    border: 1px solid darkgray;    
+    position: absolute;   
 }
 .dage {
-    border: 1px solid darkgray;
     height: 5px;  
+}
+
+.dage, .dagbox {
+    border: 1px solid darkgray;
 }
 
 .dag, .dagbox, .ugedag, .tomdag, .månedDivC {
     display: inline-block;
-}
-
-.dag, .dagbox, .ugedag  {
-    width: 56px;
-    height: 36px;
 }
 
 .ugedag, .ugedagsliste {
@@ -64,7 +61,6 @@ body {
      i det mindste ser det pænt ud-agtig */
 
 .tomdag {
-    width: 55px;
     margin-right: 2px;
 }
 
@@ -92,7 +88,6 @@ body {
 
 .månedDivC {
     height: auto;
-    width: 286px;
     margin: 0px -1px -1px 0px;
     padding: 3px;
     border: 0.1px solid;
@@ -108,11 +103,6 @@ body {
     text-align: center;
 }
 
-.dagbox1m {
-    height: 100px;
-    width: 100px;
-}
-
 /* prøver at gøre siden scaleable 
 pil ved senere
 måske er dette bare for reference til senere? 
@@ -120,7 +110,7 @@ who knows */
 
 /* jeg har givet op på scaleable, prøver @media i stedet */
 
-/* 720p */
+/* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
 @media only screen and (min-width: 920px) and (max-width: 1005px) {
     .dag, .dagbox, .ugedag  {
         width: 43px;
@@ -231,7 +221,7 @@ who knows */
 }
 
 /* 1440p fordi hvorfor ikke */
-@media only screen and (min-width: 1852px) and (max-width: 8000px) {
+@media only screen and (min-width: 1892px) and (max-width: 8000px) {
     .dag, .dagbox, .ugedag  {
         width: 91px;
         height: 71px;
