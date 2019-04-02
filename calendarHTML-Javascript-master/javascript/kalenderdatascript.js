@@ -416,10 +416,10 @@ function events() {
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
 
-                for (i = 0; i < datocheck[0].childNodes[0].childNodes.length; i++) {
-                    var childNr = datocheck[0].childNodes[i];
-                    if (childNr.nodeName == obj.startdato) {
-                        console.log(childNr.nodeName);
+                for (i = 0; i < datocheck[0].children[0].children.length; i++) {
+                    var childNr = datocheck[0].children[0].children[i];
+                    console.log(childNr);
+                    if (childNr.id = obj.startdato) {
                         break;
                     }
                 }
