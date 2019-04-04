@@ -361,7 +361,7 @@ function events() {
     var modulnr = 0;
     var antalmodul = 0;
 
-    var text = '{"startdato":"2019-3-20", "slutdato":"2019-5-3", "skole":"TEC", "modultal":"1.5"}';
+    var text = '{"startdato":"2019-4-3", "slutdato":"2019-5-17", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
@@ -394,7 +394,7 @@ function events() {
         }
 
         else {
-            weekcheck = new Date(opdeltdato[0], opdeltdato[1], opdeltdato[2] - 1);
+            weekcheck = new Date(opdeltdato[0], opdeltdato[1], opdeltdato[2]);
             var showweek = 1 + Math.round(((weekcheck.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
             ugeNr = "Uge" + showweek;
         }
@@ -402,42 +402,54 @@ function events() {
         
         while (antaldage > 0) {
             if (datocheck[0].rows.length == 1) {
-
                 var ugefylde = datocheck[0].rows[0].cells.length;
                 var placerevent = document.getElementById(obj.startdato);
                 var event = document.createElement("a");
                 var content = document.createElement("div");
                 var titel = document.createElement("span");
                 var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
-                var dagsnr = placerevent.childElementCount;
-                placerevent.appendChild(event);
-                event.appendChild(content);
-                content.appendChild(titel);
-                titel.appendChild(titelindhold);
+                //var dagsnr = placerevent.childElementCount;
 
-                //console.log(datocheck[0].children[0].children.length);
-
-
+                
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i];
                     if (childNr.id == obj.startdato) {
-                        document.getElementById(obj.startdato).colSpan = 5 - i;
-                        antaldage = antaldage - i;
+                        document.getElementById(obj.startdato).colSpan = ugefylde - i;
+                        antaldage = antaldage - ((ugefylde-i) + 2);
                         break;
                     }
                 }
                 var datoday = opdeltdato[2];
-                datoday = datoday + (5-i) + 2;
-                var datostring = opdeltdato[0].toString() + "-" + opdeltdato[1].toString() + "-" + datoday.toString();
-                //text.splice(1, 1, datostring);
-                console.log(obj);
+                var datomonth = opdeltdato[1];
+                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth, 32).getDate();
+                datoday = datoday + ((ugefylde-i) + 2);
+                console.log(daysInMonth);
+                if (datoday > daysInMonth) {
+                    datomonth++;
+                    datoday = datoday - daysInMonth;
+                }
+
+                opdeltdato[2] = datoday;
+                
+
+                var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString();
+
+
+
+
+                obj.startdato = datostring;
+                console.log(datostring);
+                datocheck = document.getElementsByClassName(obj.startdato);
 
 
 
     
                 //modulnr++;
                 //placerevent.colspan = dagsnr;
-                antaldage = antaldage - 1;// = antaldage - ugefylde;
+                placerevent.appendChild(event);
+                event.appendChild(content);
+                content.appendChild(titel);
+                titel.appendChild(titelindhold);
             }
             
             else if (datocheck[0].rows.length < 3) {
@@ -450,7 +462,6 @@ function events() {
             }
     
             else {
-                antaldage--;
             }
             
         }
