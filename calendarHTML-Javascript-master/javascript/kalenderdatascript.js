@@ -382,16 +382,18 @@ function events() {
     var modulnr = 0;
     var antalmodul = 0;
 
-    var text = '{"startdato":"2019-3-20", "slutdato":"2019-5-30", "skole":"TEC", "modultal":"1.5"}';
+    var text = '{"startdato":"2019-3-20", "slutdato":"2019-5-3", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
 
     var antaldage = slutdato - startdato;
-    var antaldage = (antaldage / (60*60*24*1000));
+    antaldage = (antaldage / (60*60*24*1000));
+    antaldage = Math.round(antaldage);
     var opdeltdato = obj.startdato.split("-").map(Number);
     var week53 = document.getElementsByClassName("Uge 1");
     var datocheck = document.getElementsByClassName(obj.startdato);
+
 
 
     if (datocheck[0]) {
@@ -420,12 +422,9 @@ function events() {
 
         
         while (antaldage > 0) {
-            
             if (datocheck[0].rows.length == 1) {
 
                 var ugefylde = datocheck[0].rows[0].cells.length;
-                var gettd = datocheck[0].rows[0];
-                var gettd2 = datocheck[0].children.length;
                 var placerevent = document.getElementById(obj.startdato);
                 var event = document.createElement("a");
                 var content = document.createElement("div");
@@ -437,19 +436,29 @@ function events() {
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
 
-                for (i = 0; i < datocheck[0].children[0].children.length; i++) {
+                //console.log(datocheck[0].children[0].children.length);
+
+
+                for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i];
-                    console.log(childNr);
-                    if (childNr.id = obj.startdato) {
+                    if (childNr.id == obj.startdato) {
+                        document.getElementById(obj.startdato).colSpan = 5 - i;
+                        antaldage = antaldage - i;
                         break;
                     }
                 }
+                var datoday = opdeltdato[2];
+                datoday = datoday + (5-i) + 2;
+                var datostring = opdeltdato[0].toString() + "-" + opdeltdato[1].toString() + "-" + datoday.toString();
+                //text.splice(1, 1, datostring);
+                console.log(obj);
 
-                console.log(i);
+
+
     
-                modulnr++;
-                placerevent.colspan = dagsnr;
-                antaldage = antaldage - ugefylde;
+                //modulnr++;
+                //placerevent.colspan = dagsnr;
+                antaldage = antaldage - 1;// = antaldage - ugefylde;
             }
             
             else if (datocheck[0].rows.length < 3) {
@@ -465,7 +474,6 @@ function events() {
                 antaldage--;
             }
             
-            antaldage--;
         }
     }
 
