@@ -129,11 +129,17 @@ function showCalendar(month, year) {
             ugerow.className = "ugedagsliste";
             document.getElementById("månedDiv" + k).appendChild(ugerow); // Sætter rækkerne ind i kalender-body
         }
-
+        var ugecss = document.createElement("div");
+        var ugedata = document.createElement("div");
         var ugetable = document.createElement("table");
         var tablehead = document.createElement("thead");
         var tablebody = document.createElement("tbody");
-        document.getElementById("månedDiv" + k).appendChild(ugetable); // Sætter rækkerne ind i kalender-body
+        tablebody.classList.add("eventLinjeBody");
+        ugecss.classList.add("ugeCSS");
+        ugedata.classList.add("ugeData");
+        document.getElementById("månedDiv" + k).appendChild(ugecss); // Sætter rækkerne ind i kalender-body
+        document.getElementById("månedDiv" + k).appendChild(ugedata); // Sætter rækkerne ind i kalender-body
+        ugedata.appendChild(ugetable);
         ugetable.appendChild(tablehead);
         ugetable.appendChild(tablebody);
 
@@ -154,8 +160,8 @@ function showCalendar(month, year) {
             // Opretter en række som vi kan bruge til at aflæse efter tomme dage
             else if (i == 0 && d == 5) {
                 var row = document.createElement("tr"), hrow = document.createElement("tr");
-                row.className = "liste"; // første række efter ugedagene får klassen 'liste'
-                hrow.className = "liste"; // første række efter ugedagene får klassen 'liste'
+                row.className = "topEventLinjetr"; // første række efter ugedagene får klassen 'liste'
+                hrow.className = "topEventLinjetr"; // første række efter ugedagene får klassen 'liste'
                 tablebody.appendChild(row);
                 tablehead.appendChild(hrow);
             }
@@ -163,8 +169,8 @@ function showCalendar(month, year) {
             // Opretter rækker hvor resterende kalenderdata kan sættes ind
             else {
                 var row = document.createElement("tr"), hrow = document.createElement("tr");
-                row.className = "linje"; //Resten af rækkerne giver vi klassen 'linje'
-                hrow.className = "linje"; //Resten af rækkerne giver vi klassen 'linje'
+                row.className = "eventLinjetr"; //Resten af rækkerne giver vi klassen 'linje'
+                hrow.className = "eventLinjetr"; //Resten af rækkerne giver vi klassen 'linje'
                 tablebody.appendChild(row);
                 tablehead.appendChild(hrow);
                 break;
@@ -180,11 +186,18 @@ function showCalendar(month, year) {
                 var tomcell = document.createElement("td"), tomhead = document.createElement("td");                
                 var cellText = document.createTextNode(""), headtext = document.createTextNode("");
                 tomcell.className = "tomdag"; //vi laver en celle som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
-                tomhead.className = "tomdag";
+                tomhead.className = "tomdag";                
                 tomhead.appendChild(headtext);
-                tomcell.appendChild(cellText);
+                tomcell.appendChild(cellText);                
                 hrow.appendChild(tomhead);
-                row.appendChild(tomcell);
+                row.appendChild(tomcell);      
+                
+                tomDiv = document.createElement("div") //samme kode som ovenover men bliver appended på ugecss istedet for inden i ugeData
+                divTekst = document.createTextNode("")
+                tomDiv.className = "tomdag";
+                tomDiv.appendChild(divTekst);
+                ugecss.appendChild(tomDiv);
+
                 tom++; // Bruges til at tælle hvor mange celler der ikke har data
             }
 
@@ -196,8 +209,9 @@ function showCalendar(month, year) {
 
             // Giver en række et id hvis der er 5 tomme dage i træk
             else if (tom == 5 && i == 0) {
-                row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
-                hrow.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
+                //row.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
+                //hrow.id = "tomx5"; //hvis 'tom' bliver talt op til 5 kalder vi den række for tomx5 så det bliver nemmere at fjerne i css
+                row.parentElement.parentElement.parentElement.classList.add("tomx5");
                 tom++;  //sørger for at den ikke går ind i statementen igen.
                 date++;
             }
@@ -218,16 +232,18 @@ function showCalendar(month, year) {
             // Opretter de resterende celler og indsætter numre i forhold til datoen
             else {
                 var cell = document.createElement("td");
-                //var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden
+                var cellBox = document.createElement("div"); // Bruges til at kunne flytte data fra en box til en anden
                 var dagcell = document.createElement("th"); 
                 var cellText = document.createTextNode(date);
-                dagcell.className = "dagec";
+                cellBox.classList.add("dagbox");
+                dagcell.className = "dageTop";
                 cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; // Giver cellerne datoen for dagen
                 cell.className = "dage"; // Giver cellerne klassen dage
                 tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et id ud fra dato
                 hrow.appendChild(dagcell);
                 dagcell.appendChild(cellText);
                 row.appendChild(cell); 
+                ugecss.appendChild(cellBox);
                 date++; //tæller en dag op
 
 
@@ -236,7 +252,7 @@ function showCalendar(month, year) {
                 weekNrDate = new Date(weekNumber);
 
                 if (tablebody.rows[0].cells.length == 1) {
-                    ugetable.classList = "Uge " + (showweek + 1);
+                    ugetable.classList = "Uge" + (showweek + 1);
                 }
 
                 var showweek = 1 + Math.round(((weekNrDate.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
@@ -250,9 +266,14 @@ function showCalendar(month, year) {
                 }
 
                 if (showweek === showweek) { // checker at det ikke bliver NaN
-                ugetable.classList = "Uge " + showweek;
+                ugetable.classList = "Uge" + showweek;
                 }
+                ugetable.classList.add("række");
             }
+
+            if (tablebody.rows.length == 0) {
+                row.parentElement.parentElement.parentElement.classList.add("tomx5");
+            } 
         }
     }
 }
