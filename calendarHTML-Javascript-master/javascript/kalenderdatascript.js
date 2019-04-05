@@ -325,6 +325,7 @@ function show3() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // beregner hvad den nye måned skal være.
     }
     k = 0; // bruges til at insætte måneder i div tags
+    events();
 }
 
 
@@ -354,6 +355,7 @@ function showyear() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; // beregner hvad den nye måned skal være.
     }
     k = 0; // bruges til at insætte måneder i div tags
+    events();
 }
 
 //Viser en måned ad gangen
@@ -372,6 +374,7 @@ function showmonth() {
     showCalendar(currentMonth, currentYear);
     m = 1;  // bruges i next og previous 
     k = 0;  // bruges til at insætte måneder i div tags
+    events();
 }
 
 
@@ -379,10 +382,7 @@ function showmonth() {
 
 function events() {
 
-    var modulnr = 0;
-    var antalmodul = 0;
-
-    var text = '{"startdato":"2019-3-20", "slutdato":"2019-5-3", "skole":"TEC", "modultal":"1.5"}';
+    var text = '{"startdato":"2019-4-3", "slutdato":"2019-5-15", "skole":"TEC", "modultal":"1.5"}';
     var obj = JSON.parse(text);
     var startdato = new Date(obj.startdato);
     var slutdato = new Date(obj.slutdato);
@@ -391,38 +391,19 @@ function events() {
     antaldage = (antaldage / (60*60*24*1000));
     antaldage = Math.round(antaldage);
     var opdeltdato = obj.startdato.split("-").map(Number);
-    var week53 = document.getElementsByClassName("Uge 1");
     var datocheck = document.getElementsByClassName(obj.startdato);
 
 
 
     if (datocheck[0]) {
-        var ugeNr;
-        week1.setFullYear(opdeltdato[0]);
-        var showweek = 1 + Math.round(((startdato.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
-
-        if ( datocheck[0].rows[0].cells.length >= 4 && isNaN(showweek) && week53[1] || showweek == 0) {
-            showweek = 53;
-        }
-
-        else if (showweek == 53) {
-            showweek = 1;
-        }
-
-
-        if (showweek === showweek) { // checker at det ikke bliver NaN
-            ugeNr = "Uge" + showweek;
-        }
-
-        else {
-            weekcheck = new Date(opdeltdato[0], opdeltdato[1], opdeltdato[2] - 1);
-            var showweek = 1 + Math.round(((weekcheck.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7 );
-            ugeNr = "Uge" + showweek;
-        }
-
         
         while (antaldage > 0) {
-            if (datocheck[0].rows.length == 1) {
+
+            if (!(datocheck[0])) {
+                break;
+            }
+
+            else if (datocheck[0].rows.length == 1) {
 
                 var ugefylde = datocheck[0].rows[0].cells.length;
                 var placerevent = document.getElementById(obj.startdato);
@@ -430,57 +411,70 @@ function events() {
                 var content = document.createElement("div");
                 var titel = document.createElement("span");
                 var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
-                var dagsnr = placerevent.childElementCount;
-                placerevent.appendChild(event);
-                event.appendChild(content);
-                content.appendChild(titel);
-                titel.appendChild(titelindhold);
-
-                //console.log(datocheck[0].children[0].children.length);
-
-
+                
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i];
                     if (childNr.id == obj.startdato) {
-                        document.getElementById(obj.startdato).colSpan = 5 - i;
-                        antaldage = antaldage - i;
+                        
+                        if (antaldage - ugefylde < ugefylde && !(antaldage > 5)) {
+                            document.getElementById(obj.startdato).colSpan = antaldage + 1;
+                            antaldage = antaldage - antaldage;
+
+                        } else if (ugefylde == 5) {
+                            antaldage = antaldage - ((ugefylde-i) + 2);
+                            document.getElementById(obj.startdato).colSpan = ugefylde - i;
+
+                        } else { 
+                            antaldage = antaldage - ugefylde;
+                            document.getElementById(obj.startdato).colSpan = ugefylde - i;
+
+                        }
+                        var nyrække = document.createElement("tr");
+                        datocheck[0].appendChild(nyrække);
                         break;
                     }
                 }
                 var datoday = opdeltdato[2];
-                datoday = datoday + (5-i) + 2;
-                var datostring = opdeltdato[0].toString() + "-" + opdeltdato[1].toString() + "-" + datoday.toString();
-                //text.splice(1, 1, datostring);
-                console.log(obj);
+                var datomonth = opdeltdato[1];
+                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate();
+                datoday = datoday + ((ugefylde-i) + 2);
+                if (datoday > daysInMonth) {
+                    datomonth++;
+                    opdeltdato[1] = datomonth;
+                    datoday = 1;
+                }
 
-
-
-    
-                //modulnr++;
-                //placerevent.colspan = dagsnr;
-                antaldage = antaldage - 1;// = antaldage - ugefylde;
+                opdeltdato[2] = datoday;
+                var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //fix
+                obj.startdato = datostring;
+                datocheck = document.getElementsByClassName(obj.startdato);
+                placerevent.appendChild(event);
+                event.appendChild(content);
+                content.appendChild(titel);
+                titel.appendChild(titelindhold);
             }
+
             
-            else if (datocheck[0].rows.length < 3) {
+            /*else if (datocheck[0].rows.length <= 3) {
             var eventrow = document.createElement("tr");
     
             }
     
+
             else if (kkkk) {
     
             }
-    
+            */
+
+
+
             else {
-                antaldage--;
+
             }
             
         }
     }
-
-
-
-
-    //datocheck.appendChild(eventrow);
+    
+    
 
 }
-events();
