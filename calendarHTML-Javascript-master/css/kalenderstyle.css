@@ -208,10 +208,9 @@ who knows */
         height: 44px;
     }
 
-    .række {
-        height: 42px;
-       /* table-layout: fixed;
-        width: 100%; */
+    .dageTop {
+        padding-right: 3px;
+        height: 21px;
     }
 
     .dageTop, .dage /* data */ {
@@ -232,24 +231,26 @@ who knows */
         position: absolute;
     }
 
-    .ugeData, .ugeCSS {
-        height: 46px;
-    }
-
-    .eventLinje, .eventLinjetr {
-        height: 21px;
-    }
-
     .månedDivC {
         width: 342px;
     }
-
+    
     .tomdag {
-        width: 66px;
+        width: 68px;
+        margin: 0px;
+        padding: 0px;
     }
 
     .ugedag {
-        height: 22px;
+        height: 21px;
+    }
+
+    .ugeData, .ugeCSS, .række {
+        height: 46px;
+    }
+
+    tr.datoVisning, tr.eventLinje, tbody.eventLinjeBody, .topEventLinje, .topDatoVisning, .række thead {
+        height: 21px;
     }
 }
 

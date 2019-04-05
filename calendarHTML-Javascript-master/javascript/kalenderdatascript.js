@@ -160,8 +160,8 @@ function showCalendar(month, year) {
             // Opretter en række som vi kan bruge til at aflæse efter tomme dage
             else if (i == 0 && d == 5) {
                 var row = document.createElement("tr"), hrow = document.createElement("tr");
-                row.className = "topEventLinjetr"; // første række efter ugedagene får klassen 'liste'
-                hrow.className = "topEventLinjetr"; // første række efter ugedagene får klassen 'liste'
+                row.className = "eventLinje"; // første række efter ugedagene får klassen 'topEventLinjetr'
+                hrow.className = "datoVisning"; // første række efter ugedagene får klassen 'topEventLinjetr'
                 tablebody.appendChild(row);
                 tablehead.appendChild(hrow);
             }
@@ -169,8 +169,8 @@ function showCalendar(month, year) {
             // Opretter rækker hvor resterende kalenderdata kan sættes ind
             else {
                 var row = document.createElement("tr"), hrow = document.createElement("tr");
-                row.className = "eventLinjetr"; //Resten af rækkerne giver vi klassen 'linje'
-                hrow.className = "eventLinjetr"; //Resten af rækkerne giver vi klassen 'linje'
+                row.className = "eventLinje"; //Resten af rækkerne giver vi klassen 'eventLinjetr'
+                hrow.className = "datoVisning"; //Resten af rækkerne giver vi klassen 'eventLinjetr'
                 tablebody.appendChild(row);
                 tablehead.appendChild(hrow);
                 break;
@@ -183,7 +183,7 @@ function showCalendar(month, year) {
 
             // Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
-                var tomcell = document.createElement("td"), tomhead = document.createElement("td");                
+                var tomcell = document.createElement("td"), tomhead = document.createElement("th");                
                 var cellText = document.createTextNode(""), headtext = document.createTextNode("");
                 tomcell.className = "tomdag"; //vi laver en celle som kaldes for tomdag for at gøre det nemmere at fjerne dem i css
                 tomhead.className = "tomdag";                
