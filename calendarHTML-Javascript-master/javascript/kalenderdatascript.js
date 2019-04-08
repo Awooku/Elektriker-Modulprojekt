@@ -404,7 +404,7 @@ function events() {
             }
 
             else if (datocheck[0].rows.length == 1) {
-
+                
                 var ugefylde = datocheck[0].rows[0].cells.length;
                 var placerevent = document.getElementById(obj.startdato);
                 var event = document.createElement("a");
@@ -414,8 +414,8 @@ function events() {
                 
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i];
+
                     if (childNr.id == obj.startdato) {
-                        
                         if (antaldage - ugefylde < ugefylde && !(antaldage > 5)) {
                             document.getElementById(obj.startdato).colSpan = antaldage + 1;
                             antaldage = antaldage - antaldage;
@@ -438,6 +438,7 @@ function events() {
                 var datomonth = opdeltdato[1];
                 var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate();
                 datoday = datoday + ((ugefylde-i) + 2);
+
                 if (datoday > daysInMonth) {
                     datomonth++;
                     opdeltdato[1] = datomonth;
@@ -455,13 +456,60 @@ function events() {
             }
 
             
-            /*else if (datocheck[0].rows.length <= 3) {
-            var eventrow = document.createElement("tr");
-    
+            else if (datocheck[0].rows.length <= 3) {
+                var eventrow = document.createElement("tr");
+                var ugefylde = datocheck[0].rows[1].cells.length;
+                var placerevent = document.getElementById(obj.startdato);
+                var event = document.createElement("a");
+                var content = document.createElement("div");
+                var titel = document.createElement("span");
+                var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole);
+                
+                for (var i = 0; i < ugefylde; i++) {
+                    var childNr = datocheck[0].children[1].children[i];
+                    
+                    if (childNr.id == obj.startdato) {
+                        if (antaldage - ugefylde < ugefylde && !(antaldage > 5)) {
+                            document.getElementById(obj.startdato).colSpan = antaldage + 1;
+                            antaldage = antaldage - antaldage;
+
+                        } else if (ugefylde == 5) {
+                            antaldage = antaldage - ((ugefylde-i) + 2);
+                            document.getElementById(obj.startdato).colSpan = ugefylde - i;
+
+                        } else { 
+                            antaldage = antaldage - ugefylde;
+                            document.getElementById(obj.startdato).colSpan = ugefylde - i;
+
+                        }
+                        var nyrække = document.createElement("tr");
+                        datocheck[0].appendChild(nyrække);
+                        break;
+                    }
+                }
+                var datoday = opdeltdato[2];
+                var datomonth = opdeltdato[1];
+                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate();
+                datoday = datoday + ((ugefylde-i) + 2);
+
+                if (datoday > daysInMonth) {
+                    datomonth++;
+                    opdeltdato[1] = datomonth;
+                    datoday = 1;
+                }
+
+                opdeltdato[2] = datoday;
+                var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //fix
+                obj.startdato = datostring;
+                datocheck = document.getElementsByClassName(obj.startdato);
+                placerevent.appendChild(event);
+                event.appendChild(content);
+                content.appendChild(titel);
+                titel.appendChild(titelindhold);
             }
     
 
-            else if (kkkk) {
+            /*else if (kkkk) {
     
             }
             */
