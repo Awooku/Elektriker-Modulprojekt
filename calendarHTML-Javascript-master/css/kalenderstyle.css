@@ -65,7 +65,7 @@ body {
     margin-right: 2px;
 }
 
-.tomx5, .weekend {
+.tomx5, #tomx5, .weekend {
     display: none;
 }  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
       fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
@@ -94,6 +94,10 @@ body {
     border: 0.1px solid;
 }
 
+#månedDiv4, #månedDiv8, #månedDiv12 {
+    border-left-width: 0px;
+}
+
 #fm1, #fm2, #fm3 {
     display: inline-flex;
 }
@@ -101,7 +105,7 @@ body {
 #årstal {
     margin: 0px;
     font-size: 25px;
-    text-align: center;
+    text-align: left;
 }
 
 /* prøver at gøre siden scaleable 
@@ -172,22 +176,83 @@ who knows */
 }
 
 /* 900p */
-@media only screen and (min-width: 1183px) and (max-width: 1400px) {
-    .dag, .dagbox, .ugedag  {
+@media only screen and (min-width: 1183px) and (max-width: 1399px) {
+    .ugedag, .dagbox {
         width: 56px;
-        height: 31px;
+    }
+
+    .ugedag {
+        height: 21px;
+    }
+
+    .dageTop {
+        height: 15px; 
+    }
+
+    .dagbox {
+        height: 35px;
+        margin-right: -1px;
+        margin-bottom: -2px;
+    }
+
+    .ugeData, .dagbox, .dageTop {
+        position: relative;
     }
 
     .månedDivC {
         width: 290px;
     }
 
-    .tomdag {
-        width: 55px;
+    .ugeData, .ugeCSS {
+        height: 36px;
     }
 
-    .ugedag {
-        height: 22px;
+    .række, .datoVisning {
+        height: 10px;
+    }
+
+    .ugeCSS {
+        min-height: auto;
+        margin-bottom: 2px;
+    }
+
+    .eventLinje {
+        width: 100%;
+    }
+
+    .ugeCSS, .eventLinje {
+        position: absolute;
+    }
+
+    .tomdag {
+        height: 2px;
+        width: 57px;
+        margin: 0px;
+        float: left;
+    }
+
+    th.tomdag {
+        width: 56px;
+    }
+
+    .dage, .dageTop {
+        width: 54px;
+    }
+
+    .dage, .tomdag, .dageTop {
+        padding: 0;
+    }
+
+    .dageTop {
+        padding-left: 0px;        
+    }
+
+    .dage {
+        font-size: 11px;
+    }
+
+    .tomx5, .weekend {
+        display: none;
     }
 
     #helekalender, #kalender-body, body {
@@ -202,60 +267,137 @@ who knows */
 }
 
 /* 1080p standard skærm */
-@media only screen and (min-width: 1401px) and (max-width: 1891px) {
-    .dag, .dagbox, .ugedag  {
-        width: 67px;
-        height: 44px;
+@media only screen and (min-width: 1400px) and (max-width: 1890px) {
+    .ugedag, .dagbox {
+        width: 68px;
     }
 
-    .dageTop {
-        padding-right: 3px;
+    .ugedag, .dageTop {
         height: 21px;
     }
 
-    .dageTop, .dage /* data */ {
-        position: relative;
-        width: 64px;
+    .dagbox {
+        height: 44px;
+        margin-right: -1px;
+        margin-bottom: -2px;
     }
 
-    .dagbox /* css */ {
+    .ugeData, .dagbox, .dageTop {
         position: relative;
-        width: 66px;
-    }
-
-    .ugeData {
-        position: relative;
-    }
-
-    .ugeCSS {
-        position: absolute;
     }
 
     .månedDivC {
-        width: 342px;
-    }
-    
-    .tomdag {
-        width: 68px;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .ugedag {
-        height: 21px;
+        width: 346px;
     }
 
     .ugeData, .ugeCSS, .række {
-        height: 46px;
+        height: 45px;
     }
 
-    tr.datoVisning, tr.eventLinje, tbody.eventLinjeBody, .topEventLinje, .topDatoVisning, .række thead {
-        height: 21px;
+    .ugeCSS {
+        min-height: auto;
+        margin-bottom: 2px;
+    }
+
+    .eventLinje {
+        width: 100%;
+    }
+
+    .ugeCSS, .eventLinje {
+        position: absolute;
+    }
+
+    .tomdag {
+        height: 2px;
+        width: 69px;
+        margin: 0px;
+        float: left;
+    }
+
+    .dage, .dageTop {
+        width: 66px;
+    }
+
+    .dage, .tomdag {
+        padding: 0;
+    }
+
+    .dageTop {
+        padding: 1px;
+        padding-left: 0px;        
+    }
+
+    .tomx5, .weekend {
+        display: none;
     }
 }
 
 /* 1440p fordi hvorfor ikke */
-@media only screen and (min-width: 1892px) and (max-width: 8000px) {
+@media only screen and (min-width: 1891px) and (max-width: 8000px) {
+    .ugedag, .dagbox {
+        width: 91px;
+    }
+
+    .ugedag, .dageTop {
+        height: 21px;
+    }
+
+    .dagbox {
+        height: 44px;
+        margin-right: -1px;
+        margin-bottom: -2px;
+    }
+
+    .ugeData, .dagbox, .dageTop {
+        position: relative;
+    }
+
+    .månedDivC {
+        width: 463px;
+    }
+
+    .ugeData, .ugeCSS, .række {
+        height: 45px;
+    }
+
+    .ugeCSS {
+        min-height: auto;
+        margin-bottom: 2px;
+    }
+
+    .eventLinje {
+        width: 100%;
+    }
+
+    .ugeCSS, .eventLinje {
+        position: absolute;
+    }
+
+    .tomdag {
+        height: 2px;
+        width: 92px;
+        margin: 0px;
+        float: left;
+    }
+
+    .dage, .dageTop {
+        width: 89px;
+    }
+
+    .dage, .tomdag {
+        padding: 0;
+    }
+
+    .dageTop {
+        padding: 1px;
+        padding-left: 0px;        
+    }
+
+    .tomx5, .weekend {
+        display: none;
+    }
+
+/*
     .dag, .dagbox, .ugedag  {
         width: 91px;
         height: 71px;
@@ -272,4 +414,6 @@ who knows */
     .ugedag {
         height: 22px;
     }
+*/
+
 }
