@@ -270,10 +270,12 @@ function showCalendar(month, year) {
                 }
                 ugetable.classList.add("række");
             }
-
-            if (tablebody.rows.length == 0) {
+            /*
+            var ugeseks = ugedata.children[0].children[0].children[0].textContent
+            console.log();
+            if () {
                 row.parentElement.parentElement.parentElement.classList.add("tomx5");
-            } 
+            } */
         }
     }
 }
