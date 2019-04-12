@@ -475,6 +475,9 @@ function events() {
                         break;
                     }
                 }
+
+
+                
                 var datoday = opdeltdato[2];
                 var datomonth = opdeltdato[1];
                 var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate();
