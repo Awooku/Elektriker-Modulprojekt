@@ -488,7 +488,7 @@ function events() {
                     datoday = 1;
                 }
 
-                opdeltdato[2] = datoday; //opdatere dagen den skal tage udgangspunkt i
+                opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                 obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
                 datocheck = document.getElementsByClassName(obj.startdato);
