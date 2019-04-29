@@ -474,7 +474,7 @@ function events() {
                         }
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
-                        datocheck[0].appendChild(nyrække); //sætter den nye række ind i tablet
+                        datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
                         break;
                     }
                 }
