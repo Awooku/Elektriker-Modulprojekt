@@ -412,7 +412,7 @@ function showmonth() {
 
 function events() {
 
-    var text = '{"startdato":"2019-4-3", "slutdato":"2019-5-15", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    var text = '{"startdato":"2019-5-6", "slutdato":"2019-6-17", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
@@ -475,6 +475,7 @@ function events() {
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
+                        console.log(antaldage);
                         break;
                     }
                 }
