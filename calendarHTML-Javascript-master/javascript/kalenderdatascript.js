@@ -412,7 +412,7 @@ function showmonth() {
 
 function events() {
 
-    var text = '{"startdato":"2019-5-6", "slutdato":"2019-6-17", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    var text = '{"startdato":"2019-4-10", "slutdato":"2019-6-17", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     //var text2 = '{"startdato":"2019-6-18", "slutdato":"2019-7-12", "skole":"TEC", "modultal":"2.4"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     //var text3 = '{"startdato":"2019-7-22", "slutdato":"2019-9-12", "skole":"TEC", "modultal":"3.4"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
@@ -435,10 +435,21 @@ function events() {
         
         //så længe at antal dage er over nul
         while (antaldage > 0) {
+            console.log(antaldage);
+            
+            if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage >= 0) {
+                break;
+            }
 
             //hvis der pluselig ikke findes et element med klassen som er ens med datocheck (f.eks. når antaldage overstiger de vidste dage på et år)
-            if (!(datocheck[0])) {
-                break;
+            else if (!(datocheck[0])) {
+                if (datoday = 2) {
+                    datoday = 3;
+                    opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
+                    var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
+                    obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
+                    datocheck = document.getElementsByClassName(obj.startdato);
+                }
             }
 
             //checker om der kun er en row så den kan indsætte dataen der
@@ -456,7 +467,6 @@ function events() {
                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
-
                     //hvis der er lavet en celle som har et id der matcher med obj.startdato
                     if (childNr.id == obj.startdato) {
 
@@ -478,11 +488,15 @@ function events() {
                             document.getElementById(obj.startdato).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
                         }
 
+                        if (antaldage == 0) {
+                            
+                        }
+
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
-                        console.log(antaldage);
                         break;
                     }
+
                 }
 
                 datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
@@ -494,6 +508,8 @@ function events() {
                     datoday = 1;
                 }
 
+
+
                 opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                 obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
@@ -503,9 +519,19 @@ function events() {
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
 
+                if (!(datocheck[0])) {
+                    if (datoday = 1) {
+                        datoday = 2;
+                        opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
+                        var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
+                        obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
+                        datocheck = document.getElementsByClassName(obj.startdato);
+                    }
+                }
 
 
 
+                console.log(antaldage);
             }
             
 
@@ -596,7 +622,6 @@ function events() {
             
         }
     }
-    
     
 
 }
