@@ -152,6 +152,10 @@ body {
         width: 221px;
     }
 
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
     .header {
         font-size: 14px;
     }
@@ -224,6 +228,10 @@ body {
 
     .månedDivC {
         width: 241px;
+    }
+
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
     }
 
     .header {
@@ -302,6 +310,10 @@ body {
         width: 286px;
     }
 
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
     /* uge */
 
     .ugeData, .ugeCSS {
@@ -352,6 +364,10 @@ body {
         width: 346px;
     }
 
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
     /* uge */
 
     .ugeData, .ugeCSS, .række {
@@ -390,6 +406,11 @@ body {
 @media only screen and (min-width: 1891px) and (max-width: 8000px) {
     .månedDivC {
         width: 463px;
+        padding-right: 1px;
+    }
+
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 1px;
     }
 
     /* uge */
