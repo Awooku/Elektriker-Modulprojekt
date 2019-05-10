@@ -254,7 +254,7 @@ function showCalendar(month, year) {
             else {
                 var cell = document.createElement("td");
                 var cellBox = document.createElement("div"); //Bruges til at kunne flytte data fra en box til en anden
-                var dagcell = document.createElement("th");  //Bruges til at vise dags nummeret på datoen
+                var dagcell = document.createElement("th");  //Bruges til at vise datoen
                 var cellText = document.createTextNode(date);
                 cellBox.classList.add("dagbox");
                 dagcell.className = "dageTop";
