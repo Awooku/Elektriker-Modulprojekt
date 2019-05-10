@@ -411,7 +411,7 @@ function showmonth() {
 
 function events() {
 
-    var text = '{"startdato":"2019-5-10", "slutdato":"2019-6-17", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    var text = '{"startdato":"2019-5-10", "slutdato":"2019-6-10", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
@@ -421,16 +421,12 @@ function events() {
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
     var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
     var datocheck = document.getElementsByClassName(obj.startdato);
-    //var datocheck2 = document.getElementsByClassName(obj2.startdato);
-    //var datocheck3 = document.getElementsByClassName(obj3.startdato);
-
 
     //hvis der findes et element med en klasse som er det samme som datocheck
     if (datocheck[0]) {
         
         //så længe at antal dage er over nul
         while (antaldage > 0) {
-            console.log(antaldage);
             
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage >= 0) {
                 break;
@@ -490,7 +486,6 @@ function events() {
                         if (antaldage == 0 && sidstedag == 1) {
                             document.getElementById(obj.startdato).parentElement.childNodes[0]
                             sidstedag = 0;
-                            console.log(document.getElementById(obj.startdato).parentElement.childNodes[0]);
                         }
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
@@ -499,7 +494,7 @@ function events() {
                     }
                     
                 }
-                console.log(document.getElementById(obj.startdato).parentElement.childNodes[0]);
+                //console.log(document.getElementById(obj.startdato).parentElement.childNodes[0]);
                 datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
 
                 //skifter til næste måned hvis dagene i opdeltdato overstiger dage i måneden
@@ -508,12 +503,12 @@ function events() {
                     opdeltdato[1] = datomonth;
                     datoday = 1;
                 }
+                console.log(datoday);
 
 
-
-                opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
+                opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-                obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
+                obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
                 datocheck = document.getElementsByClassName(obj.startdato);
                 placerevent.appendChild(event);
                 event.appendChild(content);
@@ -529,8 +524,6 @@ function events() {
                         datocheck = document.getElementsByClassName(obj.startdato);
                     }
                 }
-
-
 
                 //console.log(antaldage);
             }
