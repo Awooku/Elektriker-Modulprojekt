@@ -1,11 +1,10 @@
 //<Globals
-var m = 0, k = 0;
+var m = 0, k = 0, hw = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
-var helekalender = document.getElementById("helekalender")
-
+var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilket måned man er på i kalenderen
 
@@ -85,8 +84,19 @@ function previous() {
 
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
+function removeWeek(){
+    var dvCol = document.getElementsByClassName("datoVisning");
+    for (var hw = 0; hw < dvCol.length; hw++){
+        if (dvCol[hw].children.length == 0) {
+            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek";
+            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek";
+        }  
+    }
+}
+
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne) og er også hovedfunktionen til kalenderen.
 function showCalendar(month, year) {
+
     k++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
@@ -144,6 +154,7 @@ function showCalendar(month, year) {
 
     //skaber alle rækker
     for (var i = 0; i < 6; i++) {
+
         //skaber en række til at kunne smide data fra ugedags arrayet ind
         if (i == 0) {
             var ugerow = document.createElement("tr"); //laver en række til at sætte ugedage ind i
@@ -204,7 +215,6 @@ function showCalendar(month, year) {
 
         //Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
-
             //Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
                 var tomcell = document.createElement("td"), tomhead = document.createElement("th");                
@@ -301,16 +311,23 @@ function showCalendar(month, year) {
             if () {
                 row.parentElement.parentElement.parentElement.classList.add("tomx5");
             } */
+
         }
+        //console.log(hw);
+        
+        //console.log(document.getElementsByClassName("datoVisning")[hw]);
         //console.log(i);
         //console.log(document.getElementsByClassName("datoVisning")[i].childNodes);
         //console.log(document.getElementsByClassName("datoVisning")[i]);
-        if (document.getElementsByClassName("datoVisning")[i].childNodes.length == 0) {
-            document.getElementsByClassName("datoVisning")[i].parentElement.parentElement.parentElement.classList.add("tomx5");
-            document.getElementsByClassName("datoVisning")[i].parentElement.parentElement.parentElement.previousSibling.classList.add("tomx5");
-        }
+
+        removeWeek();
     }
+    
+
+
 }
+
+
 
 
 
@@ -486,7 +503,7 @@ function events() {
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
-                        console.log(antaldage);
+                        //console.log(antaldage);
                         break;
                     }
                 }
@@ -509,7 +526,7 @@ function events() {
                 }
 
 
-                console.log(datoday);
+                //console.log(datoday);
 
                 var datoDayOld = datoday;
                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
@@ -524,7 +541,7 @@ function events() {
                 if (!(datocheck[0])) {
                     if (datoday = 1) {
                         datoday = 2;
-                        console.log("kage");
+                        //console.log("kage");
                         /*opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                         obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 

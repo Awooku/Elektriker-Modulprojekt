@@ -279,6 +279,12 @@ body {
     .dage {
         font-size: 10px;
     }
+
+    .hideWeek {
+        display: none;
+        height: 0px;
+    }
+
 }
 
 /* 900p */
@@ -362,6 +368,7 @@ body {
 
     .månedDivC {
         width: 346px;
+        /*height: 268px;*/
     }
 
     #månedDiv3, #månedDiv7, #månedDiv11{
@@ -402,11 +409,6 @@ body {
     }
 }
 
-/* TOMX5
-HUSK
-HUSK
-HUSK
-PLEASE */
 
 /* 1440p fordi hvorfor ikke */
 @media only screen and (min-width: 1891px) and (max-width: 8000px) {
@@ -452,3 +454,4 @@ PLEASE */
         padding-left: 0px;        
     }
 }
+
