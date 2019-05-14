@@ -127,6 +127,11 @@ body {
       dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!),
       men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden medmindre du er ond*/
 
+.hideWeek {
+    display: none;
+    height: 0px;
+}
+
 /* jeg har givet op på scaleable, prøver @media i stedet */
 
 /* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
@@ -177,6 +182,7 @@ body {
     }
 
     .dageTop {
+        width: 42px;
         height: 10px; 
     }
 
@@ -193,12 +199,12 @@ body {
     }
 
     .dage, .dageTop {
-        width: 41px;
         top: 0;
         font-size: 10px;
     }
 
     .dage {
+        width: 41px;
         font-size: 8px;
     }
 
@@ -256,6 +262,7 @@ body {
 
     .dageTop {
         height: 10px; 
+        width: 46px;
     }
 
     .dagbox {
@@ -271,18 +278,13 @@ body {
     }
 
     .dage, .dageTop {
-        width: 45px;
         top: 0;
         font-size: 11px;
     }
 
     .dage {
+        width: 45px;
         font-size: 10px;
-    }
-
-    .hideWeek {
-        display: none;
-        height: 0px;
     }
 
 }
@@ -339,6 +341,7 @@ body {
 
     .dageTop {
         height: 15px; 
+        width: 55px;
     }
 
     .dagbox {
@@ -353,12 +356,9 @@ body {
         width: 57px;
     }
 
-    .dage, .dageTop {
-        width: 54px;
-    }
-
     .dage {
         font-size: 11px;
+        width: 54px;
     }
 }
 
