@@ -4,8 +4,7 @@ var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
-var helekalender = document.getElementById("helekalender")
-
+var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilket ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilket måned man er på i kalenderen
 
@@ -85,8 +84,22 @@ function previous() {
 
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
+function removeWeek(){
+    var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en var som hedder dvCol (datoVisningCollection)
+    for (var hw = 0; hw < dvCol.length; hw++){
+        if (dvCol[hw].children.length == 0) { //hvis længden på den klasse som for loopet er nået til er 0 gør dette:
+            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek";                             //erstatter .ugeCSS (som har children.length på 0) med "hideWeek"
+            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek";             //erstatter .ugeData (som står "ved siden af" den den ugeCSS som lige er blevet erstattet) med "hideWeek"
+            document.querySelectorAll(".hideWeek").forEach(function(a){ //fanger alle klasser med navnet hideWeek
+                a.remove(); //fjerner .hideWeek
+            })
+        }  
+    }
+}
+
 //Funktion der viser hele kalenderen fra nuværende måned (kan skifte måned med next eller previous funktionerne) og er også hovedfunktionen til kalenderen.
 function showCalendar(month, year) {
+
     k++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
     var daysInMonth = 32 - new Date(year, month, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
@@ -144,6 +157,7 @@ function showCalendar(month, year) {
 
     //skaber alle rækker
     for (var i = 0; i < 6; i++) {
+
         //skaber en række til at kunne smide data fra ugedags arrayet ind
         if (i == 0) {
             var ugerow = document.createElement("tr"); //laver en række til at sætte ugedage ind i
@@ -204,7 +218,6 @@ function showCalendar(month, year) {
 
         //Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
-
             //Opretter celler som enten rykker til andre dage eller fjerner dage hvor der ikke er data
             if (i === 0 && j < firstDay) {
                 var tomcell = document.createElement("td"), tomhead = document.createElement("th");                
@@ -295,14 +308,12 @@ function showCalendar(month, year) {
                 }
                 ugetable.classList.add("række");
             }
-            /*
-            var ugeseks = ugedata.children[0].children[0].children[0].textContent
-            if () {
-                row.parentElement.parentElement.parentElement.classList.add("tomx5");
-            } */
         }
-    }
+        removeWeek(); //fjerner overflødig uge med tom data
+    } 
 }
+
+
 
 
 
@@ -413,6 +424,8 @@ function events() {
     
     var text = '{"startdato":"2019-8-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
+    //var obj2 = JSON.parse(text2); //gør json fil formatet kan læses i javascriptet
+    //var obj3 = JSON.parse(text3); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
 
@@ -434,14 +447,8 @@ function events() {
             }
 
             //hvis der pluselig ikke findes et element med klassen som er ens med datocheck (f.eks. når antaldage overstiger de vidste dage på et år)
-            else if (!(datocheck[0])) {
-                if (datoday = 2) {
-                    datoday = 3;
-                    opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
-                    var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-                    obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
-                    datocheck = document.getElementsByClassName(obj.startdato);
-                }
+            if (!(datocheck[0])) {
+                break;
             }
 
             //checker om der kun er en row så den kan indsætte dataen der
@@ -459,6 +466,7 @@ function events() {
                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
+
                     //hvis der er lavet en celle som har et id der matcher med obj.startdato
                     if (childNr.id == obj.startdato) {
 
@@ -482,9 +490,9 @@ function events() {
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
+                        //console.log(antaldage);
                         break;
                     }
-                    
                 }
                 datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
 
@@ -552,6 +560,7 @@ function events() {
             
         }
     }
+    
     
 
 }
