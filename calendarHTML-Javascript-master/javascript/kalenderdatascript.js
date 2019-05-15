@@ -1,5 +1,5 @@
 //<Globals
-var m = 0, k = 0, hw = 0;
+var m = 0, k = 0;
 var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
@@ -85,11 +85,14 @@ function previous() {
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
 function removeWeek(){
-    var dvCol = document.getElementsByClassName("datoVisning");
+    var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en var som hedder dvCol (datoVisningCollection)
     for (var hw = 0; hw < dvCol.length; hw++){
-        if (dvCol[hw].children.length == 0) {
-            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek";
-            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek";
+        if (dvCol[hw].children.length == 0) { //hvis længden på den klasse som for loopet er nået til er 0 gør dette:
+            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek";                             //erstatter .ugeCSS (som har children.length på 0) med "hideWeek"
+            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek";             //erstatter .ugeData (som står "ved siden af" den den ugeCSS som lige er blevet erstattet) med "hideWeek"
+            document.querySelectorAll(".hideWeek").forEach(function(a){ //fanger alle klasser med navnet hideWeek
+                a.remove(); //fjerner .hideWeek
+            })
         }  
     }
 }
@@ -305,26 +308,9 @@ function showCalendar(month, year) {
                 }
                 ugetable.classList.add("række");
             }
-            /*
-            var ugeseks = ugedata.children[0].children[0].children[0].textContent
-            console.log();
-            if () {
-                row.parentElement.parentElement.parentElement.classList.add("tomx5");
-            } */
-
         }
-        //console.log(hw);
-        
-        //console.log(document.getElementsByClassName("datoVisning")[hw]);
-        //console.log(i);
-        //console.log(document.getElementsByClassName("datoVisning")[i].childNodes);
-        //console.log(document.getElementsByClassName("datoVisning")[i]);
-
-        removeWeek();
-    }
-    
-
-
+        removeWeek(); //fjerner overflødig uge med tom data
+    } 
 }
 
 
