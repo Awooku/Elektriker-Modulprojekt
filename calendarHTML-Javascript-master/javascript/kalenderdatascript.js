@@ -410,8 +410,8 @@ function showmonth() {
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
-
-    var text = '{"startdato":"2019-5-10", "slutdato":"2019-6-10", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    
+    var text = '{"startdato":"2019-8-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
@@ -420,6 +420,7 @@ function events() {
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
     var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+    var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
 
     //hvis der findes et element med en klasse som er det samme som datocheck
@@ -485,7 +486,6 @@ function events() {
                     }
                     
                 }
-                //console.log(document.getElementById(obj.startdato).parentElement.childNodes[0]);
                 datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
 
                 //skifter til næste måned hvis dagene i opdeltdato overstiger dage i måneden
@@ -494,19 +494,8 @@ function events() {
                     opdeltdato[1] = datomonth;
                     datoday = 1;
                 }
+               
 
-                if (antaldage == 0 && datoday - datoDayOld == 7) {
-
-                }
-
-                else if (antaldage == 0 && datoday == 1) {
-
-                }
-
-
-                console.log(datoday);
-
-                var datoDayOld = datoday;
                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                 obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
@@ -519,87 +508,32 @@ function events() {
                 if (!(datocheck[0])) {
                     if (datoday = 1) {
                         datoday = 2;
-                        console.log("kage");
-                        /*opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
+                        opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-                        obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
-                        datocheck = document.getElementsByClassName(obj.startdato);*/
+                        obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
+                        datocheck = document.getElementsByClassName(obj.startdato);
                     }
                 }
+                console.log(datoday);
+                console.log(opdeltdato[2]);
+                console.log(placerevent);
+                
+                if (sM < datoday || sM - 20 > datoday) {
+                    document.getElementById(obj.startdato).appendChild(event);
+                    event.appendChild(content);
+                    content.appendChild(titel);
+                    titel.appendChild(titelindhold);
+                    document.getElementById(obj.startdato).colSpan = 1;
+                }
 
-                //console.log(antaldage);
+                sM = opdeltdato[2];
             }
             
 
 
 
-
-
-            
-            //
             else if (datocheck[0].rows.length <= 2) {
-                var eventrow = document.createElement("tr");
-                datocheck[0].appendChild(eventrow);
-                var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
-                var placerevent = document.getElementById(obj.startdato); //finder dagen med ideet som er det samme som obj.startdato
-                var event = document.createElement("a"); 
-                var content = document.createElement("div");
-                var titel = document.createElement("span"); 
-                var titelindhold = document.createTextNode(obj.modultal + " " + obj.skole); //indsætter teksten som er modulnr og den skoles inicialer som modulet tilhører
-                var datoday = opdeltdato[2]; //vælger dagen fra opdeltdato
-                var datomonth = opdeltdato[1]; //vælger måneden fra opdeltdato
-                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate(); //beregner hvor mange dage der er i daværende måned
-                
-                //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
-                for (var i = 0; i < ugefylde; i++) {
-                    var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
 
-                    //hvis der er lavet en celle som har et id der matcher med obj.startdato
-                    if (childNr.id == obj.startdato) {
-
-                        //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
-                        if (antaldage - ugefylde < ugefylde && !(antaldage > 5)) {
-                            document.getElementById(obj.startdato).colSpan = antaldage + 1; //giver colspan i forhold til resterende antaldage
-                            antaldage = antaldage - antaldage; //antaldage tælder ned
-
-                        } 
-                        
-                        //hvis den daværende uge i samme måned har 5 dage
-                        else if (ugefylde == 5) {
-                            antaldage = antaldage - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
-                            document.getElementById(obj.startdato).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
-                        }
-                        
-                        //hvis den daværnde uge i samme måned ikke har 5 dage 
-                        else { 
-                            antaldage = antaldage - ugefylde; //antaldage tæller ned
-                            document.getElementById(obj.startdato).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
-                        }
-
-                        var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
-                        datocheck[0].appendChild(nyrække); //sætter den nye række ind i tablet
-                        //document.getElementById(obj.startdato).style.border = "1px solid black"; //fix
-                        break;
-                    }
-                }
-
-                datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-
-                //skifter til næste måned hvis dagene i opdeltdato overstiger dage i måneden
-                if (datoday > daysInMonth) {
-                    datomonth++;
-                    opdeltdato[1] = datomonth;
-                    datoday = 1;
-                }
-
-                opdeltdato[2] = datoday; //opdatere dagen den skal tage udgangspunkt i
-                var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-                obj.startdato = datostring; //erstatter startdatoen i json stingen med den nye dato 
-                datocheck = document.getElementsByClassName(obj.startdato);
-                placerevent.appendChild(event);
-                event.appendChild(content);
-                content.appendChild(titel);
-                titel.appendChild(titelindhold);
             }
     
 
