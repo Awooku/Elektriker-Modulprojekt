@@ -522,22 +522,22 @@ function events() {
                         datocheck = document.getElementsByClassName(obj.startdato);
                     }
                 }
+                console.log(sM);
                 console.log(datoday);
-                console.log(opdeltdato[2]);
-                console.log(placerevent);
-                
-                if (sM < datoday || sM - 20 > datoday) {
+                console.log(sM < datoday && antaldage == 0);
+                console.log(obj.startdato);
+                if (sM < datoday && antaldage == 0) {
                     document.getElementById(obj.startdato).appendChild(event);
                     event.appendChild(content);
                     content.appendChild(titel);
                     titel.appendChild(titelindhold);
                     document.getElementById(obj.startdato).colSpan = 1;
+                    console.log("kage");
                 }
 
                 sM = opdeltdato[2];
             }
             
-
 
 
             else if (datocheck[0].rows.length <= 2) {
