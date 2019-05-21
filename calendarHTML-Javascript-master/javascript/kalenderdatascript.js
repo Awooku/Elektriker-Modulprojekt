@@ -325,7 +325,7 @@ function show3() {
 
     // checker om den allerede er inde i funktionen
     if (m != 3) {
-
+        currentMonth = today.getMonth(); // gør at man starter på nuværende måned
         currentYear = today.getFullYear();  // gør at man er i nuværende år
 
         // checker om man er i første kvartal
@@ -363,6 +363,7 @@ function show3() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner nuværende måned
     }
     k = 0; // bruges til at insætte måneder i div tags
+    console.log(currentMonth);
     events();
 }
 
@@ -422,17 +423,18 @@ function showmonth() {
 
 function events() {
     
-    var text = '{"startdato":"2019-8-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    var text = '{"startdato":"2019-4-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
-    //var obj2 = JSON.parse(text2); //gør json fil formatet kan læses i javascriptet
-    //var obj3 = JSON.parse(text3); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
-
+    var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
     var antaldage = slutdato - startdato; //beregner hvor meget tid der er mellem start og slut datoen
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
-    var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+    
+    if (document.getElementById(obj.startdato) == false) {
+        
+    } 
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
 
@@ -495,7 +497,7 @@ function events() {
                     }
                 }
                 datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-
+                
                 //skifter til næste måned hvis dagene i opdeltdato overstiger dage i måneden
                 if (datoday > daysInMonth) {
                     datomonth++;
@@ -503,7 +505,7 @@ function events() {
                     datoday = 1;
                 }
                
-
+                
                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                 obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
@@ -512,7 +514,7 @@ function events() {
                 event.appendChild(content);
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
-
+                
                 if (!(datocheck[0])) {
                     if (datoday = 1) {
                         datoday = 2;
@@ -543,15 +545,6 @@ function events() {
             else if (datocheck[0].rows.length <= 2) {
 
             }
-    
-
-
-            
-            /*else if (kkkk) {
-    
-            }
-            */
-
 
 
             else {
