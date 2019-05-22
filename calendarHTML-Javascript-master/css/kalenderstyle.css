@@ -403,9 +403,12 @@ body {
         width: 66px;
     }
 
+    .datoVisning {
+        height: 15px;
+    }
+
     .dageTop {
-        padding: 1px;
-        padding-left: 0px;        
+        padding: 0px 1px 0px 0px;
     }
 }
 
@@ -450,8 +453,7 @@ body {
     }
 
     .dageTop {
-        padding: 1px;
-        padding-left: 0px;        
+        padding: 0px 1px 0px 0px;
     }
 }
 

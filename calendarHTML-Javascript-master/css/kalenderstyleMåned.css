@@ -149,7 +149,8 @@
     /* måned */
 
     .månedDivC {
-        width: 221px;
+        width: 903px;
+        height: 528px;
     }
 
     .header {
@@ -159,13 +160,13 @@
     /* uge */
 
     .ugeData, .ugeCSS {
-        height: 26px;
+        height: 97px;
     }
 
     /* enkelt dag */
 
     .ugedag, .dagbox, th.tomdag {
-        width: 43px;
+        width: 179px;
     }
 
     .ugedag {
@@ -177,7 +178,7 @@
     }
 
     .dagbox {
-        height: 25px;
+        height: 96px;
     }
 
     .række, .datoVisning, .række thead {
@@ -185,13 +186,13 @@
     }
 
     .tomdag {
-        width: 44px;
+        width: 180px;
     }
 
     .dage, .dageTop {
-        width: 41px;
+        width: 178px;
         top: 0;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .dage {
@@ -199,7 +200,7 @@
     }
 
     .eventLinjeBody {
-        height: 0px;
+        height: 60px;
     }
 }
 
@@ -223,7 +224,8 @@
     /* måned */
 
     .månedDivC {
-        width: 241px;
+        width: 1001px;
+        height: 618px;
     }
 
     .header {
@@ -233,13 +235,13 @@
     /* uge */
 
     .ugeData, .ugeCSS {
-        height: 32px;
+        height: 115px;
     }
 
     /* enkelt dag */
 
     .ugedag, .dagbox, th.tomdag {
-        width: 47px;
+        width: 199px;
     }
 
     .ugedag {
@@ -251,7 +253,7 @@
     }
 
     .dagbox {
-        height: 31px;
+        height: 114px;
     }
 
     .række, .datoVisning, .række thead {
@@ -259,13 +261,13 @@
     }
 
     .tomdag {
-        width: 48px;
+        width: 200px;
     }
 
     .dage, .dageTop {
-        width: 45px;
+        width: 199px;
         top: 0;
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .dage {
@@ -294,7 +296,8 @@
     }
 
     .ugedag {
-        height: 40px;
+        height: 27px;
+        font-size: 15px;
     }
 
     .dagbox {
@@ -312,8 +315,7 @@
 
     .dageTop {
         padding: 1px;
-        padding-left: 0px;   
-        height: 60px;     
+        padding-left: 0px;     
     }
 }
 
@@ -323,13 +325,13 @@
 
     .månedDivC {
         width: 1385px;
-        height: 712px;
+        height: 816px;
     }
 
     /* uge */
 
     .ugeData, .ugeCSS, .række {
-        height: 130px;
+        height: 152px;
     }
 
     /* enkelt dag */
@@ -339,11 +341,12 @@
     }
 
     .ugedag {
-        height: 40px;
+        height: 30px;
+        font-size: 15px;
     }
 
     .dagbox {
-        height: 129px;
+        height: 151px;
     }
 
     .tomdag {
@@ -357,8 +360,7 @@
 
     .dageTop {
         padding: 1px;
-        padding-left: 0px;   
-        height: 60px;     
+        padding-left: 0px;       
     }
 }
 
