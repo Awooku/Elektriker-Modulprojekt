@@ -88,8 +88,8 @@ function removeWeek(){
     var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en var som hedder dvCol (datoVisningCollection)
     for (var hw = 0; hw < dvCol.length; hw++){
         if (dvCol[hw].children.length == 0) { //hvis længden på den klasse som for loopet er nået til, er 0 gør dette:
-            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek";                             //erstatter .ugeCSS (som har children.length på 0) med "hideWeek"
-            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek";             //erstatter .ugeData (som står "ved siden af" den den ugeCSS som lige er blevet erstattet) med "hideWeek"
+            dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek"; //erstatter .ugeCSS (som har children.length på 0) med "hideWeek"
+            dvCol[hw].parentElement.parentElement.parentElement.previousSibling.className = "hideWeek"; //erstatter .ugeData (som står "ved siden af" den den ugeCSS som lige er blevet erstattet) med "hideWeek"
             document.querySelectorAll(".hideWeek").forEach(function(a){ //fanger alle klasser med navnet hideWeek
                 a.remove(); //fjerner .hideWeek
             })
@@ -432,8 +432,74 @@ function events() {
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
     
-    if (document.getElementById(obj.startdato) == false) {
-        
+    if (!(document.getElementById(obj.startdato))) {
+        if (m = 1) {
+            var samlet = 0;
+
+            if (opdeltdato[1] > currentMonth) {
+
+            }
+            else if (opdeltdato[1] < currentMonth) {
+
+                if (currentMonth - opdeltdato[1] == 0) {
+
+                }
+                else if (currentMonth - opdeltdato[1] == 1) {
+                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    samlet = daysInMonthEvent1 - opdeltdato[2];
+                }
+                else if (currentMonth - opdeltdato[1] == 2) {
+                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    var daysInMonthEvent2 = 32 - new Date(year, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    samlet = daysInMonthEvent1 + daysInMonthEvent2 - opdeltdato[2];
+                }
+                else if (currentMonth - opdeltdato[1] == 3) {
+                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    var daysInMonthEvent2 = 32 - new Date(year, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på daværende måned
+                    var daysInMonthEvent3 = 32 - new Date(year, opdeltdato[1] + 2, 32).getDate(); //beregner hvor mange dage der er på daværende måned
+                    samlet = daysInMonthEvent1 + daysInMonthEvent2 + daysInMonthEvent3 - opdeltdato[2];
+                }
+
+                antaldage = antaldage - samlet;
+
+                obj.startdato = opdeltdato[0].toString() + "-" + currentMonth.toString() + "-" + "1";
+                opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+
+                if (antaldage <= 0) {
+
+                }
+                /*else if (antaldage > 0) {
+
+                    if (opdeltdato[2] == 1 && document.getElementById(obj.startdato)) {
+
+                    }
+                    if () {
+                        
+                    }
+                    if () {
+                        
+                    }
+
+                }*/
+            }
+
+            else if (document.getElementById(obj.startdato)) {
+
+            }
+
+            else {
+
+            }
+        }
+        else if (m = 3) {
+
+        }
+
+        else {
+            if (opdeltdato[0] > currentYear) {
+
+            }
+        }
     } 
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
