@@ -60,7 +60,6 @@ body {
 .ugeCSS {
     position: absolute;
     min-height: auto;
-    margin-bottom: 2px;
 }
 
 .ugeData, .dagbox {
@@ -286,7 +285,6 @@ body {
         width: 45px;
         font-size: 10px;
     }
-
 }
 
 /* 900p */
@@ -399,8 +397,12 @@ body {
         width: 69px;
     }
 
-    .dage, .dageTop {
+    .dageTop {
         width: 66px;
+    }
+
+    .dage {
+        width: 70px;
     }
 
     .datoVisning {
@@ -409,6 +411,10 @@ body {
 
     .dageTop {
         padding: 0px 1px 0px 0px;
+    }
+
+    .eventLinje {
+        left: 0px;
     }
 }
 

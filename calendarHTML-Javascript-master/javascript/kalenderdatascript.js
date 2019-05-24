@@ -12,12 +12,10 @@ var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "Aug
 
 showyear(); //Starter programmet og starter på den årlige kalender form
 
-
 //Skifter css når du trykker på en knap, hvis du bruger 1-månedsvisning skal stylen jo være anderledes end hvis du bruger 3-månedersvisning
 function swapSheet(sheet){
     document.getElementById("stylesheetID").setAttribute("href", sheet); //finder et af de andre sylesheets og skifter det nuværende stylesheet til det andet.
 }
-
 
 //skift til de næste måneder
 function next() {
@@ -49,8 +47,6 @@ function next() {
     events();
 }
 
-
-
 //skift til forige måneder
 function previous() {
 
@@ -79,8 +75,6 @@ function previous() {
         showmonth();
     }
 }
-
-
 
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
@@ -179,7 +173,6 @@ function showCalendar(month, year) {
         ugetable.appendChild(tablehead);
         ugetable.appendChild(tablebody);
 
-
        //Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
        for (var d = 0; d < 6; d++) {
 
@@ -214,7 +207,6 @@ function showCalendar(month, year) {
             }
         }
         var tom = 0;  //Bruges til at tælle tomme dage
-
 
         //Skaber de individuelle celler og fylder dem med data -----------------------------------------------------------------------------------------------<
         for (var j = 0; j < 7; j++) {
@@ -280,7 +272,6 @@ function showCalendar(month, year) {
                 ugecss.appendChild(cellBox);
                 date++; //tæller en dag op
 
-
                 week1.setFullYear(currentYear); //gør at kalenderen viser det år du er kommet til
                 var weekNumber = currentYear + "-" + (currentMonth + 1) + "-" + date; //bruges til at beregne hvilket ugenummer der er
                 var weekNrDate = new Date(weekNumber); //laver det om til en dato for at kunne beregne ud fra datoerne i kalenderen
@@ -312,10 +303,6 @@ function showCalendar(month, year) {
         removeWeek(); //fjerner overflødig uge med tom data
     } 
 }
-
-
-
-
 
 //---------------------------------------------------------------------------Kalender Form---------------------------------------------------------------------------->
 
@@ -367,7 +354,6 @@ function show3() {
     events();
 }
 
-
 //Viser hele år
 function showyear() {
     var tbl = document.getElementById("kalender-body"); // Selve kalenderdelen
@@ -415,9 +401,6 @@ function showmonth() {
     k = 0;  // bruges til at insætte måneder i div tags
     events();
 }
-
-
-
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
@@ -569,8 +552,7 @@ function events() {
                     datomonth++;
                     opdeltdato[1] = datomonth;
                     datoday = 1;
-                }
-               
+                }               
                 
                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
@@ -604,14 +586,11 @@ function events() {
                 }
 
                 sM = opdeltdato[2];
-            }
-            
-
+            }       
 
             else if (datocheck[0].rows.length <= 2) {
 
             }
-
 
             else {
 
@@ -619,7 +598,4 @@ function events() {
             
         }
     }
-    
-    
-
 }
