@@ -418,29 +418,29 @@ function events() {
     if (!(document.getElementById(obj.startdato))) {
         if (m = 1) {
             var samlet = 0;
-
-            if (opdeltdato[1] > currentMonth) {
+            console.log("se Mig");
+            if (parseInt(opdeltdato[1]) > currentMonth) {
 
             }
-            else if (opdeltdato[1] < currentMonth) {
+            else if (parseInt(opdeltdato[1]) < currentMonth + 1) {
 
-                if (currentMonth - opdeltdato[1] == 0) {
-
-                }
-                else if (currentMonth - opdeltdato[1] == 1) {
-                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                if (currentMonth + 1 - opdeltdato[1] == 1) {
+                    var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     samlet = daysInMonthEvent1 - opdeltdato[2];
+                    console.log("check1");
                 }
-                else if (currentMonth - opdeltdato[1] == 2) {
-                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-                    var daysInMonthEvent2 = 32 - new Date(year, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                else if (currentMonth + 1 - parseInt(opdeltdato[1]) == 2) {
+                    var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     samlet = daysInMonthEvent1 + daysInMonthEvent2 - opdeltdato[2];
+                    console.log("check2");
                 }
-                else if (currentMonth - opdeltdato[1] == 3) {
-                    var daysInMonthEvent1 = 32 - new Date(year, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-                    var daysInMonthEvent2 = 32 - new Date(year, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på daværende måned
-                    var daysInMonthEvent3 = 32 - new Date(year, opdeltdato[1] + 2, 32).getDate(); //beregner hvor mange dage der er på daværende måned
+                else if (currentMonth + 1 - parseInt(opdeltdato[1]) == 3) {
+                    var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+                    var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på daværende måned
+                    var daysInMonthEvent3 = 32 - new Date(currentYear, opdeltdato[1] + 2, 32).getDate(); //beregner hvor mange dage der er på daværende måned
                     samlet = daysInMonthEvent1 + daysInMonthEvent2 + daysInMonthEvent3 - opdeltdato[2];
+                    console.log("check3");
                 }
 
                 antaldage = antaldage - samlet;
@@ -451,22 +451,23 @@ function events() {
                 if (antaldage <= 0) {
 
                 }
-                /*else if (antaldage > 0) {
-
-                    if (opdeltdato[2] == 1 && document.getElementById(obj.startdato)) {
-
+                else if (antaldage > 0) {
+                    if (opdeltdato[2] == 1 && !(document.getElementById(obj.startdato))) {
+                        obj.startdato = opdeltdato[0].toString() + "-" + currentMonth.toString() + "-" + "1";
+                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
                     }
-                    if () {
-                        
+                    if (opdeltdato[2] == 2 && !(document.getElementById(obj.startdato))) {
+                        obj.startdato = opdeltdato[0].toString() + "-" + currentMonth.toString() + "-" + "2";
+                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
                     }
-                    if () {
-                        
+                    if (opdeltdato[2] == 3 && !(document.getElementById(obj.startdato))) {
+                        obj.startdato = opdeltdato[0].toString() + "-" + currentMonth.toString() + "-" + "3";
+                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
                     }
-
-                }*/
+                }
             }
 
-            else if (document.getElementById(obj.startdato)) {
+            else if (opdeltdato[1] == currentMonth) {
 
             }
 
