@@ -10,7 +10,7 @@ var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "Aug
 
 //Globals End>
 
-showyear(); //Starter programmet og starter på den årlige kalender form
+showmonth(); //Starter programmet og starter på den årlige kalender form
 
 //Skifter css når du trykker på en knap, hvis du bruger 1-månedsvisning skal stylen jo være anderledes end hvis du bruger 3-månedersvisning
 function swapSheet(sheet){
@@ -44,7 +44,6 @@ function next() {
         currentMonth = (currentMonth + 1) % 12; //beregner nuværende måned
         showmonth();
     }
-    events();
 }
 
 //skift til forige måneder
@@ -423,24 +422,28 @@ function events() {
     if (!(document.getElementById(obj.startdato))) {
         if (m == 1) {
             var samlet = 0;
+            var opdeltmåned = currentMonth + 1;
             console.log("se mig");
-            if (parseInt(opdeltdato[1]) > currentMonth) {
+            if (parseInt(opdeltdato[1]) > opdeltmåned) {
 
             }
-            else if (parseInt(opdeltdato[1]) < currentMonth + 1) {
+            else if (parseInt(opdeltdato[1]) < opdeltmåned) {
 
-                if (currentMonth + 1 - parseInt(opdeltdato[1]) == 1) {
+                if (opdeltmåned - parseInt(opdeltdato[1]) == 1) {
                     var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     samlet = daysInMonthEvent1 - opdeltdato[2];
                     console.log("check1");
+                    console.log(currentMonth);
+                    console.log(opdeltmåned);
+                    console.log(daysInMonthEvent1);
                 }
-                else if (currentMonth + 1 - parseInt(opdeltdato[1]) == 2) {
+                else if (opdeltmåned - parseInt(opdeltdato[1]) == 2) {
                     var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     samlet = daysInMonthEvent1 + daysInMonthEvent2 - opdeltdato[2];
                     console.log("check2");
                 }
-                else if (currentMonth + 1 - parseInt(opdeltdato[1]) == 3) {
+                else if (opdeltmåned - parseInt(opdeltdato[1]) == 3) {
                     var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på daværende måned
                     var daysInMonthEvent3 = 32 - new Date(currentYear, opdeltdato[1] + 2, 32).getDate(); //beregner hvor mange dage der er på daværende måned
