@@ -41,15 +41,13 @@ function next() {
     }
 
     //Checker at det kun er en måned der bliver vist
-    else {
+    else if (m == 1) {
         currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear; //beregner nuværende år ud fra nuværende måned
         currentMonth = (currentMonth + 1) % 12; //beregner nuværende måned
         showmonth();
     }
     events();
 }
-
-
 
 //skift til forige måneder
 function previous() {
@@ -315,8 +313,6 @@ function showCalendar(month, year) {
 
 
 
-
-
 //---------------------------------------------------------------------------Kalender Form---------------------------------------------------------------------------->
 
 function show3() {
@@ -431,17 +427,17 @@ function events() {
     var antaldage = slutdato - startdato; //beregner hvor meget tid der er mellem start og slut datoen
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
-    
+
     if (!(document.getElementById(obj.startdato))) {
-        if (m = 1) {
+        if (m == 1) {
             var samlet = 0;
-            console.log("se Mig");
+            console.log("se mig");
             if (parseInt(opdeltdato[1]) > currentMonth) {
 
             }
             else if (parseInt(opdeltdato[1]) < currentMonth + 1) {
 
-                if (currentMonth + 1 - opdeltdato[1] == 1) {
+                if (currentMonth + 1 - parseInt(opdeltdato[1]) == 1) {
                     var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
                     samlet = daysInMonthEvent1 - opdeltdato[2];
                     console.log("check1");
@@ -462,7 +458,7 @@ function events() {
 
                 antaldage = antaldage - samlet;
 
-                obj.startdato = opdeltdato[0].toString() + "-" + currentMonth.toString() + "-" + "1";
+                obj.startdato = currentYear.toString() + "-" + currentMonth.toString() + "-" + opdeltdato[2].toString;
                 opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
 
                 if (antaldage <= 0) {
@@ -492,7 +488,7 @@ function events() {
 
             }
         }
-        else if (m = 3) {
+        else if (m == 3) {
 
         }
 
@@ -583,7 +579,7 @@ function events() {
                 titel.appendChild(titelindhold);
                 
                 if (!(datocheck[0])) {
-                    if (datoday = 1) {
+                    if (datoday == 1) {
                         datoday = 2;
                         opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
