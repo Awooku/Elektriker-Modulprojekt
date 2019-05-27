@@ -96,7 +96,7 @@ function showCalendar(month, year) {
 
     k++;
     var firstDay = (new Date(year, month)).getDay() -1;  //gør at første dag på ugen er en mandag i stedet for søndag
-    var daysInMonth = 32 - new Date(year, month, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
+    var daysInMonth = 32 - new Date(year, month, 32).getDate(); //beregner hvor mange dage der er på nuværende måned
 
     var tbl = document.getElementById("kalender-body"); //Selve kalenderdelen
 
@@ -354,6 +354,7 @@ function show3() {
     k = 0; // bruges til at insætte måneder i div tags
     console.log(currentMonth);
     events();
+    swapSheet('css/kalenderstyleKvartal.css');
 }
 
 //Viser hele år
@@ -383,6 +384,7 @@ function showyear() {
     }
     k = 0; // bruges til at insætte måneder i div tags
     events();
+    swapSheet('css/kalenderstyle.css');
 }
 
 //Viser en måned ad gangen
@@ -402,6 +404,7 @@ function showmonth() {
     m = 1;  // bruges i next og previous 
     k = 0;  // bruges til at insætte måneder i div tags
     events();
+    swapSheet('css/kalenderstyleMåned.css');
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
