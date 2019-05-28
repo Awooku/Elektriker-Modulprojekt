@@ -454,7 +454,7 @@ function events() {
                 antaldage = antaldage - samlet;
 
                 obj.startdato = currentYear.toString() + "-" + currentMonth.toString() + "-" + opdeltdato[2].toString;
-                opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+                opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til et array
 
                 if (antaldage <= 0) {
 
@@ -492,9 +492,19 @@ function events() {
 
             }
         }
-    } 
+    }
+
+    startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
+    slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
+
+
+
+
+
+
+
 
     //hvis der findes et element med en klasse som er det samme som datocheck
     if (datocheck[0]) {
