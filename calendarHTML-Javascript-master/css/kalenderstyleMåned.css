@@ -1,4 +1,4 @@
- /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt */
+ /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt og besværligt */
 
  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -325,8 +325,8 @@
     /* måned */
 
     .månedDivC {
-        width: 1385px;
-        height: 816px;
+        width: 1381px;
+        height: 813px;
     }
 
     /* uge */
@@ -355,7 +355,7 @@
     }
 
     .dage, .dageTop {
-        width: 273px;
+        width: 265px;
         font-size: 14px;
     }
 

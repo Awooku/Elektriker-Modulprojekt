@@ -1,4 +1,4 @@
- /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt */
+ /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt og besværligt  */
 
  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -375,6 +375,7 @@
 
     .dageTop {
         height: 16px;
+        padding: 2px 3px 0px 0px;
     }
 
     .dagbox {
@@ -385,12 +386,12 @@
         width: 91px;
     }
 
-    .dage, .dageTop {
+    .dageTop {
         width: 85px;
     }
 
-    .dageTop {
-        padding: 2px 3px 0px 0px;
+    .dage {
+        width: 91px;
     }
 }
 
