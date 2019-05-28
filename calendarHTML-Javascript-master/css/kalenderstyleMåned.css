@@ -130,7 +130,7 @@
 /* jeg har givet op på scaleable, prøver @media i stedet */
 
 /* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
-@media only screen and (min-width: 920px) and (max-width: 1005px) {
+@media only screen and (min-width: 1px) and (max-width: 1005px) {
     /* kalender */
 
     #helekalender, #kalender-body, body {
@@ -175,6 +175,7 @@
 
     .dageTop {
         height: 10px; 
+        padding: 3px 6px 0px 0px;
     }
 
     .dagbox {
@@ -250,6 +251,7 @@
 
     .dageTop {
         height: 10px; 
+        padding: 4px 7px 0px 0px;
     }
 
     .dagbox {
@@ -314,8 +316,7 @@
     }
 
     .dageTop {
-        padding: 1px;
-        padding-left: 0px;     
+        padding: 5px 8px 0px 0px;
     }
 }
 
@@ -359,8 +360,7 @@
     }
 
     .dageTop {
-        padding: 1px;
-        padding-left: 0px;       
+        padding: 5px 9px 0px 0px;
     }
 }
 
