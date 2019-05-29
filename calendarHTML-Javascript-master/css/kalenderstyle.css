@@ -397,10 +397,6 @@ body {
         width: 69px;
     }
 
-    .dageTop {
-        width: 66px;
-    }
-
     .dage {
         width: 70px;
     }
@@ -411,6 +407,7 @@ body {
 
     .dageTop {
         padding: 0px 1px 0px 0px;
+        width: 66px;
     }
 
     .eventLinje {
