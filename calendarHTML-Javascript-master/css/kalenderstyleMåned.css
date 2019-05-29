@@ -343,7 +343,7 @@
 
     .ugedag {
         height: 30px;
-        font-size: 15px;
+        font-size: 19px;
     }
 
     .dagbox {
@@ -359,6 +359,10 @@
         font-size: 14px;
     }
 
+    .dage {
+        width: 277px;
+    }
+
     .dageTop {
         padding: 5px 9px 0px 0px;
     }
@@ -366,40 +370,44 @@
 
 /* 1440p fordi hvorfor ikke */
 @media only screen and (min-width: 1891px) and (max-width: 8000px) {
+    /* måned */
+
     .månedDivC {
-        width: 463px;
+        width: 1896px;
+        height: 862px;
     }
 
     /* uge */
 
     .ugeData, .ugeCSS, .række {
-        height: 45px;
+        height: 162px;
     }
 
     /* enkelt dag */
 
     .ugedag, .dagbox {
-        width: 91px;
+        width: 378px;
     }
 
-    .ugedag, .dageTop {
-        height: 22px;
+    .ugedag {
+        height: 30px;
+        font-size: 19px;
     }
 
     .dagbox {
-        height: 44px;
+        height: 161px;
     }
 
     .tomdag {
-        width: 92px;
+        width: 379px;
     }
 
     .dage, .dageTop {
-        width: 89px;
+        width: 378px;
+        font-size: 14px;
     }
 
     .dageTop {
-        padding: 1px;
-        padding-left: 0px;        
+        padding: 5px 9px 0px 0px;
     }
 }
