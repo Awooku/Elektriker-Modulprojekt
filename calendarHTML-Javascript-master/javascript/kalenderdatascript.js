@@ -351,7 +351,6 @@ function show3() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner nuværende måned
     }
     k = 0; // bruges til at insætte måneder i div tags
-    console.log(currentMonth);
     events();
     swapSheet('css/kalenderstyleKvartal.css');
 }
@@ -419,11 +418,11 @@ function events() {
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     antaldage = Math.round(antaldage); //afrunder antaldage så der kun er hele dage
 
+    console.log(antaldage);
     if (!(document.getElementById(obj.startdato))) {
         if (m == 1) {
             var samlet = 0;
             var opdeltmåned = currentMonth + 1;
-            console.log("se mig");
             if (parseInt(opdeltdato[1]) > opdeltmåned) {
 
             }
@@ -460,16 +459,16 @@ function events() {
                 else if (antaldage > 0) {
                     console.log("lagkage");
                     if (opdeltdato[2] == 1 && !(document.getElementById(obj.startdato))) {
-                        obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "1";
-                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
-                    }
-                    if (opdeltdato[2] == 2 && !(document.getElementById(obj.startdato))) {
+                        console.log("tadaa");
                         obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "2";
                         opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+                        antaldage--;
                     }
-                    if (opdeltdato[2] == 3 && !(document.getElementById(obj.startdato))) {
+                    if (opdeltdato[2] == 2 && !(document.getElementById(obj.startdato))) {
+                        console.log("tadaa1");
                         obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "3";
                         opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+                        antaldage--;
                     }
                 }
             }
@@ -492,7 +491,7 @@ function events() {
             }
         }
     }
-    console.log(obj.startdato)
+    //console.log(obj.startdato)
     startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
@@ -558,7 +557,7 @@ function events() {
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
-                        //console.log(antaldage);
+                        console.log(antaldage);
                         break;
                     }
                 }
@@ -589,17 +588,17 @@ function events() {
                         datocheck = document.getElementsByClassName(obj.startdato);
                     }
                 }
-                console.log(sM);
+                /*console.log(sM);
                 console.log(datoday);
                 console.log(sM < datoday && antaldage == 0);
-                console.log(obj.startdato);
+                console.log(obj.startdato);*/
                 if (sM < datoday && antaldage == 0) {
                     document.getElementById(obj.startdato).appendChild(event);
                     event.appendChild(content);
                     content.appendChild(titel);
                     titel.appendChild(titelindhold);
                     document.getElementById(obj.startdato).colSpan = 1;
-                    console.log("kage");
+                    //console.log("kage");
                 }
 
                 sM = opdeltdato[2];
