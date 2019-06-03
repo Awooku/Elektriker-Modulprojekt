@@ -326,7 +326,7 @@
 
     .månedDivC {
         width: 1381px;
-        height: 813px;
+        height: 661px;
     }
 
     /* uge */
@@ -374,13 +374,13 @@
 
     .månedDivC {
         width: 1896px;
-        height: 862px;
+        height: 861px;
     }
 
     /* uge */
 
     .ugeData, .ugeCSS, .række {
-        height: 162px;
+        height: 202px;
     }
 
     /* enkelt dag */
@@ -395,7 +395,7 @@
     }
 
     .dagbox {
-        height: 161px;
+        height: 201px;
     }
 
     .tomdag {
