@@ -10,7 +10,7 @@ var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "Aug
 
 //Globals End>
 
-showmonth(); //Starter programmet og starter på den årlige kalender form
+showyear(); //Starter programmet og starter på den årlige kalender form
 
 //Skifter css når du trykker på en knap, hvis du bruger 1-månedsvisning skal stylen jo være anderledes end hvis du bruger 3-månedersvisning
 function swapSheet(sheet){
@@ -406,9 +406,12 @@ function showmonth() {
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
+/*function jsonparse(text) {
+
+}
+*/
 
 function events() {
-    
     var text = '{"startdato":"2019-4-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
@@ -491,8 +494,8 @@ function events() {
             }
         }
     }
-    //console.log(obj.startdato)
     startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
+    console.log(antaldage);
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName(obj.startdato);
 
