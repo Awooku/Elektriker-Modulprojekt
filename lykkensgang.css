@@ -129,6 +129,10 @@ a.navigation-link {
   display: inline-block;
 }
 
+.showCalendar {
+    height: 100%;
+    width: 100%;
+}
 
 
 
