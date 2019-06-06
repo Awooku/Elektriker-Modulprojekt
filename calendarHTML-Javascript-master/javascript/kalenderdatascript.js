@@ -423,7 +423,7 @@ function events() {
 
     console.log(antaldage);
     if (!(document.getElementById(obj.startdato))) {
-        if (m == 1) {
+        //if (m == 1) {
             var samlet = 0;
             var opdeltmåned = currentMonth + 1;
             if (parseInt(opdeltdato[1]) > opdeltmåned) {
@@ -476,14 +476,15 @@ function events() {
                 }
             }
 
-            else if (opdeltdato[1] == currentMonth) {
+            /*else if (opdeltdato[1] == currentMonth) {
 
             }
 
             else {
 
-            }
-        }
+            }*/
+        //}
+
         else if (m == 3) {
 
         }
@@ -582,19 +583,37 @@ function events() {
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
                 
-                if (!(datocheck[0])) {
-                    if (datoday == 1) {
+                    if (datoday == 1 && !(document.getElementById(obj.startdato))) {
+                        console.log("cake");
                         datoday = 2;
                         opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                         obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
                         datocheck = document.getElementsByClassName(obj.startdato);
                     }
-                }
+                    if (datoday == 2 && !(document.getElementById(obj.startdato))) {
+                        console.log("cake2");
+                        opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
+                        var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
+                        obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
+                        datocheck = document.getElementsByClassName(obj.startdato);
+                    }
                 /*console.log(sM);
                 console.log(datoday);
                 console.log(sM < datoday && antaldage == 0);
                 console.log(obj.startdato);*/
+
+                /*if (opdeltdato[2] == 1 && !(document.getElementById(obj.startdato))) {
+                    obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "2";
+                    opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+                    antaldage--;
+                }
+                if (opdeltdato[2] == 2 && !(document.getElementById(obj.startdato))) {
+                    obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "3";
+                    opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
+                    antaldage--;
+                }*/
+
                 if (sM < datoday && antaldage == 0) {
                     document.getElementById(obj.startdato).appendChild(event);
                     event.appendChild(content);
