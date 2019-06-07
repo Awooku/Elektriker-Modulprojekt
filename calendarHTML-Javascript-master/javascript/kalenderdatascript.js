@@ -7,7 +7,8 @@ var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
-
+var text = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+//var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
 //Globals End>
 
 showyear(); //Starter programmet og starter på den årlige kalender form
@@ -412,7 +413,7 @@ function showmonth() {
 */
 
 function events() {
-    var text = '{"startdato":"2019-4-19", "slutdato":"2019-10-14", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    //var text = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
@@ -583,25 +584,32 @@ function events() {
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
                 
+                    //hvis dag 1 ikke findes i en måned skifter den over på dag 2
                     if (datoday == 1 && !(document.getElementById(obj.startdato))) {
                         console.log("cake");
                         datoday = 2;
                         opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                         obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
+                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
                         datocheck = document.getElementsByClassName(obj.startdato);
+                        antaldage--;
                     }
+                    //hvis dag 2 ikke findes i en måned skifter den over på dag 3
                     if (datoday == 2 && !(document.getElementById(obj.startdato))) {
                         console.log("cake2");
+                        datoday = 3;
                         opdeltdato[2] = datoday; //opdatere dagen der skal tage udgangspunkt i
                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                         obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
+                        opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
                         datocheck = document.getElementsByClassName(obj.startdato);
+                        antaldage--;
                     }
-                /*console.log(sM);
+                console.log(sM);
                 console.log(datoday);
                 console.log(sM < datoday && antaldage == 0);
-                console.log(obj.startdato);*/
+                console.log(obj.startdato);
 
                 /*if (opdeltdato[2] == 1 && !(document.getElementById(obj.startdato))) {
                     obj.startdato = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "2";
