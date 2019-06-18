@@ -465,7 +465,7 @@ function jsonHandler() {
 
 function events() {
     //var text = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
-    var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
+    /*var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
     var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
@@ -475,16 +475,16 @@ function events() {
     if (antaldage - Math.floor(antaldage) == 0) {
         antaldage++;
     }
-    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage
+    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage*/
 
-    /*var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
+    var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
     var opdeltslutdato = slutdato[E].split("-").map(Number); //laver slutdato fra json filen om til array
     var antaldage = slutdato[E] - startdato[E]; //beregner hvor meget tid der er mellem start og slut datoen
     antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
     if (antaldage - Math.floor(antaldage) == 0) {
         antaldage++;
     }
-    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage*/
+    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage
     
     /*if (!(document.getElementById(obj.startdato))) {
         if (m == 1) {
@@ -553,7 +553,6 @@ function events() {
             }
         }
     }*/
-    //startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var sM = opdeltdato[2];
     var datocheck = document.getElementsByClassName("D" + obj.startdato);
 
