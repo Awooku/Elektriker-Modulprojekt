@@ -546,7 +546,12 @@
     <script>
     $("#kalender-body").on("click", "th", function() {
     // ...
-    alert($(this).attr("id"));
+    alert($(this).attr("class").split(' ').pop());
+    });
+
+    $("#kalender-body").on("click", "td", function() {
+    // ...
+    alert($(this).attr("class").split(' ').pop());
     });
     </script>
 </body>
