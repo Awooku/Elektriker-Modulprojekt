@@ -430,12 +430,10 @@ function showmonth() {
 
 function jsonHandler() {
     var jText = '[{"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"31/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
-    
 
     var jObj = JSON.parse(jText);
 
-    var id = [], startdato = [], slutdato = [], skoleID = [], modultal = [];
-
+    var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
     for (j = 0; j < jObj.length; j++) {
 
@@ -457,8 +455,26 @@ function jsonHandler() {
         //console.log(skoleID);
         //console.log(modultal);
     }
-    console.log(eventID[3]);
-    console.log(jObj)
+
+    console.log(eventID);
+    console.log(skoler);
+    
+
+    if (skoleID[0] == skoler[0]) {
+        console.log("success");
+    }
+
+    if (skoleID[2] !== skoler[2]) {
+        console.log("failure");
+    }    
+
+    for (var i = 0; i < eventID.length; i++) {
+        if (eventID[i] == 5) {
+            console.log(jObjA[i]);
+        }
+    }
+
+    //console.log(lokalID[1])
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
