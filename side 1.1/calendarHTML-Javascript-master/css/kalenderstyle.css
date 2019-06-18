@@ -1,0 +1,482 @@
+ /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt og besværligt  */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    /* overflow: hidden; */
+} /* Standard verdana skrifttype og textstørrelse 13 på hele kalenderen */
+
+ .ugedag, .ugedagsliste {
+    border: 1px solid black;
+    border-radius: 0px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 0px;
+    height: 22px;
+    position: relative;
+} /* #kalender-body, .ugedag og .ugedagliste får samme border farve */
+
+    /* kalender */
+
+#helekalender, #kalender-body {
+    border: 0px solid black;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+    /* år */
+    
+#årstal {
+    margin: 0px;
+    font-size: 25px;
+    text-align: left;
+}
+
+#fm1, #fm2, #fm3 {
+    display: inline-flex;
+}
+
+    /* måned */
+
+.header {
+    margin: 0px;
+}
+
+.månedDivC {
+    height: auto;
+    margin: 0px -1px -1px 0px;
+    padding: 3px;
+    border: 0.1px solid;
+}
+/*    
+#månedDiv4, #månedDiv8, #månedDiv12 {
+    border-left-width: 0px;
+    den venstre side på den sidste måned i et kvartal har valgt at være 2 pixels bred i stedet for 1, derfor fjerner vi 1 pixel
+}
+*/
+
+    /* uge */
+
+.ugeCSS {
+    position: absolute;
+    min-height: auto;
+}
+
+.ugeData, .dagbox {
+    position: relative;
+}
+
+    /* enkelt dag */
+
+.dage, .tomdag, .dageTop {
+    padding: 0;
+}
+
+.eventLinje {
+    width: 100%;
+    position: absolute;
+}
+    
+.dageTop {
+    font-size: 12px;
+    text-align: right;
+}
+
+.dagbox {
+    border: 1px solid darkgray;
+    margin-right: -1px;
+    margin-bottom: -2px;
+}
+
+.dage {
+    height: 5px;  
+    border-top: 0px;
+    text-align: left;
+}
+
+.dag, .dagbox, .ugedag, .tomdag, .månedDivC {
+    display: inline-block;
+}
+ 
+.dag {
+    text-align: right; 
+    padding-top: 1px;
+    margin-right: 1px;
+}
+
+.ugedag {
+    border-left-width: 0px;
+}
+
+.ugedag:nth-child(1) {
+    border-left-width: 1px;
+} /* gaffa tape til dårlig css
+     i det mindste ser det pænt ud-agtig
+     altså hjemmesiden, ikke koden */
+
+.tomdag {
+    height: 2px;
+    margin: 0px;
+    float: left;
+}
+
+.tomx5, #tomx5, .weekend {
+    display: none;
+}  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
+      fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
+      dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!),
+      men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden medmindre du er ond*/
+
+.hideWeek {
+    display: none;
+    height: 0px;
+}
+
+/* jeg har givet op på scaleable, prøver @media i stedet */
+
+/* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
+@media only screen and (min-width: 920px) and (max-width: 1281px) {
+    /* kalender */
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    /* år */
+
+    #årstal {
+        font-size: 14px;
+        margin-top: 2px;
+        padding-left: 5px;
+    }
+
+    /* måned */
+
+    .månedDivC {
+        width: 221px;
+    }
+
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
+    .header {
+        font-size: 14px;
+    }
+
+    /* uge */
+
+    .ugeData, .ugeCSS {
+        height: 26px;
+    }
+
+    /* enkelt dag */
+
+    .ugedag, .dagbox, th.tomdag {
+        width: 43px;
+    }
+
+    .ugedag {
+        height: 20px;
+    }
+
+    .dageTop {
+        width: 42px;
+        height: 10px; 
+    }
+
+    .dagbox {
+        height: 25px;
+    }
+
+    .række, .datoVisning, .række thead {
+        height: 10px;
+    }
+
+    .tomdag {
+        width: 44px;
+    }
+
+    .dage, .dageTop {
+        top: 0;
+        font-size: 10px;
+    }
+
+    .dage {
+        width: 41px;
+        font-size: 8px;
+    }
+
+    .eventLinjeBody {
+        height: 0px;
+    }
+}
+
+/* 768p */
+@media only screen and (min-width: 1282px) and (max-width: 1367px) {
+    /* kalender */
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    /* år */
+
+    #årstal {
+        font-size: 14px;
+        margin-top: 2px;
+        padding-left: 5px;
+    }
+
+    /* måned */
+
+    .månedDivC {
+        width: 241px;
+    }
+
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
+    .header {
+        font-size: 14px;
+    }
+
+    
+
+    /* uge */
+
+    .ugeData, .ugeCSS {
+        height: 32px;
+    }
+
+    /* enkelt dag */
+
+    .ugedag, .dagbox, th.tomdag {
+        width: 47px;
+    }
+
+    .ugedag {
+        height: 20px;
+    }
+
+    .dageTop {
+        height: 10px; 
+        width: 46px;
+    }
+
+    .dagbox {
+        height: 31px;
+    }
+
+    .række, .datoVisning, .række thead {
+        height: 10px;
+    }
+
+    .tomdag {
+        width: 48px;
+    }
+
+    .dage, .dageTop {
+        top: 0;
+        font-size: 11px;
+    }
+
+    .dage {
+        width: 45px;
+        font-size: 10px;
+    }
+}
+
+/* 900p */
+@media only screen and (min-width: 1368px) and (max-width: 1441px) {
+    /* kalender */
+
+    #helekalender, #kalender-body, body {
+        margin: 0px;
+        margin-right: 2px;
+        padding: 0px;
+    }
+
+    /* knapper */
+
+    .knapper {
+        margin-top: 2px;
+        margin-left: 2px; 
+    }
+
+    /* år */
+
+    #årstal {
+        font-size: 20px;
+    }
+
+    /* måned */
+
+    .månedDivC {
+        width: 261px;
+    }
+
+    #månedDiv3, #månedDiv7, #månedDiv11{
+        padding-right: 2px;
+    }
+
+    /* uge */
+
+    .ugeData, .ugeCSS {
+        height: 36px;
+        width: 280px;
+    }
+
+    .ugeCSS, .dagbox {
+        float: left;
+    }
+
+    /* enkelt dag */
+
+    .ugedag, .dagbox, th.tomdag {
+        width: 51px;
+    }
+
+    .ugedag {
+        height: 21px;
+    }
+
+    .dageTop {
+        height: 15px; 
+        width: 49px;
+        padding-right: 1px;
+    }
+
+    .dagbox {
+        height: 35px;
+    }
+
+    .række, .datoVisning {
+        height: 10px;
+    }
+
+    .tomdag {
+        width: 52px;
+    }
+
+    .dage {
+        font-size: 11px;
+        width: 49px;
+    }
+}
+
+/* 1080p standard skærm */
+@media only screen and (min-width: 1442px) and (max-width: 1921px) {
+
+    #kalender-body {
+        margin: 0px 0px 0px 0px;
+    }
+
+    /* måned */
+
+    .månedDivC {
+        width: 349px;
+        padding: 2px 3px 4px 3px;
+        /*height: 268px;*/
+    }
+/*
+    #månedDiv2, #månedDiv6, #månedDiv10 {
+        padding: 2px 3px 4px 3px;
+    }
+*/
+
+    #fm1, #fm2, #fm3 {
+        margin: 0px 1px 0px 0px;
+    }
+
+    /* uge */
+
+    .ugeData, .ugeCSS, .række {
+        height: 45px;
+    }
+
+    /* enkelt dag */
+
+    .ugedag, .dagbox {
+        width: 68.6px;
+    }
+
+    .ugedag, .dageTop {
+        height: 20px;
+    }
+
+    .dagbox {
+        height: 44px;
+    }
+
+    .tomdag {
+        width: 69.6px;
+    }
+
+    th.tomdag {
+        width: 69px;
+    }
+
+    .dage {
+        width: 70px;
+    }
+
+    .datoVisning {
+        height: 15px;
+    }
+
+    .dageTop {
+        padding: 0px 1px 0px 0px;
+        width: 66px;
+    }
+
+    .eventLinje {
+        left: 0px;
+    }
+}
+
+
+/* 1440p fordi hvorfor ikke */
+@media only screen and (min-width: 1922px) and (max-width: 8000px) {
+    .månedDivC {
+        width: 463px;
+        padding-right: 1px;
+    }
+
+    /* uge */
+
+    .ugeData, .ugeCSS, .række {
+        height: 45px;
+    }
+
+    /* enkelt dag */
+
+    .ugedag, .dagbox {
+        width: 91px;
+    }
+
+    .ugedag, .dageTop {
+        height: 22px;
+    }
+
+    .dagbox {
+        height: 44px;
+    }
+
+    .tomdag {
+        width: 92px;
+    }
+
+    .dage, .dageTop {
+        width: 89px;
+    }
+
+    .dageTop {
+        padding: 0px 1px 0px 0px;
+    }
+}
+

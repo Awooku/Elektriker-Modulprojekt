@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="css/kalenderstyle.css" id="stylesheetID"></link>
+</head>
+<body>
+    <div id="helekalender"> <!--div der indeholder hele kalenderen-->
+        <h3 id="årstal"></h3> <!--h3 element til at vise hvad årstalet er på på daværende kalendervisning-->
+        <div id="kalender-body"></div> <!--div der indeholder selve kalenderen-->
+        
+    </div>
+    <!--knapper der bruges-->
+    <div class="knapper">
+        <button class="månedsskift" id="previous" onclick="previous()">Previous</button> <!--skifter til en tidligere visning-->
+        <button class="månedsskift" id="next" onclick="next()">Next</button> <!--skifter til næste visning-->
+        <button class="månedsskift" id="onemonth" onclick="showmonth()">1 Måned</button> <!--gør at kalenderen arbejder i enkle måneder-->
+        <button class="månedsskift" id="treemonth" onclick="show3()">3 Måneder</button> <!--gør at kalenderen arbejder i flere måneder af gangen-->
+        <button class="månedsskift" id="wholeyear" onclick="showyear()">1 År</button> <!--gør at vises der vises hele år-->
+    </div>
+    <script src="javascript/kalenderdatascript.js"></script>
+</body>
+</html>
