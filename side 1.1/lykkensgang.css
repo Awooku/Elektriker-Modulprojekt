@@ -7,7 +7,7 @@ html, body{
     margin: 0;
     height: 100%;
     
-    /*overflow: hidden;*/
+    overflow: hidden;
     
 }
 
@@ -86,13 +86,14 @@ main {
     display: flex;
     flex-direction: row;
     /*height: calc(100% - 150px);*/
-    height: calc(100% - 75px);
+    height: 100%;
 }
 
 #left, #right {
     background-color: lightgray; 
     flex-basis: 15%;
-    min-width: 180px;;
+    min-width: 180px;
+    height: calc(100% - 75px);
 }
 #content{
    /* background-color: lightgoldenrodyellow; */
@@ -132,7 +133,10 @@ a.navigation-link {
   display: inline-block;
 }
 
-
+.showCalendar {
+    height: 100%;
+    width: 100%;
+}
 
 
 

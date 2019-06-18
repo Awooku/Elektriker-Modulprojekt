@@ -1,7 +1,7 @@
 document.createElement('main');  /* opretter main element til tidligere versioner af IE */
 
 
-var maincontent = document.getElementById('letsgo');
+var maincontent = document.getElementById('myModal');/*
 var today = document.querySelector("#today");
 var nextyear = document.querySelector("#nextyear");
 
@@ -23,7 +23,7 @@ document.querySelector("#nextyear").valueAsDate = year;
 
 maincontent.innerHTML = maincontent.id + ": " + quarter;
 
-/* https://stackoverflow.com/questions/13152927/how-to-use-radio-on-change-event/25204627 */
+https://stackoverflow.com/questions/13152927/how-to-use-radio-on-change-event/25204627
 
 $(document).ready(function () {
     
@@ -50,7 +50,7 @@ $(document).ready(function () {
             document.querySelector("#nextyear").valueAsDate = month;
         }
     });
-});
+});*/
 
 
 
@@ -110,11 +110,11 @@ modalBtns.forEach(function(btn)
 });
 
 function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("myDropdown").classList.toggle("show"); //ønsker dropdown hos elevvisning
   }
 function myFunction1() {
-    document.getElementById("myDropdown1").classList.toggle("show");
+    document.getElementById("myDropdown1").classList.toggle("show"); //tilmeldte dropdown hos elevvisning
   }
 function myFunction2() {
-    document.getElementById("myDropdown2").classList.toggle("show");
+    document.getElementById("myDropdown2").classList.toggle("show"); //gennemført dropdown hos elevvisning
   }

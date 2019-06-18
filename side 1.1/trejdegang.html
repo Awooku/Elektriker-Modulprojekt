@@ -4,9 +4,11 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
     <meta chartset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrationsværktøj</title>
     <link rel="stylesheet" type="text/css" href="lykkensgang.css">
+    <link rel="stylesheet" href="calendarHTML-Javascript-master/css/kalenderstyle.css" id="stylesheetID">
 </head>
 <body>
   <header>
@@ -80,7 +82,7 @@
                     </form>
                 <hr/>
                 </div>
-                <div>
+                <!--<div>
                     <form>
                         <fieldset>
                             <legend>Datosøgning:</legend>
@@ -91,7 +93,7 @@
                         </fieldset>
                     </form>
                 </div>
-                <hr/>
+                <hr/>-->
                 <div>
                     <form>
                         <fieldset>
@@ -130,7 +132,37 @@
         </div>
     </div>
     <div id="content">
-        <p id="letsgo"></p>
+        <!--object class="showCalendar" data="calendarHTML-Javascript-master/test.html"></object>-->
+        <div>
+            <div id="helekalender"> <!--div der indeholder hele kalenderen-->
+                <h3 id="årstal"></h3> <!--h3 element til at vise hvad årstalet er på på daværende kalendervisning-->
+                <div id="kalender-body"></div> <!--div der indeholder selve kalenderen-->   
+                <script src="calendarHTML-Javascript-master/javascript/kalenderdatascript.js"></script>         
+            </div>
+        </div>
+        <!--<div class="knapper">
+            <button class="månedsskift" id="previous" onclick="previous()">Previous</button> skifter til en tidligere visning
+            <button class="månedsskift" id="next" onclick="next()">Next</button> skifter til næste visning
+            <button class="månedsskift" id="onemonth" onclick="showmonth()">1 Måned</button> gør at kalenderen arbejder i enkle måneder
+            <button class="månedsskift" id="treemonth" onclick="show3()">3 Måneder</button> gør at kalenderen arbejder i flere måneder af gangen
+            <button class="månedsskift" id="wholeyear" onclick="showyear()">1 År</button> gør at vises der vises hele år
+        </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<p id="letsgo"></p>-->
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -237,7 +269,7 @@
             </div>
         </div>
         
-        <div id="myModal3" class="modal1" style="border: 1px solid red">
+        <div id="myModal3" class="modal" style="border: 1px solid red">
             <div class="modal-content1" style="border: 1px solid red">
                 <span class="close">&times;</span>
                 <br>
@@ -473,7 +505,7 @@
                 </div>
             </div>
         </div>
-        <p>The Website!</p>
+        <!--<p>The Website!</p>-->
     </div>
 
     <div id="right">
@@ -482,121 +514,31 @@
                 <fieldset>
                     <legend>Visning</legend>
                     <ul>
-                    <li><label><input type="radio" id="years" name="view"/>Flere år</label></li>
-                    <li><label><input type="radio" id="year" name="view" checked/>Et år</label></li>
-                    <li><label><input type="radio" id="quarter" name="view"/>Kvartal</label></li>
-                    <li><label><input type="radio" id="month" name="view"/>Måned</label></li>
+                    <!--<li><label><input type="radio" id="years" name="view"/>Flere år</label></li>-->
+                    <li><label><input type="radio" id="year" name="view" checked onclick="showyear()"/>Et år</label></li>
+                    <!--<li><label><input type="radio" id="quarter" name="view" onclick="show3()"/>Kvartal</label></li>
+                    <li><label><input type="radio" id="month" name="view"  onclick="showmonth()"/>Måned</label></li>-->
                     </ul>
+                </fieldset>
+            </form>
+        </div>
+        <hr>
+        <div ><br/>
+            <form>
+                <fieldset>
+                    <legend>Tilbage/Frem</legend>
+                    <div class="knapper">
+                        <button type="button" onclick="previous()">Previous</button> <!--skifter til en tidligere visning-->
+                        <button type="button" onclick="next()">Next</button> <!--skifter til næste visning-->
+                    </div>
                 </fieldset>
             </form>
         </div>
         <hr>
     </div>
   </main>
-  <footer>
-        <center>Footer</center>
-  </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-    document.createElement('main');  /* opretter main element til tidligere versioner af IE */
 
-
-var maincontent = document.getElementById('letsgo');
-var today = document.querySelector("#today");
-var nextyear = document.querySelector("#nextyear");
-
-today.valueAsDate;
-nextyear.valueAsDate
-
-var currentdate = new Date();
-var currentyear = currentdate.getFullYear();
-var currentmonth = currentdate.getMonth();
-var currentday = currentdate.getDate();
-
-var years = new Date(currentyear + 3, currentmonth, currentday +1);
-var year = new Date(currentyear + 1, currentmonth, currentday +1);
-var quarter = new Date(currentyear, currentmonth +3, currentday +1);
-var month = new Date(currentyear, currentmonth +1, currentday +1);
-
-document.querySelector("#today").valueAsDate = currentdate;
-document.querySelector("#nextyear").valueAsDate = year;
-
-maincontent.innerHTML = maincontent.id + ": " + quarter;
-
-/* https://stackoverflow.com/questions/13152927/how-to-use-radio-on-change-event/25204627 */
-
-$(document).ready(function () {
-    
-    $('#years').click(function () {
-        if ($(this).is(':checked')) {
-            document.querySelector("#nextyear").valueAsDate = years;
-        }
-    });
-
-    $('#year').click(function () {
-        if ($(this).is(':checked')) {
-            document.querySelector("#nextyear").valueAsDate = year;
-        }
-    });
-
-    $('#quarter').click(function () {
-        if ($(this).is(':checked')) {
-            document.querySelector("#nextyear").valueAsDate = quarter;
-        }
-    });
-
-    $('#month').click(function () {
-        if ($(this).is(':checked')) {
-            document.querySelector("#nextyear").valueAsDate = month;
-        }
-    });
-});
-
-
-
-/*
-
-    function set_mouseover(id) {
-        jQuery('#opreteventinp').val(id);
-    }
-    function set_mouseout(id) {
-        jQuery('#opreteventinp').val(id);
-    }
-    function set_mouseover2(id) {
-        jQuery('#elevhåndteringinp').val(id);
-    }
-    function set_mouseout2(id) {
-        jQuery('#elevhåndteringinp').val(id);
-    }
-    function set_mouseover3(id) {
-        jQuery('#oversigtinp').val(id);
-    }
-    function set_mouseout3(id) {
-        jQuery('#oversigtinp').val(id);
-    }
-*/
-
-var modalBtns = [...document.querySelectorAll(".button")];
-modalBtns.forEach(function(btn){
-btn.onclick = function() {
-var modal = btn.getAttribute('data-modal');
-document.getElementById(modal).style.display = "block";
-}
-});
-
-var closeBtns = [...document.querySelectorAll(".close")];
-closeBtns.forEach(function(btn){
-btn.onclick = function() {
-var modal = btn.closest('.modal');
-modal.style.display = "none";
-}
-});
-
-window.onclick = function(event) {
-  if (event.target.className === "modal") {
-    event.target.style.display = "none";
-  }
-}
-    </script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="thescript.js"></script>
 </body>
 <html>
