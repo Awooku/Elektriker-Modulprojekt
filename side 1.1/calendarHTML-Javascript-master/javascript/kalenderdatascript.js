@@ -263,10 +263,28 @@ function showCalendar(month, year) {
                 var dagcell = document.createElement("th");  //Bruges til at vise datoen
                 var cellText = document.createTextNode(date);
                 cellBox.classList.add("dagbox");
-                dagcell.className = "dageTop";
+                dagcell.classList.add("dageTop");
                 cell.id = currentYear + "-" + (currentMonth + 1) + "-" + date; //Giver cellerne datoen for dagen
+
+                //bruges til at give tableheads'ne en klasse ud fra datoen og gør dem Json venlig
+                if (currentMonth + 1 < 10 && date < 10 && currentMonth + 1  > 0 && date > 0) {
+                    dagcell.classList.add(currentYear + "-0" + (currentMonth + 1) + "-0" + date);
+                }
+                //hvis måned er 1+ eller over og date er mindre end 10
+                else if (currentMonth + 1 >= 10 && date < 10 && date > 0) {
+                    dagcell.classList.add(currentYear + "-" + (currentMonth + 1) + "-0" + date);
+                }
+                //hvis måned er mindre end 10 og dage er 10 eller over
+                else if (currentMonth + 1 < 10 && date >= 10 && currentMonth + 1 > 0) {
+                    dagcell.classList.add(currentYear + "-0" + (currentMonth + 1) + "-" + date);
+                }
+                //hvis både dage og måned er 10 eller over.
+                else {
+                    dagcell.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date);
+                }
+
                 cell.className = "dage"; //Giver cellerne klassen dage
-                tablebody.classList.add(currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et ID ud fra dato
+                tablebody.classList.add("D" + currentYear + "-" + (currentMonth + 1) + "-" + date); //giver celler et ID ud fra dato
                 hrow.appendChild(dagcell);
                 dagcell.appendChild(cellText);
                 row.appendChild(cell); 
@@ -462,7 +480,7 @@ function jsonHandler() {
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
-    //var text[j] = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+    //var text = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
     var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
     var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
@@ -474,6 +492,15 @@ function events() {
         antaldage++;
     }
     antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage
+
+    /*var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
+    var opdeltslutdato = slutdato[E].split("-").map(Number); //laver slutdato fra json filen om til array
+    var antaldage = slutdato[E] - startdato[E]; //beregner hvor meget tid der er mellem start og slut datoen
+    antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
+    if (antaldage - Math.floor(antaldage) == 0) {
+        antaldage++;
+    }
+    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage*/
     
     /*if (!(document.getElementById(obj.startdato))) {
         if (m == 1) {
@@ -542,9 +569,9 @@ function events() {
             }
         }
     }*/
-    startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
+    //startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
     var sM = opdeltdato[2];
-    var datocheck = document.getElementsByClassName(obj.startdato);
+    var datocheck = document.getElementsByClassName("D" + obj.startdato);
 
 
 
@@ -634,7 +661,7 @@ function events() {
                 break;
             }*/
             obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
-            datocheck = document.getElementsByClassName(obj.startdato);
+            datocheck = document.getElementsByClassName("D" + obj.startdato);
             placerevent.appendChild(event);
             event.appendChild(content);
             content.appendChild(titel);
@@ -647,7 +674,7 @@ function events() {
                     var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                     obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
                     opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
-                    datocheck = document.getElementsByClassName(obj.startdato);
+                    datocheck = document.getElementsByClassName("D" + obj.startdato);
                 }
                 //hvis dag 2 ikke findes i en måned skifter den over på dag 3
                 if (datoday == 2 && !(document.getElementById(obj.startdato))) {
@@ -656,7 +683,7 @@ function events() {
                     var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                     obj.startdato = datostring; //erstatter startdatoen i json stringen med den nye dato 
                     opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
-                    datocheck = document.getElementsByClassName(obj.startdato);
+                    datocheck = document.getElementsByClassName("D" + obj.startdato);
                 }
                 
             /*console.log(sM);
@@ -683,5 +710,8 @@ function events() {
         else {
 
         }*/
+        if (antaldage == 0) {
+            E++;
+        }
     }
 }
