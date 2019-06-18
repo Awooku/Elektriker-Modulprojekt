@@ -521,5 +521,11 @@
   </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
     <script src="thescript.js"></script>
+    <script>
+    $("#kalender-body").on("click", "th", function() {
+    // ...
+    alert($(this).attr("id"));
+    });
+    </script>
 </body>
 <html>
