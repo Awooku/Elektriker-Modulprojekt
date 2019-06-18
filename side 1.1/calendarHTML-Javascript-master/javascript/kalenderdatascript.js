@@ -1,6 +1,7 @@
 //<Globals
 var m = 0, k = 0, j = 0, E = 0;
 var today = new Date();
+var jObjA = [], eventID = [], startdato = [], slutdato = [], skoleID = [], modultal = [];
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
@@ -410,24 +411,27 @@ function showmonth() {
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
 
 function jsonHandler() {
-    var jText = '[{"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":6,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
+    var jText = '[{"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"31/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
+    
 
     var jObj = JSON.parse(jText);
 
+    var id = [], startdato = [], slutdato = [], skoleID = [], modultal = [];
+
+
     for (j = 0; j < jObj.length; j++) {
 
-        var jObjA = jObj[j];
-
-        console.log(jObjA[j]);
+        jObjA[j] = jObj[j];
 
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-");
-        var startdato = new Date(newSTDate);
+        startdato[j] = new Date(newSTDate);
     
         var newSLDate = jObj[j].slutdato.split("/").reverse().join("-");
-        var slutdato = new Date(newSLDate);
+        slutdato[j] = new Date(newSLDate);
 
-        var skoleID = jObj[j].skole_id;
-        var modultal = jObj[j].moduldata_id;
+        skoleID[j] = jObj[j].skole_id;
+        modultal[j] = jObj[j].moduldata_id;
+        eventID[j] = jObjA[j].id;
 
         //console.log(j);
         //console.log(startdato);
@@ -435,6 +439,8 @@ function jsonHandler() {
         //console.log(skoleID);
         //console.log(modultal);
     }
+    console.log(eventID[3]);
+    //console.log(lokalID[1])
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
