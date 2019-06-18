@@ -440,7 +440,7 @@ function jsonHandler() {
         //console.log(modultal);
     }
     console.log(eventID[3]);
-    //console.log(lokalID[1])
+    console.log(jObj)
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
