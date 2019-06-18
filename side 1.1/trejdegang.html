@@ -191,7 +191,7 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="5">5</option> 
                             <option value="6">6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
@@ -248,7 +248,8 @@
                 </div>
             </div>
         </div>
-        <div id="myModal2" class="modal" >
+
+        <div id="myModal2" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">&times;</span>
@@ -268,9 +269,9 @@
                 </div>
             </div>
         </div>
-        
-        <div id="myModal3" class="modal" style="border: 1px solid red">
-            <div class="modal-content1" style="border: 1px solid red">
+
+        <div id="myModal3" class="modal" >
+            <div class="modal-content1" >
                 <span class="close">&times;</span>
                 <br>
                 <!-- under opret kan du oprette nye elever-->
@@ -281,15 +282,17 @@
                     <table id="elever">
                         <tr>
                             <tr>
+                                <!-- dette er bare en titel så man kan se hvad det nedeunder det her er-->
                                 <th>Navn</th>
                             </tr>
                             <tr>
-                                <td>Ib</td>
+                                <!-- dette er bare navnet på eleven/elever du du har i din database -->
+                                <td><label id="labels">Ib</label></td>
                                 <!-- når du trykker på vis kommer der detalier om eleven som du har trykket vis på -->
                                 <td style="width: 7%;"><button data-modal="vis" class="button">Vis</button></td>
                             </tr>
                             <tr>
-                                <td>bo</td>
+                                <td><label id="labels">Andreas</label></td>
                                 <td style="width: 7%;"><button data-modal="vis" class="button">Vis</button></td>
                             </tr>
                         </tr>
@@ -300,58 +303,58 @@
                         <div class="modal-content1">
                             <span class="close">&times;</span>
                             <br>
-                            <p> 
-                                <label>CPR: </label>
-                                <input  type="text" name="CPR" >
-                            </p>                            
                             <p>
-                                <label>Navn: </label>
-                                <input  type="text" name="lastname" >
+                                <label id="labels">CPR: </label>
+                                <input style="margin-left: 50%;" type="text" name="CPR" >
                             </p>
                             <p>
-                                <label>Start: </label>
-                                <input  type="datetime-local" name="start" >
+                                <label id="labels">Navn: </label>
+                                <input style="margin-left: 49%;" type="text" name="lastname" >
                             </p>
                             <p>
-                                <label>Slut: </label>
-                                <input  type="datetime-local" name="slut">
-                            </p> 
+                                <label id="labels">Start: </label>
+                                <input style="margin-left: 46%;" type="datetime-local" name="start" >
+                            </p>
+                            <p>
+                                <label id="labels">Slut: </label>
+                                <input style="margin-left: 47%;" type="datetime-local" name="slut">
+                            </p>
                             
                             <button class="button">gem</button>
                             <br>
                         </div>
                     </div>
 
-                        <!-- når du trykker på vis vil disse ting om eleven blive vist -->
+                        <!-- efter du har oprettet en elev kan du trykke på vis så vil vigtige ting om eleven blive vist -->
                     <div id="vis" class="modal">
                         <div class="modal-content1">
                             <span class="close">&times;</span>
                             <br>
-                            <p> 
-                                CPR1
-                                <input style="float: right" type="text" name="CPR" >
-                            </p>                            
                             <p>
-                                Navn1
-                                <input style="float: right" name="lastname" >
+                                <label id="labels">CPR: </label>
+                                <input style="margin-left: 51%;" type="text" name="CPR" >
                             </p>
                             <p>
-                                start1
-                                <input style="float: right" type="datetime" name="start1" >
+                                <label id="labels">Navn: </label>
+                                <input style="margin-left: 50%;" name="lastname" >
                             </p>
                             <p>
-                                slut1
-                                <input style="float: right" type="datetime" name="slut1">
+                                <label id="labels">Start: </label>
+                                <input style="margin-left: 51%;" type="datetime" name="start1" >
                             </p>
                             <p>
-                                svendeprøve
-                                <input style="float: right" name="slut1">
+                                <label id="labels">Slut: </label>
+                                <input style="margin-left: 52%;" type="datetime" name="slut1">
+                            </p>
+                            <p>
+                                <label id="labels">Svendeprøve: </label>
+                                <input style="margin-left: 40%;" name="slut1">
                             </p>
                             
                                 <!-- her kan du se hvilke fag eleven ønsker at få -->
                                 <div class="dropdown">
                                     <label onclick="myFunction()" class="dropbtn">Ønsker &#9661</label>
-                                    <div id="myDropdown" class="dropdown-content4">  
+                                    <div id="myDropdown" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -377,9 +380,9 @@
                                 <hr/>
 
                                 <!-- her kan du se hvilke fag eleven er tilmeldt -->
-                                <div class="dropdown">    
-                                    <label onclick="myFunction1()" class="dropbtn">Tilmedte moduler &#9661</label>                
-                                    <div id="myDropdown1" class="dropdown-content4">  
+                                <div class="dropdown">
+                                    <label onclick="myFunction1()" class="dropbtn">Tilmedte moduler &#9661</label>
+                                    <div id="myDropdown1" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -405,9 +408,9 @@
                                 <hr/>
 
                                 <!-- her kan man se hvilke fag eleven har gennemført -->
-                                <div class="dropdown">                                    
+                                <div class="dropdown">
                                     <label onclick="myFunction2()" class="dropbtn">Gennemført &#9661;</label>
-                                    <div  id="myDropdown2" class="dropdown-content4">  
+                                    <div  id="myDropdown2" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -429,13 +432,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button style="margin-top: 5px;" class="button">gem</button>
-                                <br>
+                                <button style="margin-top: 5px; float: right;" class="button">gem</button>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
 
         <div id="myModal5" class="modal">
             <div class="lokaloversigt-modal">
@@ -459,12 +462,13 @@
                     <input type="date"/>
                     </label>
                     <input type="search"/>
-                    <input type="button" vallue="Søg"/>
+                    <input type="button" value="Søg"/>
                     <div style="border-style: solid; margin-top: 10px; padding-bottom: 300px;">
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="myModal6" class="modal">
             <div class="lokaloversigt-modal">
                 <div class="modal-header">
@@ -537,7 +541,6 @@
         <hr>
     </div>
   </main>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
     <script src="thescript.js"></script>
 </body>

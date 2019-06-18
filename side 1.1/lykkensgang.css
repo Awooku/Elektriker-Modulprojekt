@@ -480,3 +480,8 @@ height: 20px;
 }
 
 .show {display: block;}
+
+#labels {
+    float: left;
+}
+
