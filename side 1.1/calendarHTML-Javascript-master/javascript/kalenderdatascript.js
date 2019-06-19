@@ -8,7 +8,7 @@ var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
-var text = '{"startdato":"2019-4-1", "slutdato":"2019-11-08", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+var text = '{"startdato":"2019-4-1", "slutdato":"2019-11-8", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
 
 //Globals End>
 
@@ -609,7 +609,7 @@ function events() {
                 if (childNr.id == obj.startdato) {
 
                     //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
-                    if (antaldage - ugefylde < ugefylde && !(antaldage > 7)) {
+                    if (antaldage - ugefylde < ugefylde && !(antaldage >= 5)) {
                         document.getElementById(obj.startdato).colSpan = antaldage; //giver colspan i forhold til resterende antaldage
                         datoday = datoday + antaldage - 1;
                         antaldage = 0; //antaldage laves om til 0
