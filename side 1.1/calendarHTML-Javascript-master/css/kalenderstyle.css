@@ -290,7 +290,7 @@ body {
 }
 
 /* 900p */
-@media only screen and (min-width: 1368px) and (max-width: 1441px) {
+@media only screen and (min-width: 1368px) and (max-width: 1601px) {
     /* kalender */
 
     #helekalender, #kalender-body, body {
@@ -368,7 +368,7 @@ body {
 }
 
 /* 1080p standard skærm */
-@media only screen and (min-width: 1442px) and (max-width: 1921px) {
+@media only screen and (min-width: 1602px) and (max-width: 1921px) {
 
     #kalender-body {
         margin: 0px 0px 0px 0px;
