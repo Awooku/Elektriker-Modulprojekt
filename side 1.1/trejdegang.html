@@ -20,7 +20,7 @@
                 <!-- https://www.w3schools.com/howto/howto_css_dropdown.asp -->
                 <div id="navigation">
                     <div id="dropdown">
-                        <input type="button" class="dropbtn" id="opreteventinp" onmouseout="set_mouseout('Opret Event &#9661;')" onmouseover="set_mouseover('Opret Event &#9660;')" value="Opret Event &#9661;"/>
+                        <input type="button" class="dropbtn" id="opreteventinp" class="mDropdown" onmouseover="replaceArrow(this)" onmouseout="replaceArrow(this)" value="Opret Event &#9661;"/>
                         <div class="container">
                             <ul class="dropdown-content">
                                 <ul style="padding: 0; margin: 0;">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div id="dropdown2">
-                        <input type="button" class="dropbtn" id="elevhåndteringinp" onmouseout="set_mouseout2('Elevhåndtering &#9661;')" onmouseover="set_mouseover2('Elevhåndtering &#9660;')"  value="Elevhåndtering &#9661;"/>
+                        <input type="button" class="dropbtn" id="elevhåndteringinp" class="mDropdown" onmouseover="replaceArrow(this)" onmouseout="replaceArrow(this)" value="Elevhåndtering &#9661;"/>
                         <div class="container1">
                             <ul class="dropdown-content">
                                 <li><a role="button" class="button" data-modal="myModal3">Elever</a></li>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div id="dropdown3">
-                        <input type="button" class="dropbtn" id="oversigtinp" onmouseout="set_mouseout3('Oversigt &#9661;')" onmouseover="set_mouseover3('Oversigt &#9660;')"  value="Oversigt &#9661;"/>
+                        <input type="button" class="dropbtn" id="oversigtinp" class="mDropdown" onmouseover="replaceArrow(this)" onmouseout="replaceArrow(this)" value="Oversigt &#9661;"/>
                         <div class="container">
                             <ul class="dropdown-content">
                                 <li><a role="button" class="button" data-modal="myModal5">Lokal oversigt</a></li>
@@ -332,8 +332,8 @@
                             
                                 <!-- her kan du se hvilke fag eleven ønsker at få -->
                                 <div class="dropdown">
-                                    <label onclick="myFunction()" class="dropbtn">Ønsker &#9661</label>
-                                    <div id="myDropdown" class="dropdown-content4">
+                                    <label id="drop1" onclick="showDropdown(this)" class="dropbtn dropD">Ønsker &#9661</label>
+                                    <div id="myDropdown1" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -360,8 +360,8 @@
 
                                 <!-- her kan du se hvilke fag eleven er tilmeldt -->
                                 <div class="dropdown">
-                                    <label onclick="myFunction1()" class="dropbtn">Tilmedte moduler &#9661</label>
-                                    <div id="myDropdown1" class="dropdown-content4">
+                                    <label id="drop2" onclick="showDropdown(this)" class="dropbtn dropD">Tilmedte moduler &#9661</label>
+                                    <div id="myDropdown2" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -388,8 +388,8 @@
 
                                 <!-- her kan man se hvilke fag eleven har gennemført -->
                                 <div class="dropdown">
-                                    <label onclick="myFunction2()" class="dropbtn">Gennemført &#9661;</label>
-                                    <div  id="myDropdown2" class="dropdown-content4">
+                                    <label id="drop3" onclick="showDropdown(this)" class="dropbtn dropD">Gennemført &#9661;</label>
+                                    <div id="myDropdown3" class="dropdown-content4">
                                         <div class="row">
                                         <br>
                                             <fieldset id="kant">
@@ -435,10 +435,10 @@
                         <option>1.5</option>
                     </select>
                     <label>Fra dato:
-                    <input type="date"/>
+                    <input type="date" id="loDateStart"/>
                     </label>
                     <label>Til dato:
-                    <input type="date"/>
+                    <input type="date" id="loDateEnd"/>
                     </label>
                     <input type="search"/>
                     <input type="button" value="Søg"/>
