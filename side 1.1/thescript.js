@@ -142,7 +142,7 @@ function myFunction3() {
 
 function showDropdown(ele) { //gør det samme som ovenover men i en enkelt funktion (viser en dropdown)
     if (document.getElementById(ele.id).nextElementSibling.getAttribute("style") == "display: none;") { //hvis det trykkede elements søskende element har style="display: none;"
-        document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/none/g, "block"); } //erstat none med block
-    else if (document.getElementById(ele.id).nextElementSibling.getAttribute("style") == "display: block;") { //hvis det trykkede elements søskende element har style="display: block;"
-        document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/block/g, "none"); } //erstat block med none
+    document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/none/g, "block"); } //erstat none med block
+    else { //hvis det trykkede elements søskende element ikke har style="display: none;"
+    document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/block/g, "none"); } //erstat block med none
 }
