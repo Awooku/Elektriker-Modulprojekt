@@ -123,10 +123,7 @@ body {
 
 .tomx5, #tomx5, .weekend {
     display: none;
-}  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
-      fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
-      dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!),
-      men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden*/
+}  /* fjerner rækken med ID'en tomx5 fordi en linje i starten af ugen ser ikke så pænt ud.*/
 
 .hideWeek {
     display: none;
@@ -315,18 +312,22 @@ body {
     /* måned */
 
     .månedDivC {
-        width: 261px;
+        width: 286px;
     }
 
     #månedDiv3, #månedDiv7, #månedDiv11{
         padding-right: 2px;
     }
 
+    #månedDiv4, #månedDiv8, #månedDiv12{
+        border-left: 0px;
+    }
+
     /* uge */
 
     .ugeData, .ugeCSS {
         height: 36px;
-        width: 280px;
+        width: 290px;
     }
 
     .ugeCSS, .dagbox {
@@ -336,7 +337,7 @@ body {
     /* enkelt dag */
 
     .ugedag, .dagbox, th.tomdag {
-        width: 51px;
+        width: 56px;
     }
 
     .ugedag {
@@ -345,7 +346,7 @@ body {
 
     .dageTop {
         height: 15px; 
-        width: 49px;
+        width: 54px;
         padding-right: 1px;
     }
 
@@ -358,7 +359,7 @@ body {
     }
 
     .tomdag {
-        width: 52px;
+        width: 57px;
     }
 
     .dage {
@@ -381,11 +382,6 @@ body {
         padding: 2px 3px 4px 3px;
         /*height: 268px;*/
     }
-/*
-    #månedDiv2, #månedDiv6, #månedDiv10 {
-        padding: 2px 3px 4px 3px;
-    }
-*/
 
     #fm1, #fm2, #fm3 {
         margin: 0px 1px 0px 0px;

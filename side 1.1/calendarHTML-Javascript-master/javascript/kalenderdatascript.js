@@ -432,24 +432,24 @@ function showmonth() {
 function jsonHandler() {
     var jText = '[{"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"31/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
-    var jObj = JSON.parse(jText);
+    var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
 
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
     for (j = 0; j < jObj.length; j++) {
 
-        jObjA[j] = jObj[j];
+        jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
 
-        var newSTDate = jObj[j].startdato.split("/").reverse().join("-");
-        startdato[j] = newSTDate;
+        var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, bliver reverset til 2019 12 31 og bliver til 2019-12-31 på join("-")
+        startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
     
-        var newSLDate = jObj[j].slutdato.split("/").reverse().join("-");
+        var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
         slutdato[j] = newSLDate;
 
-        skoleID[j] = jObj[j].skole_id;
-        modultal[j] = jObj[j].moduldata_id;
-        eventID[j] = jObjA[j].id;
+        skoleID[j] = jObj[j].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
+        modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
+        eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
     }
     
     console.log(startdato);
