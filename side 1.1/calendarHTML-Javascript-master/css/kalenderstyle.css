@@ -3,6 +3,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
+    border-spacing: 0px;
     /* overflow: hidden; */
 } /* Standard verdana skrifttype og textstørrelse 13 på hele kalenderen */
 
@@ -24,13 +25,14 @@ body {
     width: 100%;
     margin: 0px;
     padding: 0px;
+    text-align: initial;
 }
     /* år */
     
 #årstal {
     margin: 0px;
     font-size: 25px;
-    text-align: left;
+    text-align: center;
 }
 
 #fm1, #fm2, #fm3 {
@@ -58,6 +60,11 @@ body {
 
     /* uge */
 
+.eventAll {
+    background-color: cyan;
+    font-size: 12px;
+}
+
 .ugeCSS {
     position: absolute;
     min-height: auto;
@@ -65,6 +72,11 @@ body {
 
 .ugeData, .dagbox {
     position: relative;
+}
+
+.eventLinjeBody {
+    height: 0px;
+    border-spacing: initial;
 }
 
     /* enkelt dag */
@@ -76,6 +88,9 @@ body {
 .eventLinje {
     width: 100%;
     position: absolute;
+    padding: 0px;
+    margin: 0px;
+    left: 0px;
 }
     
 .dageTop {
@@ -119,6 +134,10 @@ body {
     height: 2px;
     margin: 0px;
     float: left;
+}
+
+.hide {
+    display: none;
 }
 
 .tomx5, #tomx5, .weekend {
@@ -165,6 +184,11 @@ body {
 
     .ugeData, .ugeCSS {
         height: 26px;
+        width: 100%;
+    }
+
+    .datoVisning {
+        width: 100%;
     }
 
     /* enkelt dag */
@@ -178,7 +202,7 @@ body {
     }
 
     .dageTop {
-        width: 42px;
+        width: 44px;
         height: 10px; 
     }
 
@@ -188,6 +212,7 @@ body {
 
     .række, .datoVisning, .række thead {
         height: 10px;
+        border-spacing: 0px;
     }
 
     .tomdag {
@@ -199,13 +224,33 @@ body {
         font-size: 10px;
     }
 
+    .dageTop {
+        border-spacing: 0px;
+    }
+
     .dage {
-        width: 41px;
+        width: 44px;
         font-size: 8px;
     }
 
-    .eventLinjeBody {
-        height: 0px;
+    :root {
+        --a: 44px;
+    }
+    
+    .eventOneDay {
+        width: var(--a);
+    }
+    .eventTwoDay {
+        width: calc(var(--a) * 2);
+    }
+    .eventThreeDay {
+        width: calc(var(--a) * 3);        
+    }
+    .eventFourDay {
+        width: calc(var(--a) * 4);        
+    }
+    .eventFiveDay {
+        width: calc(var(--a) * 5);
     }
 }
 
@@ -238,9 +283,7 @@ body {
 
     .header {
         font-size: 14px;
-    }
-
-    
+    }    
 
     /* uge */
 
@@ -284,6 +327,28 @@ body {
         width: 45px;
         font-size: 10px;
     }
+
+    /* Events */
+
+    :root {
+        --a: 48px;
+    }
+    
+    .eventOneDay {
+        width: var(--a);
+    }
+    .eventTwoDay {
+        width: calc(var(--a) * 2);
+    }
+    .eventThreeDay {
+        width: calc(var(--a) * 3);        
+    }
+    .eventFourDay {
+        width: calc(var(--a) * 4);        
+    }
+    .eventFiveDay {
+        width: calc(var(--a) * 5);
+    }
 }
 
 /* 900p */
@@ -292,7 +357,7 @@ body {
 
     #helekalender, #kalender-body, body {
         margin: 0px;
-        margin-right: 2px;
+        margin-right: 1px;
         padding: 0px;
     }
 
@@ -364,7 +429,33 @@ body {
 
     .dage {
         font-size: 11px;
-        width: 49px;
+        width: 57px;
+    }
+
+    td.tomdag {
+        width: 57px;
+    }
+
+    /* Events */
+
+    :root {
+        --a: 57px;
+    }
+    
+    .eventOneDay {
+        width: var(--a);
+    }
+    .eventTwoDay {
+        width: calc(var(--a) * 2);
+    }
+    .eventThreeDay {
+        width: calc(var(--a) * 3);        
+    }
+    .eventFourDay {
+        width: calc(var(--a) * 4);        
+    }
+    .eventFiveDay {
+        width: calc(var(--a) * 5);
     }
 }
 
@@ -428,8 +519,26 @@ body {
         width: 66px;
     }
 
-    .eventLinje {
-        left: 0px;
+    /* Events */
+
+    :root {
+        --a: 70px;
+    }
+    
+    .eventOneDay {
+        width: var(--a);
+    }
+    .eventTwoDay {
+        width: calc(var(--a) * 2);
+    }
+    .eventThreeDay {
+        width: calc(var(--a) * 3);        
+    }
+    .eventFourDay {
+        width: calc(var(--a) * 4);        
+    }
+    .eventFiveDay {
+        width: calc(var(--a) * 5);
     }
 }
 
@@ -471,6 +580,24 @@ body {
 
     .dageTop {
         padding: 0px 1px 0px 0px;
+    }
+
+        /* Events */
+
+    .eventOneDay {
+        width: 67px;
+    }
+    .eventTwoDay {
+        
+    }
+    .eventThreeDay {
+        
+    }
+    .eventFourDay {
+        
+    }
+    .eventFiveDay {
+        width: 335px;
     }
 }
 

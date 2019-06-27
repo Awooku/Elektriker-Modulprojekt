@@ -79,7 +79,7 @@ function previous() {
 
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
-function removeWeek(){
+function removeWeek() {
     var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en var som hedder dvCol (datoVisningCollection)
     for (var hw = 0; hw < dvCol.length; hw++){
         if (dvCol[hw].children.length == 0) { //hvis længden på den klasse som for loopet er nået til, er 0 gør dette:
@@ -89,6 +89,26 @@ function removeWeek(){
                 a.remove(); //fjerner .hideWeek
             })
         }  
+    }
+}
+
+function removeDays() { //fjerner .dage klasser som bliver placeret efter events da de skubber til vores event
+    var noEventLinje = document.querySelectorAll(".eventLinje"); //fanger alle elementer som har klassen .eventLinje
+
+    for (var d = 0; d < noEventLinje.length; d++) { //kører igennem hver element som har klassen .eventLinje (kører igennem hver uge)
+        var eventCol = noEventLinje[d].children; //gemmer hver .eventLinje's børn for at se hvilke klasser de har
+
+        for (var d2 = 0; d2 < eventCol.length; d2++) { //kører igennem hver dag der er på ugen
+            if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
+//hvis det element loopet er nået til har én klasse (.dage eller .tomdag), 
+//og den klasse ikke er .tomdag (.dage), 
+//og dets forældreelement første barn ikke er .dage ()
+//og dets forældreelement sidste barn er .dage ()
+//dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
+                eventCol[d2].classList.remove("dage"); //fjern .dage
+                eventCol[d2].classList.add("hide"); //tilføj .hide
+            }
+        }
     }
 }
 
@@ -465,25 +485,12 @@ function jsonHandler() {
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
-    //var text = '{"startdato":"2019-4-1", "slutdato":"2019-10-18", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
-    /*var obj = JSON.parse(text); //gør json fil formatet kan læses i javascriptet
-    var startdato = new Date(obj.startdato); //laver startdatoen fra jsonfilen om til en dato
-    var slutdato = new Date(obj.slutdato); //laver slutdatoen fra jsonfilen om til en dato
-    var opdeltdato = obj.startdato.split("-").map(Number); //laver startdato fra json filen om til array
-    var opdeltslutdato = obj.slutdato.split("-").map(Number); //laver slutdato fra json filen om til array
-    var antaldage = slutdato - startdato; //beregner hvor meget tid der er mellem start og slut datoen
-    antaldage = (antaldage / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
-    if (antaldage - Math.floor(antaldage) == 0) {
-        antaldage++;
-    }
-    antaldage = Math.ceil(antaldage); //afrunder antaldage så der kun er hele dage*/
-    //console.log(obj.startdato);
 
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
     for (j = j; j > E; j--) {
-        console.log(startdato[E]);
+        //console.log(startdato[E]);
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
         slutdate[E] = new Date(slutdato[E]); //laver slutdatoen fra jsonfilen om til en dato
         var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
@@ -494,7 +501,7 @@ function events() {
             antaldage[E]++;
         }
         antaldage[E] = Math.ceil(antaldage[E]); //afrunder antaldage så der kun er hele dage
-        console.log(antaldage[E]);
+        //console.log(antaldage[E]);
         //}
         /*if (!(document.getElementById(startdato[E]))) {
             if (m == 1) {
@@ -601,30 +608,104 @@ function events() {
 
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
-                            document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
+                            //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
+                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            //var testdate = document.getElementById(startdato[E])
+                            //console.log(testdate);
+
+                            
+                            if (antaldage[E] == 1) {
+                                document.getElementById(startdato[E]).classList.add("eventOneDay");
+                            }
+
+                            else if (antaldage[E] == 2) {
+                                document.getElementById(startdato[E]).classList.add("eventTwoDay");
+                            }
+
+                            else if (antaldage[E] == 3) {
+                                document.getElementById(startdato[E]).classList.add("eventThreeDay");
+                            }
+                            
+                            else {
+                                document.getElementById(startdato[E]).classList.add("eventFourDay");
+                            }
+
+                            document.getElementById(startdato[E]).classList.remove("dage");
+                            document.getElementById(startdato[E]).classList.add("dage");                        
+                            
                             datoday = datoday + antaldage[E] - 1;
                             antaldage[E] = 0; //antaldage laves om til 0
                         } 
                         
-                        //hvis den daværende uge i samme måned har 5 dage
+                        //hvis ugen i samme måned har 5 dage
                         else if (ugefylde == 5) {
                             antaldage[E] = antaldage[E] - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
-                            document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
+                            //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
+                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            if (ugefylde - i == 1) {
+
+                                document.getElementById(startdato[E]).classList.add("eventOneDay");
+                            }
+
+                            else if (ugefylde - i == 2) {
+                                document.getElementById(startdato[E]).classList.add("eventTwoDay");
+                            }
+
+                            else if (ugefylde - i == 3) {
+                                document.getElementById(startdato[E]).classList.add("eventThreeDay");
+                            }
+
+                            else if (ugefylde - i == 4) {
+                                document.getElementById(startdato[E]).classList.add("eventFourDay");
+                            }
+                            
+                            else {
+                                document.getElementById(startdato[E]).classList.add("eventFiveDay");
+                            }
+
+                            document.getElementById(startdato[E]).classList.remove("dage");
+                            document.getElementById(startdato[E]).classList.add("dage");
+
                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
                         
-                        //hvis den daværende uge i samme måned ikke har 5 dage, dette bruges til når den sidste uge på måneden stopper midt på ugen for at skifte til næste måned.
+                        //hvis ugen i samme måned ikke har 5 dage, dette bruges når den sidste uge på måneden stopper midt på ugen for at skifte til næste måned.
                         else { 
                             antaldage[E] = antaldage[E] - ugefylde; //antaldage tæller ned
-                            document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
+                            //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
+                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            
+                            if (ugefylde - i == 1) {
+                                document.getElementById(startdato[E]).classList.add("eventOneDay");
+                            }
+
+                            else if (ugefylde - i == 2) {
+                                document.getElementById(startdato[E]).classList.add("eventTwoDay");
+                            }
+
+                            else if (ugefylde - i == 3) {
+                                document.getElementById(startdato[E]).classList.add("eventThreeDay");
+                            }
+                            
+                            else {
+                                document.getElementById(startdato[E]).classList.add("eventFourDay");
+                            }
+                            
+                            document.getElementById(startdato[E]).classList.remove("dage");
+                            document.getElementById(startdato[E]).classList.add("dage");
+                            
                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
 
                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind så den ikke overskriver det nuværende data
-                        datocheck[0].appendChild(nyrække); //sætter den nye række ind i table't
+                        datocheck[0].appendChild(nyrække); //sætter den nye række ind i tabellen
                         break;
                     }
+
+
+
                 }
+                
                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
                     console.log(datoday);
 
@@ -692,4 +773,5 @@ function events() {
             }
         }
     }
+    removeDays();
 }
