@@ -21,7 +21,7 @@ function swapSheet(sheet){
 
 //skift til de næste måneder
 function next() {
-
+    E = 0;
     //Checker om der vises 3 måneder
     if (m == 3) {
         for (var i = 0; i < 3; i++) {
@@ -50,7 +50,7 @@ function next() {
 
 //skift til forige måneder
 function previous() {
-
+    E = 0;
     //Checker om der vises 3 måneder
     if (m == 3) {
         for (var i = 0; i < 3; i++) {
@@ -485,11 +485,15 @@ function jsonHandler() {
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
-
+    var c = 0;
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
     for (j = j; j > E; j--) {
+        c++;
+        if (c == 5) {
+            c = 0;
+        }
         //console.log(startdato[E]);
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
         slutdate[E] = new Date(slutdato[E]); //laver slutdatoen fra jsonfilen om til en dato
@@ -609,7 +613,7 @@ function events() {
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
-                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             //var testdate = document.getElementById(startdato[E])
                             //console.log(testdate);
 
@@ -641,7 +645,7 @@ function events() {
                         else if (ugefylde == 5) {
                             antaldage[E] = antaldage[E] - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
-                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             if (ugefylde - i == 1) {
 
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
@@ -673,7 +677,7 @@ function events() {
                         else { 
                             antaldage[E] = antaldage[E] - ugefylde; //antaldage tæller ned
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
-                            document.getElementById(startdato[E]).classList.add("eventAll");
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             
                             if (ugefylde - i == 1) {
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
