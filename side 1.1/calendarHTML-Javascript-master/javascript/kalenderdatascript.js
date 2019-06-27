@@ -454,6 +454,13 @@ function jsonHandler() {
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
 
+   /*function datesort(a, b) {
+        return new Date(a.startdato).getTime() - new Date(b.startdato).getTime();
+    }
+    console.log(jObj);
+    console.log(jObj.sort(datesort));*/
+
+
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
@@ -472,7 +479,6 @@ function jsonHandler() {
         modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
         eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
     }
-    //console.log(startdato);
     //console.log(lokalID[1])
 }
 
@@ -483,7 +489,6 @@ function events() {
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
-    //console.log(j);
     for (j = j; j > E; j--) {
         //console.log(startdato[E]);
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
@@ -751,20 +756,6 @@ function events() {
                         opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
                         datocheck = document.getElementsByClassName("D" + startdato[E]);
                     }
-                    
-                /*console.log(sM);
-                console.log(datoday);
-                console.log(sM < datoday && antaldage[E] == 0);*/
-                //console.log(antaldage[E]);
-                //console.log(startdato[E]);
-                
-                /*if (sM < datoday && antaldage[E] == 0) {
-                    document.getElementById(startdato[E]).appendChild(event);
-                    event.appendChild(content);
-                    content.appendChild(titel);
-                    titel.appendChild(titelindhold);
-                    document.getElementById(startdato[E]).colSpan = 1;
-                }*/
 
                 sM = opdeltdato[2];
         }       
