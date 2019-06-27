@@ -450,7 +450,13 @@ function showmonth() {
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
 
 function jsonHandler() {
-    var jText = '[{"id":5,"pladser":30,"startdato":"31/05/2019","slutdato":"25/12/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"31/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
+    var jText = '[{"id":5,"pladser":30,"startdato":"31/10/2019","slutdato":"25/12/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
+                '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"31/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
 
@@ -489,11 +495,17 @@ function events() {
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
-    for (j = j; j > E; j--) {
+    for (j = j; j > 0; j--) {
+
+        //console.log(E);
+
         c++;
-        if (c == 5) {
+        if (c == 5 ) {
+            //console.log(c);
             c = 0;
+
         }
+
         //console.log(startdato[E]);
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
         slutdate[E] = new Date(slutdato[E]); //laver slutdatoen fra jsonfilen om til en dato
@@ -762,7 +774,7 @@ function events() {
                     }
 
                 sM = opdeltdato[2];
-        }       
+            }       
 
             else if (datocheck[0].rows.length <= 2) {
 
@@ -771,7 +783,7 @@ function events() {
             /*else {
 
             }*/
-            
+            console.log(antaldage[E]);
             if (antaldage[E] == 0) {
                 E++;
             }
