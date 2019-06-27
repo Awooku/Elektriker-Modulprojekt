@@ -438,7 +438,7 @@ function jsonHandler() {
         return new Date(a.startdato).getTime() - new Date(b.startdato).getTime();
     }
     console.log(jObj);
-    console.log(jObj.sort(datesort));*/
+    jObj.sort(datesort);*/
 
 
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
