@@ -499,12 +499,10 @@ function events() {
         c++;
         //console.log(c);
         if (c == 5) {
-            console.log(E);
             c = 0;
 
         }
 
-        //console.log(startdato[E]);
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
         slutdate[E] = new Date(slutdato[E]); //laver slutdatoen fra jsonfilen om til en dato
         var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
@@ -589,6 +587,7 @@ function events() {
         //hvis der findes et element med en klasse som er det samme som datocheck
             
         //så længe at antal dage er over nul
+        //console.log(antaldage[E]);
         while (antaldage[E] > 0) {
             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned. 
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
@@ -596,13 +595,9 @@ function events() {
                 break;
             }
 
-            //hvis der pluselig ikke findes et element med klassen som er ens med datocheck (f.eks. når antaldage overstiger de vidste dage på et år)
-            /*if (!(datocheck[0])) {
-                break;
-            }*/
-
             //checker om der kun er en row så den kan indsætte dataen der
             else if (datocheck[0].rows.length == 1) {
+                //console.log(antaldage[E]);
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
                 var placerevent = document.getElementById(startdato[E]); //bruges til at finde dagen med id'et som er det samme som startdato[E]
                 var event = document.createElement("a"); 
@@ -616,17 +611,14 @@ function events() {
                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
-
                     //hvis der er lavet en celle som har et id der matcher med startdato[E]
+                    console.log(childNr.id);
                     if (childNr.id == startdato[E]) {
-
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             //var testdate = document.getElementById(startdato[E])
-                            //console.log(testdate);
-
                             
                             if (antaldage[E] == 1) {
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
@@ -716,8 +708,6 @@ function events() {
                         break;
                     }
 
-
-
                 }
                 
                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
@@ -739,12 +729,12 @@ function events() {
                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
                 
-                
                 /*//FIX
                 if (datomonth >= opdeltslutdato[1] && datoday > opdeltslutdato[2]) {
                     //console.log("kage");
                     break;
                 }*/
+
                 startdato[E] = datostring; //erstatter startdatoen i json stringen med den nye dato 
                 datocheck = document.getElementsByClassName("D" + startdato[E]);
                 placerevent.appendChild(event);
@@ -781,10 +771,11 @@ function events() {
             /*else {
 
             }*/
-            console.log(antaldage[E]);
-            if (antaldage[E] == 0) {
-                E++;
-            }
+
+        }
+        //console.log(antaldage[E]);
+        if (antaldage[E] == 0) {
+            E++;
         }
     }
     removeDays();
