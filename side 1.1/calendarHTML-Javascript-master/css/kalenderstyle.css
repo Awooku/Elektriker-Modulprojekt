@@ -61,33 +61,58 @@ body {
     /* uge */
 
 .eventAll1 {
-    background-color: #80FFD7;
+    background-color: rgba(128, 255, 215, 1);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll2 {
-    background-color: #81DAEB;
+    background-color: rgba(129, 218, 235, 1);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll3 {
-    background-color: #8BB9FF;
+    background-color: rgb(139, 185, 255, 1);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll4 {
-    background-color: #8883EB;
+    background-color: rgb(136, 131, 235, 1);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll5 {
-    background-color: #C58AFF;
+    background-color: rgb(180, 66, 255, 1);
     font-size: 12px;
     border-radius: 3px;
+}
+
+.eventAll1:hover {
+    transition: 0.4s;
+    background-color: rgba(128, 255, 215, 0.6);
+}
+
+.eventAll2:hover {
+    background-color: rgba(129, 218, 235, 0.6);
+    transition: 0.4s;
+}
+
+.eventAll3:hover {
+    background-color: rgb(139, 185, 255, 0.6);
+    transition: 0.4s;
+}
+
+.eventAll4:hover {
+    background-color: rgb(136, 131, 235, 0.6);
+    transition: 0.4s;
+}
+
+.eventAll5:hover {
+    background-color: rgb(180, 66, 255, 0.6);
+    transition: 0.4s;
 }
 
 .ugeCSS {
@@ -110,15 +135,34 @@ body {
     padding: 0;
 }
 
+.dageTop:hover {
+    transition: 0.4s;
+    border-radius: 3px;
+    background-color: lightgray;
+}
+
 .eventLinje {
     --e: 100%;
 
     width: 100%;
     position: absolute;
-    padding: 0px;
-    margin: 0px;
-    left: 1px;
-    right: 1px;
+    margin: 0px 3px 0px 3px
+}
+
+.eventOneDay {
+    width: calc(var(--a) - 1px);
+}
+.eventTwoDay {
+    width: calc(var(--a) * 2);
+}
+.eventThreeDay {
+    width: calc(var(--a) * 3 - 2px);        
+}
+.eventFourDay {
+    width: calc(var(--a) * 4 - 3px);        
+}
+.eventFiveDay {
+    width: calc(var(--a) * 5);
 }
     
 .dageTop {
@@ -177,7 +221,7 @@ body {
     height: 0px;
 }
 
-/* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
+/* 720p */
 @media only screen and (min-width: 920px) and (max-width: 1281px) {
     /* kalender */
 
@@ -262,23 +306,23 @@ body {
     }
 
     :root {
-        --a: 44px;
+        --a: 43px;
     }
     
     .eventOneDay {
-        width: calc(var(--a) - 1px);
+        width: calc(var(--a) - 4px);
     }
     .eventTwoDay {
-        width: calc(var(--a) * 2 - 1px);
+        width: calc(var(--a) * 2);
     }
     .eventThreeDay {
-        width: calc(var(--a) * 3 - 1px);        
+        width: calc(var(--a) * 3);        
     }
     .eventFourDay {
         width: calc(var(--a) * 4 - 1px);        
     }
     .eventFiveDay {
-        width: calc(var(--a) * 5 - 1px);
+        width: calc(var(--a) * 5);
     }
 }
 
@@ -352,7 +396,7 @@ body {
     }
 
     .dage {
-        width: 45px;
+        width: 48px;
         font-size: 9px;
     }
 
@@ -361,21 +405,25 @@ body {
     :root {
         --a: 48px;
     }
+
+    .eventLinje {
+        margin: 0px 1px 0px 1px;
+    }
     
     .eventOneDay {
-        width: calc(var(--a) - 1px);
+        width: calc(var(--a) - 4px);
     }
     .eventTwoDay {
-        width: calc(var(--a) * 2 - 1px);
+        width: calc(var(--a) * 2 - 3px);
     }
     .eventThreeDay {
-        width: calc(var(--a) * 3 - 1px);        
+        width: calc(var(--a) * 3 - 3px);        
     }
     .eventFourDay {
-        width: calc(var(--a) * 4 - 1px);        
+        width: calc(var(--a) * 4 - 4px);        
     }
     .eventFiveDay {
-        width: calc(var(--a) * 5 - 1px);
+        width: calc(var(--a) * 5 - 4px);
     }
 }
 
@@ -473,21 +521,25 @@ body {
     :root {
         --a: 57px;
     }
+
+    .eventLinje {
+        margin: 0px 1px 0px 1px;
+    }
     
     .eventOneDay {
-        width: var(--a);
+        width: calc(var(--a) - 4px);
     }
     .eventTwoDay {
-        width: calc(var(--a) * 2);
+        width: calc(var(--a) * 2 - 5px);
     }
     .eventThreeDay {
-        width: calc(var(--a) * 3 - 1px);        
+        width: calc(var(--a) * 3 - 5px);        
     }
     .eventFourDay {
-        width: calc(var(--a) * 4 - 1px);        
+        width: calc(var(--a) * 4 - 5px);        
     }
     .eventFiveDay {
-        width: calc(var(--a) * 5);
+        width: calc(var(--a) * 5 - 5px);
     }
 }
 
@@ -534,6 +586,12 @@ body {
         height: 44px;
     }
 
+    .ugedag {
+        width: 68.6px;
+        margin: 0px;
+        padding: 0px;
+    }
+
     .tomdag {
         width: 69.6px;
     }
@@ -543,7 +601,7 @@ body {
     }
 
     .dage {
-        width: 72px;
+        width: 70px;
         border-spacing: 0px;
     }
 
@@ -561,21 +619,25 @@ body {
     :root {
         --a: 70px;
     }
+
+    .eventLinje {
+        margin: 0px 1px 0px 1px;
+    }
     
     .eventOneDay {
-        width: calc(var(--a) + 1px);
+        width: calc(var(--a) - 5px);
     }
     .eventTwoDay {
-        width: calc(var(--a) * 2);
+        width: calc(var(--a) * 2 - 6px);
     }
     .eventThreeDay {
-        width: calc(var(--a) * 3 - 2px);        
+        width: calc(var(--a) * 3 - 6px);        
     }
     .eventFourDay {
-        width: calc(var(--a) * 4 - 3px);        
+        width: calc(var(--a) * 4 - 6px);        
     }
     .eventFiveDay {
-        width: calc(var(--a) * 5);
+        width: calc(var(--a) * 5 - 6px);
     }
 }
 

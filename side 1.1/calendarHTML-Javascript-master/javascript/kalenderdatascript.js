@@ -451,7 +451,7 @@ function showmonth() {
 
 function jsonHandler() {
     var jText = '[{"id":5,"pladser":30,"startdato":"31/10/2019","slutdato":"25/12/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"07/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
@@ -644,10 +644,7 @@ function events() {
                             
                             else {
                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-                            }
-
-                            document.getElementById(startdato[E]).classList.remove("dage");
-                            document.getElementById(startdato[E]).classList.add("dage");                        
+                            }                       
                             
                             datoday = datoday + antaldage[E] - 1;
                             antaldage[E] = 0; //antaldage laves om til 0
@@ -679,9 +676,6 @@ function events() {
                                 document.getElementById(startdato[E]).classList.add("eventFiveDay");
                             }
 
-                            document.getElementById(startdato[E]).classList.remove("dage");
-                            document.getElementById(startdato[E]).classList.add("dage");
-
                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
                         
@@ -705,10 +699,7 @@ function events() {
                             
                             else {
                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-                            }
-                            
-                            document.getElementById(startdato[E]).classList.remove("dage");
-                            document.getElementById(startdato[E]).classList.add("dage");
+                            }                        
                             
                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
@@ -785,6 +776,7 @@ function events() {
             }*/
             console.log(antaldage[E]);
             if (antaldage[E] == 0) {
+
                 E++;
             }
         }
