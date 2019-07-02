@@ -1,6 +1,5 @@
 document.createElement('main');  /* opretter main element til tidligere versioner af IE */
 
-
 var maincontent = document.getElementById('myModal');/*
 var today = document.querySelector("#today");
 var nextyear = document.querySelector("#nextyear");
@@ -52,29 +51,50 @@ $(document).ready(function () {
     });
 });*/
 
-
+/*
+function set_mouseover1(id) {   //18 linjer
+    jQuery('#opreteventinp').val(id);
+}
+function set_mouseout1(id) {
+    jQuery('#opreteventinp').val(id);
+}
+function set_mouseover2(id) {
+    jQuery('#elevhåndteringinp').val(id);
+}
+function set_mouseout2(id) {
+    jQuery('#elevhåndteringinp').val(id);
+}
+function set_mouseover3(id) {
+    jQuery('#oversigtinp').val(id);
+}
+function set_mouseout3(id) {
+    jQuery('#oversigtinp').val(id);
+}
+*/
 
 /*
-
-    function set_mouseover(id) {
-        jQuery('#opreteventinp').val(id);
+function replaceArrow(el) { //erstatter de 6 funktioner ovenover med en enkelt funktion som kan gøre det samme som alle funktionerne ovenover kan, uden at gentage kode, på mindre plads. 14 linjer
+    var valueofdrop = el.getAttribute('value');                 //finder det elements value som man har trykket på
+    var n = valueofdrop.includes("▽");                          //finder ud af om den value man lige har fået inkluderer ▽
+    if (n == true) {                                            //hvis n inkluderer ▽ 
+        var newvalueofdrop = valueofdrop.replace(/▽/g, "▼");    //erstatter ▽ med ▼
+        var s = document.getElementById(el.id);                 //finder ID på det element man har trykket på
+        s.value = newvalueofdrop;                               //erstatter den gamle value (▽) med den nye value (▼)
     }
-    function set_mouseout(id) {
-        jQuery('#opreteventinp').val(id);
+    else {                                                      //hvis n ikke inkluderer ▽
+        var newvalueofdrop = valueofdrop.replace(/▼/g, "▽");    //erstatter  ▼ med ▽
+        var s = document.getElementById(el.id);                 //finder ID på det element man har trykket på
+        s.value = newvalueofdrop;                               //erstatter den gamle value (▼) med den nye value (▽)
     }
-    function set_mouseover2(id) {
-        jQuery('#elevhåndteringinp').val(id);
-    }
-    function set_mouseout2(id) {
-        jQuery('#elevhåndteringinp').val(id);
-    }
-    function set_mouseover3(id) {
-        jQuery('#oversigtinp').val(id);
-    }
-    function set_mouseout3(id) {
-        jQuery('#oversigtinp').val(id);
-    }
+}
 */
+
+function replaceArrow(el) { //gør den kode ovenover grimmere men kortere. 6 linjer                   
+    if (el.getAttribute('value').includes("▽") == true) { //hvis det elements value man har trykket på inkluderer ▽
+        document.getElementById(el.id).value = el.getAttribute('value').replace(/▽/g, "▼"); }//erstat ▽ med ▼    
+    else { //hvis det elements value man har trykket på ikke inkluderer ▽
+        document.getElementById(el.id).value = el.getAttribute('value').replace(/▼/g, "▽"); }//erstat ▼ med ▽               
+}
 
 var modalBtns = [...document.querySelectorAll(".button")];
 modalBtns.forEach(function(btn){
@@ -98,7 +118,6 @@ window.onclick = function(event) {
   }
 }
 
-
 var modalBtns = [...document.querySelectorAll(".opret")];
 modalBtns.forEach(function(btn)
 {
@@ -109,12 +128,21 @@ modalBtns.forEach(function(btn)
     }
 });
 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show"); //ønsker dropdown hos elevvisning
-  }
+/*
 function myFunction1() {
-    document.getElementById("myDropdown1").classList.toggle("show"); //tilmeldte dropdown hos elevvisning
-  }
+    document.getElementById("myDropdown1").classList.toggle("show"); //ønsker dropdown hos elevvisning
+}
 function myFunction2() {
-    document.getElementById("myDropdown2").classList.toggle("show"); //gennemført dropdown hos elevvisning
-  }
+    document.getElementById("myDropdown2").classList.toggle("show"); //tilmeldte dropdown hos elevvisning
+}
+function myFunction3() {
+    document.getElementById("myDropdown3").classList.toggle("show"); //gennemført dropdown hos elevvisning
+}
+*/
+
+function showDropdown(ele) { //gør det samme som ovenover men i en enkelt funktion (viser en dropdown)
+    if (document.getElementById(ele.id).nextElementSibling.getAttribute("style") == "display: none;") { //hvis det trykkede elements søskende element har style="display: none;"
+    document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/none/g, "block"); } //erstat none med block
+    else { //hvis det trykkede elements søskende element ikke har style="display: none;"
+    document.getElementById(ele.id).nextElementSibling.style = document.getElementById(ele.id).nextElementSibling.getAttribute("style").replace(/block/g, "none"); } //erstat block med none
+}

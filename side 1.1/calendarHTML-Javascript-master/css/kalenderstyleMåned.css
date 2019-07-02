@@ -126,9 +126,7 @@
 }  /* fjerner rækken med ID'en tomx5 fordi den er irriterende at kigge på og jeg hader den.
       fordi vi ikke gider at kigge på en hel tom linje bare fordi måneden starter i weekenden. 
       dette er et problem fordi hele ugen er nødt til at blive genereret (inklusiv weekenden!),
-      men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden medmindre du er ond*/
-
-/* jeg har givet op på scaleable, prøver @media i stedet */
+      men vi har valgt ikke at vise lørdag og søndag da der er ikke er undervisning i weekenden*/
 
 /* 720p, venligst få dig en ny skærm hvis du uironisk bruger 720p */
 @media only screen and (min-width: 1px) and (max-width: 1005px) {
