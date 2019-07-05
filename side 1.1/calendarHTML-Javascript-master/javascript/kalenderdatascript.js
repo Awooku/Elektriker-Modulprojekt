@@ -579,7 +579,10 @@ function events() {
         while (antaldage[E] > 0) {
             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned. 
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
-                //FIX
+                console.log("kage");
+                console.log(antaldage[E]);
+
+                //FIX!
                 break;
             }
 
@@ -658,7 +661,6 @@ function events() {
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             if (ugefylde - i == 1) {
-
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
                             }
 
@@ -680,7 +682,6 @@ function events() {
 
                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
-                        
                         //hvis ugen i samme måned ikke har 5 dage, dette bruges når den sidste uge på måneden stopper midt på ugen for at skifte til næste måned.
                         else { 
                             antaldage[E] = antaldage[E] - (ugefylde - i); //antaldage tæller ned
@@ -766,6 +767,7 @@ function events() {
             }       
 
             else if (datocheck[0].rows.length <= 2) {
+
             }
 
             /*else {
