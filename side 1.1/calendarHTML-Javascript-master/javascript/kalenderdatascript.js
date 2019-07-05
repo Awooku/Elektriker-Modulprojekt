@@ -451,21 +451,20 @@ function showmonth() {
 
 function jsonHandler() {
     var jText = '[{"id":5,"pladser":30,"startdato":"31/10/2019","slutdato":"25/12/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"016/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":6,"pladser":30,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"28/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"30/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"30/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
 
-   /*function datesort(a, b) {
+    /*function datesort(a, b) {
         return new Date(a.startdato).getTime() - new Date(b.startdato).getTime();
     }
     console.log(jObj);
     jObj.sort(datesort);*/
-
 
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
@@ -498,7 +497,6 @@ function events() {
         c++;
         if (c == 5) {
             c = 0;
-
         }
 
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
@@ -608,14 +606,14 @@ function events() {
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
                     //hvis der er lavet en celle som har et id der matcher med startdato[E]
-                    console.log(childNr.id);
+                    //console.log(childNr.id);
                     if (childNr.id == startdato[E]) {
-                        console.log(antaldage[E]);
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
+                        console.log(antaldage[E]);
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
-                            //var testdate = document.getElementById(startdato[E])
+                            //var testdate = document.getElementById(startdato[E]);
                             if (antaldage[E] == 1) {
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
                             }
@@ -635,6 +633,34 @@ function events() {
                             datoday = datoday + antaldage[E] - 1;
                             antaldage[E] = 0; //antaldage laves om til 0
                         } 
+                        else if (ugefylde == 5 && antaldage[E] == 5) {
+                            console.log("Kage");
+                            antaldage[E] = antaldage[E] - (ugefylde-i); //ugespan tæller ned i forhold til ugen
+                            //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
+                            if (ugefylde - i == 1) {
+
+                                document.getElementById(startdato[E]).classList.add("eventOneDay");
+                            }
+
+                            else if (ugefylde - i == 2) {
+                                document.getElementById(startdato[E]).classList.add("eventTwoDay");
+                            }
+
+                            else if (ugefylde - i == 3) {
+                                document.getElementById(startdato[E]).classList.add("eventThreeDay");
+                            }
+
+                            else if (ugefylde - i == 4) {
+                                document.getElementById(startdato[E]).classList.add("eventFourDay");
+                            }
+                            
+                            else {
+                                document.getElementById(startdato[E]).classList.add("eventFiveDay");
+                            }
+
+                            datoday = datoday + (ugefylde-i); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
+                        }
                         //hvis ugen i samme måned har 5 dage
                         else if (ugefylde == 5) {
                             antaldage[E] = antaldage[E] - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
@@ -749,13 +775,12 @@ function events() {
             }       
 
             else if (datocheck[0].rows.length <= 2) {
-
             }
 
             /*else {
 
             }*/
-
+            console.log(childNr.id);
         }
         if (antaldage[E] == 0) {
             E++;
