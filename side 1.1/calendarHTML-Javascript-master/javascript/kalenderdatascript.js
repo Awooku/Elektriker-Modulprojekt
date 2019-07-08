@@ -8,7 +8,7 @@ var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
-//var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
 
 //Globals End>
 
@@ -461,6 +461,12 @@ function jsonHandler() {
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
+    if (text.length > 0) {
+        /*for (t = 0; t < text.length; t++) {
+
+        }*/
+    }
+
     //Loopet kører igennem for hvert modul der bliver sendt igennem
     for (j = 0; j < jObj.length; j++) {
 
@@ -477,9 +483,6 @@ function jsonHandler() {
         modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
         eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
     }
-    /*for (t = 0; t < text.length; t++) {
-
-    }*/
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
