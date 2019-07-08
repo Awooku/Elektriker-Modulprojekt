@@ -1,5 +1,5 @@
 //<Globals
-var m = 0, k = 0, j = 0, E = 0;
+var m = 0, k = 0, j = 0, t = 0, E = 0;
 var today = new Date();
 var jObjA = [], eventID = [], startdato = [], slutdato = [], skoleID = [], modultal = [];
 var currentMonth = today.getMonth();
@@ -8,7 +8,7 @@ var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
-var text = '{"startdato":"2019-4-1", "slutdato":"2019-11-8", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+//var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
 
 //Globals End>
 
@@ -477,6 +477,9 @@ function jsonHandler() {
         modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
         eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
     }
+    /*for (t = 0; t < text.length; t++) {
+
+    }*/
 }
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
@@ -486,7 +489,7 @@ function events() {
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
-    for (j = j; j > 0; j--) {
+    for (var J = j; J > 0; J--) {
         c++;
         if (c == 5) {
             c = 0;
@@ -502,7 +505,6 @@ function events() {
             antaldage[E]++;
         }
         antaldage[E] = Math.ceil(antaldage[E]); //afrunder antaldage så der kun er hele dage
-        //console.log(antaldage[E]);
         //}
         /*if (!(document.getElementById(startdato[E]))) {
             if (m == 1) {
@@ -577,11 +579,19 @@ function events() {
             
         //så længe at antal dage er over nul
         while (antaldage[E] > 0) {
-            //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned. 
+            //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned.
+            //console.log(datocheck);
+
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
                 console.log("kage");
                 console.log(antaldage[E]);
+                console.log(startdato[E]);
+                startdato[E] = (currentYear + 1) + "-1-" + "1"; //erstatter startdatoen fra json stringen med den nye dato 
 
+                console.log(startdato[E]);
+                antaldage[E]++;
+                datocheck = document.getElementsByClassName("D" + startdato[E]);
+                console.log(datocheck);
                 //FIX!
                 break;
             }
@@ -593,7 +603,7 @@ function events() {
                 var event = document.createElement("a"); 
                 var content = document.createElement("div");
                 var titel = document.createElement("span"); 
-                var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksten som er modulnr og den skoles inicialer som modulet tilhører
+                var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksts som består af modulnr og skolens inicialer som modulet tilhører
                 var datoday = opdeltdato[2]; //vælger dagen fra opdeltdato
                 var datomonth = opdeltdato[1]; //vælger måneden fra opdeltdato
                 var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate(); //beregner hvor mange dage der er i daværende måned
@@ -737,7 +747,7 @@ function events() {
                     break;
                 }*/
 
-                startdato[E] = datostring; //erstatter startdatoen i json stringen med den nye dato 
+                startdato[E] = datostring; //erstatter startdatoen fra json stringen med den nye dato 
                 datocheck = document.getElementsByClassName("D" + startdato[E]);
                 placerevent.appendChild(event);
                 event.appendChild(content);
