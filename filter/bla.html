@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input id="search" type="text" onkeyup="searchfilter()"/>
+    <br>
+
+    <fieldset>
+        <legend>Region:</legend>
+        <ul id="region" list="moduler" checked="regionsfilter()">
+            <input type="checkbox" value="Hovedstaden">Region Hovedstaden
+            <option value="Sjælland">Region Sjælland</option>
+            <option value="Syddanmark">Region Syddanmark</option>
+            <option value="Midtjylland">Region Midtjylland</option>
+            <option value="Nordjylland">Region Nordjylland</option>
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Modulsøgning:</legend>
+        <ul>
+            <select id="modul" type="text" list="moduler" onchange="modulfilter()">
+                <option>-- Vælg Modul --</option>
+                <option value="1.1">1</option>
+                <option value="1.2">2</option>
+                <option value="1.3">3</option>
+                <option value="1.4">4</option>
+            </select>
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Skolesøgning:</legend>
+        <ul>
+            <select id="menu" type="text" list="moduler" onchange="skolefilter()">
+                <option>-- Vælg skole --</option>
+                <option value="skole1">1</option>
+                <option value="skole2">2</option>
+                <option value="skole3">3</option>
+                <option value="skole4">4</option>
+            </select>
+        </ul>
+    </fieldset>
+
+    <span id="jsoncontainer">
+
+    </span>
+    <div id="placeholder">   
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
