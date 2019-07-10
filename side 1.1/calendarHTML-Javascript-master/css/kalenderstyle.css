@@ -73,19 +73,19 @@ body {
 }
 
 .eventAll3 {
-    background-color: rgb(136, 131, 235, 1);
+    background-color: rgba(152, 148, 224);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll4 {
-    background-color: rgb(139, 185, 255, 1);
+    background-color: rgba(139, 185, 255, 1);
     font-size: 12px;
     border-radius: 3px;
 }
 
 .eventAll0 {
-    background-color: rgb(180, 66, 255, 1);
+    background-color: rgba(217, 160, 255);
     font-size: 12px;
     border-radius: 3px;
 }
@@ -101,17 +101,22 @@ body {
 }
 
 .eventAll3:hover {
-    background-color: rgb(139, 185, 255, 0.6);
+    background-color: rgba(152, 148, 224, 0.6);
     transition: 0.4s;
 }
 
 .eventAll4:hover {
-    background-color: rgb(136, 131, 235, 0.6);
+    background-color: rgba(139, 185, 255, 0.6);
     transition: 0.4s;
 }
 
 .eventAll5:hover {
-    background-color: rgb(180, 66, 255, 0.6);
+    background-color: rgba(180, 66, 255, 0.6);
+    transition: 0.4s;
+}
+
+.eventAll0:hover {
+    background-color: rgba(217, 160, 255, 0.6);
     transition: 0.4s;
 }
 
