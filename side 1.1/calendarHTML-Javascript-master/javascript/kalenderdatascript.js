@@ -498,6 +498,22 @@ function jsonHandler() {
     text = [];
 }
 
+function displayJSON(e) { //viser information fra JSON objekt ud fra eventID
+    var tdIDeventID = e.firstElementChild.className; //finder placerevents oldebarns klassenavn
+    var aIDSplit = tdIDeventID.split("eventID"); //splitter på eventID så kun tallet er tilbage
+    var IDSplit = parseInt(aIDSplit[1]); //aIDSplit er et array, her bliver den anden del [1] lavet om til en int og gemt i IDSplit    
+
+    if (eventID.indexOf(IDSplit) != -1) { //hvis IDSplit findes i eventID
+        for (var i = 0; i < eventID.length; i++) {
+            if (eventID[i] == IDSplit) { //hvis IDSplit er det samme som det eventID loopet er nået til
+                //dette skal en eller anden dag aktivere en pop op som viser data fra det event du har trykket på
+                console.log(jObjA[i]);
+                return(jObjA[i]);
+            }
+        }
+    }
+}
+
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
@@ -612,11 +628,10 @@ function events() {
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
                 var placerevent = document.getElementById(startdato[E]); //bruges til at finde dagen med id'et som er det samme som startdato[E]
                 var titel = document.createElement("span"); 
-                var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksts som består af modulnr og skolens inicialer som modulet tilhører
+                var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksts som består af modulnr og skolens initialer som modulet tilhører
                 var datoday = opdeltdato[2]; //vælger dagen fra opdeltdato
                 var datomonth = opdeltdato[1]; //vælger måneden fra opdeltdato
-                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate(); //beregner hvor mange dage der er i daværende måned
-                
+                var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate(); //beregner hvor mange dage der er i daværende måned                
                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
@@ -755,10 +770,15 @@ function events() {
                     break;
                 }*/
 
+
+
                 startdato[E] = datostring; //erstatter startdatoen fra json stringen med den nye dato 
                 datocheck = document.getElementsByClassName("D" + startdato[E]);
+                placerevent.onclick = function(){displayJSON(this)}; //giver placerevent en "onclick" funktion som kalder på displayJSON
                 placerevent.appendChild(titel);
                 titel.appendChild(titelindhold);
+                //debugger;
+                titel.classList.add("eventID" + eventID[E]);
 
                     //hvis dag 1 ikke findes i en måned skifter den over på dag 2
                     if (datoday == 1 && !(document.getElementById(startdato[E]))) {
