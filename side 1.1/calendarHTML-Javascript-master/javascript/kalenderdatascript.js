@@ -345,8 +345,6 @@ function showCalendar(month, year) {
 
 }
 
-
-
 //---------------------------------------------------------------------------Kalender Form---------------------------------------------------------------------------->
 
 function show3() {
@@ -450,6 +448,7 @@ function showmonth() {
 
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
 
+//Tager en JSON fil og laver den til data som programmet skal kunne læse/opdatere
 function jsonHandler() {
     var jText = '[{"id":5,"pladser":30,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  //'{"id":6,"pladser":30,"startdato":"21/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
@@ -463,11 +462,11 @@ function jsonHandler() {
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
     if (text.length > 0) {
-        console.log("kage med is"); //funky kommentar ægs d ægs d
+        console.log("kage med is"); 
         for (t = 0; t < text.length; t++) {
-            startdato[t] = text[t].startdato;
-            slutdato[t] = text[t].slutdato;
-            synlig[t] = text[t].synlig;
+            startdato[t] = text[t].startdato; //startdato bliver smidt ind i et array hver gang loopet kører
+            slutdato[t] = text[t].slutdato; //gør det samme som ovenover men med slutdato
+            synlig[t] = text[t].synlig; //det samme som ovenover men med synlig
             skoleID[t] = text[t].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
             modultal[t] = text[t].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
             eventID[t] = text[t].id; //id bliver smidt ind i et array hver gang loopet kører
@@ -480,7 +479,7 @@ function jsonHandler() {
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
 
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
-        newSTDate = newSTDate.split('-0').join('-');
+        newSTDate = newSTDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
         if (startdato[j] >= (currentYear + 1) + "-1-" + "1") {
             console.log("Slushice");
@@ -489,7 +488,7 @@ function jsonHandler() {
         else {   
             var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
             slutdato[j] = newSLDate;
-            synlig[j] = jObj[j].synlig
+            synlig[j] = jObj[j].synlig //synlig bliver smidt ind i et array hver gang loopet kører
             skoleID[j] = jObj[j].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
             modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
             eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
@@ -639,7 +638,7 @@ function events() {
                     //hvis der er lavet en celle som har et id der matcher med startdato[E]
                     if (childNr.id == startdato[E]) {
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
-                        if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
+                        if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) { //de næste fire ifs tjekker hvor mange dage der er på ugen og giver klasser alt efter hvor mange dage der er
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             //var testdate = document.getElementById(startdato[E]);

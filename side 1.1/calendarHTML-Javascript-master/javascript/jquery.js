@@ -1,9 +1,9 @@
 $("#kalender-body").on("click", "th", function() {
     // ...
-    var thClass = ($(this).attr("class").split(' ').pop());
+    var thClass = ($(this).attr("class").split(' ').pop()); //laver en variabel ud fra det du har trykket på (et th element)
 
-    $('#myModal5').css('display', 'block');
-    $('#loDateStart').val(thClass);
+    $('#myModal5').css('display', 'block'); //#myModal5 bliver vist
+    $('#loDateStart').val(thClass); //opdaterer datoen i modalen ud fra den dato du har trykket på
 });
 /*
 $("#kalender-body").on("click", "td", function() {
