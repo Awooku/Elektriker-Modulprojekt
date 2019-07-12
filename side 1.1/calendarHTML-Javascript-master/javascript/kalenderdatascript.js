@@ -809,5 +809,5 @@ function events() {
             E++;
         }
     }
-    removeDays();
+    removeDays(); //gør at der er plads til eventet på en uge
 }
