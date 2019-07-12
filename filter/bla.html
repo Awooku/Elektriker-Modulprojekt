@@ -13,12 +13,12 @@
 
     <fieldset>
         <legend>Region:</legend>
-        <ul id="region" list="moduler" checked="regionsfilter()">
-            <input type="checkbox" value="Hovedstaden">Region Hovedstaden
-            <option value="Sjælland">Region Sjælland</option>
-            <option value="Syddanmark">Region Syddanmark</option>
-            <option value="Midtjylland">Region Midtjylland</option>
-            <option value="Nordjylland">Region Nordjylland</option>
+        <ul>
+            <label><input id="Hovedstaden" type="checkbox" value="Hovedstaden" onclick="regionsfilter()">Region Hovedstaden</label><br>
+            <label><input id="Sjælland" type="checkbox" value="Sjælland" onclick="regionsfilter()">Region Sjælland</label><br>
+            <label><input id="Syddanmark" type="checkbox" value="Syddanmark" onclick="regionsfilter()">Region Syddanmark</label><br>
+            <label><input id="Midtjylland" type="checkbox" value="Midtjylland" onclick="regionsfilter()">Region Midtjylland</label><br>
+            <label><input id="Nordjylland" type="checkbox" value="Nordjylland" onclick="regionsfilter()">Region Nordjylland</label>
         </ul>
     </fieldset>
 
@@ -53,6 +53,11 @@
     </span>
     <div id="placeholder">   
     </div>
+
+    <!-- Mangler at kunne uploade excel file til database-->
+    <input type="file" name="k" id="k">
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
