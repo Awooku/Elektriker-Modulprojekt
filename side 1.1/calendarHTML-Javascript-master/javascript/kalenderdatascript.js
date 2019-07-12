@@ -6,16 +6,15 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
-var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
-var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
+var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //array med ugedage
+var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //array med måneder
 var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
 
 //Globals End>
 
 showyear(); //Starter programmet og starter på den årlige kalender form
 
-//Skifter css når du trykker på en knap, hvis du bruger 1-månedsvisning skal stylen jo være anderledes end hvis du bruger 3-månedersvisning
-function swapSheet(sheet){
+function swapSheet(sheet){ //Skifter css når du trykker på en knap, hvis du bruger 1-månedsvisning skal stylen jo være anderledes end hvis du bruger 3-månedersvisning
     document.getElementById("stylesheetID").setAttribute("href", sheet); //finder et af de andre sylesheets og skifter det nuværende stylesheet til det andet.
 }
 
@@ -79,8 +78,8 @@ function previous() {
 
 //-------------------------------------------------------------------------Kalender Programmet-------------------------------------------------------------------------->
 
-function removeWeek() {
-    var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en var som hedder dvCol (datoVisningCollection)
+function removeWeek() { //fjerner overflødige uger som fylder på layoutet
+    var dvCol = document.getElementsByClassName("datoVisning"); //fanger alle klasser med klassenavnet datoVisning, og smider det i en variabel som hedder dvCol (datoVisningCollection)
     for (var hw = 0; hw < dvCol.length; hw++){
         if (dvCol[hw].children.length == 0) { //hvis længden på den klasse som for loopet er nået til, er 0 gør dette:
             dvCol[hw].parentElement.parentElement.parentElement.className = "hideWeek"; //erstatter .ugeCSS (som har children.length på 0) med "hideWeek"
@@ -91,6 +90,8 @@ function removeWeek() {
         }  
     }
 }
+
+//please kig på removeDays(), den skal ikke fjerne noget hvis der er en ny event i samme uge
 
 function removeDays() { //fjerner .dage klasser som bliver placeret efter events da de skubber til vores event
     var noEventLinje = document.querySelectorAll(".eventLinje"); //fanger alle elementer som har klassen .eventLinje
@@ -167,7 +168,7 @@ function showCalendar(month, year) {
     showMonth.id = "monthAndYear" + k; 
     document.getElementById("månedDiv" + k).appendChild(showMonth); //sætter rækkerne ind i kalender-body
 
-    document.getElementById("monthAndYear" + k).innerHTML = months[month] + " " + year; //Gør at du kan se måneder og år
+    document.getElementById("monthAndYear" + k).innerHTML = months[month] + " " + year; //viser navn på måned og år
     var date = 1; // Bruges til at referere datoer
 
     //skaber alle rækker
@@ -464,7 +465,7 @@ function jsonHandler() {
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
     if (text.length > 0) {
-        console.log("kage med is");
+        console.log("kage med is"); //funky kommentar ægs d ægs d
         for (t = 0; t < text.length; t++) {
             
             slutdato[j] = newSLDate;
@@ -531,8 +532,8 @@ function events() {
     var antaldage = [];
     for (var J = j; J > 0; J--) {
         c++;
-        if (c == 5) {
-            c = 0;
+        if (c == 5) { //giver events forskellige farver så det er nemmere at kende forskel på forskellige events
+            c = 0; 
         }
 
         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
