@@ -9,7 +9,6 @@ var helekalender = document.getElementById("helekalender");
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
 var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
-
 //Globals End>
 
 showyear(); //Starter programmet og starter på den årlige kalender form
@@ -475,9 +474,7 @@ function jsonHandler() {
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
     for (j = t; j < jObj.length; j++) {
-
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
-
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
         newSTDate = newSTDate.split('-0').join('-');
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
