@@ -1,8 +1,8 @@
 var blabla = [
-    {"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole1","moduldata_id":"1.1","Region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
-    {"id":6,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole2","moduldata_id":"1.2","Region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
-    {"id":7,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole3","moduldata_id":"1.3","Region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
-    {"id":8,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole4","moduldata_id":"1.4","Region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}
+    {"id":5,"pladser":30,"startdato":"31/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole1","moduldata_id":"1.1","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
+    {"id":6,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole2","moduldata_id":"1.2","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
+    {"id":7,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole3","moduldata_id":"1.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},
+    {"id":8,"pladser":30,"startdato":"17/12/2019","slutdato":"31/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"skole4","moduldata_id":"1.4","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}
 ];
 
 var filter_properties = [];
@@ -57,7 +57,7 @@ function setfilter()
         }
 
         
-        return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.Region_id === filter_properties[2];
+        return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.region_id === filter_properties[2];
         
         
     });

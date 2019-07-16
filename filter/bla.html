@@ -13,12 +13,15 @@
 
     <fieldset>
         <legend>Region:</legend>
-        <ul id="region" list="moduler" checked="regionsfilter()">
-            <input type="checkbox" value="Hovedstaden">Region Hovedstaden
-            <option value="Sjælland">Region Sjælland</option>
-            <option value="Syddanmark">Region Syddanmark</option>
-            <option value="Midtjylland">Region Midtjylland</option>
-            <option value="Nordjylland">Region Nordjylland</option>
+        <ul>
+            <select id="region" type="text" list="moduler" checked="regionsfilter()">
+                <option>-- Vælg Region --</option>
+                <option value="Hovedstaden">Region Hovedstaden</option>
+                <option value="Sjælland">Region Sjælland</option>
+                <option value="Syddanmark">Region Syddanmark</option>
+                <option value="Midtjylland">Region Midtjylland</option>
+                <option value="Nordjylland">Region Nordjylland</option>
+            </select>
         </ul>
     </fieldset>
 
