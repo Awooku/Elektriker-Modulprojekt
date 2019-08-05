@@ -6,9 +6,15 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
 var helekalender = document.getElementById("helekalender");
+<<<<<<< HEAD
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //Viser hvilken ugedag dagen tilhører i kalenderen
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //Bruges til at vise hvilken måned man er på i kalenderen
 var text = '{"startdato":"2019-4-1", "slutdato":"2019-11-8", "skole":"TEC", "modultal":"1.5"}'; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+=======
+var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //array med ugedage
+var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //array med måneder
+var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
 //Globals End>
 
@@ -470,12 +476,21 @@ function jsonHandler() {
     //var skoler = ["Skole 1", "Skole 2", "Skole 3", "Skole 4"];
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
+<<<<<<< HEAD
     for (j = 0; j < jObj.length; j++) {
 
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
 
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, bliver reverset til 2019 12 31 og bliver til 2019-12-31 på join("-")
         newSTDate = newSTDate.split('-0').join('-');
+=======
+    for (j = t; j < jObj.length; j++) {
+
+        jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
+
+        var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
+        newSTDate = newSTDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
     
         var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
@@ -495,7 +510,11 @@ function events() {
     var startdate = [];
     var slutdate = [];
     var antaldage = [];
+<<<<<<< HEAD
     for (j = j; j > 0; j--) {
+=======
+    for (var J = j; J > 0; J--) {
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         c++;
         //console.log(c);
         if (c == 5) {
@@ -591,7 +610,19 @@ function events() {
         while (antaldage[E] > 0) {
             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned. 
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
+<<<<<<< HEAD
                 //FIX
+=======
+                console.log("kage");
+                console.log(antaldage[E]);
+                var SDN = (currentYear + 1) + "-1-" + "1"; //Erstatter startdatoen fra json stringen med en ny dato 
+                text = [
+                    {id: eventID[E], startdato: SDN, slutdato: slutdato[E], synlig: synlig[E], skole_id: skoleID[E], moduldata_id: modultal[E]}
+                ];
+                t++;
+                datocheck = document.getElementsByClassName("D" + startdato[E]);
+                //FIX!
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                 break;
             }
 
@@ -600,8 +631,11 @@ function events() {
                 //console.log(antaldage[E]);
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
                 var placerevent = document.getElementById(startdato[E]); //bruges til at finde dagen med id'et som er det samme som startdato[E]
+<<<<<<< HEAD
                 var event = document.createElement("a"); 
                 var content = document.createElement("div");
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                 var titel = document.createElement("span"); 
                 var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksten som er modulnr og den skoles inicialer som modulet tilhører
                 var datoday = opdeltdato[2]; //vælger dagen fra opdeltdato
@@ -615,11 +649,18 @@ function events() {
                     console.log(childNr.id);
                     if (childNr.id == startdato[E]) {
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
+<<<<<<< HEAD
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             //var testdate = document.getElementById(startdato[E])
                             
+=======
+                        if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) { //de næste fire ifs tjekker hvor mange dage der er på ugen og giver klasser alt efter hvor mange dage der er
+                            //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
+                            //var testdate = document.getElementById(startdato[E]);
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                             if (antaldage[E] == 1) {
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
                             }
@@ -639,7 +680,37 @@ function events() {
                             datoday = datoday + antaldage[E] - 1;
                             antaldage[E] = 0; //antaldage laves om til 0
                         } 
+<<<<<<< HEAD
                         
+=======
+                        else if (ugefylde == 5 && antaldage[E] == 5) {
+                            antaldage[E] = antaldage[E] - (ugefylde-i); //ugespan tæller ned i forhold til ugen
+                            //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
+                            document.getElementById(startdato[E]).classList.add("eventAll" + c);
+                            if (ugefylde - i == 1) {
+
+                                document.getElementById(startdato[E]).classList.add("eventOneDay");
+                            }
+
+                            else if (ugefylde - i == 2) {
+                                document.getElementById(startdato[E]).classList.add("eventTwoDay");
+                            }
+
+                            else if (ugefylde - i == 3) {
+                                document.getElementById(startdato[E]).classList.add("eventThreeDay");
+                            }
+
+                            else if (ugefylde - i == 4) {
+                                document.getElementById(startdato[E]).classList.add("eventFourDay");
+                            }
+                            
+                            else {
+                                document.getElementById(startdato[E]).classList.add("eventFiveDay");
+                            }
+
+                            datoday = datoday + (ugefylde-i); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
+                        }
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                         //hvis ugen i samme måned har 5 dage
                         else if (ugefylde == 5) {
                             antaldage[E] = antaldage[E] - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
@@ -671,7 +742,11 @@ function events() {
                         
                         //hvis ugen i samme måned ikke har 5 dage, dette bruges når den sidste uge på måneden stopper midt på ugen for at skifte til næste måned.
                         else { 
+<<<<<<< HEAD
                             antaldage[E] = antaldage[E] - ugefylde; //antaldage tæller ned
+=======
+                            antaldage[E] = antaldage[E] - (ugefylde - i); //antaldage tæller ned
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             
@@ -702,7 +777,10 @@ function events() {
                 }
                 
                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
+<<<<<<< HEAD
                     console.log(datoday);
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
                     antaldage[E] = 0;
                 }
@@ -726,12 +804,24 @@ function events() {
                     break;
                 }*/
 
+<<<<<<< HEAD
                 startdato[E] = datostring; //erstatter startdatoen i json stringen med den nye dato 
                 datocheck = document.getElementsByClassName("D" + startdato[E]);
                 placerevent.appendChild(event);
                 event.appendChild(content);
                 content.appendChild(titel);
                 titel.appendChild(titelindhold);
+=======
+
+
+                startdato[E] = datostring; //erstatter startdatoen fra json stringen med den nye dato 
+                datocheck = document.getElementsByClassName("D" + startdato[E]);
+                placerevent.onclick = function(){displayJSON(this)}; //giver placerevent en "onclick" funktion som kalder på displayJSON
+                placerevent.appendChild(titel);
+                titel.appendChild(titelindhold);
+                //debugger;
+                titel.classList.add("eventID" + eventID[E]);
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
                     //hvis dag 1 ikke findes i en måned skifter den over på dag 2
                     if (datoday == 1 && !(document.getElementById(startdato[E]))) {
@@ -764,7 +854,10 @@ function events() {
             }*/
 
         }
+<<<<<<< HEAD
         //console.log(antaldage[E]);
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         if (antaldage[E] == 0) {
             E++;
         }
