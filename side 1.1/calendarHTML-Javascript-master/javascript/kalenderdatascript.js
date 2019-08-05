@@ -14,6 +14,9 @@ var text = '{"startdato":"2019-4-1", "slutdato":"2019-11-8", "skole":"TEC", "mod
 var weekdays = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]; //array med ugedage
 var months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"]; //array med måneder
 var text = []; //jsonfil format fra databasen som skal vise alle de events der kommer til at være der
+<<<<<<< HEAD
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
+=======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
 //Globals End>
@@ -511,8 +514,11 @@ function events() {
     var slutdate = [];
     var antaldage = [];
 <<<<<<< HEAD
+<<<<<<< HEAD
     for (j = j; j > 0; j--) {
 =======
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
     for (var J = j; J > 0; J--) {
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         c++;
@@ -632,8 +638,11 @@ function events() {
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
                 var placerevent = document.getElementById(startdato[E]); //bruges til at finde dagen med id'et som er det samme som startdato[E]
 <<<<<<< HEAD
+<<<<<<< HEAD
                 var event = document.createElement("a"); 
                 var content = document.createElement("div");
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 =======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                 var titel = document.createElement("span"); 
@@ -650,12 +659,15 @@ function events() {
                     if (childNr.id == startdato[E]) {
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
                             //var testdate = document.getElementById(startdato[E])
                             
 =======
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) { //de næste fire ifs tjekker hvor mange dage der er på ugen og giver klasser alt efter hvor mange dage der er
                             //document.getElementById(startdato[E]).colSpan = antaldage[E]; //giver colspan i forhold til resterende antaldage
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
@@ -681,8 +693,11 @@ function events() {
                             antaldage[E] = 0; //antaldage laves om til 0
                         } 
 <<<<<<< HEAD
+<<<<<<< HEAD
                         
 =======
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                         else if (ugefylde == 5 && antaldage[E] == 5) {
                             antaldage[E] = antaldage[E] - (ugefylde-i); //ugespan tæller ned i forhold til ugen
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan i forhold til ugen
@@ -710,6 +725,9 @@ function events() {
 
                             datoday = datoday + (ugefylde-i); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
                         }
+<<<<<<< HEAD
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
+=======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                         //hvis ugen i samme måned har 5 dage
                         else if (ugefylde == 5) {
@@ -746,6 +764,9 @@ function events() {
                             antaldage[E] = antaldage[E] - ugefylde; //antaldage tæller ned
 =======
                             antaldage[E] = antaldage[E] - (ugefylde - i); //antaldage tæller ned
+<<<<<<< HEAD
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
+=======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
                             //document.getElementById(startdato[E]).colSpan = ugefylde - i; //giver en colspan på antal dage på ugen i samme måned
                             document.getElementById(startdato[E]).classList.add("eventAll" + c);
@@ -778,7 +799,10 @@ function events() {
                 
                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     console.log(datoday);
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 =======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
@@ -821,6 +845,9 @@ function events() {
                 titel.appendChild(titelindhold);
                 //debugger;
                 titel.classList.add("eventID" + eventID[E]);
+<<<<<<< HEAD
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
+=======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 
                     //hvis dag 1 ikke findes i en måned skifter den over på dag 2
@@ -855,7 +882,10 @@ function events() {
 
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         //console.log(antaldage[E]);
+=======
+>>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
 =======
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         if (antaldage[E] == 0) {
