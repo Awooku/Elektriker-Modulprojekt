@@ -59,6 +59,7 @@ function setfilter()
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.region_id === filter_properties[2];
 =======
         return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.Region_id === filter_properties[2];
@@ -66,6 +67,9 @@ function setfilter()
 =======
         return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.Region_id === filter_properties[2];
 >>>>>>> parent of b0a0faa... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
+=======
+        return json.skole_id === filter_properties[0] || json.moduldata_id === filter_properties[1] || json.Region_id === filter_properties[2];
+>>>>>>> parent of f5c8f52... Merge branch 'Andreas' of https://github.com/Awooku/Elektriker-Modulprojekt into Andreas
         
         
     });
