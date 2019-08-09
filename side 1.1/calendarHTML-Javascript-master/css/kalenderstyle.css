@@ -84,7 +84,7 @@ body {
     border-radius: 3px;
 }
 
-.eventAll5 {
+.eventAll0 {
     background-color: rgb(180, 66, 255, 1);
     font-size: 12px;
     border-radius: 3px;
@@ -110,7 +110,7 @@ body {
     transition: 0.4s;
 }
 
-.eventAll5:hover {
+.eventAll0:hover {
     background-color: rgb(180, 66, 255, 0.6);
     transition: 0.4s;
 }
