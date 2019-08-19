@@ -481,6 +481,7 @@ function jsonHandler() {
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
         if (startdato[j] >= (currentYear + 1) + "-1-" + "1") {
             console.log("Slushice");
+            //FIX måske
             break;
         }
         else {   
@@ -607,10 +608,11 @@ function events() {
             
         //så længe at antal dage er over nul
         while (antaldage[E] > 0) {
+
+            /*console.log(datocheck[0]);
+            console.log(antaldage[E]);*/
             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned.
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
-                /*console.log("kage");
-                console.log(antaldage[E]);*/
                 var SDN = (currentYear + 1) + "-1-" + "1"; //Erstatter startdatoen fra json stringen med en ny dato 
                 //opretter et objekt som bruges til at få datoen til at kører videre end den nuværende visning.
                 text = [
@@ -619,9 +621,17 @@ function events() {
                 t++; //bruges til at tælle hvor mange objekter der er lavet.
                 datocheck = document.getElementsByClassName("D" + startdato[E]); //updatere søgning efter et element der er det samme som startdato[E]
                 //FIX!
+
+                
+
+
+
+
+                console.log(t);
+
                 break;
             }
-
+        
             //checker om der kun er en row så den kan indsætte dataen der
             else if (datocheck[0].rows.length == 1) {
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
