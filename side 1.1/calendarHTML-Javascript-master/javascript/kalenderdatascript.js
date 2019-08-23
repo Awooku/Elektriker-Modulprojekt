@@ -457,8 +457,8 @@ function jsonHandler() {
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"30/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"17/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":13,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
+                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"17/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';/* +
+                '{"id":13,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
     if (text.length > 0) {
@@ -471,6 +471,7 @@ function jsonHandler() {
             modultal[t] = text[t].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
             eventID[t] = text[t].id; //id bliver smidt ind i et array hver gang loopet kører
         }
+        console.log(antaldage[E]);
     }
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
@@ -625,10 +626,7 @@ function events() {
                 
 
 
-
-
-                console.log(t);
-
+                console.log(text);
                 break;
             }
         
