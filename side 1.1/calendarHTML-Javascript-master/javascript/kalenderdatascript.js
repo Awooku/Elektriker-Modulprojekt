@@ -609,8 +609,6 @@ function events() {
         while (antaldage[E] > 0) {
             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned.
             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
-                /*console.log("kage");
-                console.log(antaldage[E]);*/
                 var SDN = (currentYear + 1) + "-1-" + "1"; //Erstatter startdatoen fra json stringen med en ny dato 
                 //opretter et objekt som bruges til at få datoen til at kører videre end den nuværende visning.
                 text = [
