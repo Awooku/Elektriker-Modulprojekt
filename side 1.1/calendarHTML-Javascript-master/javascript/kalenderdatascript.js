@@ -471,7 +471,6 @@ function jsonHandler() {
             modultal[t] = text[t].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
             eventID[t] = text[t].id; //id bliver smidt ind i et array hver gang loopet kører
         }
-        console.log(antaldage[E]);
     }
 
     //Loopet kører igennem for hvert modul der bliver sendt igennem
