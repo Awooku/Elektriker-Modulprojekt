@@ -620,14 +620,11 @@ function events() {
                 t++; //bruges til at tælle hvor mange objekter der er lavet.
                 datocheck = document.getElementsByClassName("D" + startdato[E]); //updatere søgning efter et element der er det samme som startdato[E]
                 //FIX!
-<<<<<<< HEAD
 
                 
 
 
                 console.log(text);
-=======
->>>>>>> parent of a8d11c1... Update kalenderdatascript.js
                 break;
             }
 
