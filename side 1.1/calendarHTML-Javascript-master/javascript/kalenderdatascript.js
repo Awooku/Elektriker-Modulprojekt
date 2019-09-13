@@ -90,24 +90,27 @@ function removeWeek() { //fjerner overflødige uger som fylder på layoutet
     }
 }
 
-//please kig på removeDays(), den skal ikke fjerne noget hvis der er en ny event i samme uge
+//please kig på removeDays(), den skal ikke fjerne noget hvis der er en ny event i samme uge (FIX!)
 
 function removeDays() { //fjerner .dage klasser som bliver placeret efter events da de skubber til vores event
-    var noEventLinje = document.querySelectorAll(".eventLinje"); //fanger alle elementer som har klassen .eventLinje
-
+    var noEventLinje = document.querySelectorAll(".eventLinje"); //fanger alle elementer som har klassen 'eventLinje'
+    //var noEventLinje = document.getElementsByClassName("eventLinje"); //fanger alle elementer som har klassen 'eventLinje'
     for (var d = 0; d < noEventLinje.length; d++) { //kører igennem hver element som har klassen .eventLinje (kører igennem hver uge)
-        var eventCol = noEventLinje[d].children; //gemmer hver .eventLinje's børn for at se hvilke klasser de har
-
+        var eventCol = noEventLinje[d].children; //gemmer hver eventLinje's børn for at se hvilke klasser de har
         for (var d2 = 0; d2 < eventCol.length; d2++) { //kører igennem hver dag der er på ugen
+            console.log(d2);
             if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
-//hvis det element loopet er nået til har én klasse (.dage eller .tomdag), 
-//og den klasse ikke er .tomdag (.dage), 
-//og dets forældreelement første barn ikke er .dage ()
-//og dets forældreelement sidste barn er .dage ()
-//dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
+                //hvis det element loopet har én klasse (.dage eller .tomdag), 
+                //og den klasse ikke er .tomdag (.dage), 
+                //og dets forældreelement første barn ikke er .dage ()
+                //og dets forældreelement sidste barn er .dage ()
+                //dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
                 eventCol[d2].classList.remove("dage"); //fjern .dage
                 eventCol[d2].classList.add("hide"); //tilføj .hide
             }
+            /*else if () {
+
+            }*/
         }
     }
 }
@@ -457,6 +460,8 @@ function jsonHandler() {
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"30/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":13,"pladser":30,"startdato":"03/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"17/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';/* +
                 '{"id":13,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
 
