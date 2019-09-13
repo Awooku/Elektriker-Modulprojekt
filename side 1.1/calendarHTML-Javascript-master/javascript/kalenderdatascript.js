@@ -102,8 +102,8 @@ function removeDays() { //fjerner .dage klasser som bliver placeret efter events
             if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
                 //hvis det element loopet har én klasse (.dage eller .tomdag), 
                 //og den klasse ikke er .tomdag (.dage), 
-                //og dets forældreelement første barn ikke er .dage ()
-                //og dets forældreelement sidste barn er .dage ()
+                //og forældreelementets første barn ikke er .dage ()
+                //og forældreelementets sidste barn er .dage ()
                 //dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
                 eventCol[d2].classList.remove("dage"); //fjern .dage
                 eventCol[d2].classList.add("hide"); //tilføj .hide
