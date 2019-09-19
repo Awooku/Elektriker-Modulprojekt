@@ -98,15 +98,15 @@ function removeDays() { //fjerner .dage klasser som bliver placeret efter events
     for (var d = 0; d < noEventLinje.length; d++) { //kører igennem hver element som har klassen .eventLinje (kører igennem hver uge)
         var eventCol = noEventLinje[d].children; //gemmer hver eventLinje's børn for at se hvilke klasser de har
         for (var d2 = 0; d2 < eventCol.length; d2++) { //kører igennem hver dag der er på ugen
-            console.log(d2);
             if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
                 //hvis det element loopet har én klasse (.dage eller .tomdag), 
                 //og den klasse ikke er .tomdag (.dage), 
                 //og forældreelementets første barn ikke er .dage ()
                 //og forældreelementets sidste barn er .dage ()
                 //dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
-                eventCol[d2].classList.remove("dage"); //fjern .dage
-                eventCol[d2].classList.add("hide"); //tilføj .hide
+                eventCol[d2].classList.replace("dage", "hide"); //fjern .dage
+                /*eventCol[d2].classList.remove("dage"); //fjern .dage
+                eventCol[d2].classList.add("hide"); //tilføj .hide*/
             }
             /*else if () {
 
@@ -485,13 +485,12 @@ function jsonHandler() {
         newSTDate = newSTDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
         if (startdato[j] >= (currentYear + 1) + "-1-" + "1") {
-            console.log("Slushice");
             break;
         }
         else {   
             var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
             slutdato[j] = newSLDate;
-            synlig[j] = jObj[j].synlig //synlig bliver smidt ind i et array hver gang loopet kører
+            synlig[j] = jObj[j].synlig; //synlig bliver smidt ind i et array hver gang loopet kører
             skoleID[j] = jObj[j].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
             modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
             eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
@@ -510,7 +509,6 @@ function displayJSON(e) { //viser information fra JSON objekt ud fra eventID
         for (var i = 0; i < eventID.length; i++) {
             if (eventID[i] == IDSplit) { //hvis IDSplit er det samme som det eventID loopet er nået til
                 //dette skal en eller anden dag aktivere en pop op som viser data fra det event du har trykket på
-                console.log(jObjA[i]);
                 return(jObjA[i]);
             }
         }
@@ -608,6 +606,7 @@ function events() {
         }*/
         //var sM = opdeltdato[2];
         var datocheck = document.getElementsByClassName("D" + startdato[E]); //får fadt i et element med samme dato som startdato[E]
+        console.log(datocheck[0]);
         //hvis der findes et element med en klasse som er det samme som datocheck
             
         //så længe at antal dage er over nul
