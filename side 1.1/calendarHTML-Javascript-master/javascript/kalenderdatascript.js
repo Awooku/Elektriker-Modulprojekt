@@ -478,7 +478,7 @@ function jsonHandler() {
         }
     }
 
-    //Loopet kører igennem for hvert modul der bliver sendt igennem
+    //Loopet kører for hvert modul der bliver sendt igennem
     for (j = t; j < jObj.length; j++) {
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
@@ -606,7 +606,7 @@ function events() {
         }*/
         //var sM = opdeltdato[2];
         var datocheck = document.getElementsByClassName("D" + startdato[E]); //får fadt i et element med samme dato som startdato[E]
-        console.log(datocheck[0]);
+        //console.log(datocheck[0]); //FIX!
         //hvis der findes et element med en klasse som er det samme som datocheck
             
         //så længe at antal dage er over nul
@@ -625,10 +625,9 @@ function events() {
                 
 
 
-                console.log(text);
+                //console.log(text);
                 break;
             }
-
             //checker om der kun er en row så den kan indsætte dataen der
             else if (datocheck[0].rows.length == 1) {
                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
@@ -641,7 +640,10 @@ function events() {
                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
                 for (var i = 0; i < ugefylde; i++) {
                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
+                    //var childNr2 = 
                     //hvis der er lavet en celle som har et id der matcher med startdato[E]
+                    console.log(childNr.id);
+                    console.log(startdato[E]);
                     if (childNr.id == startdato[E]) {
                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
@@ -671,7 +673,6 @@ function events() {
                             antaldage[E] = antaldage[E] - (ugefylde-i); //ugespan tæller ned i forhold til ugen
                             document.getElementById(startdato[E]).classList.add("eventAll" + c); //giver eventet en klasse som bruges til at holde styr på farvekodningen
                             if (ugefylde - i == 1) {
-
                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
                             }
 
@@ -746,6 +747,11 @@ function events() {
                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i tabellen
                         break;
                     }
+
+                    /*else if (childNr.id == startdato[E]) { 
+
+                    }*/ //FIX!!!
+
                 }
                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
                     antaldage[E] = 0;
