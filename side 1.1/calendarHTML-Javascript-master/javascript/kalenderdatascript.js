@@ -461,12 +461,12 @@ function jsonHandler() {
                  '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"30/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":13,"pladser":30,"startdato":"03/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"22/11/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"04/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"05/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]' ;
+                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"20/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]' ;
               //'{"id":17,"pladser":30,"startdato":"02/04/2020","slutdato":"31/04/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
                 /* 
@@ -490,13 +490,17 @@ function jsonHandler() {
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
         var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
         newSTDate = newSTDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
+        var newEDate = jObj[j].slutdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
+        newEDate = newEDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
+
+        slutdato[j] = newEDate;
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
         if (startdato[j] >= (currentYear + 1) + "-1-" + "1") { //hvis start dato er større eller lig med nuværende år + 1 - 1 + 1                                             <---- hvad fuck
             break;
         }
         else {   
-            var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
-            slutdato[j] = newSLDate;
+            //var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
+            //slutdato[j] = newSLDate;
             synlig[j] = jObj[j].synlig; //synlig bliver smidt ind i et array hver gang loopet kører
             skoleID[j] = jObj[j].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
             modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
@@ -526,7 +530,7 @@ function displayJSON(e) { //viser information fra JSON objekt ud fra eventID
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
-    var startingDate = [], endingDate = [], daysAmount = [], nextYear = [], currentYearsEvents = [], eventWOverflow = []; //en masse arrays som nok måske skal bruges
+    var startingDate = [], endingDate = [], currentYearsEvents = [], eventWOverflow = [], daysLeftWOverflow = [], startingODate = [], endingODate = [], daysLeft = []; //en masse arrays som nok måske skal bruges
     var y = 0; //tæller op hver gang der er et event med et overflow til næste år
 
     for (i = 0; i < jObjA.length; i++) {
@@ -549,44 +553,75 @@ function events() {
         }
     }
 
-    var daysLeft = [];
-
     for (i = 0; i < currentYearsEvents.length; i++) {
-        console.log(startdato[i]);
-        console.log(slutdato[i]);
-
-        startingDate[i] = new Date(startdato[i]);
+        startingDate[i] = new Date(startdato[i]); //startingDate[i] bliver til en dato
         endingDate[i] = new Date(slutdato[i]);
 
         daysLeft[i] = endingDate[i] - startingDate[i]; //trækker startdato fra slutdato så du får et langt underligt tal
-        daysLeft[i] = (daysLeft[i] / (60*60*24*1000)); //markus's magiske udregning som runder op og ned og til højre og venstre samt laver dig kaffe og speedrunner Super Mario Bros.
-        daysLeft[i] = Math.floor(daysLeft[i]);
+        daysLeft[i] = (daysLeft[i] / (60*60*24*1000)); //markus's magiske udregning som ganger op og ned og til højre og venstre samt laver dig kaffe og speedrunner Super Mario Bros.
+        daysLeft[i] = Math.floor(daysLeft[i]); //runder ned (alle tal bliver fra xx,00xxxxxxxx til xx)
         console.log(jObjA[i].id + " " + daysLeft[i]);
     }
 
-    var daysLeftWOverflow = [], startingODate = [], endingODate = [];
-
     console.log("---------------------")
 
-    for (i = 0; i < eventWOverflow.length; i++) {
+    for (i = 0; i < eventWOverflow.length; i++) { //dette for loop gør det samme som ovenover, bare med eventWOverflow i stedet for currentYearsEvents
+        var tempSDate = eventWOverflow[i].startdato.split("/").reverse().join("-"); //dette bliver beskrevet i jsonHandler i det andet for loop (linje 491, 492, 493)
+        tempSDate[i] = tempSDate.split('-0').join('-');
+        var tempEDate = eventWOverflow[i].slutdato.split("/").reverse().join("-");
+        tempEDate[i] = tempEDate.split('-0').join('-');
 
-        console.log(eventWOverflow[i].startdato);
-        console.log(slutdato[i]);
+        var startdatoOverflow = [], endingDateOverflow = [];
+        startdatoOverflow[i] = tempSDate;
+        endingDateOverflow[i] = tempEDate;
 
-        startingODate[i] = new Date(startdato[i]);
-        endingODate[i] = new Date(slutdato[i]);
+        startingODate[i] = new Date(startdatoOverflow[i]);
+        endingODate[i] = new Date(endingDateOverflow[i]);
 
         daysLeftWOverflow[i] = endingODate[i] - startingODate[i];
         daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000));
         daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]);
         console.log(eventWOverflow[i].id + " " + daysLeftWOverflow[i]);
-
-
-
     }
 
-    //console.log(eventWOverflow);
-    //console.log(currentYearsEvents);
+    console.log("---------------------")
+
+    var testnode1, testnode2, stElement, enElement;
+
+    for (i = 0; i < jObjA.length; i++) { //et eller andet sted her, for løkken skal starte på startdatoen og slutte på slutdatoen
+    //ud fra længden af begivenheden plus indtil du når slutdatoen
+
+        console.log(startdato[i]);
+        console.log(slutdato[i]);
+
+        testnode1 = document.createTextNode([i]);
+        testnode2 = document.createTextNode([i]);
+
+        stElement = document.getElementById(startdato[i]);
+        enElement = document.getElementById(slutdato[i]);
+
+        stElement.appendChild(testnode1);
+
+        if (enElement == null) {
+            console.log("dato findes ikke på kalender")
+           
+        }
+
+        else {
+            enElement.appendChild(testnode2); 
+
+        }
+
+        //console.log(stElement);
+        //console.log(enElement);
+
+        console.log("---------------------")
+
+
+
+
+
+   }
 
 }
 
