@@ -465,8 +465,8 @@ function jsonHandler() {
                 '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":13,"pladser":30,"startdato":"03/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"22/11/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"24/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"06/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]' ;
+                '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"04/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"05/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]' ;
               //'{"id":17,"pladser":30,"startdato":"02/04/2020","slutdato":"31/04/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
                 /* 
@@ -552,19 +552,37 @@ function events() {
     var daysLeft = [];
 
     for (i = 0; i < currentYearsEvents.length; i++) {
+        console.log(startdato[i]);
+        console.log(slutdato[i]);
+
         startingDate[i] = new Date(startdato[i]);
         endingDate[i] = new Date(slutdato[i]);
 
-
-
-        debugger;
         daysLeft[i] = endingDate[i] - startingDate[i]; //trækker startdato fra slutdato så du får et langt underligt tal
-        debugger;
         daysLeft[i] = (daysLeft[i] / (60*60*24*1000)); //markus's magiske udregning som runder op og ned og til højre og venstre samt laver dig kaffe og speedrunner Super Mario Bros.
-        debugger;
-        console.log(daysLeft[i]);
+        daysLeft[i] = Math.floor(daysLeft[i]);
+        console.log(jObjA[i].id + " " + daysLeft[i]);
+    }
 
-        //console.log(daysLeft);
+    var daysLeftWOverflow = [], startingODate = [], endingODate = [];
+
+    console.log("---------------------")
+
+    for (i = 0; i < eventWOverflow.length; i++) {
+
+        console.log(eventWOverflow[i].startdato);
+        console.log(slutdato[i]);
+
+        startingODate[i] = new Date(startdato[i]);
+        endingODate[i] = new Date(slutdato[i]);
+
+        daysLeftWOverflow[i] = endingODate[i] - startingODate[i];
+        daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000));
+        daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]);
+        console.log(eventWOverflow[i].id + " " + daysLeftWOverflow[i]);
+
+
+
     }
 
     //console.log(eventWOverflow);
