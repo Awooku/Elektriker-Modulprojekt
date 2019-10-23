@@ -463,8 +463,8 @@ function jsonHandler() {
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":13,"pladser":30,"startdato":"03/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"22/11/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":13,"pladser":30,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"14/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"20/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]' ;
               //'{"id":17,"pladser":30,"startdato":"02/04/2020","slutdato":"31/04/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
@@ -586,44 +586,50 @@ function events() {
 
     console.log("---------------------")
 
-    var testnode1, testnode2, stElement, enElement;
-
-    for (i = 0; i < jObjA.length; i++) { //et eller andet sted her, for løkken skal starte på startdatoen og slutte på slutdatoen
+    for (i = 0; i < currentYearsEvents.length; i++) { //et eller andet sted her, for løkken skal starte på startdatoen og slutte på slutdatoen
     //ud fra længden af begivenheden plus indtil du når slutdatoen
 
         console.log(startdato[i]);
         console.log(slutdato[i]);
 
-        testnode1 = document.createTextNode([i]);
-        testnode2 = document.createTextNode([i]);
+        console.log(daysLeft[i])
 
-        stElement = document.getElementById(startdato[i]);
-        enElement = document.getElementById(slutdato[i]);
+        var getDateArray = function(start, end) {
+            
+            var fDatesArray = new Array();
+            var dt = new Date(start);
+            var end = new Date(end);
+            while(dt <= end){
+                fDatesArray.push(new Date(dt));
+                dt.setDate(dt.getDate() + 1);
+            }
+            return fDatesArray;
+        }        
+        
+        var datesArray = getDateArray(startdato[i], slutdato[i]);
 
-        stElement.appendChild(testnode1);
+        for (x = 0; x < datesArray.length; x++) {            
+            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0);
+            datesArray[x] = datesArray[x].toISOString().split("T")[0];
+            datesArray[x] = datesArray[x].split("-0").join("-");
 
-        if (enElement == null) {
-            console.log("dato findes ikke på kalender")
-           
+            var eventPlacer = document.getElementById(datesArray[x]);
+
+            var testnode1 = document.createTextNode([i]);
+
+            if (eventPlacer != null) {
+                eventPlacer.appendChild(testnode1);
+            }
+
+            else if (eventPlacer == null) {
+
+            }
         }
-
-        else {
-            enElement.appendChild(testnode2); 
-
-        }
-
-        //console.log(stElement);
-        //console.log(enElement);
-
         console.log("---------------------")
-
-
-
-
-
    }
 
 }
+
 
 //bruges til at indsætte datoer i kalenderen, ud fra information sendt fra json
 // function events() {
