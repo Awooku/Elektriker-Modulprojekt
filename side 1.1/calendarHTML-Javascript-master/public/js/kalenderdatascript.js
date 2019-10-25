@@ -396,7 +396,7 @@ function show3() {
     k = 0; //bruges til at insætte måneder i div tags
     jsonHandler(); //henter datoer der skal bruges
     events(); //henter indhold til kalenderen
-    swapSheet('calendarHTML-Javascript-master/css/kalenderstyleKvartal.css'); //skifter css om til 3 måneders visning
+    swapSheet('css/kalenderstyleKvartal.css'); //skifter css om til 3 måneders visning
 }
 
 //Viser hele år
@@ -427,7 +427,7 @@ function showyear() {
     k = 0; //bruges til at insætte måneder i div tags
     jsonHandler(); //henter datoer der skal bruges
     events(); //henter indhold til kalenderen
-    swapSheet('calendarHTML-Javascript-master/css/kalenderstyle.css'); //skifter css om til årlig visning
+    swapSheet('css/kalenderstyle.css'); //skifter css om til årlig visning
 }
 
 //Viser en måned ad gangen
@@ -448,7 +448,8 @@ function showmonth() {
     k = 0;  // bruges til at insætte måneder i div tags
     jsonHandler(); //henter datoer der skal bruges
     events(); //henter indhold til kalenderen
-    swapSheet('calendarHTML-Javascript-master/css/kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
+    swapSheet('css/kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
+
 }
 
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
@@ -459,8 +460,8 @@ function jsonHandler() {
                //'{"id":6,"pladser":30,"startdato":"21/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                  '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
-                '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                 '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"01/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
+                '{"id":10,"pladser":30,"startdato":"02/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":13,"pladser":30,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
@@ -488,9 +489,10 @@ function jsonHandler() {
     //Loopet kører for hvert modul der bliver sendt igennem
     for (j = t; j < jObj.length; j++) {
         jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
-
-        var newSTDate = datesplitter(jObj[j].startdato);
-        var newEDate = datesplitter(jObj[j].slutdato);
+        var newSTDate = jObj[j].startdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
+        newSTDate = newSTDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
+        var newEDate = jObj[j].slutdato.split("/").reverse().join("-"); //eksempel: 31/12/2019 bilver splittet så den ligner 31 12 2019, den bliver så omvendt til 2019 12 31 og bliver til 2019-12-31 på join("-")
+        newEDate = newEDate.split('-0').join('-'); //fjerner nuller i dato fordi det kan programmet åbenbart ikke lide
 
         slutdato[j] = newEDate;
         startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
@@ -526,42 +528,20 @@ function displayJSON(e) { //viser information fra JSON objekt ud fra eventID
     }
 }
 
-function datesplitter(dateToBeSplit) {
-    var newSplitDate = dateToBeSplit.split("/").reverse().join("-");
-    newSplitDate = newSplitDate.split("-0").join("-");
-    return newSplitDate;
-}
-
-function getDateArray(start, end) {        
-    
-    var fDatesArray = new Array(); //nyt array
-    var dt = new Date(start); //start (startdato[i]) bliver lavet til en dato
-    var end = new Date(end); //end (slutdato[i]) bliver lavet til en dato
-    console.log(dt);
-    console.log(end);
-    while(dt.toLocaleDateString() != end.toLocaleDateString()){ //mens startdatoen er mindre end eller lig med slutdatoen
-        
-        fDatesArray.push(new Date(dt)); //laver en dato ud af dt og smider den på arrayet
-        dt.setDate(dt.getDate() + 1);
-        if (dt.toLocaleDateString() == end.toLocaleDateString()) {
-            //debugger;
-            fDatesArray.push(new Date(dt)); //laver en dato ud af dt og smider den på arrayet
-        }
-    }
-
-    return fDatesArray;
-}  
-
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() {
     var startingDate = [], endingDate = [], currentYearsEvents = [], eventWOverflow = [], daysLeftWOverflow = [], startingODate = [], endingODate = [], daysLeft = []; //en masse arrays som nok måske skal bruges
+    var startingDateOverflow = [], endingDateOverflow = []; //laver arrays
 
     var y = 0; //tæller op hver gang der er et event med et overflow til næste år
 
     for (i = 0; i < jObjA.length; i++) {
-        var startSplitDate = datesplitter(jObjA[i].startdato);
-        var endSplitDate = datesplitter(jObjA[i].slutdato);
+        var startSplitDate = jObjA[i].startdato.split("/").reverse().join("-"); //startdato (xx/xx/xxxx) bliver splittet hos hver / så den ser således ud: [xx, xx, xxxx], herefter bliver den omvendt ([xxxx, xx, xx]) og sat sammen med en - (xxxx-xx-xx)
+        startSplitDate = startSplitDate.split('-0').join('-'); //startdato bliver splittet på -0 for at fjerne 0'er og bliver erstattet med - (xxxx-01-01) ---> (xxxx-1-1) ellers klager javascript
+
+        var endSplitDate = jObjA[i].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover, bare med slutdato
+        endSplitDate = endSplitDate.split('-0').join('-');
 
         var startDateSplit = startSplitDate.split("-"); //splitter startdato op så det bliver til et array, så vi kan sammenligne årstallet
         var endDateSplit = endSplitDate.split("-"); //samme som ovenover bare med slutdato
@@ -577,83 +557,80 @@ function events() {
     }
 
     for (i = 0; i < currentYearsEvents.length; i++) {
-        //console.log(startdato[i]);
-        //console.log(slutdato[i]);
-        //console.log(daysLeft[i])     
-
         startingDate[i] = new Date(startdato[i]); //startingDate[i] bliver til en dato
         endingDate[i] = new Date(slutdato[i]);
 
         daysLeft[i] = endingDate[i] - startingDate[i]; //trækker startdato fra slutdato så du får et langt underligt tal
         daysLeft[i] = (daysLeft[i] / (60*60*24*1000)); //markus's magiske udregning som ganger op og ned og til højre og venstre samt laver dig kaffe og speedrunner Super Mario Bros.
         daysLeft[i] = Math.floor(daysLeft[i]); //runder ned (alle tal bliver fra xx,00xxxxxxxx til xx)
+        console.log(jObjA[i].id + " " + daysLeft[i]);
+    }
+
+    console.log("---------------------")
+
+    for (i = 0; i < eventWOverflow.length; i++) { //dette for loop gør det samme som ovenover, bare med eventWOverflow i stedet for currentYearsEvents
+        var tempSDate = eventWOverflow[i].startdato.split("/").reverse().join("-"); //dette bliver beskrevet i jsonHandler i det andet for loop (linje 491, 492, 493)
+        tempSDate[i] = tempSDate.split('-0').join('-');
+        var tempEDate = eventWOverflow[i].slutdato.split("/").reverse().join("-"); //burde egentlig bare smide det ind i en funktion for sig selv
+        tempEDate[i] = tempEDate.split('-0').join('-');
+
+        startingDateOverflow[i] = tempSDate; 
+        endingDateOverflow[i] = tempEDate;
+
+        startingODate[i] = new Date(startingDateOverflow[i]); //laver en dato ud af startingDateOverflow[i]
+        endingODate[i] = new Date(endingDateOverflow[i]);
+
+        daysLeftWOverflow[i] = endingODate[i] - startingODate[i]; //trækker startdato fra slutdato
+        daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000)); //holder dig vågen om natten
+        daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]); //runder ned
+        console.log(eventWOverflow[i].id + " " + daysLeftWOverflow[i]);
+    }
+
+    console.log("---------------------")
+
+    for (i = 0; i < currentYearsEvents.length; i++) { //et eller andet sted her, for løkken skal starte på startdatoen og slutte på slutdatoen
+    //ud fra længden af begivenheden plus indtil du når slutdatoen
+
+        console.log(startdato[i]);
+        console.log(slutdato[i]);
+
+        console.log(daysLeft[i]);
+
+        var getDateArray = function(start, end) {            
+            var fDatesArray = new Array(); //nyt array
+            var dt = new Date(start); //start (startdato[i]) bliver lavet til en dato
+            var end = new Date(end); //end (slutdato[i]) bliver lavet til en dato
+            while(dt <= end){ //mens startdatoen er mindre end eller lig med slutdatoen
+                fDatesArray.push(new Date(dt)); //laver en dato ud af dt og smider den på arrayet
+                dt.setDate(dt.getDate() + 1); //regner med at finder den næste dato
+            }
+            return fDatesArray;
+        }        
         
-        var datesArray = getDateArray(startdato[i], slutdato[i]);
+        var datesArray = getDateArray(startdato[i], slutdato[i]); //kør funktionen getDateArray med udgangspunkt i startdato[i] og slutdato[i]
 
         for (x = 0; x < datesArray.length; x++) {            
-            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0);
-            datesArray[x] = datesArray[x].toISOString().split("T")[0];
-            datesArray[x] = datesArray[x].split("-0").join("-");
+            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0); //toISOString() får den forkerte dato, så her sørger vi for at den rigtige dato kommer frem
+            datesArray[x] = datesArray[x].toISOString().split("T")[0]; //laver datoen om til en ISOString ( "uuu mmm dd yyyy hh:mm:ss tidszone" ---> yyyy-mm-ddThh:mm:ssz(z for zone)), splitter den på T og tager den første bid (yyyy-mm-ddThh:mm:ssz ---> yyyy-mm-dd)
+            datesArray[x] = datesArray[x].split("-0").join("-"); //det her er blevet gjort flere gange
 
             var eventPlacer = document.getElementById(datesArray[x]);
             var testnode1 = document.createTextNode([i]);
 
-            if (eventPlacer != null) {
-                eventPlacer.appendChild(testnode1);
+            if (eventPlacer != null) { //hvis datoen findes som element 
+                eventPlacer.appendChild(testnode1); //gør noget
             }
 
-            else if (eventPlacer == null) {
+            else if (eventPlacer == null) { //hvis datoen IKKE findes som element
+                                            //gør ikke noget
             }
+
+
         }
-        //console.log("---------------------")
+        console.log("---------------------");
+
    }
 
-   var tempStart = [], tempEnd = [];
-
-   for (i = 0; i < eventWOverflow.length; i++) { //dette for loop gør det samme som ovenover, bare med eventWOverflow i stedet for currentYearsEvents
-    
-        var tempSDate = datesplitter(eventWOverflow[i].startdato);
-        var tempEDate = datesplitter(eventWOverflow[i].slutdato);   
-        startingODate[i] = new Date(tempSDate); //laver en dato ud af startingDateOverflow[i]
-        endingODate[i] = new Date(tempEDate);   
-        daysLeftWOverflow[i] = endingODate[i] - startingODate[i];
-        daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000));
-        daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]);
-        //console.log(eventWOverflow[i].id + " " + daysLeftWOverflow[i]);   
-        //------------------------------------------------  
-        tempStart[i] = datesplitter(tempSDate);
-        tempEnd[i] = datesplitter(tempEDate);   
-
-        //console.log(tempStart[i]);
-        //console.log(tempEnd[i])
-        var datesArray = getDateArray(tempStart[i], tempEnd[i]);    
-
-        
-
-        for (x = 0; x < datesArray.length; x++) {
-            
-            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0);
-            //console.log(datesArray[x].toISOString());
-            datesArray[x] = datesArray[x].toISOString().split("T")[0];
-            datesArray[x] = datesArray[x].split("-0").join("-");   
-
-
-
-            var eventPlacer = document.getElementById(datesArray[x]);
-            var testnode1 = document.createTextNode([i]);   
-
-            if (eventPlacer != null) {
-                eventPlacer.appendChild(testnode1);
-            }   
-            else if (eventPlacer == null) {
-            }
-        }
-
-       //while (datesArray) {
-       //    
-       //}
-
-   }
 }
 
 
