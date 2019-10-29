@@ -537,18 +537,14 @@ function getDateArray(start, end) {
     var fDatesArray = new Array(); //nyt array
     var dt = new Date(start); //start (startdato[i]) bliver lavet til en dato
     var end = new Date(end); //end (slutdato[i]) bliver lavet til en dato
-    console.log(dt);
-    console.log(end);
-    while(dt.toLocaleDateString() != end.toLocaleDateString()){ //mens startdatoen er mindre end eller lig med slutdatoen
-        
+
+    while(dt.toLocaleDateString() != end.toLocaleDateString()){ //mens startdatoen er mindre end eller lig med slutdatoen        
         fDatesArray.push(new Date(dt)); //laver en dato ud af dt og smider den på arrayet
         dt.setDate(dt.getDate() + 1);
-        if (dt.toLocaleDateString() == end.toLocaleDateString()) {
-            //debugger;
-            fDatesArray.push(new Date(dt)); //laver en dato ud af dt og smider den på arrayet
+        if (dt.toLocaleDateString() == end.toLocaleDateString()) { // der er chance for at dt == end når while loopet er færdigt, er dette tilfældet skal vi indsætte datoen efter dt
+            fDatesArray.push(new Date(dt)); 
         }
     }
-
     return fDatesArray;
 }  
 
@@ -557,8 +553,7 @@ function getDateArray(start, end) {
 function events() {
     var startingDate = [], endingDate = [], currentYearsEvents = [], eventWOverflow = [], daysLeftWOverflow = [], startingODate = [], endingODate = [], daysLeft = []; //en masse arrays som nok måske skal bruges
 
-    var y = 0; //tæller op hver gang der er et event med et overflow til næste år
-
+    var y = 0, o = 0; //tællere
     for (i = 0; i < jObjA.length; i++) {
         var startSplitDate = datesplitter(jObjA[i].startdato);
         var endSplitDate = datesplitter(jObjA[i].slutdato);
@@ -590,10 +585,12 @@ function events() {
         
         var datesArray = getDateArray(startdato[i], slutdato[i]);
 
+        o++;
+
         for (x = 0; x < datesArray.length; x++) {            
-            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0);
-            datesArray[x] = datesArray[x].toISOString().split("T")[0];
-            datesArray[x] = datesArray[x].split("-0").join("-");
+            datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0); //gør noget (stackoverflow siger "removing the timezone offset and 12 hours")
+            datesArray[x] = datesArray[x].toISOString().split("T")[0]; //datoer bliver til en ISOString (yyyy-mm-ddThh:mm:ss), men bliver splittet på T så det bliver til et array, tager den første del arrayet
+            datesArray[x] = datesArray[x].split("-0").join("-"); //har vi gjort før det kan i godt nu
 
             var eventPlacer = document.getElementById(datesArray[x]);
             var testnode1 = document.createTextNode([i]);
@@ -620,27 +617,23 @@ function events() {
         daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000));
         daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]);
         //console.log(eventWOverflow[i].id + " " + daysLeftWOverflow[i]);   
-        //------------------------------------------------  
+
         tempStart[i] = datesplitter(tempSDate);
         tempEnd[i] = datesplitter(tempEDate);   
 
-        //console.log(tempStart[i]);
-        //console.log(tempEnd[i])
         var datesArray = getDateArray(tempStart[i], tempEnd[i]);    
-
         
+        o++;
 
         for (x = 0; x < datesArray.length; x++) {
             
             datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0);
-            //console.log(datesArray[x].toISOString());
+
             datesArray[x] = datesArray[x].toISOString().split("T")[0];
             datesArray[x] = datesArray[x].split("-0").join("-");   
 
-
-
             var eventPlacer = document.getElementById(datesArray[x]);
-            var testnode1 = document.createTextNode([i]);   
+            var testnode1 = document.createTextNode([o - 1] + " ");   
 
             if (eventPlacer != null) {
                 eventPlacer.appendChild(testnode1);
@@ -648,12 +641,7 @@ function events() {
             else if (eventPlacer == null) {
             }
         }
-
-       //while (datesArray) {
-       //    
-       //}
-
-   }
+    }
 }
 
 
