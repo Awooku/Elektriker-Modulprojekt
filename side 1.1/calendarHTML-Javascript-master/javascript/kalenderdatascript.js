@@ -462,12 +462,12 @@ function jsonHandler() {
                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":12,"pladser":30,"startdato":"01/07/2019","slutdato":"29/07/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":12,"pladser":30,"startdato":"01/02/2019","slutdato":"22/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":13,"pladser":30,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"14/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
                 '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"20/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                '{"id":17,"pladser":30,"startdato":"04/12/2019","slutdato":"27/11/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
+                '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"21/01/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+                '{"id":17,"pladser":30,"startdato":"04/12/2019","slutdato":"19/05/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
 
                 /* 
                 '{"id":14,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
@@ -552,9 +552,8 @@ function getDateArray(start, end) {
 
 function events() {
     var startingDate = [], endingDate = [], currentYearsEvents = [], eventWOverflow = [], daysLeftWOverflow = [], startingODate = [], endingODate = [], daysLeft = []; //en masse arrays som nok måske skal bruges
-
-    
     var y = 0, o = -1; //tællere
+
     for (i = 0; i < jObjA.length; i++) {
         var startSplitDate = datesplitter(jObjA[i].startdato); //splitter smider startdato i datesplitter()
         var endSplitDate = datesplitter(jObjA[i].slutdato);
@@ -621,7 +620,7 @@ function events() {
         
         o++;
 
-        if (tempEnd[i].split("-")[0] == currentYear) { //hvis slutdatoen på event er det samme som viste år (kun events som slutter året efter nuværende år når i overstående for loop),
+        if (tempEnd[i].split("-")[0] == currentYear) { //hvis slutdatoen på event er det samme som viste år (kun events som slutter året efter nuværende år bliver smidt ind i overstående for loop),
             o = jObjA.length - eventWOverflow.length; //o = længden på arrayet jObjA minus længden på eventWOverflow.
             o = o + i;  //o = o plus det event vi er nået til
         } //dette if sørger for at events som kommer efter nuværende år bliver vist korrekt
