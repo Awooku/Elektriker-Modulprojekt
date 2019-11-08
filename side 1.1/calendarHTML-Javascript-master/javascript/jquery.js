@@ -27,6 +27,6 @@ $("#kalender-body").on("click", "td", function() {
             } // - itererer igennem sClicked, hvis det element som du er nået til er det samme som det eventID loopet er itereret til, så skal det event vises -
         } // - (mellemrum bliver aldrig det samme som et eventID, derfor sker der ikke noget når loopet når til et mellemrum
     } //skulle du være i tvivl, så ja, jeg har ingen idé om hvordan jquery fungerer    
-});
+}); //og ja der står for mange kommentarer
 
 
