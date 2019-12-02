@@ -95,7 +95,6 @@ function removeWeek() { //fjerner overflødige uger som fylder på layoutet
 
 function removeDays() { //fjerner .dage klasser som bliver placeret efter events da de skubber til vores event
     var noEventLinje = document.querySelectorAll(".eventLinje"); //fanger alle elementer som har klassen 'eventLinje'
-    //console.log(noEventLinje);
     //var noEventLinje = document.getElementsByClassName("eventLinje"); //fanger alle elementer som har klassen 'eventLinje'
     for (var d = 0; d < noEventLinje.length; d++) { //kører igennem hver element som har klassen .eventLinje (kører igennem hver uge)
         var eventCol = noEventLinje[d].children; //gemmer hver eventLinje's børn for at se hvilke klasser de har
@@ -474,7 +473,6 @@ function jsonHandler() {
 
     var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
     if (text.length > 0) {
-        //console.log("kage med is"); 
         for (t = 0; t < text.length; t++) {
             startdato[t] = text[t].startdato; //startdato bliver smidt ind i et array hver gang loopet kører
             slutdato[t] = text[t].slutdato; //gør det samme som ovenover men med slutdato
@@ -511,22 +509,6 @@ function jsonHandler() {
     text = [];
 }
 
-//function displayJSON(e) { //viser information fra JSON objekt ud fra eventID
-//    var tdIDeventID = e.firstElementChild.className; //finder placerevents oldebarns klassenavn
-//    var aIDSplit = tdIDeventID.split("eventID"); //splitter på eventID så kun tallet er tilbage
-//    var IDSplit = parseInt(aIDSplit[1]); //aIDSplit er et array, her bliver den anden del [1] lavet om til en int og gemt i IDSplit    
-//
-//    if (eventID.indexOf(IDSplit) != -1) { //hvis IDSplit findes i eventID
-//        for (var i = 0; i < eventID.length; i++) {
-//            if (eventID[i] == IDSplit) { //hvis IDSplit er det samme som det eventID loopet er nået til
-//                //dette skal en eller anden dag aktivere en pop op som viser data fra det event du har trykket på
-//denne kode er egentlig ligemeget da denne funktionalitet nu sidder i jquery.js, ikke at det er skrevet i jquery format. Jeg prøvede.
-//                return(jObjA[i]);
-//            }
-//        }
-//    }
-//}
-
 function dateSplitter(dateToBeSplit) {
     var newSplitDate = dateToBeSplit.split("/").reverse().join("-"); //splitter dato på /, omvender tallene, smider sammen på - (xx/xx/xxxx -> xxxx-xx-xx)
     newSplitDate = newSplitDate.split("-0").join("-"); //fjerner 0'er ellers klager siden (xxxx-0x-0x -> xxxx-x-x)
@@ -552,7 +534,7 @@ function getDateArray(start, end) {
 function dateFixer(arrayOfDates) {
     arrayOfDates.setHours(0, -arrayOfDates.getTimezoneOffset(), 0, 0); //gør noget (stackoverflow siger "removing the timezone offset and 12 hours")
     arrayOfDates = arrayOfDates.toISOString().split("T")[0]; //datoer bliver til en ISOString (yyyy-mm-ddThh:mm:ss), men bliver splittet på T så det bliver til et array, tager den første del arrayet
-    arrayOfDates = arrayOfDates.split("-0").join("-"); 
+    arrayOfDates = arrayOfDates.split("-0").join("-"); //splitter på "-0", sætter sammen igen på "-" (xxxx-0x-0x -> xxxx-x-x)
 
     return arrayOfDates;
 }
@@ -560,112 +542,43 @@ function dateFixer(arrayOfDates) {
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
 function events() { //placerer events
-    var startingDate = [], endingDate = [], currentYearsEvents = [], eventWOverflow = [], daysLeftWOverflow = [], startingODate = [], endingODate = [], daysLeft = []; //en masse arrays som nok måske skal bruges
-    var y = 0, o = -1; //tællere
+    var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent
 
     for (i = 0; i < jObjA.length; i++) {
-        var startSplitDate = dateSplitter(jObjA[i].startdato); //splitter smider startdato i dateSplitter()
-        var endSplitDate = dateSplitter(jObjA[i].slutdato);
 
-        var startDateSplit = startSplitDate.split("-"); //splitter startdato op så det bliver til et array, så vi kan sammenligne årstallet
-        var endDateSplit = endSplitDate.split("-"); //samme som ovenover bare med slutdato
-
-        if (startDateSplit[0] == currentYear && endDateSplit[0] == currentYear) { //hvis det første element i den splittede startdato (år) er det samme som det nuværende år OG det samme i slutdatoen
-            currentYearsEvents[i] = jObjA[i]; //smid de events i currentYearsEvents
-        }
-
-        if (startDateSplit[0] != endDateSplit[0]) { //hvis årstallet i den splittede startdato IKKE er det samme som årstallet i den splittede slutdato
-            eventWOverflow[y] = jObjA[i]; //smid de events i eventWOverflow
-            y++;
-        }
-    }
-
-    //måske går det hele hurtigere hvis de to næste for loops bliver smidt ind i et enkelt loop
-    for (i = 0; i < currentYearsEvents.length; i++) {
-        startingDate[i] = new Date(startdato[i]); //startingDate[i] bliver til en dato
-        endingDate[i] = new Date(slutdato[i]);
-        //udkommenteret kode da det ikke bliver brugt, gem til senere til det måske bliver relevant
-        //     daysLeft[i] = endingDate[i] - startingDate[i]; //trækker startdato fra slutdato så du får et langt underligt tal
-        //     daysLeft[i] = (daysLeft[i] / (60*60*24*1000)); //markus's magiske udregning som ganger op og ned og til højre og venstre samt laver dig kaffe og speedrunner Super Mario Bros.
-        //     daysLeft[i] = Math.floor(daysLeft[i]); //runder ned (alle tal bliver fra xx,00xxxxxxxx til xx)        
         var datesArray = getDateArray(startdato[i], slutdato[i]);
 
-        o++;
-
         for (x = 0; x < datesArray.length; x++) {            
-            //datesArray[x].setHours(0, -datesArray[x].getTimezoneOffset(), 0, 0); //gør noget (stackoverflow siger "removing the timezone offset and 12 hours")
-            //datesArray[x] = datesArray[x].toISOString().split("T")[0]; //datoer bliver til en ISOString (yyyy-mm-ddThh:mm:ss), men bliver splittet på T så det bliver til et array, tager den første del arrayet
-            //datesArray[x] = datesArray[x].split("-0").join("-"); //har vi gjort før det kan i godt nu
 
-            datesArray[x] = dateFixer(datesArray[x]); //overstående kode er det originale og bliver behold som kommentar i tilfælde af den nye funktion (dateFixer()) ødelægger et eller andet 
+            datesArray[x] = dateFixer(datesArray[x]); //overstående kode er det originale og bliver beholdt som kommentar i tilfælde af den nye funktion (dateFixer()) ødelægger et eller andet 
 
-            var eventPlacer = document.getElementById(datesArray[x]);
-            var testnode1 = document.createTextNode(jObjA[o].id + " ");
+            var eventPlacer = document.getElementById(datesArray[x]);            
+            var appendModulDiv = document.createElement("div");
+            var appendModulNode = document.createTextNode(jObjA[i].moduldata_id + " ");
 
-            if (eventPlacer != null) {
-                eventPlacer.appendChild(testnode1);
-            }
-
-            else if (eventPlacer == null) {
+            if (eventPlacer != null) { //hvis eventplacer ikke er null (hvis den har et element)
+                eventPlacer.classList.add("hasEvent");
+                appendModulDiv.appendChild(appendModulNode);
+                appendModulDiv.classList.add("placedEvent");
+                eventPlacer.appendChild(appendModulDiv);                
             }
         }
-   }
+    }    
 
-   for (i = 0; i < eventWOverflow.length; i++) { //dette for loop gør det samme som ovenover, bare med eventWOverflow i stedet for currentYearsEvents
+    for (i = 0; i < hasEventList.length; i++) { //itererer igennem hver dag som har mere end et event
+        if (hasEventList[i].children.length > 1) { //hvis længden på det element du er nået til er over 1 (hvis der er mere end ét event på en dag)
+            var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
     
-        var tempSDate = dateSplitter(eventWOverflow[i].startdato);
-        var tempEDate = dateSplitter(eventWOverflow[i].slutdato);   
-        startingODate[i] = new Date(tempSDate); //laver en dato ud af startingDateOverflow[i]
-        endingODate[i] = new Date(tempEDate);   
-        //     daysLeftWOverflow[i] = endingODate[i] - startingODate[i];
-        //     daysLeftWOverflow[i] = (daysLeftWOverflow[i] / (60*60*24*1000)); //måske er den ikke så magisk alligevel og jeg er bare dårlig til matematik
-        //     daysLeftWOverflow[i] = Math.floor(daysLeftWOverflow[i]);
-
-        var tempStart = [], tempEnd = [];
-        tempStart[i] = tempSDate; //smider tempSDate i et array
-        tempEnd[i] = tempEDate; //smider tempEDate i et array
-
-        var datesArray = getDateArray(tempStart[i], tempEnd[i]);    
-        
-        o++;
-
-        if (tempEnd[i].split("-")[0] == currentYear) { //hvis slutdatoen på event er det samme som viste år (kun events som slutter året efter nuværende år bliver smidt ind i overstående for loop),
-            o = jObjA.length - eventWOverflow.length; //o = længden på arrayet jObjA minus længden på eventWOverflow.
-            o = o + i;  //o = o plus det event vi er nået til
-        } //dette if sørger for at events som kommer efter nuværende år bliver vist korrekt
-        
-        for (x = 0; x < datesArray.length; x++) {
-            datesArray[x] = dateFixer(datesArray[x]);
-
-            var eventPlacer = document.getElementById(datesArray[x]);
-            var testnode1 = document.createTextNode(jObjA[o].id + " ");   
-
-            if (eventPlacer != null) {
-                eventPlacer.appendChild(testnode1);
-            }   
-
-            else if (eventPlacer == null) {
+            while (hasEventList[i].children.length > 1) { //mens længden på det event du er nået til er over 1
+                hasEventList[i].children[1].remove(); //fjern element[1] (ikke element[0] da det er det første event på dagen)
             }
+    
+            childrenLength = childrenLength - 1; 
+            var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
+            hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
+            hasEventList[i].firstElementChild.classList.add("extraEvent");            
         }
     }
-
-
-
-   // var getDays = document.getElementsByClassName("dage");
-//
-   // for (i = 0; i < getDays.length; i++) { //laver +'er når der er mere end et event på en dag
-   //     var HText = []; //laver et array        
-   //     HText = getDays[i].innerText.split(" "); //splitter array (eventID) på " "
-//
-   //     if (HText.length > 1) { //hvis arrayet er større end 1 (hvis der bliver vist mere end et event på en dag)
-//
-   //         for (z = 0; z < HText.length; z++) { 
-   //             getDays[i].innerText = getDays[i].innerText.replace(HText[z], " "); //finder datoen som loopet er nået til
-   //         }
-//
-   //         getDays[i].innerText = "+" //erstatter text med + (for t vise at der er flere events på en dag)
-   //     }
-   // }
 }
 
 
