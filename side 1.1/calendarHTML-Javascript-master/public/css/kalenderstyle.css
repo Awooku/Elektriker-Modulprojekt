@@ -131,6 +131,10 @@ body {
 
     /* enkelt dag */
 
+.hasEvent {
+    cursor: pointer;
+}
+
 .dage, .tomdag, .dageTop {
     padding: 0;
 }

@@ -54,7 +54,7 @@
             
         </nav>
   </header>
-  <main role="main">
+ <main role="main">
     <div id="left"><br/>
         <div class="row">
             <div>
@@ -62,7 +62,7 @@
                     <form>
                         <fieldset>
                             <legend>Søg:</legend>
-                            <input id="search" type="text"/><input type="submit" value="Søg">
+                            <input id="search" type="text" onchange="searchfilter()"/>
                         </fieldset>
                     </form>
                 </div>
@@ -71,13 +71,16 @@
                     <form>
                         <fieldset>
                             <legend>Region:</legend>
-                            <ul>
-                                <li><input type="checkbox" /><label>Region Hovedstaden</label></li>
-                                <li><input type="checkbox"/><label>Region Sjælland   </label></li>
-                                <li><input type="checkbox"/><label>Region Syddanmark </label></li>
-                                <li><input type="checkbox"/><label>Region Midtjylland</label></li>
-                                <li><input type="checkbox"/><label>Region Nordjylland</label></li>
-                            </ul>
+                                <ul>
+                                    <select id="region" type="text" list="moduler" onchange="regionsfilter(this.value)">
+                                        <option>-- Vælg Region --</option>
+                                        <option value="Hovedstaden">Region Hovedstaden</option>
+                                        <option value="Sjælland">Region Sjælland</option>
+                                        <option value="Syddanmark">Region Syddanmark</option>
+                                        <option value="Midtjylland">Region Midtjylland</option>
+                                        <option value="Nordjylland">Region Nordjylland</option>
+                                    </select>
+                                </ul>
                         </fieldset>
                     </form>
                 <hr/>
@@ -99,12 +102,12 @@
                         <fieldset>
                             <legend>Modulsøgning:</legend>
                             <ul>
-                                <input class="menu" type="text" list="moduler" />
+                                <input class="menu" type="text" list="moduler" onchange="modulfilter(this.value)"/>
                                 <datalist id="moduler">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
                                 </datalist>
                             </ul>
                         </fieldset>
@@ -116,12 +119,12 @@
                         <fieldset>
                             <legend>Skolesøgning:</legend>
                             <ul>
-                                <input class="menu" type="text" list="skoler" />
-                                <datalist id="skoler">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <input class="menu" type="text" list="skoler" onchange="skolefilter(this.value)"/>
+                                <datalist id="skoler" >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
                                 </datalist>
                             </ul>
                         </fieldset>
@@ -498,8 +501,8 @@
                     <ul>
                     <!--<li><label><input type="radio" id="years" name="view"/>Flere år</label></li>-->
                     <li><label><input type="radio" id="year" name="view" checked onclick="showyear()"/>Et år</label></li>
-                    <!--<li><label><input type="radio" id="quarter" name="view" onclick="show3()"/>Kvartal</label></li>
-                    <li><label><input type="radio" id="month" name="view"  onclick="showmonth()"/>Måned</label></li>-->
+                    <li><label><input type="radio" id="quarter" name="view" onclick="show3()"/>Kvartal</label></li>
+                    <li><label><input type="radio" id="month" name="view"  onclick="showmonth()"/>Måned</label></li>
                     </ul>
                 </fieldset>
             </form>
