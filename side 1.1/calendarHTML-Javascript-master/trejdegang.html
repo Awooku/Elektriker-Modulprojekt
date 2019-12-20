@@ -8,7 +8,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrationsværktøj</title>
     <link rel="stylesheet" type="text/css" href="lykkensgang.css">
-    <link rel="stylesheet" href="calendarHTML-Javascript-master/css/kalenderstyle.css" id="stylesheetID">
+    <link rel="stylesheet" href="css/kalenderstyle.css" id="stylesheetID">
 </head>
 <body>
   <header>
@@ -54,7 +54,7 @@
             
         </nav>
   </header>
- <main role="main">
+  <main role="main">
     <div id="left"><br/>
         <div class="row">
             <div>
@@ -62,7 +62,7 @@
                     <form>
                         <fieldset>
                             <legend>Søg:</legend>
-                            <input id="search" type="text" onchange="searchfilter()"/>
+                            <input id="search" type="text" onkeyup="searchfilter()"/>
                         </fieldset>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
                             <legend>Region:</legend>
                                 <ul>
                                     <select id="region" type="text" list="moduler" onchange="regionsfilter(this.value)">
-                                        <option>-- Vælg Region --</option>
+                                        <option value="">-- Vælg Region --</option>
                                         <option value="Hovedstaden">Region Hovedstaden</option>
                                         <option value="Sjælland">Region Sjælland</option>
                                         <option value="Syddanmark">Region Syddanmark</option>
@@ -102,12 +102,12 @@
                         <fieldset>
                             <legend>Modulsøgning:</legend>
                             <ul>
-                                <input class="menu" type="text" list="moduler" onchange="modulfilter(this.value)"/>
+                                <input class="menu" type="text" list="moduler" onkeyup="modulfilter(this.value)"/>
                                 <datalist id="moduler">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                    <option value="1.1">1.1</option>
+                                    <option value="1.2">1.2</option>
+                                    <option value="1.3">1.3</option>
+                                    <option value="2.1">2.1</option>
                                 </datalist>
                             </ul>
                         </fieldset>
@@ -119,12 +119,12 @@
                         <fieldset>
                             <legend>Skolesøgning:</legend>
                             <ul>
-                                <input class="menu" type="text" list="skoler" onchange="skolefilter(this.value)"/>
+                                <input class="menu" type="text" list="skoler" onkeyup="skolefilter(this.value)"/>
                                 <datalist id="skoler" >
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                    <option value="Skole 1">Skole 1</option>
+                                    <option value="Skole 2">Skole 2</option>
+                                    <option value="Skole 3">Skole 3</option>
+                                    <option value="Skole 4">Skole 4</option>
                                 </datalist>
                             </ul>
                         </fieldset>
@@ -140,7 +140,7 @@
             <div id="helekalender"> <!--div der indeholder hele kalenderen-->
                 <h3 id="årstal"></h3> <!--h3 element til at vise hvad årstalet er på på daværende kalendervisning-->
                 <div id="kalender-body"></div> <!--div der indeholder selve kalenderen-->   
-                <script src="calendarHTML-Javascript-master/javascript/kalenderdatascript.js"></script>         
+                <script src="javascript/kalenderdatascript.js"></script>         
             </div>
         </div>
         
@@ -523,7 +523,7 @@
     </div>
   </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
-    <script src="calendarHTML-Javascript-master/javascript/jquery.js"></script>
+    <script src="javascript/jquery.js"></script>
     <script src="thescript.js"></script>
 </body>
 <html>
