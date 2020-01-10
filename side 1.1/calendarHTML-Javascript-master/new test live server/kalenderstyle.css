@@ -127,7 +127,7 @@ body {
     border-spacing: initial;
 }
 
-    /* enkelt dag test */
+    /* enkelt dag */
 
 .hasEvent {
     cursor: pointer;
@@ -621,6 +621,10 @@ body {
 
     :root {
         --a: 70px;
+    }
+
+    .hasEvent {
+        width: 69px;
     }
 
     .eventLinje {

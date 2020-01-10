@@ -19,6 +19,12 @@
 !public/js/*.js
 /public/js/app.js
 
+!/new test live server
+/new test live server/*
+!/new test live server/*.css
+!/new test live server/*.js
+!/new test live server/*.
+
 !/public/css
 /public/css/*
 !public/css/*.css
