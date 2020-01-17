@@ -541,8 +541,7 @@ function dateFixer(arrayOfDates) {
 function events(allEvents) { //placerer events
     var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent    
     jsonHandler(allEvents);
-    //debugger;
-
+    
     //TODO, når allevents er mindre end jObjA skal alle events på siden cleares
     //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
@@ -601,13 +600,13 @@ function skolefilter(val) { //val er det der står i skolesøgningsboxen
 }
 
 function modulfilter(val) {
-    filter_properties[1] = val; //filter_properties[1] er lig ned val (det der står i modulsøgningsboxen)
+    filter_properties[1] = val; //filter_properties[1] er lig med val (det der står i modulsøgningsboxen)
     console.log(val);
     setfilter();
 }
 
 function regionsfilter(val) {
-    filter_properties[2] = val; //filter_properties[2] er lig ned val (det der står i region dropdown'en)
+    filter_properties[2] = val; //filter_properties[2] er lig med val (det der står i region dropdown'en)
     console.log(val);
     setfilter();
 }
