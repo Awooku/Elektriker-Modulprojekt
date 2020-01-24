@@ -1,40 +1,72 @@
-# Calendar with Pure JavaScript and HTML
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-The program uses Date() function to build a simple calendar with Pure JavaScript and HTML. 
-Here's the final implementation of it - http://iamnitinpatel.com/projects/calendar
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-![alt html javascript calendar](https://cdn-images-1.medium.com/max/800/1*7nkXuZNIB7UUdSFKdIZHVQ.png)
+## About Laravel
 
-**Explanation-** When the program is started, the function *showCalendar()* is with arguments *currentMonth* and *currentYear*. 
-This function populates the table with dates at the correct places. 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-The buttons "previous", "next" and dropdown "jump" control the functions, *previous()*, *next()* and *jump()*. 
-These function update the *currentMonth* and *currentYear* variable. 
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-**How showCalendar Works-** 
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-showCalendar(month, year) function which takes in two parameters, month and year. Once, the function is called, it dynamically generates a calendar in HTML and appends it into our table. Here’s my approach.
+## Learning Laravel
 
-Get the starting day of the month, we’ll use -
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-    let firstDay = (new Date(year, month)).getDay();
-2. Next, get the number of days in that month. We can achieve this too using date function.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
+## Laravel Sponsors
 
-    let daysInMonth = 32 - new Date(year, month, 32).getDate();
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-Explanation, the function new Date(year, month, 32) returns the 32nd day after the month started. If we subtract that date from 32, we get the final day of that month. Example, If we pass feb 2018 as an argument, its ‘32nd’ day will be 4th of march, subtract 32 from 4 and we get 28, final day of the month of feb 2018.
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
+- [Hyper Host](https://hyper.host)
 
-Once we have the two things ready, we populate the table with numbers 1 to [last day of month] on appropriate places. For example, if the starting of that month is Thursday and Ending date is 28, we’ll put the number 1 below thursday, 2 below, friday, 3 below saturday and so on. When we reach 28, we break out of the loop.
+## Contributing
 
-Here, we use a nested for loop because we have upto 6 rows and 7 columns.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-In the outer loop, we create a new “tr” element, ie, table row, up to 6 times. (maximum number of rows we need to create the calendar), then run the inner loop to create elements in each rows, then append those rows into our table.
+## Security Vulnerabilities
 
-In the inner loop, we populate each row with “td” elements in it. We keep track of the date using variable “date” in it.There are three if conditions at each iteration:
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-If we’re at first row and we have not yet reached first yet, create td element and leave it blank.
+## License
 
-If “date” is higher than max days in that month, we break out of the loop because we have finished creating the table.
-
-Else, we create the “td” element and print the “date” in it. 
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

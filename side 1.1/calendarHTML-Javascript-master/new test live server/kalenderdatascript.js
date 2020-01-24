@@ -454,21 +454,21 @@ function showmonth() {
 
 //Tager en JSON fil og laver den til data som programmet skal kunne læse/opdatere
 function jsonParser() {
-      var jText = '[{"id":4,"pladser":30,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 9","moduldata_id":"2.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":5,"pladser":25,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":5,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":6,"pladser":20,"startdato":"21/01/2019","slutdato":"31/01/2019","reserverede_pladser":10,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":8,"pladser":35,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"1.3","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":25,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"2.1","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
-      '{"id":10,"pladser":25,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":30,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":12,"pladser":15,"startdato":"01/02/2019","slutdato":"22/02/2019","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 6","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":13,"pladser":16,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":11,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":14,"pladser":14,"startdato":"01/11/2019","slutdato":"14/01/2020","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":15,"pladser":22,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":16,"pladser":19,"startdato":"02/12/2019","slutdato":"21/01/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-      '{"id":17,"pladser":30,"startdato":"04/12/2019","slutdato":"19/05/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  //var jText = '{!! $events !!}';
-    
+    var jText = '[{"id":4,"pladser":30,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 9","moduldata_id":"2.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":5,"pladser":25,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":5,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":6,"pladser":20,"startdato":"21/01/2020","slutdato":"17/02/2020","reserverede_pladser":10,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":7,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":8,"pladser":35,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"1.3","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":9,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":25,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"2.1","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
+    '{"id":10,"pladser":25,"startdato":"01/05/2020","slutdato":"30/05/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":11,"pladser":30,"startdato":"03/06/2020","slutdato":"31/07/2020","reserverede_pladser":30,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":12,"pladser":15,"startdato":"03/02/2020","slutdato":"22/02/2020","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 6","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":13,"pladser":16,"startdato":"09/10/2020","slutdato":"29/10/2020","reserverede_pladser":11,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":14,"pladser":14,"startdato":"02/11/2020","slutdato":"14/01/2021","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":15,"pladser":22,"startdato":"29/11/2021","slutdato":"10/01/2022","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":16,"pladser":19,"startdato":"01/12/2021","slutdato":"21/01/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    '{"id":17,"pladser":30,"startdato":"02/12/2021","slutdato":"19/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
+
                 /* 
                 '{"id":14,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
 
@@ -545,46 +545,54 @@ function events(allEvents) { //placerer events
     //TODO, når allevents er mindre end jObjA skal alle events på siden cleares
     //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
-    if (hasEventList.length >= 0) {
-        while (hasEventList.length > 0) {
-            hasEventList[0].firstElementChild.remove();
-            hasEventList[0].classList.remove("hasEvent");
-        }
-    }
+    // if (hasEventList.length >= 0) {
+    //     while (hasEventList.length > 0) {            
+    //         hasEventList[0].firstElementChild.remove(); 
+    //         hasEventList[0].classList.remove("hasEvent");
+    //     }
+    // } //udkommenteret indtil videre, åbenbart gjorde det ikke noget
 
     for (i = 0; i < allEvents.length; i++) {
+        var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
+        var firstDate = document.getElementById(startdato[i]) //finder alle elementer med ID'et startdato[i]
+        var appendModulDiv = document.createElement("div");
+        var plusNode = document.createTextNode(" +");
+        var appendModulNode = document.createTextNode(allEvents[i].moduldata_id + " "); //det elements moduldata loopet er nået til
 
-        var datesArray = getDateArray(startdato[i], slutdato[i]);
-
+        if (firstDate != null) { //hvis dagen ikke er null (siden dør hvis den placerer på en dato som ikke findes såsom weekender eller et andet år)
+            appendModulDiv.appendChild(appendModulNode); //appender noden på div
+            appendModulDiv.classList.add("placedEvent"); //giver div'en klassen "placedEvent"
+            firstDate.appendChild(appendModulDiv);  //appender diven (samt noden) på eventets første dato
+        } //placerer moduldata på den første dato på eventet
+        
+        if (firstDate != null && firstDate.classList.contains("hasEvent")) { //hvis elementet allerede har .hasEvent (det betyder dette loop allerede er kørt igennem en gang, og der er flere events på en enkelt dag)
+            firstDate.firstElementChild.classList.add("extraEvent");
+            appendModulDiv.appendChild(plusNode); //appender node på div
+            firstDate.appendChild(appendModulDiv); //appender div (samt node) på datoen
+        } //placerer +'er på dage med mere end ét event
+                       
         for (x = 0; x < datesArray.length; x++) {            
-
-            datesArray[x] = dateFixer(datesArray[x]);  
-
-            var eventPlacer = document.getElementById(datesArray[x]);            
-            var appendModulDiv = document.createElement("div");
-            var appendModulNode = document.createTextNode(allEvents[i].moduldata_id + " ");
-
-            if (eventPlacer != null) { //hvis eventplacer ikke er null (hvis den har et element)
-                eventPlacer.classList.add("hasEvent");
-                appendModulDiv.appendChild(appendModulNode);
-                appendModulDiv.classList.add("placedEvent");
-                eventPlacer.appendChild(appendModulDiv);                
+            datesArray[x] = dateFixer(datesArray[x]); //datesArray[x] er originalt i det lange dato format, i dateFixer() bliver det kortere så det bedre passer med siden
+            var eventPlacer = document.getElementById(datesArray[x]); //finder ID'et på elementer som har datoer fra datesArray[x]
+            if (eventPlacer != null) { //hvis eventplacer ikke er null (elementet findes)
+                eventPlacer.classList.add("hasEvent"); //placerer .hasEvent (.hasEvent er farvet blåt)
             }
-        }
+        } 
     }    
 
     for (i = 0; i < hasEventList.length; i++) { //itererer igennem hver dag som har mere end et event
         if (hasEventList[i].children.length > 1) { //hvis længden på det element du er nået til er over 1 (hvis der er mere end ét event på en dag)
-            var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
+            //var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
     
             while (hasEventList[i].children.length > 1) { //mens længden på det event du er nået til er over 1
                 hasEventList[i].children[1].remove(); //fjern element[1] (ikke element[0] da det er det første event på dagen)
             }
             
-            childrenLength = childrenLength - 1; 
-            var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
-            hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
-            hasEventList[i].firstElementChild.classList.add("extraEvent");            
+            //childrenLength = childrenLength - 1; 
+            //var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
+            //hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
+            //hasEventList[i].firstElementChild.classList.add("extraEvent");                    
+            //udkommenteret indtil videre, ikke helt sikker på hvad det gør
         }
     }
 }
@@ -632,7 +640,6 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
                     return json; //returnerer json til FFilter
                 }
                 break
-                //test
             }                      
         }
 
