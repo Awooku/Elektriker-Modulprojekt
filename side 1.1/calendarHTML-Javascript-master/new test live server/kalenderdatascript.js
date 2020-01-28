@@ -2,6 +2,7 @@
 var m = 0, k = 0, j = 0, t = 0, E = 0;
 var today = new Date();
 var jObjA = [], newJSONObject = [], eventID = [], startdato = [], slutdato = [], skoleID = [], modultal = [], synlig = [];
+var newjObjA = [];
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
@@ -343,7 +344,6 @@ function showCalendar(month, year) {
         }
         removeWeek(); //fjerner overflødig uge med tom data
     } 
-
 }
 
 //---------------------------------------------------------------------------Kalender Form---------------------------------------------------------------------------->
@@ -394,7 +394,19 @@ function show3() {
     }
     k = 0; //bruges til at insætte måneder i div tags
     jsonParser(); //henter datoer der skal bruges
-    events(jObjA); //henter indhold til kalenderen
+
+    if (newjObjA.length == 0) {
+        console.log(newjObjA);
+
+        events(jObjA); //henter indhold til kalenderen
+    }
+
+    else if (newjObjA.length > 0) {
+        console.log(newjObjA);
+
+        events(newjObjA); //henter indhold til kalenderen
+    }
+    
     swapSheet('kalenderstyleKvartal.css'); //skifter css om til 3 måneders visning
 }
 
@@ -403,7 +415,7 @@ function showyear() {
     var tbl = document.getElementById("kalender-body"); //får fat i selve kalender body'en
     tbl.innerHTML = ""; //fjerner celler, bruges når man trykker på previous/next eller skifter viewtype
 
-    //checker om den allerede er inde i functionen
+    //checker om den allerede er inde i funktionen
     if (m != 12) {
         currentMonth = 0; //gør at den første måned der bliver vist er januar
         currentYear = today.getFullYear();  //gør at man er i nuværende år
@@ -425,7 +437,19 @@ function showyear() {
     }
     k = 0; //bruges til at insætte måneder i div tags
     jsonParser(); //henter datoer der skal bruges
-    events(jObjA); //henter indhold til kalenderen
+    
+    if (newjObjA.length == 0) {
+        console.log(newjObjA);
+
+        events(jObjA); //henter indhold til kalenderen
+    }
+
+    else if (newjObjA.length > 0) {
+        console.log(newjObjA);
+
+        events(newjObjA); //henter indhold til kalenderen
+    }
+
     swapSheet('kalenderstyle.css'); //skifter css om til årlig visning
 }
 
@@ -446,7 +470,17 @@ function showmonth() {
     m = 1;  // bruges i next og previous 
     k = 0;  // bruges til at insætte måneder i div tags
     jsonParser(); //henter datoer der skal bruges
-    events(jObjA); //henter indhold til kalenderen
+
+    if (jObjA.length >= newjObjA.length) {
+        console.log(newjObjA);
+
+        events(jObjA); //henter indhold til kalenderen
+    }
+
+    else if (jObjA.length < newjObjA.length) {
+        console.log(newjObjA);
+        events(newjObjA); //henter indhold til kalenderen
+    }
     swapSheet('kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
 }
 
@@ -540,17 +574,26 @@ function dateFixer(arrayOfDates) {
 
 function events(allEvents) { //placerer events
     var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent    
+    var hasPlacedEvent = document.getElementsByClassName("placedEvent")
     jsonHandler(allEvents);
     
     //TODO, når allevents er mindre end jObjA skal alle events på siden cleares
     //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
-    // if (hasEventList.length >= 0) {
-    //     while (hasEventList.length > 0) {            
-    //         hasEventList[0].firstElementChild.remove(); 
-    //         hasEventList[0].classList.remove("hasEvent");
-    //     }
-    // } //udkommenteret indtil videre, åbenbart gjorde det ikke noget
+    if (hasEventList.length >= 0) {
+        //console.log(hasEventList)
+        while (hasEventList.length > 0) {            
+            hasEventList[0].classList.remove("hasEvent");
+        }
+    }
+
+    if (hasPlacedEvent.length >= 0) {
+        //console.log(hasPlacedEvent)
+
+        while (hasPlacedEvent.length > 0) {
+            hasPlacedEvent[0].remove();
+        }
+    }
 
     for (i = 0; i < allEvents.length; i++) {
         var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
@@ -574,7 +617,10 @@ function events(allEvents) { //placerer events
         for (x = 0; x < datesArray.length; x++) {            
             datesArray[x] = dateFixer(datesArray[x]); //datesArray[x] er originalt i det lange dato format, i dateFixer() bliver det kortere så det bedre passer med siden
             var eventPlacer = document.getElementById(datesArray[x]); //finder ID'et på elementer som har datoer fra datesArray[x]
+            var hasEventDiv = document.createElement("div");
             if (eventPlacer != null) { //hvis eventplacer ikke er null (elementet findes)
+                
+                //eventPlacer.appendChild(hasEventDiv);
                 eventPlacer.classList.add("hasEvent"); //placerer .hasEvent (.hasEvent er farvet blåt)
             }
         } 
@@ -592,7 +638,7 @@ function events(allEvents) { //placerer events
             //var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
             //hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
             //hasEventList[i].firstElementChild.classList.add("extraEvent");                    
-            //udkommenteret indtil videre, ikke helt sikker på hvad det gør
+            //udkommenteret indtil videre, ikke helt sikker på hvad koden gør
         }
     }
 }
@@ -653,8 +699,10 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
     });
     console.log(FFilter)
     console.log(FFilter.length)
-    console.log("------------------------------------------------------------");
+    console.log("-----------------------------------------------------------");
 
+    //debugger
+    newjObjA = FFilter;
     events(FFilter); //events() kører nu igennem med FFilters filtreret elementer
 };
 //searchfilter();
