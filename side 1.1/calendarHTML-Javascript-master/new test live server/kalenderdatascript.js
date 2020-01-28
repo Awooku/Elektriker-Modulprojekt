@@ -581,19 +581,16 @@ function events(allEvents) { //placerer events
     //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
     if (hasEventList.length >= 0) {
-        //console.log(hasEventList)
         while (hasEventList.length > 0) {            
             hasEventList[0].classList.remove("hasEvent");
         }
     }
 
     if (hasPlacedEvent.length >= 0) {
-        //console.log(hasPlacedEvent)
-
         while (hasPlacedEvent.length > 0) {
             hasPlacedEvent[0].remove();
         }
-    }
+    } //de to ifs ovenover fjerner al der er blevet tilføjet (dette sker hver gang man ændrer i allEvents, altså når man søger)
 
     for (i = 0; i < allEvents.length; i++) {
         var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
