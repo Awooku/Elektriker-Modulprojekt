@@ -77,6 +77,11 @@
 
     /* enkelt dag */
 
+.hasEvent {
+    cursor: pointer;
+    background-color: rgb(127, 255, 238);
+}
+
 .dage, .tomdag, .dageTop {
     padding: 0;
 }
@@ -280,6 +285,10 @@
     .dage {
         font-size: 10px;
     }
+
+    .hasEvent {
+        height: 14px;
+    }
 }
 
 /* 900p */
@@ -352,6 +361,10 @@
     .dage {
         font-size: 11px;
     }
+
+    .hasEvent {
+        height: 15px;
+    }
 }
 
 /* 1080p standard skærm */
@@ -399,6 +412,10 @@
 
     .dage {
         width: 91px;
+    }
+
+    .hasEvent {
+        height: 17px;
     }
 }
 

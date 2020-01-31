@@ -311,6 +311,10 @@ body {
     :root {
         --a: 43px;
     }
+
+    .hasEvent {
+        height: 12px;
+    }
     
     .eventOneDay {
         width: calc(var(--a) - 4px);
@@ -407,6 +411,10 @@ body {
 
     :root {
         --a: 48px;
+    }
+
+    .hasEvent {
+        height: 12px;
     }
 
     .eventLinje {
@@ -525,6 +533,10 @@ body {
         --a: 57px;
     }
 
+    .hasEvent {
+        height: 15px;
+    }
+
     .eventLinje {
         margin: 0px 1px 0px 1px;
     }
@@ -625,6 +637,7 @@ body {
 
     .hasEvent {
         width: 69px;
+        height: 17px;
     }
 
     .eventLinje {

@@ -304,13 +304,16 @@ body {
     }
 
     .dage {
-        height: 11px;
         width: 44px;
         font-size: 8px;
     }
 
     :root {
         --a: 43px;
+    }
+
+    .hasEvent {
+        height: 12px;
     }
     
     .eventOneDay {
@@ -400,7 +403,6 @@ body {
     }
 
     .dage {
-        height: 12px;
         width: 48px;
         font-size: 9px;
     }
@@ -409,6 +411,10 @@ body {
 
     :root {
         --a: 48px;
+    }
+
+    .hasEvent {
+        height: 12px;
     }
 
     .eventLinje {
@@ -513,7 +519,6 @@ body {
     }
 
     .dage {
-        height: 15px;
         font-size: 11px;
         width: 57px;
     }
@@ -526,6 +531,10 @@ body {
 
     :root {
         --a: 57px;
+    }
+
+    .hasEvent {
+        height: 15px;
     }
 
     .eventLinje {
@@ -607,7 +616,6 @@ body {
     }
 
     .dage {
-        height: 17px;
         width: 70px;
         border-spacing: 0px;
     }
@@ -629,6 +637,7 @@ body {
 
     .hasEvent {
         width: 69px;
+        height: 17px;
     }
 
     .eventLinje {
@@ -710,3 +719,4 @@ body {
         width: 335px;
     }
 }
+

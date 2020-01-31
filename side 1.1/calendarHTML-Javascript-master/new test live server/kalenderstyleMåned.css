@@ -109,6 +109,11 @@
     border-left-width: 0px;
 }
 
+.hasEvent {
+    cursor: pointer;
+    background-color: rgb(127, 255, 238);
+}
+
 .ugedag:nth-child(1) {
     border-left-width: 1px;
 } /* gaffa tape til dårlig css
@@ -202,6 +207,10 @@
     .eventLinjeBody {
         height: 60px;
     }
+
+    .hasEvent {
+        height: 11px;
+    }
 }
 
 /* 768p */
@@ -274,6 +283,10 @@
     .dage {
         font-size: 10px;
     }
+
+    .hasEvent {
+        height: 14px;
+    }
 }
 
 /* 900p */
@@ -317,6 +330,10 @@
     .dageTop {
         padding: 5px 8px 0px 0px;
         width: 201px;
+    }
+
+    .hasEvent {
+        height: 19px;
     }
 }
 
@@ -363,7 +380,9 @@
         height: 151px;
     }
 
-
+    .hasEvent {
+        height: 19px;
+    }
 }
 
 /* 1440p fordi hvorfor ikke */

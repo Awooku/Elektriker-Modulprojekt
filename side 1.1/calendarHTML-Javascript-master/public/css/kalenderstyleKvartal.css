@@ -1,4 +1,4 @@
- /* /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt og besværligt  */
+ /*  */ /* <--- nem måde at copy paste kommentarer fordi jeg er doven og fordi css kommentering er for langt og besværligt  */
 
  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -54,7 +54,15 @@
     border-left-width: 0px;
     /* den venstre side på den sidste måned i et kvartal har valgt at være 2 pixels bred i stedet for 1, derfor fjerner vi 1 pixel */
 }
+/*
+#månedDiv1, #månedDiv2 {
+    border-right: none;
+}
 
+#månedDiv2, #månedDiv3 {
+    border-left: none;
+}
+*/
     /* uge */
 
 .ugeCSS {
@@ -68,6 +76,11 @@
 }
 
     /* enkelt dag */
+
+.hasEvent {
+    cursor: pointer;
+    background-color: rgb(127, 255, 238);
+}
 
 .dage, .tomdag, .dageTop {
     padding: 0;
@@ -272,6 +285,10 @@
     .dage {
         font-size: 10px;
     }
+
+    .hasEvent {
+        height: 14px;
+    }
 }
 
 /* 900p */
@@ -344,6 +361,10 @@
     .dage {
         font-size: 11px;
     }
+
+    .hasEvent {
+        height: 15px;
+    }
 }
 
 /* 1080p standard skærm */
@@ -391,6 +412,10 @@
 
     .dage {
         width: 91px;
+    }
+
+    .hasEvent {
+        height: 17px;
     }
 }
 

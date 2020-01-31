@@ -396,14 +396,10 @@ function show3() {
     jsonParser(); //henter datoer der skal bruges
 
     if (newjObjA.length == 0) {
-        console.log(newjObjA);
-
         events(jObjA); //henter indhold til kalenderen
     }
 
     else if (newjObjA.length > 0) {
-        console.log(newjObjA);
-
         events(newjObjA); //henter indhold til kalenderen
     }
     
@@ -439,14 +435,10 @@ function showyear() {
     jsonParser(); //henter datoer der skal bruges
     
     if (newjObjA.length == 0) {
-        console.log(newjObjA);
-
         events(jObjA); //henter indhold til kalenderen
     }
 
     else if (newjObjA.length > 0) {
-        console.log(newjObjA);
-
         events(newjObjA); //henter indhold til kalenderen
     }
 
@@ -472,13 +464,10 @@ function showmonth() {
     jsonParser(); //henter datoer der skal bruges
 
     if (jObjA.length >= newjObjA.length) {
-        console.log(newjObjA);
-
         events(jObjA); //henter indhold til kalenderen
     }
 
     else if (jObjA.length < newjObjA.length) {
-        console.log(newjObjA);
         events(newjObjA); //henter indhold til kalenderen
     }
     swapSheet('kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
@@ -510,13 +499,11 @@ function jsonParser() {
     var jObj = JSON.parse(jText);
 
     for (i = 0; i < jObj.length; i++) {
-        jObjA[i] = jObj[i]; //gemmer det enkelte json object i et array hver gang for loopet kører
+        jObjA[i] = jObj[i]; //gemmer det enkelte json object i et globalt array hver gang for loopet kører så man kan hente events andre steder i koden
     }
 
     jsonHandler(jObjA);
-
     //Loopet kører for hvert modul der bliver sendt igennem
-
 }
 
 function jsonHandler(jsonObjectArray) {
@@ -576,9 +563,6 @@ function events(allEvents) { //placerer events
     var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent    
     var hasPlacedEvent = document.getElementsByClassName("placedEvent")
     jsonHandler(allEvents);
-    
-    //TODO, når allevents er mindre end jObjA skal alle events på siden cleares
-    //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
     if (hasEventList.length >= 0) {
         while (hasEventList.length > 0) {            
@@ -590,7 +574,7 @@ function events(allEvents) { //placerer events
         while (hasPlacedEvent.length > 0) {
             hasPlacedEvent[0].remove();
         }
-    } //de to ifs ovenover fjerner al der er blevet tilføjet (dette sker hver gang man ændrer i allEvents, altså når man søger)
+    } //de to ifs ovenover fjerner alt der er blevet tilføjet fra events() (dette sker hver gang man ændrer i allEvents, altså når bruger søgefunktionen)
 
     for (i = 0; i < allEvents.length; i++) {
         var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
@@ -614,13 +598,12 @@ function events(allEvents) { //placerer events
         for (x = 0; x < datesArray.length; x++) {            
             datesArray[x] = dateFixer(datesArray[x]); //datesArray[x] er originalt i det lange dato format, i dateFixer() bliver det kortere så det bedre passer med siden
             var eventPlacer = document.getElementById(datesArray[x]); //finder ID'et på elementer som har datoer fra datesArray[x]
-            var hasEventDiv = document.createElement("div");
             if (eventPlacer != null) { //hvis eventplacer ikke er null (elementet findes)
                 
                 //eventPlacer.appendChild(hasEventDiv);
                 eventPlacer.classList.add("hasEvent"); //placerer .hasEvent (.hasEvent er farvet blåt)
             }
-        } 
+        } //placerer ".hasEvent"-klassen på alle dage som har et event
     }    
 
     for (i = 0; i < hasEventList.length; i++) { //itererer igennem hver dag som har mere end et event
@@ -629,7 +612,7 @@ function events(allEvents) { //placerer events
     
             while (hasEventList[i].children.length > 1) { //mens længden på det event du er nået til er over 1
                 hasEventList[i].children[1].remove(); //fjern element[1] (ikke element[0] da det er det første event på dagen)
-            }
+            } //fjerner events når der er mere end ét event på en dag
             
             //childrenLength = childrenLength - 1; 
             //var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
@@ -646,19 +629,16 @@ var searchfilter_properties = [];
 function skolefilter(val) { //val er det der står i skolesøgningsboxen
     val = val.toString(val); //val er val som er val
     filter_properties[0] = val.toLowerCase(); //filter_properties[0] = værdi som står i skolesøgningsboxen - bliver lowercaset så man kan søge bedre
-    console.log(val);
     setfilter();
 }
 
 function modulfilter(val) {
     filter_properties[1] = val; //filter_properties[1] er lig med val (det der står i modulsøgningsboxen)
-    console.log(val);
     setfilter();
 }
 
 function regionsfilter(val) {
     filter_properties[2] = val; //filter_properties[2] er lig med val (det der står i region dropdown'en)
-    console.log(val);
     setfilter();
 }
 
@@ -668,7 +648,7 @@ function searchfilter() {
 
 function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
     var searchfilter_properties = document.getElementById("search").value.toLowerCase().toString().split(","); //finder det der står i søgningsboxen og splitter på "," så du kan søge efter flere ting
-    var FFilter = jObjA.filter(function(json) { //JSONForFilter bliver til json inden i filter funktionen som bliver gemt som FFilter
+    var FFilter = jObjA.filter(function(json) { //jObjA bliver til json inden i filter funktionen som bliver gemt som FFilter
         if (searchfilter_properties[0] != "") { //hvis søgeboksen ikke er tom (her regner vi med at hvis den er tom så buger man de andre bokse i stedet)
             for (i = 0; i < searchfilter_properties.length; i++) { //itererer igennem søgefeltet (searchfilter_properties bliver længere når du skriver komma, på den måde kan siden tjekke alle elementer i søgningen)
                 if (json.skole_id.toLowerCase().includes(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.skole_id
@@ -687,19 +667,13 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
         }
 
         else if (searchfilter_properties[0] == "") {
-            console.log("text NOT in search bar");
             if (json.skole_id.toLowerCase().match(filter_properties[0]) && json.moduldata_id.match(filter_properties[1]) && json.region_id.match(filter_properties[2])) { //samme som ovenover bare anderledes
                 return json;
             }  
         }       
         
     });
-    console.log(FFilter)
-    console.log(FFilter.length)
-    console.log("-----------------------------------------------------------");
-
-    //debugger
     newjObjA = FFilter;
-    events(FFilter); //events() kører nu igennem med FFilters filtreret elementer
+    events(FFilter); //events() kører nu igennem med FFilters filtreret elementer i stedet for det gamle array
 };
 //searchfilter();
