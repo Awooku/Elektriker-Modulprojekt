@@ -24,6 +24,8 @@ body {
     margin: 0px;
     padding: 0px;
     text-align: initial;
+    display: flex;
+    flex-wrap: wrap;
 }
     /* år */
     
@@ -34,7 +36,7 @@ body {
 }
 
 #fm1, #fm2, #fm3 {
-    display: inline-flex;
+    display: flex;
 }
 
     /* måned */
@@ -224,499 +226,102 @@ body {
     height: 0px;
 }
 
-/* 720p */
-@media only screen and (min-width: 920px) and (max-width: 1281px) {
-    /* kalender */
-
-    #helekalender, #kalender-body, body {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    /* år */
-
-    #årstal {
-        font-size: 14px;
-        margin-top: 2px;
-        padding-left: 5px;
-    }
-
-    /* måned */
-
-    .månedDivC {
-        width: 221px;
-    }
-
-    #månedDiv3, #månedDiv7, #månedDiv11{
-        padding-right: 2px;
-    }
-
-    .header {
-        font-size: 14px;
-    }
-
-    /* uge */
-
-    .ugeData, .ugeCSS {
-        height: 26px;
-        width: 100%;
-    }
-
-    .datoVisning {
-        width: 100%;
-    }
-
-    /* enkelt dag */
-
-    .ugedag, .dagbox, th.tomdag {
-        width: 43px;
-    }
-
-    .ugedag {
-        height: 20px;
-    }
-
-    .dageTop {
-        width: 44px;
-        height: 10px; 
-    }
-
-    .dagbox {
-        height: 25px;
-    }
-
-    .række, .datoVisning, .række thead {
-        height: 10px;
-        border-spacing: 0px;
-    }
-
-    .tomdag {
-        width: 44px;
-    }
-
-    .dage, .dageTop {
-        top: 0;
-        font-size: 10px;
-    }
-
-    .dageTop {
-        border-spacing: 0px;
-    }
-
-    .dage {
-        width: 44px;
-        font-size: 8px;
-    }
-
-    :root {
-        --a: 43px;
-    }
-
-    .hasEvent {
-        height: 12px;
-    }
-    
-    .eventOneDay {
-        width: calc(var(--a) - 4px);
-    }
-    .eventTwoDay {
-        width: calc(var(--a) * 2);
-    }
-    .eventThreeDay {
-        width: calc(var(--a) * 3);        
-    }
-    .eventFourDay {
-        width: calc(var(--a) * 4 - 1px);        
-    }
-    .eventFiveDay {
-        width: calc(var(--a) * 5);
-    }
+#kalender-body {
+    margin: 0px 0px 0px 0px;
 }
 
-/* 768p */
-@media only screen and (min-width: 1282px) and (max-width: 1367px) {
-    /* kalender */
+/* måned */
 
-    #helekalender, #kalender-body, body {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    /* år */
-
-    #årstal {
-        font-size: 14px;
-        margin-top: 2px;
-        padding-left: 5px;
-    }
-
-    /* måned */
-
-    .månedDivC {
-        width: 241px;
-    }
-
-    #månedDiv3, #månedDiv7, #månedDiv11{
-        padding-right: 2px;
-    }
-
-    .header {
-        font-size: 14px;
-    }    
-
-    /* uge */
-
-    .ugeData, .ugeCSS {
-        height: 32px;
-    }
-
-    /* enkelt dag */
-
-    .ugedag, .dagbox, th.tomdag {
-        width: 47px;
-    }
-
-    .ugedag {
-        height: 20px;
-    }
-
-    .dageTop {
-        height: 10px; 
-        width: 46px;
-    }
-
-    .dagbox {
-        height: 31px;
-    }
-
-    .række, .datoVisning, .række thead {
-        height: 10px;
-    }
-
-    .tomdag {
-        width: 48px;
-    }
-
-    .dage, .dageTop {
-        top: 0;
-        font-size: 11px;
-    }
-
-    .dage {
-        width: 48px;
-        font-size: 9px;
-    }
-
-    /* Events */
-
-    :root {
-        --a: 48px;
-    }
-
-    .hasEvent {
-        height: 12px;
-    }
-
-    .eventLinje {
-        margin: 0px 1px 0px 1px;
-    }
-    
-    .eventOneDay {
-        width: calc(var(--a) - 4px);
-    }
-    .eventTwoDay {
-        width: calc(var(--a) * 2 - 3px);
-    }
-    .eventThreeDay {
-        width: calc(var(--a) * 3 - 3px);        
-    }
-    .eventFourDay {
-        width: calc(var(--a) * 4 - 4px);        
-    }
-    .eventFiveDay {
-        width: calc(var(--a) * 5 - 4px);
-    }
+.månedDivC {
+    width: 349px;
+    padding: 2px 3px 4px 3px;
+    /*height: 268px;*/
 }
 
-/* 900p */
-@media only screen and (min-width: 1368px) and (max-width: 1601px) {
-    /* kalender */
-
-    #helekalender, #kalender-body, body {
-        margin: 0px;
-        margin-right: 1px;
-        padding: 0px;
-    }
-
-    /* knapper */
-
-    .knapper {
-        margin-top: 2px;
-        margin-left: 2px; 
-    }
-
-    /* år */
-
-    #årstal {
-        font-size: 20px;
-    }
-
-    /* måned */
-
-    .månedDivC {
-        width: 286px;
-    }
-
-    #månedDiv3, #månedDiv7, #månedDiv11{
-        padding-right: 2px;
-    }
-
-    #månedDiv4, #månedDiv8, #månedDiv12{
-        border-left: 0px;
-    }
-
-    /* uge */
-
-    .ugeData, .ugeCSS {
-        height: 36px;
-        width: 290px;
-    }
-
-    .ugeCSS, .dagbox {
-        float: left;
-    }
-
-    .eventLinje {
-        width: calc(var(--e) - 6px)
-    }
-
-    /* enkelt dag */
-
-    .ugedag, .dagbox, th.tomdag {
-        width: 56px;
-    }
-
-    .ugedag {
-        height: 21px;
-    }
-
-    .dageTop {
-        height: 15px; 
-        width: 54px;
-        padding-right: 1px;
-    }
-
-    .dagbox {
-        height: 35px;
-    }
-
-    .række, .datoVisning {
-        height: 10px;
-    }
-
-    .tomdag {
-        width: 57px;
-    }
-
-    .dage {
-        font-size: 11px;
-        width: 57px;
-    }
-
-    td.tomdag {
-        width: 57px;
-    }
-
-    /* Events */
-
-    :root {
-        --a: 57px;
-    }
-
-    .hasEvent {
-        height: 15px;
-    }
-
-    .eventLinje {
-        margin: 0px 1px 0px 1px;
-    }
-    
-    .eventOneDay {
-        width: calc(var(--a) - 4px);
-    }
-    .eventTwoDay {
-        width: calc(var(--a) * 2 - 5px);
-    }
-    .eventThreeDay {
-        width: calc(var(--a) * 3 - 5px);        
-    }
-    .eventFourDay {
-        width: calc(var(--a) * 4 - 5px);        
-    }
-    .eventFiveDay {
-        width: calc(var(--a) * 5 - 5px);
-    }
+#fm1, #fm2, #fm3 {
+    margin: 0px 1px 0px 0px;
 }
 
-/* 1080p standard skærm */
-@media only screen and (min-width: 1602px) and (max-width: 1921px) {
+/* uge */
 
-    #kalender-body {
-        margin: 0px 0px 0px 0px;
-    }
-
-    /* måned */
-
-    .månedDivC {
-        width: 349px;
-        padding: 2px 3px 4px 3px;
-        /*height: 268px;*/
-    }
-
-    #fm1, #fm2, #fm3 {
-        margin: 0px 1px 0px 0px;
-    }
-
-    /* uge */
-
-    .ugeData, .ugeCSS, .række {
-        height: 45px;
-    }
-
-    .eventLinje {
-        width: calc(var(--e) - 2px)
-    }
-
-    /* enkelt dag */
-
-    .ugedag, .dagbox {
-        width: 68.6px;
-    }
-
-    .ugedag, .dageTop {
-        height: 20px;
-    }
-
-    .dagbox {
-        height: 44px;
-    }
-
-    .ugedag {
-        width: 68.6px;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .tomdag {
-        width: 69.6px;
-    }
-
-    th.tomdag {
-        width: 69px;
-    }
-
-    .dage {
-        width: 70px;
-        border-spacing: 0px;
-    }
-
-    .datoVisning {
-        height: 15px;
-    }
-
-    .dageTop {
-        padding: 0px 1px 0px 0px;
-        width: 66px;
-    }
-
-    /* Events */
-
-    :root {
-        --a: 70px;
-    }
-
-    .hasEvent {
-        width: 69px;
-        height: 17px;
-    }
-
-    .eventLinje {
-        margin: 0px 1px 0px 1px;
-    }
-    
-    .eventOneDay {
-        width: calc(var(--a) - 5px);
-    }
-    .eventTwoDay {
-        width: calc(var(--a) * 2 - 6px);
-    }
-    .eventThreeDay {
-        width: calc(var(--a) * 3 - 6px);        
-    }
-    .eventFourDay {
-        width: calc(var(--a) * 4 - 6px);        
-    }
-    .eventFiveDay {
-        width: calc(var(--a) * 5 - 6px);
-    }
+.ugeData, .ugeCSS, .række {
+    height: 45px;
 }
 
+.eventLinje {
+    width: calc(var(--e) - 2px)
+}
 
-/* 1440p fordi hvorfor ikke */
-@media only screen and (min-width: 1922px) and (max-width: 8000px) {
-    .månedDivC {
-        width: 463px;
-        padding-right: 1px;
-    }
+/* enkelt dag */
 
-    /* uge */
+.ugedag, .dagbox {
+    width: 68.6px;
+}
 
-    .ugeData, .ugeCSS, .række {
-        height: 45px;
-    }
+.ugedag, .dageTop {
+    height: 20px;
+}
 
-    /* enkelt dag */
+.dagbox {
+    height: 44px;
+}
 
-    .ugedag, .dagbox {
-        width: 91px;
-    }
+.ugedag {
+    width: 68.6px;
+    margin: 0px;
+    padding: 0px;
+}
 
-    .ugedag, .dageTop {
-        height: 22px;
-    }
+.tomdag {
+    width: 69.6px;
+}
 
-    .dagbox {
-        height: 44px;
-    }
+th.tomdag {
+    width: 69px;
+}
 
-    .tomdag {
-        width: 92px;
-    }
+.dage {
+    width: 70px;
+    border-spacing: 0px;
+}
 
-    .dage, .dageTop {
-        width: 89px;
-    }
+.datoVisning {
+    height: 15px;
+}
 
-    .dageTop {
-        padding: 0px 1px 0px 0px;
-    }
+.dageTop {
+    padding: 0px 1px 0px 0px;
+    width: 66px;
+}
 
-        /* Events */
+/* Events */
 
-    .eventOneDay {
-        width: 67px;
-    }
-    .eventTwoDay {
-        width: 134px;
-    }
-    .eventThreeDay {
-        width: 201px;
-    }
-    .eventFourDay {
-        width: 268px;
-    }
-    .eventFiveDay {
-        width: 335px;
-    }
+:root {
+    --a: 70px;
+}
+
+.hasEvent {
+    width: 69px;
+    height: 17px;
+}
+
+.eventLinje {
+    margin: 0px 1px 0px 1px;
+}
+
+.eventOneDay {
+    width: calc(var(--a) - 5px);
+}
+.eventTwoDay {
+    width: calc(var(--a) * 2 - 6px);
+}
+.eventThreeDay {
+    width: calc(var(--a) * 3 - 6px);        
+}
+.eventFourDay {
+    width: calc(var(--a) * 4 - 6px);        
+}
+.eventFiveDay {
+    width: calc(var(--a) * 5 - 6px);
 }
 

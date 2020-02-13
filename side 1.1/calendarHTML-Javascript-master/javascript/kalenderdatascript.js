@@ -100,12 +100,12 @@ function removeDays() { //fjerner .dage klasser som bliver placeret efter events
         var eventCol = noEventLinje[d].children; //gemmer hver eventLinje's børn for at se hvilke klasser de har
         for (var d2 = 0; d2 < eventCol.length; d2++) { //kører igennem hver dag der er på ugen
             if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
-                //hvis det element loopet har én klasse (.dage eller .tomdag), 
+                //hvis det element loopet er nået til har én klasse (.dage eller .tomdag), 
                 //og den klasse ikke er .tomdag (.dage), 
                 //og forældreelementets første barn ikke er .dage ()
                 //og forældreelementets sidste barn er .dage ()
                 //dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
-                eventCol[d2].classList.replace("dage", "hide"); //fjern .dage
+                //eventCol[d2].classList.replace("dage", "hide"); //fjern .dage
                 /*eventCol[d2].classList.remove("dage"); //fjern .dage
                 eventCol[d2].classList.add("hide"); //tilføj .hide*/
             }
@@ -452,34 +452,37 @@ function showmonth() {
 
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
 
+
+
 //Tager en JSON fil og laver den til data som programmet skal kunne læse/opdatere
 function jsonParser() {
-    var jText = '[{"id":4,"pladser":30,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 9","moduldata_id":"2.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":5,"pladser":25,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":5,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":6,"pladser":20,"startdato":"21/01/2019","slutdato":"31/01/2019","reserverede_pladser":10,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":8,"pladser":35,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"1.3","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":25,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"2.1","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
-    '{"id":10,"pladser":25,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":30,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":12,"pladser":15,"startdato":"01/02/2019","slutdato":"22/02/2019","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 6","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":13,"pladser":16,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":11,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":14,"pladser":14,"startdato":"01/11/2019","slutdato":"14/01/2020","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":15,"pladser":22,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":16,"pladser":19,"startdato":"02/12/2019","slutdato":"21/01/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":17,"pladser":30,"startdato":"04/12/2019","slutdato":"19/05/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
+    // var jText = '[{"id":4,"pladser":30,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 9","moduldata_id":"2.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":5,"pladser":25,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":5,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":6,"pladser":20,"startdato":"21/01/2020","slutdato":"17/02/2020","reserverede_pladser":10,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":7,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","region_id":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":8,"pladser":35,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"1.3","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":9,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":25,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"2.1","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
+    // '{"id":10,"pladser":25,"startdato":"01/05/2020","slutdato":"30/05/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","region_id":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":11,"pladser":30,"startdato":"03/06/2020","slutdato":"31/07/2020","reserverede_pladser":30,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":12,"pladser":15,"startdato":"03/02/2020","slutdato":"22/02/2020","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 6","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":13,"pladser":16,"startdato":"09/10/2020","slutdato":"29/10/2020","reserverede_pladser":11,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":14,"pladser":14,"startdato":"02/11/2020","slutdato":"14/01/2021","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":15,"pladser":22,"startdato":"29/11/2021","slutdato":"10/01/2022","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":16,"pladser":19,"startdato":"01/12/2021","slutdato":"21/01/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":17,"pladser":30,"startdato":"02/12/2021","slutdato":"19/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
 
-    //var jText = '{!! $events !!}';
-
+                /* 
+                '{"id":14,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
+    var jText = '{!! $events !!}';
     // var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
-    var jObj = JSON.parse(jText);   
+    var jObj = JSON.parse(jText);
+
     for (i = 0; i < jObj.length; i++) {
-        jObjA[i] = jObj[i]; //gemmer det enkelte json object i et array hver gang for loopet kører
+        jObjA[i] = jObj[i]; //gemmer det enkelte json object i et globalt array hver gang for loopet kører så man kan hente events andre steder i koden
     }
+
     jsonHandler(jObjA);
-
     //Loopet kører for hvert modul der bliver sendt igennem
-
 }
 
 function jsonHandler(jsonObjectArray) {
@@ -537,51 +540,64 @@ function dateFixer(arrayOfDates) {
 
 function events(allEvents) { //placerer events
     var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent    
+    var hasPlacedEvent = document.getElementsByClassName("placedEvent")
     jsonHandler(allEvents);
-    
-    //TODO, når allevents er mindre end jObjA skal alle events på siden cleares
-    //efter nærmere eftertanke ved jeg ikke hel vad dette skal gøre
 
     if (hasEventList.length >= 0) {
-        while (hasEventList.length > 0) {
-            hasEventList[0].firstElementChild.remove();
+        while (hasEventList.length > 0) {            
             hasEventList[0].classList.remove("hasEvent");
         }
     }
 
-    for (i = 0; i < allEvents.length; i++) {
-
-        var datesArray = getDateArray(startdato[i], slutdato[i]);
-
-        for (x = 0; x < datesArray.length; x++) {            
-
-            datesArray[x] = dateFixer(datesArray[x]);  
-
-            var eventPlacer = document.getElementById(datesArray[x]);            
-            var appendModulDiv = document.createElement("div");
-            var appendModulNode = document.createTextNode(allEvents[i].moduldata_id + " ");
-
-            if (eventPlacer != null) { //hvis eventplacer ikke er null (hvis den har et element)
-                eventPlacer.classList.add("hasEvent");
-                appendModulDiv.appendChild(appendModulNode);
-                appendModulDiv.classList.add("placedEvent");
-                eventPlacer.appendChild(appendModulDiv);                
-            }
+    if (hasPlacedEvent.length >= 0) {
+        while (hasPlacedEvent.length > 0) {
+            hasPlacedEvent[0].remove();
         }
+    } //de to ifs ovenover fjerner alt der er blevet tilføjet fra events() (dette sker hver gang man ændrer i allEvents, altså når bruger søgefunktionen)
+
+    for (i = 0; i < allEvents.length; i++) {
+        var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
+        var firstDate = document.getElementById(startdato[i]) //finder alle elementer med ID'et startdato[i]
+        var appendModulDiv = document.createElement("div");
+        var plusNode = document.createTextNode(" +");
+        var appendModulNode = document.createTextNode(allEvents[i].moduldata_id + " "); //det elements moduldata loopet er nået til
+
+        if (firstDate != null) { //hvis dagen ikke er null (siden dør hvis den placerer på en dato som ikke findes såsom weekender eller et andet år)
+            appendModulDiv.appendChild(appendModulNode); //appender noden på div
+            appendModulDiv.classList.add("placedEvent"); //giver div'en klassen "placedEvent"
+            firstDate.appendChild(appendModulDiv);  //appender diven (samt noden) på eventets første dato
+        } //placerer moduldata på den første dato på eventet
+        
+        if (firstDate != null && firstDate.classList.contains("hasEvent")) { //hvis elementet allerede har .hasEvent (det betyder dette loop allerede er kørt igennem en gang, og der er flere events på en enkelt dag)
+            firstDate.firstElementChild.classList.add("extraEvent");
+            appendModulDiv.appendChild(plusNode); //appender node på div
+            firstDate.appendChild(appendModulDiv); //appender div (samt node) på datoen
+        } //placerer +'er på dage med mere end ét event
+                       
+        for (x = 0; x < datesArray.length; x++) {            
+            datesArray[x] = dateFixer(datesArray[x]); //datesArray[x] er originalt i det lange dato format, i dateFixer() bliver det kortere så det bedre passer med siden
+            var eventPlacer = document.getElementById(datesArray[x]); //finder ID'et på elementer som har datoer fra datesArray[x]
+            if (eventPlacer != null) { //hvis eventplacer ikke er null (elementet findes)
+                
+                //eventPlacer.appendChild(hasEventDiv);
+                eventPlacer.classList.add("hasEvent"); //placerer .hasEvent (.hasEvent er farvet blåt)
+            }
+        } //placerer ".hasEvent"-klassen på alle dage som har et event
     }    
 
     for (i = 0; i < hasEventList.length; i++) { //itererer igennem hver dag som har mere end et event
         if (hasEventList[i].children.length > 1) { //hvis længden på det element du er nået til er over 1 (hvis der er mere end ét event på en dag)
-            var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
+            //var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
     
             while (hasEventList[i].children.length > 1) { //mens længden på det event du er nået til er over 1
                 hasEventList[i].children[1].remove(); //fjern element[1] (ikke element[0] da det er det første event på dagen)
-            }
+            } //fjerner events når der er mere end ét event på en dag
             
-            childrenLength = childrenLength - 1; 
-            var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
-            hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
-            hasEventList[i].firstElementChild.classList.add("extraEvent");            
+            //childrenLength = childrenLength - 1; 
+            //var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
+            //hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
+            //hasEventList[i].firstElementChild.classList.add("extraEvent");                    
+            //udkommenteret indtil videre, ikke helt sikker på hvad koden gør
         }
     }
 }
@@ -592,19 +608,16 @@ var searchfilter_properties = [];
 function skolefilter(val) { //val er det der står i skolesøgningsboxen
     val = val.toString(val); //val er val som er val
     filter_properties[0] = val.toLowerCase(); //filter_properties[0] = værdi som står i skolesøgningsboxen - bliver lowercaset så man kan søge bedre
-    console.log(val);
     setfilter();
 }
 
 function modulfilter(val) {
     filter_properties[1] = val; //filter_properties[1] er lig med val (det der står i modulsøgningsboxen)
-    console.log(val);
     setfilter();
 }
 
 function regionsfilter(val) {
     filter_properties[2] = val; //filter_properties[2] er lig med val (det der står i region dropdown'en)
-    console.log(val);
     setfilter();
 }
 
@@ -613,8 +626,10 @@ function searchfilter() {
 }
 
 function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
+    var modulSearch = document.getElementById("modulS");
+    console.log(modulSearch);
     var searchfilter_properties = document.getElementById("search").value.toLowerCase().toString().split(","); //finder det der står i søgningsboxen og splitter på "," så du kan søge efter flere ting
-    var FFilter = jObjA.filter(function(json) { //JSONForFilter bliver til json inden i filter funktionen som bliver gemt som FFilter
+    var FFilter = jObjA.filter(function(json) { //jObjA bliver til json inden i filter funktionen som bliver gemt som FFilter
         if (searchfilter_properties[0] != "") { //hvis søgeboksen ikke er tom (her regner vi med at hvis den er tom så buger man de andre bokse i stedet)
             for (i = 0; i < searchfilter_properties.length; i++) { //itererer igennem søgefeltet (searchfilter_properties bliver længere når du skriver komma, på den måde kan siden tjekke alle elementer i søgningen)
                 if (json.skole_id.toLowerCase().includes(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.skole_id
@@ -624,7 +639,7 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
                 json.reserverede_pladser.toString().match(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.reserverede_pladser
                 json.id.toString().match(searchfilter_properties[i]) && searchfilter_properties[i].includes(".") == false) { //hvis det man har skrevet passer med det der står i json.reserverede_pladser OG hvis der ikke er et "." ("." bliver brugt til modultal)                
                     if (i != searchfilter_properties.length - 1) {
-                        continue;
+                        continue
                     }
                     return json; //returnerer json til FFilter
                 }
@@ -633,17 +648,13 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
         }
 
         else if (searchfilter_properties[0] == "") {
-            console.log("text NOT in search bar");
             if (json.skole_id.toLowerCase().match(filter_properties[0]) && json.moduldata_id.match(filter_properties[1]) && json.region_id.match(filter_properties[2])) { //samme som ovenover bare anderledes
                 return json;
             }  
         }       
         
     });
-    console.log(FFilter)
-    console.log(FFilter.length)
-    console.log("------------------------------------------------------------");
-
-    events(FFilter); //events() kører nu igennem med FFilters filtreret elementer
+    newjObjA = FFilter;
+    events(FFilter); //events() kører nu igennem med FFilters filtreret elementer i stedet for det gamle array
 };
-//searchfilter();
+//searchfilter();         

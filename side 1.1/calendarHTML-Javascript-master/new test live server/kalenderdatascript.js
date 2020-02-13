@@ -132,40 +132,43 @@ function showCalendar(month, year) {
     monthDiv.id = "månedDiv" + k; //giver hver monthDiv et ID så hver måned kan kaldes individuelt
 
     //checker om alle 12 måneder bliver vist
-    if (m == 12) {
 
-        //laver 3 blokke til at kunne sætte månederne ind i 
-        if (k == 1) {
-            for (var q = 1; q < 4; q++) {
-                var fourMonth = document.createElement("div"); //laver en blok kaldet fourMonth
-                fourMonth.id = "fm" + q; //giver blokkene et ID
-                tbl.appendChild(fourMonth); //sætter fourMonth ind i kalenderdelen
-            }
-        }
+    tbl.appendChild(monthDiv);
 
-        //indsætter de første fire måneder ind i den første blok
-        if (k >= 1 && k <= 4) {
-            var fourMonth1 = document.getElementById("fm1"); //kalder på blok 1
-            fourMonth1.appendChild(monthDiv); //sætter månederne ind i første blok
-        }
-
-        //indsætter femte til ottende måned ind i den anden blok
-        else if (k >= 5 && k <= 8) {
-            var fourMonth2 = document.getElementById("fm2"); //kalder på blok 2
-            fourMonth2.appendChild(monthDiv); //sætter månederne ind i anden blok
-        }
-
-        //indsætter de sidste fire måneder ind i den tredje blok
-        else {
-            var fourMonth3 = document.getElementById("fm3"); //kalder på blok 3
-            fourMonth3.appendChild(monthDiv); //sætter månederne ind i tredje blok
-        }
-    }
-
-    //hvis ikke hele året bliver vist, sætter den bare månederne direkte ind i kalenderen
-    else {
-        tbl.appendChild(monthDiv); //sætter månederne ind i kalender delen
-    }
+    //if (m == 12) {
+//
+    //    //laver 3 blokke til at kunne sætte månederne ind i 
+    //    if (k == 1) {
+    //        for (var q = 1; q < 4; q++) {
+    //            var fourMonth = document.createElement("div"); //laver en blok kaldet fourMonth
+    //            fourMonth.id = "fm" + q; //giver blokkene et ID
+    //            tbl.appendChild(fourMonth); //sætter fourMonth ind i kalenderdelen
+    //        }
+    //    }
+//
+    //    //indsætter de første fire måneder ind i den første blok
+    //    if (k >= 1 && k <= 4) {
+    //        var fourMonth1 = document.getElementById("fm1"); //kalder på blok 1
+    //        fourMonth1.appendChild(monthDiv); //sætter månederne ind i første blok
+    //    }
+//
+    //    //indsætter femte til ottende måned ind i den anden blok
+    //    else if (k >= 5 && k <= 8) {
+    //        var fourMonth2 = document.getElementById("fm2"); //kalder på blok 2
+    //        fourMonth2.appendChild(monthDiv); //sætter månederne ind i anden blok
+    //    }
+//
+    //    //indsætter de sidste fire måneder ind i den tredje blok
+    //    else {
+    //        var fourMonth3 = document.getElementById("fm3"); //kalder på blok 3
+    //        fourMonth3.appendChild(monthDiv); //sætter månederne ind i tredje blok
+    //    }
+    //}
+//
+    ////hvis ikke hele året bliver vist, sætter den bare månederne direkte ind i kalenderen
+    //else {
+    //    tbl.appendChild(monthDiv); //sætter månederne ind i kalender delen
+    //}
 
     var showMonth = document.createElement("h3"); //laver en header til hver måned
     showMonth.className = "header"; 
@@ -490,7 +493,8 @@ function jsonParser() {
     '{"id":14,"pladser":14,"startdato":"02/11/2020","slutdato":"14/01/2021","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
     '{"id":15,"pladser":22,"startdato":"29/11/2021","slutdato":"10/01/2022","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region_id":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
     '{"id":16,"pladser":19,"startdato":"01/12/2021","slutdato":"21/01/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-    '{"id":17,"pladser":30,"startdato":"02/12/2021","slutdato":"19/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
+    '{"id":17,"pladser":30,"startdato":"02/12/2021","slutdato":"19/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +  
+    '{"id":17,"pladser":30,"startdato":"03/12/2021","slutdato":"20/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region_id":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
 
                 /* 
                 '{"id":14,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
@@ -505,6 +509,8 @@ function jsonParser() {
     jsonHandler(jObjA);
     //Loopet kører for hvert modul der bliver sendt igennem
 }
+
+
 
 function jsonHandler(jsonObjectArray) {
 
@@ -646,7 +652,7 @@ function searchfilter() {
     setfilter();
 }
 
-function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
+function setfilter() { //filtrerer objekter fra som ikke stemmer med søgningen
     var searchfilter_properties = document.getElementById("search").value.toLowerCase().toString().split(","); //finder det der står i søgningsboxen og splitter på "," så du kan søge efter flere ting
     var FFilter = jObjA.filter(function(json) { //jObjA bliver til json inden i filter funktionen som bliver gemt som FFilter
         if (searchfilter_properties[0] != "") { //hvis søgeboksen ikke er tom (her regner vi med at hvis den er tom så buger man de andre bokse i stedet)
@@ -667,11 +673,11 @@ function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
         }
 
         else if (searchfilter_properties[0] == "") {
+
             if (json.skole_id.toLowerCase().match(filter_properties[0]) && json.moduldata_id.match(filter_properties[1]) && json.region_id.match(filter_properties[2])) { //samme som ovenover bare anderledes
                 return json;
             }  
-        }       
-        
+        }             
     });
     newjObjA = FFilter;
     events(FFilter); //events() kører nu igennem med FFilters filtreret elementer i stedet for det gamle array

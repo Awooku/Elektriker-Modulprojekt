@@ -1,7 +1,7 @@
 //<Globals
 var m = 0, k = 0, j = 0, t = 0, E = 0;
 var today = new Date();
-var jObjA = [], eventID = [], startdato = [], slutdato = [], skoleID = [], modultal = [], synlig = [];
+var jObjA = [], eventID = [], startdato = [], slutdato = [], skoleID = [], region = [], modultal = [], synlig = [];
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 var week1 = new Date(today.getFullYear(), 0, 4);
@@ -100,12 +100,12 @@ function removeDays() { //fjerner .dage klasser som bliver placeret efter events
         var eventCol = noEventLinje[d].children; //gemmer hver eventLinje's børn for at se hvilke klasser de har
         for (var d2 = 0; d2 < eventCol.length; d2++) { //kører igennem hver dag der er på ugen
             if (eventCol[d2].classList.length == 1 && eventCol[d2].classList != "tomdag" && eventCol[d2].parentElement.firstChild.classList != "dage" && eventCol[d2].parentElement.lastChild.classList == "dage") {
-                //hvis det element loopet har én klasse (.dage eller .tomdag), 
+                //hvis det element loopet er nået til har én klasse (.dage eller .tomdag), 
                 //og den klasse ikke er .tomdag (.dage), 
                 //og forældreelementets første barn ikke er .dage ()
                 //og forældreelementets sidste barn er .dage ()
                 //dette fravælger alle elementer som ikke skal pilles ved, målet er at fjerne alle .dage klasser som kommer *efter* .eventAll, men skal ikke fjerne .dage klasser som kommer *før* .eventAll
-                eventCol[d2].classList.replace("dage", "hide"); //fjern .dage
+                //eventCol[d2].classList.replace("dage", "hide"); //fjern .dage
                 /*eventCol[d2].classList.remove("dage"); //fjern .dage
                 eventCol[d2].classList.add("hide"); //tilføj .hide*/
             }
@@ -130,41 +130,42 @@ function showCalendar(month, year) {
     monthDiv.className = "månedDivC"; //giver monthDiv en klasse til at style på
     monthDiv.id = "månedDiv" + k; //giver hver monthDiv et ID så hver måned kan kaldes individuelt
 
+    tbl.appendChild(monthDiv);
     //checker om alle 12 måneder bliver vist
-    if (m == 12) {
+    // if (m == 12) {
 
-        //laver 3 blokke til at kunne sætte månederne ind i 
-        if (k == 1) {
-            for (var q = 1; q < 4; q++) {
-                var fourMonth = document.createElement("div"); //laver en blok kaldet fourMonth
-                fourMonth.id = "fm" + q; //giver blokkene et ID
-                tbl.appendChild(fourMonth); //sætter fourMonth ind i kalenderdelen
-            }
-        }
+    //     //laver 3 blokke til at kunne sætte månederne ind i 
+    //     if (k == 1) {
+    //         for (var q = 1; q < 4; q++) {
+    //             var fourMonth = document.createElement("div"); //laver en blok kaldet fourMonth
+    //             fourMonth.id = "fm" + q; //giver blokkene et ID
+    //             tbl.appendChild(fourMonth); //sætter fourMonth ind i kalenderdelen
+    //         }
+    //     }
 
-        //indsætter de første fire måneder ind i den første blok
-        if (k >= 1 && k <= 4) {
-            var fourMonth1 = document.getElementById("fm1"); //kalder på blok 1
-            fourMonth1.appendChild(monthDiv); //sætter månederne ind i første blok
-        }
+    //     //indsætter de første fire måneder ind i den første blok
+    //     if (k >= 1 && k <= 4) {
+    //         var fourMonth1 = document.getElementById("fm1"); //kalder på blok 1
+    //         fourMonth1.appendChild(monthDiv); //sætter månederne ind i første blok
+    //     }
 
-        //indsætter femte til ottende måned ind i den anden blok
-        else if (k >= 5 && k <= 8) {
-            var fourMonth2 = document.getElementById("fm2"); //kalder på blok 2
-            fourMonth2.appendChild(monthDiv); //sætter månederne ind i anden blok
-        }
+    //     //indsætter femte til ottende måned ind i den anden blok
+    //     else if (k >= 5 && k <= 8) {
+    //         var fourMonth2 = document.getElementById("fm2"); //kalder på blok 2
+    //         fourMonth2.appendChild(monthDiv); //sætter månederne ind i anden blok
+    //     }
 
-        //indsætter de sidste fire måneder ind i den tredje blok
-        else {
-            var fourMonth3 = document.getElementById("fm3"); //kalder på blok 3
-            fourMonth3.appendChild(monthDiv); //sætter månederne ind i tredje blok
-        }
-    }
+    //     //indsætter de sidste fire måneder ind i den tredje blok
+    //     else {
+    //         var fourMonth3 = document.getElementById("fm3"); //kalder på blok 3
+    //         fourMonth3.appendChild(monthDiv); //sætter månederne ind i tredje blok
+    //     }
+    // }
 
-    //hvis ikke hele året bliver vist, sætter den bare månederne direkte ind i kalenderen
-    else {
-        tbl.appendChild(monthDiv); //sætter månederne ind i kalender delen
-    }
+    // //hvis ikke hele året bliver vist, sætter den bare månederne direkte ind i kalenderen
+    // else {
+    //     tbl.appendChild(monthDiv); //sætter månederne ind i kalender delen
+    // }
 
     var showMonth = document.createElement("h3"); //laver en header til hver måned
     showMonth.className = "header"; 
@@ -197,8 +198,8 @@ function showCalendar(month, year) {
         ugetable.appendChild(tablehead);
         ugetable.appendChild(tablebody);
 
-       //Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
-       for (var d = 0; d < 6; d++) {
+    //Oprætter de rækker som skal bruges i kalenderen -------------------------------------------------------------------------------------------------------<
+    for (var d = 0; d < 6; d++) {
 
             var ugenavn = weekdays[d]; //var ugenavn = arrayet hvor navnene på ugedagene står
 
@@ -393,9 +394,9 @@ function show3() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner nuværende måned
     }
     k = 0; //bruges til at insætte måneder i div tags
-    jsonHandler(); //henter datoer der skal bruges
-    events(); //henter indhold til kalenderen
-    swapSheet('/css/kalenderstyleKvartal.css'); //skifter css om til 3 måneders visning
+    jsonParser(); //henter datoer der skal bruges
+    swapSheet('css/kalenderstyleKvartal.css'); //skifter css om til 3 måneders visning
+    events(jObjA); //henter indhold til kalenderen
 }
 
 //Viser hele år
@@ -424,9 +425,9 @@ function showyear() {
         currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1; //beregner nuværende måned
     }
     k = 0; //bruges til at insætte måneder i div tags
-    jsonHandler(); //henter datoer der skal bruges
-    events(); //henter indhold til kalenderen
-    swapSheet('/css/kalenderstyle.css'); //skifter css om til årlig visning
+    jsonParser(); //henter datoer der skal bruges
+    swapSheet('css/kalenderstyle.css'); //skifter css om til årlig visning
+    events(jObjA); //henter indhold til kalenderen
 }
 
 //Viser en måned ad gangen
@@ -445,69 +446,66 @@ function showmonth() {
     showCalendar(currentMonth, currentYear); //henter kalender programmet
     m = 1;  // bruges i next og previous 
     k = 0;  // bruges til at insætte måneder i div tags
-    jsonHandler(); //henter datoer der skal bruges
-    events(); //henter indhold til kalenderen
-    swapSheet('/css/kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
+    jsonParser(); //henter datoer der skal bruges
+    swapSheet('css/kalenderstyleMåned.css'); //skifter css om til 1 månededs visning
+    events(jObjA); //henter indhold til kalenderen
 }
 
 //--------------------------------------------------------------------------------JSON--------------------------------------------------------------------------------->
 
+
+
 //Tager en JSON fil og laver den til data som programmet skal kunne læse/opdatere
-function jsonHandler() {
-     var jText = '[{"id":5,"pladser":30,"startdato":"01/01/2019","slutdato":"16/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                  '{"id":6,"pladser":30,"startdato":"21/01/2019","slutdato":"31/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                  '{"id":7,"pladser":30,"startdato":"01/02/2019","slutdato":"28/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                  '{"id":8,"pladser":30,"startdato":"01/03/2019","slutdato":"29/03/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                  '{"id":9,"pladser":30,"startdato":"01/04/2019","slutdato":"30/04/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
-                 '{"id":10,"pladser":30,"startdato":"01/05/2019","slutdato":"31/05/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":11,"pladser":30,"startdato":"03/06/2019","slutdato":"28/06/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":12,"pladser":30,"startdato":"01/02/2019","slutdato":"22/02/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":13,"pladser":30,"startdato":"09/10/2019","slutdato":"29/10/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":14,"pladser":30,"startdato":"01/11/2019","slutdato":"14/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":15,"pladser":30,"startdato":"29/11/2019","slutdato":"10/01/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":16,"pladser":30,"startdato":"02/12/2019","slutdato":"21/01/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
-                 '{"id":17,"pladser":30,"startdato":"04/12/2019","slutdato":"19/05/2021","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';
-    //var jText = '{!! $events !!}}'
-    console.log("test");
+function jsonParser() {
+    // var jText = '[{"id":4,"pladser":30,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 9","moduldata_id":"2.3","region":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":5,"pladser":25,"startdato":"01/01/2019","slutdato":"29/01/2019","reserverede_pladser":5,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":6,"pladser":20,"startdato":"21/01/2020","slutdato":"17/02/2020","reserverede_pladser":10,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.2","region":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":7,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"1.3","region":"Hovedstaden","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":8,"pladser":35,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"1.3","region":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":9,"pladser":30,"startdato":"03/02/2020","slutdato":"28/02/2020","reserverede_pladser":25,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"2.1","region":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' + 
+    // '{"id":10,"pladser":25,"startdato":"01/05/2020","slutdato":"30/05/2020","reserverede_pladser":20,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"2.2","region":"Sjælland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":11,"pladser":30,"startdato":"03/06/2020","slutdato":"31/07/2020","reserverede_pladser":30,"synlig":"ja","skole_id":"Skole 4","moduldata_id":"3.1","region":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":12,"pladser":15,"startdato":"03/02/2020","slutdato":"22/02/2020","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 6","moduldata_id":"2.3","region":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":13,"pladser":16,"startdato":"09/10/2020","slutdato":"29/10/2020","reserverede_pladser":11,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region":"Syddanmark","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":14,"pladser":14,"startdato":"02/11/2020","slutdato":"14/01/2021","reserverede_pladser":12,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":15,"pladser":22,"startdato":"29/11/2021","slutdato":"10/01/2022","reserverede_pladser":19,"synlig":"ja","skole_id":"Skole 1","moduldata_id":"1.1","region":"Midtjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":16,"pladser":19,"startdato":"01/12/2021","slutdato":"21/01/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 7","moduldata_id":"2.3","region":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"},' +
+    // '{"id":17,"pladser":30,"startdato":"02/12/2021","slutdato":"19/05/2022","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 2","moduldata_id":"2.3","region":"Nordjylland","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';  
+
                 /* 
                 '{"id":14,"pladser":30,"startdato":"03/06/2020","slutdato":"30/06/2020","reserverede_pladser":15,"synlig":"ja","skole_id":"Skole 3","moduldata_id":"4.1","created_at":"2019-06-13 06:17:35","updated_at":"2019-06-13 06:17:35"}]';*/
+    //var jText = '{!! $events !!}';
+    // var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
+    var jObj = JSON.parse(jText);
 
-    var jObj = JSON.parse(jText); //gør jText filen om til et JSON object
-    if (text.length > 0) {
-        for (t = 0; t < text.length; t++) {
-            startdato[t] = text[t].startdato; //startdato bliver smidt ind i et array hver gang loopet kører
-            slutdato[t] = text[t].slutdato; //gør det samme som ovenover men med slutdato
-            synlig[t] = text[t].synlig; //det samme som ovenover men med synlig
-            skoleID[t] = text[t].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
-            modultal[t] = text[t].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
-            eventID[t] = text[t].id; //id bliver smidt ind i et array hver gang loopet kører
-        }
+    for (i = 0; i < jObj.length; i++) {
+        jObjA[i] = jObj[i]; //gemmer det enkelte json object i et globalt array hver gang for loopet kører så man kan hente events andre steder i koden
     }
 
+    jsonHandler(jObjA);
     //Loopet kører for hvert modul der bliver sendt igennem
-    for (j = t; j < jObj.length; j++) {
-        jObjA[j] = jObj[j]; //gemmer det enkelte json object i et array hver gang for loopet kører
+}
 
-        var newSTDate = dateSplitter(jObj[j].startdato);
-        var newEDate = dateSplitter(jObj[j].slutdato);
+function jsonHandler(jsonObjectArray) {
 
-        slutdato[j] = newEDate;
-        startdato[j] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
-        if (startdato[j] >= (currentYear + 1) + "-1-" + "1") { //hvis start dato er større eller lig med nuværende år + 1 - 1 + 1                                                      <---- hvad fuck
+    for (i = 0; i < jsonObjectArray.length; i++) {
+
+        var newSTDate = dateSplitter(jsonObjectArray[i].startdato);
+        var newEDate = dateSplitter(jsonObjectArray[i].slutdato);
+
+        slutdato[i] = newEDate;
+        startdato[i] = newSTDate; //gør at den dato vi har fået fra newSTDate bliver en reel dato, og smider den ind i et array
+        if (startdato[i] >= (currentYear + 1) + "-1-" + "1") { //hvis start dato er større eller lig med nuværende år + 1 - 1 + 1                                                      <---- hvad fuck
             break;
         }
         else {   
-            //var newSLDate = jObj[j].slutdato.split("/").reverse().join("-"); //gør det samme som ovenover
-            //slutdato[j] = newSLDate;
-            synlig[j] = jObj[j].synlig; //synlig bliver smidt ind i et array hver gang loopet kører
-            skoleID[j] = jObj[j].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
-            modultal[j] = jObj[j].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
-            eventID[j] = jObjA[j].id; //id bliver smidt ind i et array hver gang loopet kører
+            synlig[i] = jsonObjectArray[i].synlig; //synlig bliver smidt ind i et array hver gang loopet kører
+            skoleID[i] = jsonObjectArray[i].skole_id; //skole_id bliver smidt ind i et array hver gang loopet kører
+            modultal[i] = jsonObjectArray[i].moduldata_id; //moduldata_id bliver smidt ind i et array hver gang loopet kører
+            eventID[i] = jsonObjectArray[i].id; //id bliver smidt ind i et array hver gang loopet kører
+            region[i] = jsonObjectArray[i].region;
         }
     }
-
-    t = 0;
-    text = [];
 }
 
 function dateSplitter(dateToBeSplit) {
@@ -542,399 +540,121 @@ function dateFixer(arrayOfDates) {
 
 //---------------------------------------------------------------------------Events Handler---------------------------------------------------------------------------->
 
-function events() { //placerer events
-    var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent
+function events(allEvents) { //placerer events
+    var hasEventList = document.getElementsByClassName("hasEvent"); //fanger elementer som har klassen hasEvent    
+    var hasPlacedEvent = document.getElementsByClassName("placedEvent")
+    jsonHandler(allEvents);
 
-    for (i = 0; i < jObjA.length; i++) {
-
-        var datesArray = getDateArray(startdato[i], slutdato[i]);
-
-        for (x = 0; x < datesArray.length; x++) {            
-
-            datesArray[x] = dateFixer(datesArray[x]);  
-
-            var eventPlacer = document.getElementById(datesArray[x]);            
-            var appendModulDiv = document.createElement("div");
-            var appendModulNode = document.createTextNode(jObjA[i].moduldata_id + " ");
-
-            if (eventPlacer != null) { //hvis eventplacer ikke er null (hvis den har et element)
-                eventPlacer.classList.add("hasEvent");
-                appendModulDiv.appendChild(appendModulNode);
-                appendModulDiv.classList.add("placedEvent");
-                eventPlacer.appendChild(appendModulDiv);                
-            }
+    if (hasEventList.length >= 0) {
+        while (hasEventList.length > 0) {            
+            hasEventList[0].classList.remove("hasEvent");
         }
+    }
+
+    if (hasPlacedEvent.length >= 0) {
+        while (hasPlacedEvent.length > 0) {
+            hasPlacedEvent[0].remove();
+        }
+    } //de to ifs ovenover fjerner alt der er blevet tilføjet fra events() (dette sker hver gang man ændrer i allEvents, altså når bruger søgefunktionen)
+
+    for (i = 0; i < allEvents.length; i++) {
+        var datesArray = getDateArray(startdato[i], slutdato[i]); //kører startdato[i] og slutdato[i] igennem getDateArray, for at få et array med alle datoerne mellem start og slutdatoen
+        var firstDate = document.getElementById(startdato[i]) //finder alle elementer med ID'et startdato[i]
+        var appendModulDiv = document.createElement("div");
+        var plusNode = document.createTextNode(" +");
+        var appendModulNode = document.createTextNode(allEvents[i].moduldata_id + " "); //det elements moduldata loopet er nået til
+
+        if (firstDate != null) { //hvis dagen ikke er null (siden dør hvis den placerer på en dato som ikke findes såsom weekender eller et andet år)
+            appendModulDiv.appendChild(appendModulNode); //appender noden på div
+            appendModulDiv.classList.add("placedEvent"); //giver div'en klassen "placedEvent"
+            firstDate.appendChild(appendModulDiv);  //appender diven (samt noden) på eventets første dato
+        } //placerer moduldata på den første dato på eventet
+        
+        if (firstDate != null && firstDate.classList.contains("hasEvent")) { //hvis elementet allerede har .hasEvent (det betyder dette loop allerede er kørt igennem en gang, og der er flere events på en enkelt dag)
+            firstDate.firstElementChild.classList.add("extraEvent");
+            appendModulDiv.appendChild(plusNode); //appender node på div
+            firstDate.appendChild(appendModulDiv); //appender div (samt node) på datoen
+        } //placerer +'er på dage med mere end ét event
+                       
+        for (x = 0; x < datesArray.length; x++) {            
+            datesArray[x] = dateFixer(datesArray[x]); //datesArray[x] er originalt i det lange dato format, i dateFixer() bliver det kortere så det bedre passer med siden
+            var eventPlacer = document.getElementById(datesArray[x]); //finder ID'et på elementer som har datoer fra datesArray[x]
+            if (eventPlacer != null) { //hvis eventplacer ikke er null (elementet findes)
+                
+                //eventPlacer.appendChild(hasEventDiv);
+                eventPlacer.classList.add("hasEvent"); //placerer .hasEvent (.hasEvent er farvet blåt)
+            }
+        } //placerer ".hasEvent"-klassen på alle dage som har et event
     }    
 
     for (i = 0; i < hasEventList.length; i++) { //itererer igennem hver dag som har mere end et event
         if (hasEventList[i].children.length > 1) { //hvis længden på det element du er nået til er over 1 (hvis der er mere end ét event på en dag)
-            var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
+            //var childrenLength = hasEventList[i].children.length; //fanger længden på det event du er nået til
     
             while (hasEventList[i].children.length > 1) { //mens længden på det event du er nået til er over 1
                 hasEventList[i].children[1].remove(); //fjern element[1] (ikke element[0] da det er det første event på dagen)
-            }
-    
-            childrenLength = childrenLength - 1; 
-            var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
-            hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
-            hasEventList[i].firstElementChild.classList.add("extraEvent");            
+            } //fjerner events når der er mere end ét event på en dag
+            
+            //childrenLength = childrenLength - 1; 
+            //var extraEventNode = document.createTextNode("+" + childrenLength); //extraEventNode bliver til +(antal events efter første event (fx 2.1 +3))
+            //hasEventList[i].firstElementChild.append(extraEventNode); //append extraEventNode på det event i listen du er nået til
+            //hasEventList[i].firstElementChild.classList.add("extraEvent");                    
+            //udkommenteret indtil videre, ikke helt sikker på hvad koden gør
         }
     }
 }
 
+var filter_properties = [];
+var searchfilter_properties = [];
 
-//bruges til at indsætte datoer i kalenderen, ud fra information sendt fra json
-// function events() {
-//     var c = 0, y = -1;
-//     var startdate = [], slutdate = [], antaldage = [];
-// //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function skolefilter(val) { //val er det der står i skolesøgningsboxen
+    val = val.toString(val); //val er val som er val
+    filter_properties[0] = val.toLowerCase(); //filter_properties[0] = værdi som står i skolesøgningsboxen - bliver lowercaset så man kan søge bedre
+    setfilter();
+}
 
-//     var nextYear = [];
+function modulfilter(val) {
+    filter_properties[1] = val; //filter_properties[1] er lig med val (det der står i modulsøgningsboxen)
+    setfilter();
+}
 
+function regionsfilter(val) {
+    filter_properties[2] = val; //filter_properties[2] er lig med val (det der står i region dropdown'en)
+    setfilter();
+}
 
-//     for (i = 0; i < startdato.length; i++) {
-//         y++
+function searchfilter() {
+    setfilter();
+}
 
-//         var splitNextYearDate = jObjA[y].startdato.split("/").reverse().join("-");
-//         splitNextYearDate = splitNextYearDate.split('-0').join('-');
-//         var dateSplit = startdato[i].split("-");
+function setfilter() { //filterer objekter fra som ikke stemmer med søgningen
+    var searchfilter_properties = document.getElementById("search").value.toLowerCase().toString().split(","); //finder det der står i søgningsboxen og splitter på "," så du kan søge efter flere ting
+    var FFilter = jObjA.filter(function(json) { //jObjA bliver til json inden i filter funktionen som bliver gemt som FFilter
+        if (searchfilter_properties[0] != "") { //hvis søgeboksen ikke er tom (her regner vi med at hvis den er tom så buger man de andre bokse i stedet)
+            for (i = 0; i < searchfilter_properties.length; i++) { //itererer igennem søgefeltet (searchfilter_properties bliver længere når du skriver komma, på den måde kan siden tjekke alle elementer i søgningen)
+                if (json.skole_id.toLowerCase().includes(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.skole_id
+                json.moduldata_id.includes(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.moduldata_id
+                json.region.toLowerCase().includes(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.region 
+                json.pladser.toString().match(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.pladser
+                json.reserverede_pladser.toString().match(searchfilter_properties[i]) || //hvis det man har skrevet passer med det der står i json.reserverede_pladser
+                json.id.toString().match(searchfilter_properties[i]) && searchfilter_properties[i].includes(".") == false) { //hvis det man har skrevet passer med det der står i json.reserverede_pladser OG hvis der ikke er et "." ("." bliver brugt til modultal)                
+                    if (i != searchfilter_properties.length - 1) {
+                        continue
+                    }
+                    return json; //returnerer json til FFilter
+                }
+                break
+            }                      
+        }
 
-//         if (dateSplit[0] > currentYear) {
-//             nextYear[i] = startdato[i];
-//         }
-
-//         if (splitNextYearDate == nextYear[y]) {
-//             nextYearsEvents = jObjA[y]
-//        }
-
-//     }
-
-//     //for (i = 0; i < jObjA.length; i++) {
-//     //    var splitDate = jObjA[i].startdato.split("/").reverse().join("-");
-//     //    var yearDate = splitDate.split("-");
-//     //} 
-
-// //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//     for (var J = j; J > 0; J--) {
-//         c++;
-//         if (c == 5) { //giver events forskellige farver så det er nemmere at kende forskel på forskellige events
-//             c = 0; 
-//         }
-
-//         startdate[E] = new Date(startdato[E]); //laver startdatoen fra jsonfilen om til en dato
-//         slutdate[E] = new Date(slutdato[E]); //laver slutdatoen fra jsonfilen om til en dato
-//         var opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//         //var opdeltslutdato = slutdato[E].split("-").map(Number); //laver slutdato fra json filen om til array
-//         antaldage[E] = slutdate[E] - startdate[E]; //beregner hvor meget tid der er mellem start og slut datoen
-//         antaldage[E] = (antaldage[E] / (60*60*24*1000)); //laver beregningen af antaldage om til et mindre tal og fjerner tid så der kun er dage tilbage
-//         //tjekker om antaldage bliver et lige tal hvilket giver en dag for lidt
-//         if (antaldage[E] - Math.floor(antaldage[E]) == 0) {
-//             antaldage[E]++;
-//         }
-//         antaldage[E] = Math.ceil(antaldage[E]); //afrunder antaldage så der kun er hele dage
-//         //}
-//         /*if (!(document.getElementById(startdato[E]))) {
-//             if (m == 1) {
-//                 var samlet = 0;
-//                 var opdeltmåned = currentMonth + 1;
-//                 if (parseInt(opdeltdato[1]) > opdeltmåned) {
-
-//                 }
-//                 else if (parseInt(opdeltdato[1]) < opdeltmåned) {
-
-//                     if (opdeltmåned - parseInt(opdeltdato[1]) == 1) {
-//                         var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-//                         samlet = daysInMonthEvent1 - opdeltdato[2];
-//                     }
-//                     else if (opdeltmåned - parseInt(opdeltdato[1]) == 2) {
-//                         var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-//                         var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-//                         samlet = daysInMonthEvent1 + daysInMonthEvent2 - opdeltdato[2];
-//                     }
-//                     else if (opdeltmåned - parseInt(opdeltdato[1]) == 3) {
-//                         var daysInMonthEvent1 = 32 - new Date(currentYear, opdeltdato[1], 32).getDate(); //beregner hvor mange dage der er på dagværende måned
-//                         var daysInMonthEvent2 = 32 - new Date(currentYear, opdeltdato[1] + 1, 32).getDate(); //beregner hvor mange dage der er på daværende måned
-//                         var daysInMonthEvent3 = 32 - new Date(currentYear, opdeltdato[1] + 2, 32).getDate(); //beregner hvor mange dage der er på daværende måned
-//                         samlet = daysInMonthEvent1 + daysInMonthEvent2 + daysInMonthEvent3 - opdeltdato[2];
-//                     }
-
-//                     antaldage[E] = antaldage[E] - samlet;
-
-//                     startdato[E] = currentYear.toString() + "-" + opdeltmåned.toString() + "-" + "1";
-//                     opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til et array
-
-//                     if (antaldage[E] <= 0) {
-//                         startdato[E] = obj.slutdato;
-//                         opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//                     }
-//                     else if (antaldage[E] > 0) {
-//                         if (opdeltdato[2] == 1 && !(document.getElementById(startdato[E]))) {
-//                             startdato[E] = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "2";
-//                             opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//                             antaldage[E]--;
-//                         }
-//                         if (opdeltdato[2] == 2 && !(document.getElementById(startdato[E]))) {
-//                             startdato[E] = opdeltdato[0].toString() + "-" + opdeltmåned.toString() + "-" + "3";
-//                             opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//                             antaldage[E]--;
-//                         }
-//                     }
-//                 }
-//                 /*else if (opdeltdato[1] == currentMonth) {
-
-//                 }
-
-//                 else {
-
-//                 }
-//             }
-//             else if (m == 3) {
-
-//             }
-
-//             else {
-//                 if (opdeltdato[0] > currentYear) {
-
-//                 }
-//             }
-//         }*/
-//         //var sM = opdeltdato[2];
-
-//         var datocheck = document.getElementsByClassName("D" + startdato[E]); //får fat i et element med samme dato som startdato[E]
-//         var nextYearDateCheck;
-
-//         if (datocheck.length > 0) {
-//             newDateCheck = datocheck;
-//         }
-
-//         else if (datocheck.length == 0) {
-//             nextYearDateCheck = datocheck;
-//         }
-       
-// //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       
-       
-//         /*da der ikke er nogle elementer i første side med klassenavn der indeholder 2020 (eller året efter det første viste år) bliver de events der skal bruges året efter ikke brugt
-//           derfor kan programmet ikke bruge de overflødige datoer */
-
-//         //var yearCheck = startdato;
-
-//         //if (yearCheck[0] > currentYear) {
-//         //}
-
-// //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//         //hvis der findes et element med en klasse som er det samme som datocheck
-//         //så længe at antal dage er over nul
-//         while (antaldage[E] > 0) {
-//             //hvis datoen overgår den 12 måned eller på mystisk vis kommer før den første måned.
-//             if (!(datocheck[0]) && (datomonth >= 12 || datomonth < 1) && antaldage[E] >= 0) {
-//                 var SDN = (currentYear + 1) + "-1-" + "1"; //Erstatter startdatoen fra json stringen med en ny dato 
-//                 //opretter et objekt som bruges til at få datoen til at kører videre end den nuværende visning.
-//                 text = [
-//                     {id: eventID[E], startdato: SDN, slutdato: slutdato[E], synlig: synlig[E], skole_id: skoleID[E], moduldata_id: modultal[E]}
-//                 ];
-//                 t++; //bruges til at tælle hvor mange objekter der er lavet.
-//                 datocheck = document.getElementsByClassName("D" + startdato[E]); //opdaterer søgning efter et element der er det samme som startdato[E]
-//                 //FIX!
-
-//                 //console.log(text);
-//                 break;
-//             }
-//             //checker om der kun er en row så den kan indsætte dataen der
-            
-//             else if (datocheck[0].rows.length == 1) {
-//                 var ugefylde = datocheck[0].rows[0].cells.length; //checker hvor mange celler der er i nuværende row
-//                 var placerevent = document.getElementById(startdato[E]); //bruges til at finde dagen med ID'en som matcher med startdato[E]
-//                 var titel = document.createElement("span"); 
-//                 var titelindhold = document.createTextNode(modultal[E] + " " + skoleID[E]); //indsætter teksts som består af modulnr og skolens initialer som modulet tilhører
-//                 var datoday = opdeltdato[2]; //vælger dagen fra opdeltdato
-//                 var datomonth = opdeltdato[1]; //vælger måneden fra opdeltdato
-//                 var daysInMonth = 32 - new Date(opdeltdato[0], datomonth - 1, 32).getDate(); //beregner hvor mange dage der er i daværende måned                
-//                 //kører så længe der er dage på den daværende uge og bliver kørt igennem indtil antaldage = 0
-//                 for (var i = 0; i < ugefylde; i++) {
-//                     var childNr = datocheck[0].children[0].children[i]; //finder cellen som den skal placere data i
-//                     //var childNr2 = 
-//                     //hvis der er lavet en celle som har et id der matcher med startdato[E]
-//                     console.log(childNr.id);
-//                     console.log(startdato[E]);
-//                     if (childNr.id == startdato[E]) {
-//                         //hvis antaldage bliver 0 eller mindre når den har kørt igennem en uge
-//                         if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] >= 5)) {
-//                             document.getElementById(startdato[E]).classList.add("eventAll" + c); //giver eventet en klasse som bruges til at holde styr på farvekodningen
-//                             //var testdate = document.getElementById(startdato[E]);
-//                             if (antaldage[E] == 1) {
-//                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
-//                             }
-
-//                             else if (antaldage[E] == 2) {
-//                                 document.getElementById(startdato[E]).classList.add("eventTwoDay");
-//                             }
-
-//                             else if (antaldage[E] == 3) {
-//                                 document.getElementById(startdato[E]).classList.add("eventThreeDay");
-//                             }
-                            
-//                             else {
-//                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-//                             }                       
-                            
-//                             datoday = datoday + antaldage[E] - 1; //opdaterer datoday ud fra de resterende dage - 1
-//                             antaldage[E] = 0; //antaldage laves om til 0
-//                         }
-//                         //til når eventet er på den sidste uge
-//                         else if (ugefylde == 5 && antaldage[E] == 5) {
-//                             antaldage[E] = antaldage[E] - (ugefylde-i); //ugespan tæller ned i forhold til ugen
-//                             document.getElementById(startdato[E]).classList.add("eventAll" + c); //giver eventet en klasse som bruges til at holde styr på farvekodningen
-//                             if (ugefylde - i == 1) {
-//                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
-//                             }
-
-//                             else if (ugefylde - i == 2) {
-//                                 document.getElementById(startdato[E]).classList.add("eventTwoDay");
-//                             }
-
-//                             else if (ugefylde - i == 3) {
-//                                 document.getElementById(startdato[E]).classList.add("eventThreeDay");
-//                             }
-
-//                             else if (ugefylde - i == 4) {
-//                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-//                             }
-                            
-//                             else {
-//                                 document.getElementById(startdato[E]).classList.add("eventFiveDay");
-//                             }
-
-//                             datoday = datoday + (ugefylde-i); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-//                         }
-//                         //hvis ugen i samme måned har 5 dage (AKA en normal uge)
-//                         else if (ugefylde == 5) {
-//                             antaldage[E] = antaldage[E] - ((ugefylde-i) + 2); //ugespan tæller ned i forhold til ugen
-//                             document.getElementById(startdato[E]).classList.add("eventAll" + c); //giver eventet en klasse som bruges til at holde styr på farvekodningen
-//                             if (ugefylde - i == 1) {
-//                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
-//                             }
-
-//                             else if (ugefylde - i == 2) {
-//                                 document.getElementById(startdato[E]).classList.add("eventTwoDay");
-//                             }
-
-//                             else if (ugefylde - i == 3) {
-//                                 document.getElementById(startdato[E]).classList.add("eventThreeDay");
-//                             }
-
-//                             else if (ugefylde - i == 4) {
-//                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-//                             }
-                            
-//                             else {
-//                                 document.getElementById(startdato[E]).classList.add("eventFiveDay");
-//                             }
-
-//                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-//                         }
-//                         //hvis ugen i samme måned ikke har 5 dage, dette bruges når den sidste uge på måneden stopper midt på ugen for at skifte til næste måned.
-//                         else { 
-//                             antaldage[E] = antaldage[E] - (ugefylde - i); //antaldage tæller ned
-//                             document.getElementById(startdato[E]).classList.add("eventAll" + c); //giver eventet en klasse som bruges til at holde styr på farvekodningen
-//                             if (ugefylde - i == 1) {
-//                                 document.getElementById(startdato[E]).classList.add("eventOneDay");
-//                             }
-
-//                             else if (ugefylde - i == 2) {
-//                                 document.getElementById(startdato[E]).classList.add("eventTwoDay");
-//                             }
-
-//                             else if (ugefylde - i == 3) {
-//                                 document.getElementById(startdato[E]).classList.add("eventThreeDay");
-//                             }
-                            
-//                             else {
-//                                 document.getElementById(startdato[E]).classList.add("eventFourDay");
-//                             }                        
-                            
-//                             datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-//                         }
-
-//                         var nyrække = document.createElement("tr"); //laver en ny række for at kunne sætte ny data ind, så den ikke overskriver det nuværende data
-//                         datocheck[0].appendChild(nyrække); //sætter den nye række ind i tabellen
-//                         break;
-//                     }
-
-//                     /*else if (childNr.id == startdato[E]) { 
-
-//                     }*/ //FIX!!!
-
-//                 }
-//                 /*if (antaldage[E] - ugefylde < ugefylde && !(antaldage[E] > 5)) {
-//                     antaldage[E] = 0;
-//                 }
-//                 else {
-//                     datoday = datoday + ((ugefylde-i) + 2); //giver datoday ekstra dage i forhold til resten af ugedagene + weekend
-//                 }*/
-
-//                 //skifter til næste måned hvis dagene i opdeltdato overstiger dage i måneden
-//                 if (datoday > daysInMonth) {
-//                     datomonth++;
-//                     opdeltdato[1] = datomonth;
-//                     datoday = 1;
-//                 }               
-
-//                 opdeltdato[2] = datoday; //opdaterer dagen der skal tages udgangspunkt i
-//                 var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-                
-//                 /*//FIX
-//                 if (datomonth >= opdeltslutdato[1] && datoday > opdeltslutdato[2]) {
-//                     break;
-//                 }*/
-
-//                 startdato[E] = datostring; //erstatter startdatoen fra json stringen med den nye dato 
-//                 datocheck = document.getElementsByClassName("D" + startdato[E]); //opdaterer søgning efter et element som matcher med startdato[E]
-//                 placerevent.onclick = function(){displayJSON(this)}; //giver placerevent en "onclick" funktion som kalder på displayJSON
-//                 placerevent.appendChild(titel);
-//                 titel.appendChild(titelindhold);
-//                 titel.classList.add("eventID" + eventID[E]); //giver titel på daværende event, en klasse som matcher med id'et på eventet
-
-//                     //hvis dag 1 ikke findes i en måned skifter den over på dag 2
-//                     if (datoday == 1 && !(document.getElementById(startdato[E]))) {
-//                         datoday = 2;
-//                         opdeltdato[2] = datoday; //opdaterer dagen der skal tage udgangspunkt i
-//                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-//                         startdato[E] = datostring; //erstatter startdatoen i json stringen med den nye dato 
-//                         opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//                         datocheck = document.getElementsByClassName("D" + startdato[E]); //opdaterer søgning efter et element der matcher med startdato[E]
-//                     }
-//                     //hvis dag 2 ikke findes i en måned skifter den over på dag 3
-//                     if (datoday == 2 && !(document.getElementById(startdato[E]))) {
-//                         datoday = 3;
-//                         opdeltdato[2] = datoday; //opdaterer dagen der skal tage udgangspunkt i
-//                         var datostring = opdeltdato[0].toString() + "-" + datomonth.toString() + "-" + datoday.toString(); //laver en dato i stringformat udfra de forhold den er kommet til
-//                         startdato[E] = datostring; //erstatter startdatoen i json stringen med den nye dato 
-//                         opdeltdato = startdato[E].split("-").map(Number); //laver startdato fra json filen om til array
-//                         datocheck = document.getElementsByClassName("D" + startdato[E]); //opdaterer søgning efter et element der matcher med startdato[E]
-//                     }
-
-//                 sM = opdeltdato[2];
-//             }      
-//             //checker om der er flere rows, så den kan indsætte det næste event som kører samtidigt i en tæller
-//             else if (datocheck[0].rows.length <= 2) {
-//                 console.log(datocheck[0].rows.length);
-//             }
-
-//             /*else {
-
-//             }*/
-//         }
-//         //checker om eventet er kørt til ende, så den skifter om til næste event
-//         if (antaldage[E] == 0) {
-//             E++;
-//         }
-//     }
-//     removeDays(); //gør at der er plads til eventet på en uge
-//}
+        else if (searchfilter_properties[0] == "") {
+            if (json.skole_id.toLowerCase().match(filter_properties[0]) && json.moduldata_id.match(filter_properties[1]) && json.region.match(filter_properties[2])) { //samme som ovenover bare anderledes
+                return json;
+            }  
+        }       
+        
+    });
+    newjObjA = FFilter;
+    events(FFilter); //events() kører nu igennem med FFilters filtreret elementer i stedet for det gamle array
+};
+//searchfilter();         
